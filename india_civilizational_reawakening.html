@@ -1,0 +1,1551 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Reawakening — India's Journey from Colonial Disruption to Civilizational Reclamation</title>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel+Decorative:wght@400;700&family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --indigo:       #0A0820;
+    --deep-indigo:  #060514;
+    --mid-indigo:   #12103A;
+    --saffron:      #E8640A;
+    --deep-saffron: #C04A00;
+    --pale-saffron: #F5A050;
+    --gold:         #D4A017;
+    --pale-gold:    #F5D060;
+    --lotus-red:    #8B1A10;
+    --dawn:         #FF8C30;
+    --cream:        #FDF5E0;
+    --light:        #F0E4C8;
+    --muted:        rgba(240,228,200,0.65);
+    --faint:        rgba(240,228,200,0.32);
+    --violet:       #2A1850;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior:smooth; }
+
+  body {
+    background: var(--deep-indigo);
+    color: var(--light);
+    font-family: 'EB Garamond', Georgia, serif;
+    overflow-x: hidden;
+  }
+
+  body::after {
+    content:'';
+    position:fixed; inset:0;
+    background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.82' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events:none; z-index:999; opacity:0.42;
+  }
+
+  /* Reveal */
+  .r { opacity:0; transform:translateY(34px); transition:opacity 1s ease, transform 1s ease; }
+  .r.on { opacity:1; transform:translateY(0); }
+  .d1{transition-delay:.12s} .d2{transition-delay:.26s} .d3{transition-delay:.40s}
+  .d4{transition-delay:.54s} .d5{transition-delay:.68s}
+
+  /* ══════ HERO ══════ */
+  .hero {
+    min-height:100vh;
+    position:relative;
+    display:flex; flex-direction:column;
+    align-items:center; justify-content:center;
+    text-align:center; overflow:hidden;
+    background: radial-gradient(ellipse at 50% 80%, #2A1040 0%, #14082A 30%, #080618 65%, #040310 100%);
+  }
+
+  .hero-canvas { position:absolute; inset:0; width:100%; height:100%; }
+  .hero-content { position:relative; z-index:10; padding:40px 20px; max-width:880px; }
+
+  .devanagari-line {
+    font-size:clamp(22px,3vw,34px);
+    color:rgba(212,160,23,0.5);
+    letter-spacing:6px;
+    margin-bottom:20px;
+    text-shadow:0 0 40px rgba(212,160,23,0.3);
+    opacity:0; animation:fadeUp 1.2s ease 0.3s forwards;
+    font-family:'EB Garamond',serif;
+  }
+
+  .hero-eyebrow {
+    font-family:'Cinzel',serif;
+    font-size:10px; letter-spacing:6px; color:var(--saffron);
+    margin-bottom:26px;
+    opacity:0; animation:fadeUp 1s ease 0.6s forwards;
+  }
+
+  .hero-title {
+    font-family:'Cinzel Decorative',serif;
+    font-size:clamp(36px,7vw,88px);
+    font-weight:700;
+    color:var(--pale-gold);
+    line-height:1.05;
+    text-shadow:0 0 80px rgba(212,160,23,0.35), 0 4px 30px rgba(0,0,0,0.9);
+    opacity:0; animation:fadeUp 1.2s ease 0.8s forwards;
+    margin-bottom:10px;
+  }
+
+  .hero-title span {
+    display:block;
+    font-family:'Cinzel',serif;
+    font-size:0.48em;
+    font-weight:400;
+    color:var(--saffron);
+    letter-spacing:3px;
+    margin-top:8px;
+  }
+
+  .hero-sub {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(15px,2.1vw,21px);
+    font-style:italic;
+    color:rgba(245,208,96,0.68);
+    margin-bottom:44px; line-height:1.7;
+    opacity:0; animation:fadeUp 1s ease 1.1s forwards;
+  }
+
+  .hero-rule {
+    width:130px; height:1px;
+    background:linear-gradient(90deg,transparent,var(--gold),transparent);
+    margin:0 auto 36px;
+    opacity:0; animation:fadeUp 1s ease 1.3s forwards;
+  }
+
+  .hero-anchor {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(15px,1.9vw,20px);
+    font-style:italic;
+    color:var(--light);
+    max-width:680px; margin:0 auto 44px;
+    border-left:2px solid var(--saffron);
+    padding:22px 30px;
+    background:rgba(232,100,10,0.07);
+    text-align:left; line-height:1.85;
+    opacity:0; animation:fadeUp 1s ease 1.5s forwards;
+  }
+
+  .ep-badges {
+    display:flex; gap:18px; justify-content:center; flex-wrap:wrap;
+    opacity:0; animation:fadeUp 1s ease 1.8s forwards;
+  }
+  .ep-badge {
+    font-family:'Cinzel',serif; font-size:9.5px; letter-spacing:3px;
+    padding:9px 18px;
+    border:1px solid rgba(212,160,23,0.3);
+    color:var(--gold);
+    background:rgba(212,160,23,0.06);
+  }
+
+  .scroll-cue {
+    position:absolute; bottom:26px; left:50%; transform:translateX(-50%);
+    font-family:'Cinzel',serif; font-size:8px; letter-spacing:5px;
+    color:rgba(212,160,23,0.4);
+    animation:breathe 3s ease infinite;
+  }
+
+  /* ══════ SHARED ══════ */
+  .container { max-width:780px; margin:0 auto; }
+
+  .body-text {
+    font-size:clamp(17px,1.9vw,20px);
+    line-height:2.0; color:var(--light);
+  }
+  .body-text p { margin-bottom:24px; }
+  .body-text strong { color:var(--pale-gold); font-weight:500; }
+  .body-text em { color:rgba(245,208,96,0.9); }
+
+  .pull {
+    margin:40px 0; padding:26px 34px 26px 26px;
+    border-left:3px solid var(--gold);
+    background:rgba(212,160,23,0.07);
+    position:relative;
+  }
+  .pull::before {
+    content:'"';
+    font-family:'Cormorant Garamond',serif;
+    font-size:90px; color:rgba(212,160,23,0.14);
+    position:absolute; top:-14px; left:8px; line-height:1;
+  }
+  .pull p {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(18px,2.3vw,26px);
+    font-style:italic; color:var(--pale-gold);
+    line-height:1.6; margin:0;
+  }
+
+  .note {
+    padding:22px 26px;
+    border:1px solid rgba(232,100,10,0.22);
+    background:rgba(232,100,10,0.06);
+    margin-bottom:22px;
+  }
+  .note-tag {
+    font-family:'Cinzel',serif; font-size:9px; letter-spacing:4px;
+    color:var(--saffron); margin-bottom:9px;
+  }
+  .note p { font-size:15px; line-height:1.8; color:rgba(240,228,200,0.78); font-style:italic; margin:0; }
+
+  .section-eye {
+    font-family:'Cinzel',serif; font-size:10px; letter-spacing:5px;
+    color:var(--saffron); display:flex; align-items:center; gap:14px;
+    margin-bottom:18px;
+  }
+  .section-eye::after {
+    content:''; flex:1; height:1px;
+    background:linear-gradient(90deg,rgba(232,100,10,0.4),transparent);
+  }
+
+  .section-title {
+    font-family:'Cinzel',serif;
+    font-size:clamp(24px,4.2vw,50px);
+    font-weight:600; color:var(--pale-gold);
+    line-height:1.12; margin-bottom:10px;
+  }
+
+  .section-sub {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(15px,1.9vw,20px);
+    font-style:italic; color:rgba(232,100,10,0.8);
+    margin-bottom:32px;
+  }
+
+  .divider {
+    width:70px; height:1px;
+    background:linear-gradient(90deg,var(--gold),transparent);
+    margin-bottom:30px;
+  }
+
+  /* ══════ SCENE WRAPPERS ══════ */
+  .scene { position:relative; overflow:hidden; }
+  .scene-visual { width:100%; height:clamp(280px,40vw,460px); display:block; overflow:hidden; }
+  .scene-visual svg { width:100%; height:100%; }
+
+  .ep-body { padding:72px 24px 84px; position:relative; }
+  .ep-bg-1 { background:linear-gradient(180deg,#0E0C28 0%,#080618 100%); }
+  .ep-bg-2 { background:linear-gradient(180deg,#140A04 0%,#0A0602 100%); }
+  .ep-bg-3 { background:linear-gradient(180deg,#0A0C28 0%,#060818 100%); }
+  .ep-bg-4 { background:linear-gradient(180deg,#160A00 0%,#0C0600 100%); }
+  .ep-bg-5 { background:linear-gradient(180deg,#0E0820 0%,#080614 100%); }
+  .ep-bg-6 { background:linear-gradient(180deg,#100A00 0%,#080500 100%); }
+  .ep-bg-7 { background:linear-gradient(180deg,#180E00 0%,#0E0800 100%); }
+  .ep-bg-8 { background:linear-gradient(180deg,#0E0C24 0%,#0C0A1A 100%); }
+
+  .ep-num {
+    position:absolute; right:0; top:-20px;
+    font-family:'Cinzel Decorative',serif;
+    font-size:110px; color:rgba(212,160,23,0.04);
+    line-height:1; pointer-events:none; user-select:none;
+  }
+
+  /* ══════ COMPARE TABLE ══════ */
+  .compare {
+    display:grid; grid-template-columns:1fr 1fr;
+    gap:2px; max-width:780px; margin:44px auto;
+  }
+  .compare-col { padding:32px 26px; }
+  .compare-col.old { background:rgba(42,24,80,0.5); }
+  .compare-col.new { background:rgba(232,100,10,0.09); }
+  .compare-label {
+    font-family:'Cinzel',serif; font-size:9px; letter-spacing:4px;
+    margin-bottom:20px;
+  }
+  .compare-col.old .compare-label { color:rgba(160,150,200,0.6); }
+  .compare-col.new .compare-label { color:var(--saffron); }
+  .compare-item {
+    font-size:14px; line-height:1.85; color:var(--muted);
+    margin-bottom:12px; padding-left:18px; position:relative;
+  }
+  .compare-item::before { position:absolute; left:0; }
+  .compare-col.old .compare-item::before { content:'—'; color:rgba(160,150,180,0.4); }
+  .compare-col.new .compare-item::before { content:'✦'; color:var(--gold); }
+  .compare-col.new .compare-item { color:var(--light); }
+
+  /* ══════ CIVILIZATIONAL CHAIN ══════ */
+  .civ-chain {
+    padding:84px 24px;
+    background:linear-gradient(180deg,#080618 0%,#0C0A22 50%,#080618 100%);
+    position:relative;
+  }
+  .civ-chain::before {
+    content:'';
+    position:absolute; left:50%; top:130px; bottom:60px;
+    width:1px;
+    background:linear-gradient(180deg,transparent,rgba(212,160,23,0.28) 15%,rgba(212,160,23,0.28) 85%,transparent);
+    transform:translateX(-50%);
+  }
+
+  .chain-head {
+    font-family:'Cinzel',serif;
+    font-size:clamp(18px,3vw,34px); color:var(--pale-gold);
+    text-align:center; margin-bottom:14px;
+  }
+  .chain-sub {
+    font-family:'Cormorant Garamond',serif; font-style:italic;
+    font-size:clamp(14px,1.8vw,18px); color:var(--muted);
+    text-align:center; margin-bottom:64px;
+  }
+
+  .chain-nodes { max-width:860px; margin:0 auto; }
+  .chain-node {
+    display:grid; grid-template-columns:1fr 52px 1fr;
+    align-items:start; position:relative; z-index:2;
+  }
+  .cn-l, .cn-r { padding:20px 24px 28px; }
+  .cn-l { text-align:right; }
+  .cn-r { text-align:left; }
+  .cn-blank { padding:20px 0; }
+  .cn-mid { display:flex; flex-direction:column; align-items:center; padding-top:18px; }
+  .cn-dot { width:14px; height:14px; border-radius:50%; border:2px solid var(--pale-gold); flex-shrink:0; z-index:3; }
+  .cn-dot.dark   { background:#14103A; }
+  .cn-dot.mid    { background:var(--saffron); box-shadow:0 0 14px rgba(232,100,10,0.5); }
+  .cn-dot.bright { background:var(--pale-gold); box-shadow:0 0 28px rgba(245,208,96,0.8); }
+  .cn-line { width:1px; flex:1; min-height:26px; background:rgba(212,160,23,0.2); }
+  .cn-phase { font-family:'Cinzel',serif; font-size:8.5px; letter-spacing:3px; color:var(--saffron); margin-bottom:5px; }
+  .cn-head { font-family:'Cormorant Garamond',serif; font-size:clamp(14px,1.7vw,17px); font-weight:600; color:var(--pale-gold); margin-bottom:5px; line-height:1.3; }
+  .cn-body { font-size:13px; line-height:1.7; color:var(--muted); }
+  .cn-body em { color:rgba(232,100,10,0.8); font-style:italic; }
+
+  /* ══════ CLOSING ══════ */
+  .closing {
+    min-height:90vh; position:relative;
+    display:flex; align-items:center; justify-content:center;
+    text-align:center; overflow:hidden;
+  }
+  .closing-canvas { position:absolute; inset:0; width:100%; height:100%; }
+  .closing-content { position:relative; z-index:10; padding:80px 24px; max-width:740px; }
+
+  .closing-devanagari {
+    font-family:'EB Garamond',serif;
+    font-size:clamp(26px,4vw,48px);
+    color:rgba(212,160,23,0.55);
+    text-shadow:0 0 50px rgba(212,160,23,0.5);
+    display:block; margin-bottom:22px;
+    animation:omPulse 4s ease infinite;
+  }
+
+  .closing-title {
+    font-family:'Cinzel Decorative',serif;
+    font-size:clamp(26px,5vw,58px); font-weight:700;
+    color:var(--pale-gold); line-height:1.1; margin-bottom:18px;
+    text-shadow:0 0 60px rgba(212,160,23,0.35);
+  }
+  .closing-sub {
+    font-family:'Cormorant Garamond',serif; font-style:italic;
+    font-size:clamp(16px,2.1vw,22px); color:rgba(245,208,96,0.7);
+    margin-bottom:50px;
+  }
+  .closing-body {
+    font-size:clamp(16px,1.85vw,20px);
+    line-height:2.0; color:var(--light);
+    text-align:left; margin-bottom:36px;
+  }
+  .closing-body p { margin-bottom:18px; }
+  .closing-body strong { color:var(--pale-gold); font-weight:500; }
+  .final-sutra {
+    padding:36px 42px; border:1px solid rgba(245,208,96,0.22);
+    background:rgba(212,160,23,0.08); margin-bottom:40px;
+  }
+  .final-sutra p {
+    font-family:'Cormorant Garamond',serif;
+    font-size:clamp(17px,2.2vw,25px); font-style:italic;
+    color:var(--pale-gold); line-height:1.65;
+  }
+  .share-cue {
+    font-family:'Cinzel',serif; font-size:9px; letter-spacing:4px;
+    color:rgba(212,160,23,0.4);
+  }
+
+  /* ══════ ANIMATIONS ══════ */
+  @keyframes fadeUp { from{opacity:0;transform:translateY(28px)} to{opacity:1;transform:translateY(0)} }
+  @keyframes breathe { 0%,100%{opacity:0.35} 50%{opacity:0.85} }
+  @keyframes float { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-7px)} }
+  @keyframes twinkle { 0%,100%{opacity:0.25} 50%{opacity:1} }
+  @keyframes omPulse { 0%,100%{text-shadow:0 0 40px rgba(212,160,23,0.4)} 50%{text-shadow:0 0 80px rgba(212,160,23,0.8),0 0 120px rgba(232,100,10,0.3)} }
+  @keyframes rotate360 { from{transform:rotate(0deg)} to{transform:rotate(360deg)} }
+  @keyframes flameDance { 0%,100%{transform:scaleY(1) scaleX(1)} 30%{transform:scaleY(1.1) scaleX(0.94)} 70%{transform:scaleY(0.94) scaleX(1.06)} }
+  @keyframes chainBreak { 0%{opacity:0.8;transform:scaleX(1)} 50%{opacity:0.4;transform:scaleX(0.8) rotate(-5deg)} 100%{opacity:0;transform:scaleX(0) rotate(-15deg) translateY(-20px)} }
+  @keyframes sunRise { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
+
+  @media(max-width:640px){
+    .compare{grid-template-columns:1fr}
+    .chain-node{grid-template-columns:28px 1fr}
+    .chain-node .cn-l{display:none}
+    .civ-chain::before{left:28px}
+    .scene-visual{height:240px}
+  }
+</style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════
+     HERO
+══════════════════════════════════════════════════ -->
+<section class="hero">
+  <svg class="hero-canvas" viewBox="0 0 1200 800" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="hbg1" cx="50%" cy="60%" r="60%">
+        <stop offset="0%" stop-color="#3A1060" stop-opacity="0.5"/>
+        <stop offset="60%" stop-color="#1A0830" stop-opacity="0.2"/>
+        <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="hbg2" cx="50%" cy="85%" r="45%">
+        <stop offset="0%" stop-color="#E86830" stop-opacity="0.28"/>
+        <stop offset="60%" stop-color="#C04A00" stop-opacity="0.08"/>
+        <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="sunG" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#FFD060" stop-opacity="0.9"/>
+        <stop offset="40%" stop-color="#FF9500" stop-opacity="0.4"/>
+        <stop offset="100%" stop-color="#FF5500" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="gf"><feGaussianBlur stdDeviation="9" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <filter id="sf"><feGaussianBlur stdDeviation="22" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    </defs>
+
+    <rect width="1200" height="800" fill="#06040E"/>
+    <rect width="1200" height="800" fill="url(#hbg1)"/>
+    <rect width="1200" height="800" fill="url(#hbg2)"/>
+
+    <!-- Stars -->
+    <g>
+      <circle cx="80"  cy="55"  r="1.3" fill="#E8D8C0" style="animation:twinkle 3.2s ease infinite"/>
+      <circle cx="210" cy="35"  r="0.9" fill="#E8D8C0" style="animation:twinkle 4.5s ease infinite .5s"/>
+      <circle cx="350" cy="75"  r="1.6" fill="#FFE8A0" filter="url(#gf)" style="animation:twinkle 2.7s ease infinite 1s"/>
+      <circle cx="490" cy="42"  r="1"   fill="#E8D8C0" style="animation:twinkle 3.8s ease infinite .3s"/>
+      <circle cx="620" cy="22"  r="2"   fill="#FFE8A0" filter="url(#gf)" style="animation:twinkle 2.5s ease infinite"/>
+      <circle cx="760" cy="58"  r="1.2" fill="#E8D8C0" style="animation:twinkle 4.2s ease infinite 1.2s"/>
+      <circle cx="900" cy="38"  r="1.3" fill="#E8D8C0" style="animation:twinkle 3.5s ease infinite .8s"/>
+      <circle cx="1030" cy="70" r="1"   fill="#FFE8A0" style="animation:twinkle 4s ease infinite 1.6s"/>
+      <circle cx="1140" cy="48" r="1.4" fill="#E8D8C0" style="animation:twinkle 3s ease infinite 2s"/>
+      <circle cx="160" cy="190" r="0.8" fill="#E8D8C0" style="animation:twinkle 4.5s ease infinite 2.2s" opacity="0.5"/>
+      <circle cx="950" cy="160" r="0.9" fill="#E8D8C0" style="animation:twinkle 3.8s ease infinite 1.8s" opacity="0.5"/>
+    </g>
+
+    <!-- Palm-leaf manuscript texture suggestion — horizontal faint lines -->
+    <g opacity="0.04" stroke="#D4A017" stroke-width="0.6">
+      <line x1="0" y1="160" x2="1200" y2="160"/>
+      <line x1="0" y1="180" x2="1200" y2="180"/>
+      <line x1="0" y1="200" x2="1200" y2="200"/>
+      <line x1="0" y1="220" x2="1200" y2="220"/>
+      <line x1="0" y1="240" x2="1200" y2="240"/>
+      <line x1="0" y1="260" x2="1200" y2="260"/>
+      <line x1="0" y1="280" x2="1200" y2="280"/>
+    </g>
+
+    <!-- Faint Sanskrit / Devanagari characters in background -->
+    <g opacity="0.05" fill="#D4A017" font-family="serif" font-size="18">
+      <text x="60"   y="120">सत्यम्</text>
+      <text x="200"  y="145">ज्ञानम्</text>
+      <text x="380"  y="110">धर्मः</text>
+      <text x="560"  y="135">अनन्तम्</text>
+      <text x="740"  y="118">विद्या</text>
+      <text x="920"  y="142">शक्तिः</text>
+      <text x="1080" y="125">अहिंसा</text>
+      <text x="100"  y="310">तत्त्वम्</text>
+      <text x="320"  y="295">प्रज्ञा</text>
+      <text x="600"  y="318">आत्मन्</text>
+      <text x="850"  y="302">ब्रह्म</text>
+      <text x="1050" y="314">मोक्षः</text>
+    </g>
+
+    <!-- Temple silhouette merging into horizon -->
+    <g fill="#0A0618" opacity="0.9">
+      <!-- Temple gopuram center -->
+      <path d="M520 680 L530 620 L535 570 L540 520 L545 470 L548 430 L550 400 L552 370 L555 340 L558 320 L560 300 L562 285 L565 270 L568 255 L570 245 L572 235 L575 225 L578 215 L580 205 L583 195 L585 185 L588 175 L590 168 L592 162 L595 155 L597 150 L600 145 L603 150 L605 155 L607 162 L609 168 L612 175 L614 185 L617 195 L620 205 L622 215 L625 225 L627 235 L630 245 L632 255 L635 270 L637 285 L640 300 L642 312 L645 330 L648 355 L652 385 L655 415 L658 450 L661 485 L665 520 L668 565 L671 615 L675 680 Z" />
+      <!-- Temple tiers suggestion -->
+      <rect x="540" y="640" width="120" height="40" rx="1"/>
+      <rect x="548" y="600" width="104" height="42" rx="1"/>
+      <rect x="555" y="562" width="90" height="40" rx="1"/>
+      <!-- Small side spires -->
+      <path d="M440 680 L445 650 L448 620 L450 590 L452 565 L454 545 L456 528 L458 514 L460 502 L462 492 L464 482 L466 474 L468 466 L470 460 L472 454 L474 450 L476 446 L478 443 L480 440 L483 443 L486 448 L489 455 L491 463 L493 472 L495 482 L498 494 L501 508 L503 524 L506 544 L509 566 L512 590 L514 618 L516 648 L518 680 Z"/>
+      <path d="M682 680 L686 648 L688 618 L690 590 L693 566 L696 544 L699 524 L701 508 L703 494 L706 482 L708 472 L710 463 L712 455 L715 448 L718 443 L720 440 L722 443 L724 446 L726 450 L728 454 L730 460 L732 466 L734 474 L736 482 L738 492 L740 502 L742 514 L744 528 L746 545 L748 565 L750 590 L752 620 L755 650 L758 680 Z"/>
+    </g>
+
+    <!-- Saffron dawn glow at base of temple -->
+    <ellipse cx="600" cy="700" rx="350" ry="100" fill="url(#sunG)" opacity="0.35"/>
+    <ellipse cx="600" cy="710" rx="200" ry="60"  fill="#FF9500" opacity="0.12"/>
+
+    <!-- Dawn sun disc rising behind temple -->
+    <ellipse cx="600" cy="680" rx="80" ry="30" fill="#FFD060" opacity="0.7" filter="url(#sf)"/>
+
+    <!-- Broken chain → rising into light — symbolic motif left side -->
+    <g transform="translate(80, 450)" opacity="0.2">
+      <!-- Chain links (lower — colonial) -->
+      <ellipse cx="0" cy="200" rx="16" ry="8" fill="none" stroke="#6040A0" stroke-width="2.5" transform="rotate(20)"/>
+      <ellipse cx="5" cy="220" rx="16" ry="8" fill="none" stroke="#6040A0" stroke-width="2.5" transform="rotate(-15)"/>
+      <ellipse cx="-3" cy="240" rx="16" ry="8" fill="none" stroke="#6040A0" stroke-width="2.5" transform="rotate(10)"/>
+      <!-- Break point -->
+      <line x1="-10" y1="180" x2="10" y2="175" stroke="#FFD060" stroke-width="2" opacity="0.8"/>
+      <line x1="-12" y1="185" x2="12" y2="178" stroke="#FFD060" stroke-width="1.5" opacity="0.5"/>
+      <!-- Ascending light above break -->
+      <path d="M0 170 Q5 120 0 70 Q-5 30 5 0" stroke="#FFD060" stroke-width="1.5" fill="none" stroke-dasharray="4,6" opacity="0.7"/>
+      <circle cx="5" cy="0" r="4" fill="#FFD060" opacity="0.6" filter="url(#gf)"/>
+    </g>
+
+    <!-- Same motif right side mirrored -->
+    <g transform="translate(1120, 450) scale(-1,1)" opacity="0.2">
+      <ellipse cx="0" cy="200" rx="16" ry="8" fill="none" stroke="#6040A0" stroke-width="2.5" transform="rotate(20)"/>
+      <ellipse cx="5" cy="220" rx="16" ry="8" fill="none" stroke="#6040A0" stroke-width="2.5" transform="rotate(-15)"/>
+      <ellipse cx="-3" cy="240" rx="16" ry="8" fill="none" stroke="#6040A0" stroke-width="2.5" transform="rotate(10)"/>
+      <line x1="-10" y1="180" x2="10" y2="175" stroke="#FFD060" stroke-width="2" opacity="0.8"/>
+      <path d="M0 170 Q5 120 0 70 Q-5 30 5 0" stroke="#FFD060" stroke-width="1.5" fill="none" stroke-dasharray="4,6" opacity="0.7"/>
+      <circle cx="5" cy="0" r="4" fill="#FFD060" opacity="0.6" filter="url(#gf)"/>
+    </g>
+
+    <!-- Rotating Dharma chakra very faint -->
+    <g transform="translate(600,400)" opacity="0.04" style="animation:rotate360 90s linear infinite;transform-box:fill-box;transform-origin:0 0">
+      <circle cx="0" cy="0" r="240" fill="none" stroke="#FFD060" stroke-width="1.5"/>
+      <circle cx="0" cy="0" r="180" fill="none" stroke="#FFD060" stroke-width="1"/>
+      <!-- 24 spokes -->
+      <line x1="0" y1="-240" x2="0" y2="240" stroke="#FFD060" stroke-width="0.8"/>
+      <line x1="-240" y1="0" x2="240" y2="0" stroke="#FFD060" stroke-width="0.8"/>
+      <line x1="-170" y1="-170" x2="170" y2="170" stroke="#FFD060" stroke-width="0.6"/>
+      <line x1="170" y1="-170" x2="-170" y2="170" stroke="#FFD060" stroke-width="0.6"/>
+      <line x1="-92" y1="-226" x2="92" y2="226" stroke="#FFD060" stroke-width="0.5"/>
+      <line x1="92" y1="-226" x2="-92" y2="226" stroke="#FFD060" stroke-width="0.5"/>
+      <line x1="-226" y1="-92" x2="226" y2="92" stroke="#FFD060" stroke-width="0.5"/>
+      <line x1="226" y1="-92" x2="-226" y2="92" stroke="#FFD060" stroke-width="0.5"/>
+      <!-- Center -->
+      <circle cx="0" cy="0" r="20" fill="none" stroke="#FFD060" stroke-width="1.5"/>
+      <circle cx="0" cy="0" r="6"  fill="#FFD060"/>
+    </g>
+  </svg>
+
+  <div class="hero-content">
+    <p class="devanagari-line">सा विद्या या विमुक्तये</p>
+    <p class="hero-eyebrow">A Civilizational Psychology Series · 8 Episodes</p>
+    <h1 class="hero-title">
+      The Reawakening
+      <span>India's Journey from Colonial Disruption to Conscious Reclamation</span>
+    </h1>
+    <p class="hero-sub">Colonialism did not just occupy land — it occupied narrative.<br>True reclamation is remembering who we were before we were told who to be.</p>
+    <div class="hero-rule"></div>
+    <p class="hero-anchor">
+      India's journey is not about going backward. It is not about rejection. It is about integrating the memory of who we are with the world we are building — so that what emerges is neither imitation nor nostalgia, but something far more powerful: a civilization that knows its own depth.
+    </p>
+    <div class="ep-badges">
+      <span class="ep-badge">Civilizational Identity</span>
+      <span class="ep-badge">Colonial Psychology</span>
+      <span class="ep-badge">Gurukul to 10+2</span>
+      <span class="ep-badge">Cultural Reclamation</span>
+    </div>
+  </div>
+  <p class="scroll-cue">▼ &nbsp; THE STORY BEGINS &nbsp; ▼</p>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     EP 1 — CIVILIZATIONS ARE BUILT ON STORIES
+══════════════════════════════════════════════════ -->
+<section class="scene">
+  <div class="scene-visual">
+    <svg viewBox="0 0 1200 460" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="e1bg" cx="50%" cy="40%" r="70%">
+          <stop offset="0%" stop-color="#1A1040"/>
+          <stop offset="100%" stop-color="#06040C"/>
+        </radialGradient>
+        <filter id="f1"><feGaussianBlur stdDeviation="10" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <rect width="1200" height="460" fill="url(#e1bg)"/>
+
+      <!-- Starry night — ancient India -->
+      <g>
+        <circle cx="100" cy="50"  r="1.2" fill="#E8D8A0" style="animation:twinkle 3s ease infinite"/>
+        <circle cx="230" cy="80"  r="0.9" fill="#E8D8A0" style="animation:twinkle 4s ease infinite .6s"/>
+        <circle cx="390" cy="40"  r="1.5" fill="#FFE8A0" style="animation:twinkle 2.8s ease infinite 1s"/>
+        <circle cx="550" cy="65"  r="1"   fill="#E8D8A0" style="animation:twinkle 3.5s ease infinite"/>
+        <circle cx="710" cy="35"  r="1.3" fill="#FFE8A0" filter="url(#f1)" style="animation:twinkle 2.5s ease infinite .4s"/>
+        <circle cx="860" cy="55"  r="0.8" fill="#E8D8A0" style="animation:twinkle 4.2s ease infinite 1.4s"/>
+        <circle cx="1000" cy="42" r="1.4" fill="#E8D8A0" style="animation:twinkle 3.2s ease infinite .9s"/>
+        <circle cx="1130" cy="70" r="1"   fill="#FFE8A0" style="animation:twinkle 3.8s ease infinite 1.8s"/>
+      </g>
+
+      <!-- Ashoka tree / Bodhi tree silhouette — ancient wisdom -->
+      <g fill="#0A0820" opacity="0.9">
+        <!-- Tree trunk -->
+        <rect x="590" y="280" width="20" height="180" rx="4"/>
+        <!-- Branches radiating outward -->
+        <line x1="600" y1="310" x2="480" y2="240" stroke="#0A0820" stroke-width="12" stroke-linecap="round"/>
+        <line x1="600" y1="330" x2="430" y2="290" stroke="#0A0820" stroke-width="10" stroke-linecap="round"/>
+        <line x1="600" y1="350" x2="450" y2="350" stroke="#0A0820" stroke-width="8" stroke-linecap="round"/>
+        <line x1="600" y1="310" x2="720" y2="240" stroke="#0A0820" stroke-width="12" stroke-linecap="round"/>
+        <line x1="600" y1="330" x2="770" y2="290" stroke="#0A0820" stroke-width="10" stroke-linecap="round"/>
+        <line x1="600" y1="350" x2="750" y2="350" stroke="#0A0820" stroke-width="8" stroke-linecap="round"/>
+        <!-- Sub-branches -->
+        <line x1="480" y1="240" x2="420" y2="200" stroke="#0A0820" stroke-width="6" stroke-linecap="round"/>
+        <line x1="480" y1="240" x2="510" y2="195" stroke="#0A0820" stroke-width="5" stroke-linecap="round"/>
+        <line x1="720" y1="240" x2="780" y2="200" stroke="#0A0820" stroke-width="6" stroke-linecap="round"/>
+        <line x1="720" y1="240" x2="690" y2="195" stroke="#0A0820" stroke-width="5" stroke-linecap="round"/>
+        <!-- Foliage masses -->
+        <ellipse cx="460" cy="205" rx="65" ry="50" fill="#080618"/>
+        <ellipse cx="540" cy="180" rx="70" ry="55" fill="#0A0820"/>
+        <ellipse cx="600" cy="170" rx="80" ry="60" fill="#080618"/>
+        <ellipse cx="660" cy="175" rx="72" ry="54" fill="#0A0820"/>
+        <ellipse cx="740" cy="205" rx="65" ry="50" fill="#080618"/>
+        <ellipse cx="430" cy="230" rx="50" ry="38" fill="#060414"/>
+        <ellipse cx="770" cy="228" rx="50" ry="38" fill="#060414"/>
+      </g>
+
+      <!-- Seated scholar / gurukul figure under tree -->
+      <g transform="translate(572, 340)">
+        <!-- Cross-legged seated posture -->
+        <ellipse cx="28" cy="58" rx="32" ry="16" fill="#0C0820"/>
+        <ellipse cx="28" cy="38" rx="18" ry="24" fill="#100C28"/>
+        <circle cx="28" cy="16" r="13" fill="#140E30"/>
+        <!-- Palm leaf scroll in hands -->
+        <rect x="10" y="38" width="36" height="12" fill="#0A0616" stroke="#1A1030" stroke-width="0.8" rx="1"/>
+        <!-- Script lines on scroll -->
+        <line x1="14" y1="42" x2="42" y2="42" stroke="#2A2050" stroke-width="0.7"/>
+        <line x1="14" y1="46" x2="40" y2="46" stroke="#2A2050" stroke-width="0.7"/>
+      </g>
+
+      <!-- Students in circle around tree — gurukul -->
+      <g fill="#0A0818" opacity="0.7">
+        <circle cx="470" cy="390" r="10"/>
+        <circle cx="510" cy="405" r="10"/>
+        <circle cx="560" cy="410" r="10"/>
+        <circle cx="640" cy="408" r="10"/>
+        <circle cx="695" cy="395" r="10"/>
+        <circle cx="728" cy="375" r="10"/>
+        <!-- Seated postures -->
+        <ellipse cx="470" cy="400" rx="14" ry="8"/>
+        <ellipse cx="510" cy="415" rx="14" ry="8"/>
+        <ellipse cx="560" cy="420" rx="14" ry="8"/>
+        <ellipse cx="640" cy="418" rx="14" ry="8"/>
+        <ellipse cx="695" cy="405" rx="14" ry="8"/>
+        <ellipse cx="728" cy="385" rx="14" ry="8"/>
+      </g>
+
+      <!-- Oral tradition — speech/sound waves from teacher -->
+      <g opacity="0.18" fill="none" stroke="#D4A017" stroke-width="1">
+        <path d="M605 355 Q640 340 680 348" stroke-dasharray="3,4"/>
+        <path d="M605 362 Q648 345 695 354" stroke-dasharray="3,5" stroke-width="0.8"/>
+      </g>
+
+      <!-- Diya lamps flanking scene -->
+      <g>
+        <g transform="translate(140, 380)">
+          <ellipse cx="0" cy="14" rx="18" ry="6" fill="#5A3000" opacity="0.6"/>
+          <path d="M-4 11 Q0 -16 4 11 Q2 2 0 6 Q-2 2 -4 11Z" fill="#FF8800" opacity="0.85" style="animation:flameDance .85s ease infinite"/>
+          <path d="M-2 9 Q0 -5 2 9 Q1 3 0 5 Q-1 3 -2 9Z" fill="#FFE060" opacity="0.9" style="animation:flameDance 1s ease infinite .2s"/>
+        </g>
+        <g transform="translate(1060, 380)">
+          <ellipse cx="0" cy="14" rx="18" ry="6" fill="#5A3000" opacity="0.6"/>
+          <path d="M-4 11 Q0 -16 4 11 Q2 2 0 6 Q-2 2 -4 11Z" fill="#FF8800" opacity="0.85" style="animation:flameDance .9s ease infinite .3s"/>
+          <path d="M-2 9 Q0 -5 2 9 Q1 3 0 5 Q-1 3 -2 9Z" fill="#FFE060" opacity="0.9" style="animation:flameDance .8s ease infinite .1s"/>
+        </g>
+      </g>
+
+      <!-- Ground -->
+      <path d="M0 430 Q600 410 1200 430 L1200 460 L0 460 Z" fill="#060410"/>
+
+      <text x="50" y="55" font-family="Cinzel, serif" font-size="11" letter-spacing="4" fill="#4A40A0" opacity="0.8">EPISODE 01</text>
+      <line x1="50" y1="63" x2="170" y2="63" stroke="#4A40A0" stroke-width="0.8" opacity="0.4"/>
+    </svg>
+  </div>
+
+  <div class="ep-body ep-bg-1">
+    <span class="ep-num">01</span>
+    <div class="container">
+      <p class="section-eye r">Episode 01 · The Foundation</p>
+      <h2 class="section-title r d1">Civilizations Are<br>Built on Stories</h2>
+      <p class="section-sub r d2">Before there was a narrative of conquest, there was a civilization that did not need one.</p>
+      <div class="divider r d2"></div>
+      <div class="body-text">
+        <p class="r d1">Every civilization rests on something deeper than its monuments or its armies. It rests on its <strong>story of itself</strong> — the accumulated answers to the questions: Who are we? Where do we come from? What do we know? What do we value?</p>
+        <p class="r d2">For thousands of years, India's answers were rich, layered, and self-sustaining. They lived not in books alone but in oral traditions passed across generations. In the Gurukul — where a student did not just receive information but was shaped by an entire living relationship with knowledge. In systems of mathematics, astronomy, medicine, philosophy, and statecraft that were sophisticated when the rest of the world was still building its foundations.</p>
+        <p class="r d3">The Gurukul was not merely a school. It was a civilizational transmission system. The teacher and student lived together, learned together, and the knowledge transferred was not compartmentalized into subjects — it was integrated into character. <em>What you learned changed who you were.</em></p>
+
+        <div class="pull r">
+          <p>When a civilization's story is intact, its people know who they are. When the story is interrupted — the people begin to forget.</p>
+        </div>
+
+        <p class="r d1">This is the most important thing to understand before we examine what happened next: India did not enter the colonial era as a blank slate. It entered as a civilization with centuries of accumulated self-knowledge. <strong>What colonialism disrupted was not a primitive culture being upgraded — it was a mature civilizational identity being systematically displaced.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     EP 2 — THE COLONIAL DISRUPTION OF IDENTITY
+══════════════════════════════════════════════════ -->
+<section class="scene">
+  <div class="scene-visual">
+    <svg viewBox="0 0 1200 460" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="e2bg" cx="30%" cy="50%" r="70%">
+          <stop offset="0%" stop-color="#200C04"/>
+          <stop offset="100%" stop-color="#060200"/>
+        </radialGradient>
+        <filter id="f2"><feGaussianBlur stdDeviation="8" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <rect width="1200" height="460" fill="url(#e2bg)"/>
+
+      <!-- Heavy chains across the scene — colonial overlay -->
+      <g fill="none" stroke="#2A1800" stroke-width="4" opacity="0.55">
+        <!-- Horizontal chain across mid-scene -->
+        <ellipse cx="150" cy="230" rx="24" ry="12" transform="rotate(20,150,230)"/>
+        <ellipse cx="198" cy="225" rx="24" ry="12" transform="rotate(-15,198,225)"/>
+        <ellipse cx="246" cy="232" rx="24" ry="12" transform="rotate(18,246,232)"/>
+        <ellipse cx="294" cy="226" rx="24" ry="12" transform="rotate(-20,294,226)"/>
+        <ellipse cx="342" cy="233" rx="24" ry="12" transform="rotate(15,342,233)"/>
+        <ellipse cx="390" cy="228" rx="24" ry="12" transform="rotate(-10,390,228)"/>
+        <ellipse cx="438" cy="235" rx="24" ry="12" transform="rotate(22,438,235)"/>
+        <ellipse cx="486" cy="229" rx="24" ry="12" transform="rotate(-18,486,229)"/>
+        <ellipse cx="534" cy="236" rx="24" ry="12" transform="rotate(12,534,236)"/>
+        <ellipse cx="582" cy="231" rx="24" ry="12" transform="rotate(-14,582,231)"/>
+        <ellipse cx="630" cy="237" rx="24" ry="12" transform="rotate(19,630,237)"/>
+        <ellipse cx="678" cy="232" rx="24" ry="12" transform="rotate(-16,678,232)"/>
+        <ellipse cx="726" cy="239" rx="24" ry="12" transform="rotate(11,726,239)"/>
+        <ellipse cx="774" cy="233" rx="24" ry="12" transform="rotate(-22,774,233)"/>
+        <ellipse cx="822" cy="240" rx="24" ry="12" transform="rotate(17,822,240)"/>
+        <ellipse cx="870" cy="235" rx="24" ry="12" transform="rotate(-13,870,235)"/>
+        <ellipse cx="918" cy="241" rx="24" ry="12" transform="rotate(21,918,241)"/>
+        <ellipse cx="966" cy="236" rx="24" ry="12" transform="rotate(-17,966,236)"/>
+        <ellipse cx="1014" cy="242" rx="24" ry="12" transform="rotate(14,1014,242)"/>
+        <ellipse cx="1062" cy="237" rx="24" ry="12" transform="rotate(-19,1062,237)"/>
+      </g>
+
+      <!-- Shadow falling over temple silhouette — colonial darkness -->
+      <path d="M0 0 L600 0 L600 460 L0 460 Z" fill="#0A0600" opacity="0.3"/>
+
+      <!-- Fading temple in darkness on left -->
+      <g transform="translate(100, 100)" opacity="0.25">
+        <path d="M0 360 L15 280 L28 210 L38 155 L46 110 L52 75 L56 50 L60 30 L65 10 L70 0 L75 15 L78 35 L82 60 L88 90 L92 130 L98 175 L105 225 L112 290 L120 360 Z" fill="#2A1850"/>
+        <rect x="20" y="325" width="100" height="35" fill="#2A1850" rx="1"/>
+      </g>
+
+      <!-- Western administrative building rising on right — sharp, columned -->
+      <g transform="translate(700, 80)" opacity="0.7">
+        <rect x="0" y="240" width="380" height="140" fill="#0C0800" stroke="#1A1200" stroke-width="1"/>
+        <!-- Columns -->
+        <rect x="20"  y="140" width="24" height="240" fill="#0A0800" rx="2"/>
+        <rect x="70"  y="140" width="24" height="240" fill="#0C0800" rx="2"/>
+        <rect x="120" y="140" width="24" height="240" fill="#0A0800" rx="2"/>
+        <rect x="170" y="140" width="24" height="240" fill="#0C0800" rx="2"/>
+        <rect x="220" y="140" width="24" height="240" fill="#0A0800" rx="2"/>
+        <rect x="270" y="140" width="24" height="240" fill="#0A0800" rx="2"/>
+        <rect x="320" y="140" width="24" height="240" fill="#0C0800" rx="2"/>
+        <!-- Pediment / triangular top -->
+        <path d="M0 140 L190 20 L380 140 Z" fill="#0A0800"/>
+        <!-- Gable detail -->
+        <path d="M30 140 L190 50 L350 140 Z" fill="#0C0A04"/>
+        <!-- Steps -->
+        <rect x="-20" y="375" width="420" height="14" fill="#0A0800" rx="1"/>
+        <rect x="-35" y="386" width="450" height="12" fill="#090700" rx="1"/>
+      </g>
+
+      <!-- Figure on left in Indian traditional posture — being overshadowed -->
+      <g transform="translate(320, 290)" opacity="0.6">
+        <!-- Dhoti-clad figure -->
+        <ellipse cx="0" cy="100" rx="22" ry="16" fill="#0C0620"/>
+        <ellipse cx="0" cy="68" rx="16" ry="28" fill="#100828"/>
+        <circle cx="0" cy="42" r="13" fill="#140C30"/>
+        <!-- Slightly bowed posture — identity pressure -->
+        <line x1="-12" y1="72" x2="-30" y2="96" stroke="#0C0620" stroke-width="6" stroke-linecap="round"/>
+        <line x1="10" y1="74" x2="24" y2="96" stroke="#0C0620" stroke-width="6" stroke-linecap="round"/>
+      </g>
+
+      <!-- Figure on right in Western suit — being elevated -->
+      <g transform="translate(680, 280)" opacity="0.55">
+        <ellipse cx="0" cy="100" rx="22" ry="16" fill="#100A00"/>
+        <ellipse cx="0" cy="68" rx="18" ry="30" fill="#140C04"/>
+        <circle cx="0" cy="40" r="13" fill="#180E06"/>
+        <!-- Upright posture — colonial validation -->
+        <line x1="-14" y1="70" x2="-28" y2="96" stroke="#100A00" stroke-width="7" stroke-linecap="round"/>
+        <line x1="12" y1="70" x2="26" y2="96" stroke="#100A00" stroke-width="7" stroke-linecap="round"/>
+        <!-- Top hat suggestion -->
+        <rect x="-10" y="22" width="20" height="16" fill="#0C0800" rx="1"/>
+        <rect x="-14" y="36" width="28" height="5" fill="#0E0A00" rx="1"/>
+      </g>
+
+      <!-- Macaulay's Minute suggestion — document/paper -->
+      <g transform="translate(560, 150)" opacity="0.3">
+        <rect x="0" y="0" width="80" height="100" fill="#0E0C06" stroke="#2A2010" stroke-width="1" rx="1"/>
+        <line x1="10" y1="16" x2="70" y2="16" stroke="#1A1808" stroke-width="1"/>
+        <line x1="10" y1="26" x2="70" y2="26" stroke="#1A1808" stroke-width="1"/>
+        <line x1="10" y1="36" x2="65" y2="36" stroke="#1A1808" stroke-width="1"/>
+        <line x1="10" y1="46" x2="70" y2="46" stroke="#1A1808" stroke-width="1"/>
+        <line x1="10" y1="56" x2="60" y2="56" stroke="#1A1808" stroke-width="1"/>
+        <!-- Seal -->
+        <circle cx="60" cy="80" r="10" fill="#180A00" stroke="#3A2010" stroke-width="1"/>
+      </g>
+
+      <text x="50" y="55" font-family="Cinzel, serif" font-size="11" letter-spacing="4" fill="#6A3000" opacity="0.8">EPISODE 02</text>
+      <line x1="50" y1="63" x2="170" y2="63" stroke="#6A3000" stroke-width="0.8" opacity="0.4"/>
+    </svg>
+  </div>
+
+  <div class="ep-body ep-bg-2">
+    <span class="ep-num">02</span>
+    <div class="container">
+      <p class="section-eye r" style="color:var(--pale-saffron)">Episode 02 · The Structural Impact</p>
+      <h2 class="section-title r d1">The Colonial<br>Disruption of Identity</h2>
+      <p class="section-sub r d2">The deeper injury was never to the land. It was to the story a people carried about themselves.</p>
+      <div class="divider r d2"></div>
+      <div class="body-text">
+        <p class="r d1">The British Raj altered India across every dimension — administrative, economic, legal, linguistic. But the most enduring disruption was psychological. It operated not through force alone but through something subtler and more lasting: <strong>the systematic replacement of one civilization's self-image with another civilization's opinion of it.</strong></p>
+        <p class="r d2">The colonial machinery did not arrive saying "we will destroy your culture." It arrived saying "your culture is inferior — and we will improve you." This framing was far more dangerous. Because it invited the colonized into their own diminishment. It made <em>internalizing that inferiority</em> feel like progress.</p>
+
+        <div class="note r d1">
+          <p class="note-tag">Macaulay's Minute — 1835</p>
+          <p>Thomas Babington Macaulay's Minute on Indian Education explicitly stated the goal: to form "a class of persons Indian in blood and colour, but English in tastes, in opinions, in morals, and in intellect." This was not education. It was identity engineering — and it was remarkably effective across generations. [AI-inferred: the psychological effects of this policy outlasted the colonial period by decades, embedding a form of cultural self-doubt that persists in subtle forms today.]</p>
+        </div>
+
+        <p class="r d2">The disruption operated on multiple levels simultaneously. Economically, traditional industries were deindustrialized — not because they were inefficient but because they competed with British manufacturing. Linguistically, English was elevated as the language of administration, law, and aspiration — positioning indigenous languages as vernacular, as lesser. Educationally, the gurukul gave way to the standardized classroom.</p>
+        <p class="r d3">Each of these shifts, alone, would have been significant. Together, they formed something total: <strong>a civilizational reorientation that told an entire people that the measure of their worth was how successfully they could approximate something they were not.</strong></p>
+
+        <div class="pull r">
+          <p>The most effective colonization is not the kind that puts chains on bodies. It is the kind that makes the mind forget it was ever free.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     EP 3 — GURUKUL TO 10+2
+══════════════════════════════════════════════════ -->
+<section class="scene">
+  <div class="scene-visual">
+    <svg viewBox="0 0 1200 460" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="e3bg" cx="50%" cy="50%" r="65%">
+          <stop offset="0%" stop-color="#0C0C2E"/>
+          <stop offset="100%" stop-color="#060510"/>
+        </radialGradient>
+      </defs>
+      <rect width="1200" height="460" fill="url(#e3bg)"/>
+
+      <!-- LEFT HALF — Gurukul / natural / open -->
+      <!-- Tree / nature -->
+      <g fill="#080618" opacity="0.85">
+        <rect x="100" y="240" width="14" height="220" rx="3"/>
+        <ellipse cx="107" cy="218" rx="60" ry="48" fill="#060414"/>
+        <ellipse cx="107" cy="198" rx="50" ry="40" fill="#080618"/>
+        <!-- Ground moss / earth feel -->
+        <path d="M0 430 Q200 410 400 420 L400 460 L0 460 Z" fill="#060414"/>
+      </g>
+
+      <!-- Gurukul scene — seated in circle, natural learning -->
+      <g opacity="0.8">
+        <g transform="translate(80, 310)">
+          <!-- Teacher — tall, seated, dignified -->
+          <ellipse cx="0" cy="80" rx="20" ry="14" fill="#0A0620"/>
+          <ellipse cx="0" cy="52" rx="14" ry="26" fill="#0C0828"/>
+          <circle cx="0" cy="28" r="12" fill="#100C32"/>
+          <!-- Scroll in hands -->
+          <rect x="-14" y="42" width="28" height="9" fill="#0A0616" rx="1"/>
+        </g>
+        <!-- Students in arc -->
+        <g fill="#090520" opacity="0.85">
+          <circle cx="160" cy="378" r="9"/> <ellipse cx="160" cy="388" rx="12" ry="8"/>
+          <circle cx="200" cy="385" r="9"/> <ellipse cx="200" cy="395" rx="12" ry="8"/>
+          <circle cx="240" cy="382" r="9"/> <ellipse cx="240" cy="392" rx="12" ry="8"/>
+          <circle cx="280" cy="376" r="9"/> <ellipse cx="280" cy="386" rx="12" ry="8"/>
+          <circle cx="310" cy="368" r="9"/> <ellipse cx="310" cy="378" rx="12" ry="8"/>
+        </g>
+      </g>
+
+      <!-- Label: Gurukul -->
+      <text x="80" y="430" font-family="Cinzel, serif" font-size="10" fill="#6040A0" opacity="0.6" letter-spacing="3">GURUKUL</text>
+
+      <!-- DIVIDING LINE — the break -->
+      <line x1="580" y1="40" x2="580" y2="420" stroke="#3A2800" stroke-width="1" stroke-dasharray="8,8" opacity="0.5"/>
+      <text x="555" y="240" font-family="Cinzel, serif" font-size="9" fill="#6A4A00" opacity="0.4" writing-mode="vertical-rl" letter-spacing="2">THE SHIFT</text>
+
+      <!-- RIGHT HALF — Western classroom / rigid rows -->
+      <!-- Classroom walls, windows -->
+      <g fill="#0C0A04" opacity="0.7">
+        <rect x="620" y="80" width="540" height="340" rx="2" stroke="#1A1600" stroke-width="1"/>
+        <!-- Windows -->
+        <rect x="650"  y="100" width="60" height="80" fill="#080804" stroke="#141200" stroke-width="1" rx="1"/>
+        <rect x="740"  y="100" width="60" height="80" fill="#080804" stroke="#141200" stroke-width="1" rx="1"/>
+        <rect x="1080" y="100" width="60" height="80" fill="#080804" stroke="#141200" stroke-width="1" rx="1"/>
+        <!-- Blackboard -->
+        <rect x="780" y="100" width="260" height="100" fill="#060804" stroke="#141200" stroke-width="1" rx="1"/>
+        <text x="830" y="158" font-family="serif" font-size="13" fill="#1A1C10" opacity="0.7">Memorize. Reproduce. Pass.</text>
+      </g>
+
+      <!-- Rigid rows of desks -->
+      <g fill="#0A0800" stroke="#141000" stroke-width="0.8">
+        <rect x="640" y="240" width="60" height="35" rx="1"/>
+        <rect x="720" y="240" width="60" height="35" rx="1"/>
+        <rect x="800" y="240" width="60" height="35" rx="1"/>
+        <rect x="880" y="240" width="60" height="35" rx="1"/>
+        <rect x="960" y="240" width="60" height="35" rx="1"/>
+        <rect x="640" y="310" width="60" height="35" rx="1"/>
+        <rect x="720" y="310" width="60" height="35" rx="1"/>
+        <rect x="800" y="310" width="60" height="35" rx="1"/>
+        <rect x="880" y="310" width="60" height="35" rx="1"/>
+        <rect x="960" y="310" width="60" height="35" rx="1"/>
+      </g>
+
+      <!-- Identical student figures — rows, uniformity -->
+      <g fill="#0C0A02" opacity="0.75">
+        <circle cx="670" cy="232" r="9"/> <circle cx="750" cy="232" r="9"/>
+        <circle cx="830" cy="232" r="9"/> <circle cx="910" cy="232" r="9"/>
+        <circle cx="990" cy="232" r="9"/>
+        <circle cx="670" cy="302" r="9"/> <circle cx="750" cy="302" r="9"/>
+        <circle cx="830" cy="302" r="9"/> <circle cx="910" cy="302" r="9"/>
+        <circle cx="990" cy="302" r="9"/>
+      </g>
+
+      <!-- Label: 10+2 System -->
+      <text x="720" y="430" font-family="Cinzel, serif" font-size="10" fill="#5A4A00" opacity="0.6" letter-spacing="3">10 + 2 STRUCTURE</text>
+
+      <text x="50" y="55" font-family="Cinzel, serif" font-size="11" letter-spacing="4" fill="#4A4090" opacity="0.8">EPISODE 03</text>
+      <line x1="50" y1="63" x2="170" y2="63" stroke="#4A4090" stroke-width="0.8" opacity="0.4"/>
+    </svg>
+  </div>
+
+  <div class="ep-body ep-bg-3">
+    <span class="ep-num">03</span>
+    <div class="container">
+      <p class="section-eye r">Episode 03 · The Education Shift</p>
+      <h2 class="section-title r d1">From Gurukul<br>to the Examination Hall</h2>
+      <p class="section-sub r d2">When the measure of intelligence changed, so did what it meant to be educated.</p>
+      <div class="divider r d2"></div>
+      <div class="body-text">
+        <p class="r d1">The Gurukul was not simply a different method of teaching the same things. It was a fundamentally different understanding of what education was <em>for</em>. Its purpose was not to produce employable graduates — it was to form complete human beings. Character, skill, spiritual orientation, and intellectual depth were not separate subjects. They were the integrated outcome of a lived relationship with knowledge.</p>
+        <p class="r d2">The 10+2 system that replaced it was not designed for India. It was designed for an industrial economy that needed literate clerks, administrators, and workers — people who could follow instructions, pass standardized tests, and fill institutional roles. <strong>It redefined intelligence as the ability to reproduce information under time pressure.</strong> Everything the Gurukul valued — the unhurried cultivation of wisdom, the mentorship relationship, the practical and spiritual integration of knowledge — had no measurement category in the new system.</p>
+
+        <div class="compare r d1">
+          <div class="compare-col old">
+            <p class="compare-label">Gurukul Philosophy</p>
+            <p class="compare-item">Knowledge as character formation</p>
+            <p class="compare-item">Teacher as lifelong mentor and guide</p>
+            <p class="compare-item">Learning integrated with living</p>
+            <p class="compare-item">Holistic — spiritual, practical, intellectual</p>
+            <p class="compare-item">Pace set by the learner's readiness</p>
+            <p class="compare-item">Oral transmission and direct experience</p>
+          </div>
+          <div class="compare-col new">
+            <p class="compare-label">Colonial 10+2 Structure</p>
+            <p class="compare-item">Knowledge as information storage</p>
+            <p class="compare-item">Teacher as institutional employee</p>
+            <p class="compare-item">Learning separated from living</p>
+            <p class="compare-item">Compartmentalized — subjects in silos</p>
+            <p class="compare-item">Pace set by the examination calendar</p>
+            <p class="compare-item">Textbook reproduction as proof of learning</p>
+          </div>
+        </div>
+
+        <p class="r d1">This is not to say the modern system produced nothing of value. It did — and the generations educated within it have achieved remarkable things globally. <strong>But something was also lost.</strong> The question that this episode asks is not "which is better?" but rather: <em>who decided what intelligence meant — and for whose benefit?</em></p>
+
+        <div class="pull r">
+          <p>They did not merely change what was taught. They changed what was considered worth knowing — and who was considered worth listening to.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     CIVILIZATIONAL CHAIN — THE 8 EPISODES MAP
+══════════════════════════════════════════════════ -->
+<section class="civ-chain">
+  <div class="container">
+    <h2 class="chain-head r">The Arc of Civilizational Memory</h2>
+    <p class="chain-sub r d1">Eight episodes. One continuous thread — from disruption through to integration.</p>
+  </div>
+
+  <div class="chain-nodes">
+    <div class="chain-node r">
+      <div class="cn-l">
+        <p class="cn-phase">FOUNDATION</p>
+        <p class="cn-head">A civilization with a story of itself</p>
+        <p class="cn-body">Gurukul, oral tradition, integrated knowledge. <em>The self-image was intact.</em></p>
+      </div>
+      <div class="cn-mid"><div class="cn-dot dark"></div><div class="cn-line"></div></div>
+      <div class="cn-blank"></div>
+    </div>
+
+    <div class="chain-node r">
+      <div class="cn-blank"></div>
+      <div class="cn-mid"><div class="cn-dot dark"></div><div class="cn-line"></div></div>
+      <div class="cn-r">
+        <p class="cn-phase">DISRUPTION</p>
+        <p class="cn-head">Colonial narrative replaces civilizational identity</p>
+        <p class="cn-body">Administrative, economic, and psychological occupation. <em>Internalized inferiority begins.</em></p>
+      </div>
+    </div>
+
+    <div class="chain-node r">
+      <div class="cn-l">
+        <p class="cn-phase">EDUCATION FRACTURE</p>
+        <p class="cn-head">Gurukul to 10+2 — the measure of intelligence shifts</p>
+        <p class="cn-body">What was considered knowledge was redefined. <em>The clock of examination replaced the depth of formation.</em></p>
+      </div>
+      <div class="cn-mid"><div class="cn-dot dark"></div><div class="cn-line"></div></div>
+      <div class="cn-blank"></div>
+    </div>
+
+    <div class="chain-node r">
+      <div class="cn-blank"></div>
+      <div class="cn-mid"><div class="cn-dot mid"></div><div class="cn-line"></div></div>
+      <div class="cn-r">
+        <p class="cn-phase">ECONOMIC RESTRUCTURING</p>
+        <p class="cn-head">Traditional industries hollowed — identity follows economy</p>
+        <p class="cn-body">When what a people produce is taken from them, <em>so is their relationship with what they know how to do.</em></p>
+      </div>
+    </div>
+
+    <div class="chain-node r">
+      <div class="cn-l">
+        <p class="cn-phase">NARRATIVE DISPLACEMENT</p>
+        <p class="cn-head">Indigenous achievements absorbed or attributed elsewhere</p>
+        <p class="cn-body">Zero, surgery, astronomy, metallurgy — separated from their origin. <em>The knowledge survived. The credit did not.</em></p>
+      </div>
+      <div class="cn-mid"><div class="cn-dot mid"></div><div class="cn-line"></div></div>
+      <div class="cn-blank"></div>
+    </div>
+
+    <div class="chain-node r">
+      <div class="cn-blank"></div>
+      <div class="cn-mid"><div class="cn-dot mid"></div><div class="cn-line"></div></div>
+      <div class="cn-r">
+        <p class="cn-phase">POST-1947 IDENTITY CRISIS</p>
+        <p class="cn-head">Independence arrived. The question of who we are did not.</p>
+        <p class="cn-body">Modernity or tradition? West or roots? <em>The dilemma ran through generations — and still does.</em></p>
+      </div>
+    </div>
+
+    <div class="chain-node r">
+      <div class="cn-l">
+        <p class="cn-phase">THE REAWAKENING</p>
+        <p class="cn-head">Yoga, Ayurveda, Sanskrit — reclamation begins</p>
+        <p class="cn-body">Not nostalgia. Conscious reintegration. <em>The world starts borrowing from what was being denied.</em></p>
+      </div>
+      <div class="cn-mid"><div class="cn-dot bright"></div><div class="cn-line"></div></div>
+      <div class="cn-blank"></div>
+    </div>
+
+    <div class="chain-node r">
+      <div class="cn-blank"></div>
+      <div class="cn-mid"><div class="cn-dot bright" style="box-shadow:0 0 30px rgba(245,208,96,0.9)"></div></div>
+      <div class="cn-r">
+        <p class="cn-phase">INTEGRATION</p>
+        <p class="cn-head">Civilizational wisdom + Contemporary innovation</p>
+        <p class="cn-body"><em>Not traditional vs modern. Not rejection vs imitation. Something new — and something very, very old — finally meeting.</em></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     EP 5 — CULTURAL ERASURE & REBRANDING
+══════════════════════════════════════════════════ -->
+<section class="scene">
+  <div class="scene-visual">
+    <svg viewBox="0 0 1200 460" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="e5bg" cx="50%" cy="40%" r="70%">
+          <stop offset="0%" stop-color="#180A30"/>
+          <stop offset="100%" stop-color="#08060C"/>
+        </radialGradient>
+        <filter id="f5"><feGaussianBlur stdDeviation="12" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+      <rect width="1200" height="460" fill="url(#e5bg)"/>
+
+      <!-- Stars and constellation patterns — Indian astronomy -->
+      <g>
+        <circle cx="100" cy="60"  r="1.2" fill="#E8D0A0" style="animation:twinkle 3s ease infinite"/>
+        <circle cx="200" cy="40"  r="0.9" fill="#E8D0A0" style="animation:twinkle 4s ease infinite .5s"/>
+        <circle cx="310" cy="75"  r="1.5" fill="#FFE080" style="animation:twinkle 2.8s ease infinite 1s"/>
+        <circle cx="420" cy="45"  r="1"   fill="#E8D0A0" style="animation:twinkle 3.5s ease infinite .3s"/>
+        <circle cx="540" cy="30"  r="1.8" fill="#FFE080" filter="url(#f5)" style="animation:twinkle 2.5s ease infinite"/>
+        <circle cx="660" cy="60"  r="1.1" fill="#E8D0A0" style="animation:twinkle 4.2s ease infinite 1.3s"/>
+        <circle cx="780" cy="42"  r="1.4" fill="#E8D0A0" style="animation:twinkle 3.2s ease infinite .8s"/>
+        <circle cx="900" cy="68"  r="1"   fill="#FFE080" style="animation:twinkle 4s ease infinite 1.6s"/>
+        <circle cx="1020" cy="50" r="1.3" fill="#E8D0A0" style="animation:twinkle 3.8s ease infinite .4s"/>
+        <circle cx="1130" cy="72" r="1"   fill="#E8D0A0" style="animation:twinkle 3s ease infinite 2s"/>
+      </g>
+      <!-- Constellation connecting lines — ancient star knowledge -->
+      <g stroke="#2A2050" stroke-width="0.8" opacity="0.3">
+        <line x1="100" y1="60" x2="200" y2="40"/>
+        <line x1="200" y1="40" x2="310" y2="75"/>
+        <line x1="310" y1="75" x2="420" y2="45"/>
+        <line x1="420" y1="45" x2="540" y2="30"/>
+        <line x1="540" y1="30" x2="660" y2="60"/>
+        <line x1="660" y1="60" x2="780" y2="42"/>
+        <line x1="780" y1="42" x2="900" y2="68"/>
+      </g>
+
+      <!-- Ancient Indian scientific instruments / Yantra suggestions -->
+      <!-- Circular yantra center — geometry of knowledge -->
+      <g transform="translate(600, 250)" opacity="0.18">
+        <circle cx="0" cy="0" r="120" fill="none" stroke="#D4A017" stroke-width="1.5"/>
+        <circle cx="0" cy="0" r="90"  fill="none" stroke="#D4A017" stroke-width="1"/>
+        <circle cx="0" cy="0" r="60"  fill="none" stroke="#D4A017" stroke-width="0.8"/>
+        <circle cx="0" cy="0" r="30"  fill="none" stroke="#D4A017" stroke-width="0.6"/>
+        <!-- Sri yantra triangles suggestion -->
+        <path d="M0 -100 L86 50 L-86 50 Z" fill="none" stroke="#D4A017" stroke-width="0.8"/>
+        <path d="M0 100 L-86 -50 L86 -50 Z" fill="none" stroke="#D4A017" stroke-width="0.8"/>
+        <path d="M0 -70 L60 35 L-60 35 Z" fill="none" stroke="#E8640A" stroke-width="0.6"/>
+        <path d="M0 70 L-60 -35 L60 -35 Z" fill="none" stroke="#E8640A" stroke-width="0.6"/>
+      </g>
+
+      <!-- Knowledge transfer — shadow of attribution -->
+      <!-- Indian source document on left — fading -->
+      <g transform="translate(120, 180)" opacity="0.4">
+        <rect x="0" y="0" width="70" height="100" fill="#0A0820" stroke="#2A2050" stroke-width="1" rx="2"/>
+        <!-- Palm leaf texture -->
+        <line x1="5" y1="15" x2="65" y2="15" stroke="#1A1840" stroke-width="1"/>
+        <line x1="5" y1="25" x2="65" y2="25" stroke="#1A1840" stroke-width="0.8"/>
+        <line x1="5" y1="35" x2="60" y2="35" stroke="#1A1840" stroke-width="0.8"/>
+        <line x1="5" y1="45" x2="65" y2="45" stroke="#1A1840" stroke-width="0.8"/>
+        <line x1="5" y1="55" x2="58" y2="55" stroke="#1A1840" stroke-width="0.8"/>
+        <line x1="5" y1="65" x2="65" y2="65" stroke="#1A1840" stroke-width="0.8"/>
+        <line x1="5" y1="75" x2="62" y2="75" stroke="#1A1840" stroke-width="0.8"/>
+        <!-- Sanskrit label faint -->
+        <text x="8" y="95" font-family="serif" font-size="10" fill="#3A3060" opacity="0.7">शून्य · Sūnya</text>
+      </g>
+
+      <!-- Arrow of "attribution" going right -->
+      <path d="M220 230 Q500 200 740 230" stroke="#3A2800" stroke-width="1.5" fill="none" stroke-dasharray="6,8" opacity="0.35"/>
+      <polygon points="740,227 756,230 740,233" fill="#3A2800" opacity="0.35"/>
+      <text x="370" y="215" font-family="Georgia, serif" font-size="11" fill="#4A3800" opacity="0.3" font-style="italic">attributed to...</text>
+
+      <!-- Western attribution document on right — glowing -->
+      <g transform="translate(800, 160)" opacity="0.55">
+        <rect x="0" y="0" width="90" height="120" fill="#0E0C04" stroke="#2A2010" stroke-width="1.5" rx="2"/>
+        <rect x="5" y="5" width="80" height="110" fill="none" stroke="#1E1A08" stroke-width="0.5" rx="1"/>
+        <!-- Content lines -->
+        <line x1="12" y1="20" x2="78" y2="20" stroke="#1A1600" stroke-width="1"/>
+        <line x1="12" y1="32" x2="78" y2="32" stroke="#1A1600" stroke-width="1"/>
+        <line x1="12" y1="44" x2="72" y2="44" stroke="#1A1600" stroke-width="1"/>
+        <line x1="12" y1="56" x2="78" y2="56" stroke="#1A1600" stroke-width="1"/>
+        <line x1="12" y1="68" x2="74" y2="68" stroke="#1A1600" stroke-width="1"/>
+        <!-- Seal with glow -->
+        <circle cx="68" cy="100" r="14" fill="#140A00" stroke="#5A4010" stroke-width="1.5"/>
+        <circle cx="68" cy="100" r="14" fill="none" stroke="#D4A017" stroke-width="0.5" opacity="0.5"/>
+        <!-- Slight glow on this doc — it's the credited one -->
+        <rect x="0" y="0" width="90" height="120" fill="none" stroke="#D4A017" stroke-width="0.5" rx="2" opacity="0.25"/>
+      </g>
+
+      <!-- Zero symbol floating between — symbolic of Indian math contribution -->
+      <text x="560" y="280" font-family="serif" font-size="50" fill="#D4A017" opacity="0.12" filter="url(#f5)">0</text>
+      <text x="400" y="340" font-family="serif" font-size="30" fill="#6040A0" opacity="0.08">π</text>
+      <text x="740" y="350" font-family="serif" font-size="28" fill="#8060B0" opacity="0.08">∞</text>
+
+      <text x="50" y="55" font-family="Cinzel, serif" font-size="11" letter-spacing="4" fill="#6050A0" opacity="0.8">EPISODE 05</text>
+      <line x1="50" y1="63" x2="170" y2="63" stroke="#6050A0" stroke-width="0.8" opacity="0.4"/>
+    </svg>
+  </div>
+
+  <div class="ep-body ep-bg-5">
+    <span class="ep-num">05</span>
+    <div class="container">
+      <p class="section-eye r">Episode 05 · Narrative Displacement</p>
+      <h2 class="section-title r d1">Cultural Erasure<br>and Intellectual Rebranding</h2>
+      <p class="section-sub r d2">The knowledge did not disappear. The credit for it did.</p>
+      <div class="divider r d2"></div>
+      <div class="body-text">
+        <p class="r d1">Among India's most significant civilizational contributions are those that became so fundamental to human civilization that they are now treated as universal — and their origin, accordingly, as irrelevant. The concept of zero (<em>Sūnya</em>). The decimal system. The foundations of algebra and trigonometry. Advanced surgical procedures described in the Sushruta Samhita. The heliocentric understanding of astronomy. The foundational principles of logic, grammar, and linguistics in Pāṇini's Ashtadhyayi.</p>
+        <p class="r d2">The issue was not that this knowledge was stolen. It was more subtle than that. It was that the <strong>narrative framework that determined what counted as history, science, and civilization was controlled by those who had no interest in positioning India as a source</strong>. The result was not active theft but structural invisibility — achievements absorbed into the flow of "human progress" without the attribution that would have sustained civilizational confidence.</p>
+
+        <div class="note r d1">
+          <p class="note-tag">The Distinction That Matters</p>
+          <p>This is not a call to competitive nationalism or a claim that India invented everything. It is an observation about how narrative power works: when one civilization controls the terms of historical recognition, the contributions of others tend to be absorbed without credit — not necessarily through malice, but through the invisible assumption that history flows from certain centers and not others.</p>
+        </div>
+
+        <p class="r d2">The effect on identity was significant. <strong>When a people cannot see their own tradition reflected in the story of human achievement, they begin to experience their heritage as quaint rather than foundational.</strong> As cultural artifact rather than living intellectual lineage. This is the precise point where cultural insecurity takes root — not in poverty or weakness, but in narrative displacement.</p>
+
+        <div class="pull r">
+          <p>The wound was not "your knowledge is wrong." It was "your knowledge does not count." Those two things are entirely different — and the second is far harder to heal.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     EP 6 — POST-INDEPENDENCE IDENTITY CONFLICT
+══════════════════════════════════════════════════ -->
+<section class="scene">
+  <div class="scene-visual">
+    <svg viewBox="0 0 1200 460" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="e6bg" cx="50%" cy="50%" r="65%">
+          <stop offset="0%" stop-color="#1A0C00"/>
+          <stop offset="100%" stop-color="#080400"/>
+        </radialGradient>
+      </defs>
+      <rect width="1200" height="460" fill="url(#e6bg)"/>
+
+      <!-- The Tug — two forces pulling a single figure in center -->
+      <!-- Left force — Western modernity, angular architecture -->
+      <g fill="#0C0A04" opacity="0.7">
+        <rect x="0" y="180" width="320" height="220" rx="2" stroke="#1A1600" stroke-width="1"/>
+        <!-- Glass tower suggestion -->
+        <rect x="20"  y="80"  width="60" height="320" fill="#0A0800" stroke="#141200" stroke-width="1" rx="1"/>
+        <rect x="90"  y="120" width="50" height="280" fill="#0C0A04" stroke="#141200" stroke-width="1" rx="1"/>
+        <rect x="150" y="100" width="55" height="300" fill="#0A0800" stroke="#141200" stroke-width="1" rx="1"/>
+        <rect x="215" y="140" width="45" height="260" fill="#0C0A04" stroke="#141200" stroke-width="1" rx="1"/>
+        <!-- Window grid -->
+        <g stroke="#161400" stroke-width="0.6" opacity="0.5">
+          <line x1="20" y1="120" x2="80" y2="120"/> <line x1="20" y1="160" x2="80" y2="160"/>
+          <line x1="20" y1="200" x2="80" y2="200"/> <line x1="50" y1="80" x2="50" y2="400"/>
+          <line x1="90" y1="155" x2="140" y2="155"/> <line x1="90" y1="195" x2="140" y2="195"/>
+          <line x1="115" y1="120" x2="115" y2="400"/>
+        </g>
+      </g>
+      <text x="60" y="440" font-family="Cinzel, serif" font-size="9" fill="#5A4800" opacity="0.5" letter-spacing="2">MODERNITY</text>
+
+      <!-- Right force — Temple, ancient -->
+      <g fill="#0C0820" opacity="0.7">
+        <!-- Temple gopuram right -->
+        <path d="M880 460 L890 400 L896 360 L900 320 L904 285 L907 255 L910 228 L912 205 L914 185 L917 165 L920 148 L923 132 L926 118 L929 106 L932 95 L936 84 L940 74 L944 65 L948 58 L952 52 L956 47 L960 44 L964 47 L968 52 L972 58 L976 65 L980 74 L984 84 L988 95 L991 106 L994 118 L997 132 L1000 148 L1003 165 L1006 185 L1008 205 L1010 228 L1013 255 L1016 285 L1020 320 L1024 360 L1028 400 L1034 460 Z" fill="#0A0618"/>
+        <rect x="892" y="418" width="146" height="42" fill="#0A0618" rx="1"/>
+        <rect x="898" y="378" width="128" height="42" fill="#080416" rx="1"/>
+        <rect x="904" y="340" width="112" height="40" fill="#0A0618" rx="1"/>
+      </g>
+      <text x="920" y="440" font-family="Cinzel, serif" font-size="9" fill="#4A4080" opacity="0.5" letter-spacing="2">TRADITION</text>
+
+      <!-- The figure in the CENTER — torn between two worlds -->
+      <g transform="translate(570, 200)" style="animation:float 6s ease-in-out infinite;">
+        <!-- Body -->
+        <ellipse cx="30" cy="125" rx="22" ry="18" fill="#100A20"/>
+        <ellipse cx="30" cy="90"  rx="16" ry="30" fill="#14102A"/>
+        <!-- Head — looking neither left nor right, looking up — seeking synthesis -->
+        <circle cx="30" cy="60" r="15" fill="#180E32"/>
+        <!-- Arms being pulled both ways -->
+        <line x1="14" y1="88" x2="-40" y2="88" stroke="#100820" stroke-width="8" stroke-linecap="round"/>
+        <line x1="46" y1="88" x2="100" y2="88" stroke="#100820" stroke-width="8" stroke-linecap="round"/>
+        <!-- Pulling force indicators -->
+        <polygon points="-40,84 -60,88 -40,92" fill="#3A2800" opacity="0.5"/>
+        <polygon points="100,84 120,88 100,92" fill="#3A2840" opacity="0.5"/>
+        <!-- Question mark above head — the dilemma -->
+        <text x="20" y="35" font-family="Cormorant Garamond, serif" font-size="22" fill="#D4A017" opacity="0.25" font-style="italic">?</text>
+      </g>
+
+      <!-- Year markers -->
+      <text x="50" y="170" font-family="Cinzel, serif" font-size="14" fill="#3A3000" opacity="0.4">1947</text>
+      <text x="50" y="190" font-family="Cinzel, serif" font-size="10" fill="#3A3000" opacity="0.3" letter-spacing="2">INDEPENDENCE</text>
+      <line x1="50" y1="195" x2="200" y2="195" stroke="#3A3000" stroke-width="0.8" opacity="0.25"/>
+
+      <!-- "Who are we now?" faint text floating -->
+      <text x="400" y="155" font-family="Cormorant Garamond, serif" font-size="15" fill="#3A3060" opacity="0.2" font-style="italic">Who are we now?</text>
+
+      <text x="50" y="55" font-family="Cinzel, serif" font-size="11" letter-spacing="4" fill="#5A4000" opacity="0.8">EPISODE 06</text>
+      <line x1="50" y1="63" x2="170" y2="63" stroke="#5A4000" stroke-width="0.8" opacity="0.4"/>
+    </svg>
+  </div>
+
+  <div class="ep-body ep-bg-6">
+    <span class="ep-num">06</span>
+    <div class="container">
+      <p class="section-eye r" style="color:var(--pale-saffron)">Episode 06 · The Post-Independence Dilemma</p>
+      <h2 class="section-title r d1">1947 — Freedom Arrived.<br>The Question of Identity Did Not.</h2>
+      <p class="section-sub r d2">Independence from colonial rule did not automatically mean independence from the colonial mind.</p>
+      <div class="divider r d2"></div>
+      <div class="body-text">
+        <p class="r d1">When the British departed in 1947, they left behind not just a nation to be governed but a psyche to be navigated. Nearly two centuries of colonial conditioning had created a generation — and then another — that had been educated to see its own traditions as backward, its own language as vernacular, its own civilization as a thing to be transcended rather than built upon.</p>
+        <p class="r d2">The question that independent India faced was not merely political. It was civilizational: <em>What does an Indian look like? What does an Indian value? What does Indian progress mean?</em> And crucially — does modernity require the abandonment of what came before? Or is it possible to be both simultaneously?</p>
+        <p class="r d3">This tension ran through generations — and in many forms, it continues to run. It appears in the person who is privately embarrassed by their grandparent's rituals while performing them publicly. In the student who excels in Western science but has never been taught that the foundations of trigonometry were laid by Āryabhaṭa. In the professional who respects Yoga as wellness but hesitates to call it a complete epistemological system. <strong>The fracture was never just cultural — it was psychological.</strong></p>
+
+        <div class="note r d1">
+          <p class="note-tag">AI-Inferred Psychological Layer</p>
+          <p>The post-independence identity conflict created what might be described as civilizational liminality — a sustained state of being between two worlds, fully belonging to neither. This produced not just cultural confusion but a specific kind of self-doubt: the sense that one's deepest inherited wisdom is somehow "not enough" for the modern world.</p>
+        </div>
+
+        <div class="pull r">
+          <p>A civilization asked to modernize by becoming someone else does not progress — it fragments. The cost of that fragmentation is paid quietly, across generations, in ways that cannot be measured by GDP alone.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     EP 7 — THE REAWAKENING
+══════════════════════════════════════════════════ -->
+<section class="scene">
+  <div class="scene-visual">
+    <svg viewBox="0 0 1200 460" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+      <defs>
+        <radialGradient id="e7bg" cx="50%" cy="70%" r="65%">
+          <stop offset="0%" stop-color="#2A1200"/>
+          <stop offset="40%" stop-color="#120800"/>
+          <stop offset="100%" stop-color="#060410"/>
+        </radialGradient>
+        <radialGradient id="e7sun" cx="50%" cy="85%" r="45%">
+          <stop offset="0%" stop-color="#FFD060" stop-opacity="0.7"/>
+          <stop offset="35%" stop-color="#FF8800" stop-opacity="0.3"/>
+          <stop offset="100%" stop-color="#FF4400" stop-opacity="0"/>
+        </radialGradient>
+        <filter id="f7"><feGaussianBlur stdDeviation="14" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      </defs>
+
+      <rect width="1200" height="460" fill="url(#e7bg)"/>
+      <rect width="1200" height="460" fill="url(#e7sun)"/>
+
+      <!-- Rising sun glow -->
+      <ellipse cx="600" cy="430" rx="420" ry="130" fill="#FF9500" opacity="0.15"/>
+      <ellipse cx="600" cy="445" rx="250" ry="75"  fill="#FFD060" opacity="0.12"/>
+
+      <!-- Light rays from below -->
+      <g opacity="0.06" stroke="#FFD060" stroke-width="1.5">
+        <line x1="600" y1="460" x2="100" y2="80"/>
+        <line x1="600" y1="460" x2="260" y2="40"/>
+        <line x1="600" y1="460" x2="450" y2="20"/>
+        <line x1="600" y1="460" x2="600" y2="10"/>
+        <line x1="600" y1="460" x2="750" y2="20"/>
+        <line x1="600" y1="460" x2="940" y2="40"/>
+        <line x1="600" y1="460" x2="1100" y2="80"/>
+      </g>
+
+      <!-- Stars — fewer now, dawn rising -->
+      <g opacity="0.5">
+        <circle cx="150" cy="60"  r="1" fill="#E8D0A0" style="animation:twinkle 4s ease infinite"/>
+        <circle cx="380" cy="45"  r="0.9" fill="#E8D0A0" style="animation:twinkle 5s ease infinite .8s"/>
+        <circle cx="820" cy="55"  r="1.1" fill="#E8D0A0" style="animation:twinkle 4.5s ease infinite 1.2s"/>
+        <circle cx="1050" cy="42" r="0.8" fill="#E8D0A0" style="animation:twinkle 3.8s ease infinite .4s"/>
+      </g>
+
+      <!-- OM symbol glowing — resurgence -->
+      <text x="540" y="280" font-family="serif" font-size="100" fill="#D4A017" opacity="0.12" filter="url(#f7)">ॐ</text>
+
+      <!-- Yoga / Meditation figure — centered, upright, sovereign -->
+      <g transform="translate(540, 160)" style="filter:drop-shadow(0 0 28px rgba(212,160,23,0.2)); animation:float 7s ease-in-out infinite">
+        <!-- Lotus position -->
+        <ellipse cx="60" cy="190" rx="60" ry="24" fill="#0E0800"/>
+        <!-- Body — upright, composed -->
+        <ellipse cx="60" cy="148" rx="22" ry="36" fill="#140E02"/>
+        <!-- Head up, serene -->
+        <circle cx="60" cy="108" r="18" fill="#180E04"/>
+        <!-- Arms in mudra — Dhyana mudra -->
+        <line x1="38" y1="150" x2="15" y2="170" stroke="#120C02" stroke-width="7" stroke-linecap="round"/>
+        <line x1="82" y1="150" x2="105" y2="170" stroke="#120C02" stroke-width="7" stroke-linecap="round"/>
+        <!-- Hands joined in lap -->
+        <ellipse cx="60" cy="174" rx="22" ry="10" fill="#100A02"/>
+        <!-- Golden rim — light of reclamation -->
+        <circle cx="60" cy="148" rx="62" ry="62" fill="none" stroke="#D4A017" stroke-width="1.5" opacity="0.22"/>
+        <circle cx="60" cy="108" r="20" fill="none" stroke="#E8A030" stroke-width="1" opacity="0.18"/>
+      </g>
+
+      <!-- Global globe suggestion right — Yoga going worldwide -->
+      <g transform="translate(880, 180)" opacity="0.35">
+        <circle cx="50" cy="50" r="55" fill="none" stroke="#D4A017" stroke-width="1.2"/>
+        <!-- Latitude lines -->
+        <ellipse cx="50" cy="50" rx="55" ry="18" fill="none" stroke="#D4A017" stroke-width="0.7"/>
+        <ellipse cx="50" cy="50" rx="55" ry="38" fill="none" stroke="#D4A017" stroke-width="0.5"/>
+        <!-- Longitude lines -->
+        <ellipse cx="50" cy="50" rx="20" ry="55" fill="none" stroke="#D4A017" stroke-width="0.5"/>
+        <ellipse cx="50" cy="50" rx="40" ry="55" fill="none" stroke="#D4A017" stroke-width="0.5"/>
+        <!-- Lines from India to globe — reaching outward -->
+        <line x1="-100" y1="50" x2="0" y2="50" stroke="#E8640A" stroke-width="1" stroke-dasharray="4,6" opacity="0.6"/>
+        <circle cx="-80" cy="50" r="4" fill="#E8640A" opacity="0.4"/>
+      </g>
+
+      <!-- Ayurveda / herb suggestion -->
+      <g transform="translate(140, 300)" opacity="0.4">
+        <rect x="0" y="0" width="55" height="80" fill="#0A0C08" stroke="#1A1E10" stroke-width="1" rx="2"/>
+        <text x="6" y="46" font-family="serif" font-size="12" fill="#2A3010">आयुर्वेद</text>
+        <line x1="6" y1="55" x2="49" y2="55" stroke="#1A2008" stroke-width="0.8"/>
+        <line x1="6" y1="65" x2="46" y2="65" stroke="#1A2008" stroke-width="0.8"/>
+      </g>
+
+      <text x="50" y="55" font-family="Cinzel, serif" font-size="11" letter-spacing="4" fill="#8B5500" opacity="0.85">EPISODE 07</text>
+      <line x1="50" y1="63" x2="170" y2="63" stroke="#8B5500" stroke-width="0.8" opacity="0.45"/>
+    </svg>
+  </div>
+
+  <div class="ep-body ep-bg-7">
+    <span class="ep-num">07</span>
+    <div class="container">
+      <p class="section-eye r">Episode 07 · The Reclamation</p>
+      <h2 class="section-title r d1">The Reawakening —<br>What the World Came Back For</h2>
+      <p class="section-sub r d2">The knowledge was not lost. It was waiting for the world to be ready for it again.</p>
+      <div class="divider r d2"></div>
+      <div class="body-text">
+        <p class="r d1">Something quietly remarkable began happening in the late twentieth century — and has accelerated dramatically since. The world, specifically the world that had once positioned itself as the standard of progress, began coming back to what India had always known.</p>
+        <p class="r d2">Yoga — once described by the colonial gaze as the superstitious practice of a primitive culture — is now taught in hospitals, prescribed by cardiologists, practiced in corporate wellness programs across North America and Europe. Ayurveda, once dismissed in favor of synthetic pharmaceutical models, is increasingly integrated into evidence-based medicine. Sanskrit, once declared irrelevant, is now studied by computational linguists and AI researchers because its grammatical precision makes it the most structurally logical language ever formalized. <strong>The world was not discovering these things. It was returning to them.</strong></p>
+        <p class="r d3">Within India, this has been accompanied by a conscious cultural reclamation. A new generation that was educated in the post-colonial framework but grew up with access to the entire history of human knowledge has been asking questions the previous generation was not always permitted to ask: <em>Where did this actually come from? What did we know before we were told we didn't know enough?</em></p>
+
+        <div class="note r d1">
+          <p class="note-tag">The Critical Distinction</p>
+          <p>This reawakening is at its strongest when it is driven by scholarly rigor and intellectual honesty — not by reactive nationalism or the impulse to claim everything and examine nothing. The reclamation that lasts is the kind that can stand up to the same scrutiny it asks others to apply. That is not weakness. That is civilizational confidence.</p>
+        </div>
+
+        <div class="pull r">
+          <p>This is not regression. This is a civilization finally being able to look at itself clearly — and choosing what to carry forward, consciously, rather than either abandoning it or clinging to it blindly.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ══════════════════════════════════════════════════
+     CLOSING — EP 8: INTEGRATION, NOT IMITATION
+══════════════════════════════════════════════════ -->
+<section class="closing">
+  <svg class="closing-canvas" viewBox="0 0 1200 700" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">
+    <defs>
+      <radialGradient id="clbg" cx="50%" cy="55%" r="70%">
+        <stop offset="0%" stop-color="#2A1060"/>
+        <stop offset="30%" stop-color="#140830"/>
+        <stop offset="65%" stop-color="#0A0620"/>
+        <stop offset="100%" stop-color="#040210"/>
+      </radialGradient>
+      <radialGradient id="clglow" cx="50%" cy="65%" r="50%">
+        <stop offset="0%" stop-color="#E86830" stop-opacity="0.35"/>
+        <stop offset="45%" stop-color="#D4A017" stop-opacity="0.1"/>
+        <stop offset="100%" stop-color="#000" stop-opacity="0"/>
+      </radialGradient>
+      <radialGradient id="clsun" cx="50%" cy="50%" r="50%">
+        <stop offset="0%" stop-color="#FFD060" stop-opacity="0.9"/>
+        <stop offset="30%" stop-color="#FF9500" stop-opacity="0.5"/>
+        <stop offset="100%" stop-color="#FF4400" stop-opacity="0"/>
+      </radialGradient>
+      <filter id="clf"><feGaussianBlur stdDeviation="20" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+      <filter id="clf2"><feGaussianBlur stdDeviation="10" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+    </defs>
+
+    <rect width="1200" height="700" fill="url(#clbg)"/>
+    <rect width="1200" height="700" fill="url(#clglow)"/>
+
+    <!-- Stars -->
+    <g opacity="0.6">
+      <circle cx="100"  cy="65"  r="1.3" fill="#E8D0A0" style="animation:twinkle 3.5s ease infinite"/>
+      <circle cx="270"  cy="42"  r="1"   fill="#E8D0A0" style="animation:twinkle 4s ease infinite .6s"/>
+      <circle cx="440"  cy="78"  r="1.5" fill="#FFE080" filter="url(#clf2)" style="animation:twinkle 2.8s ease infinite 1s"/>
+      <circle cx="620"  cy="28"  r="2"   fill="#FFE080" filter="url(#clf2)" style="animation:twinkle 2.5s ease infinite"/>
+      <circle cx="790"  cy="62"  r="1.2" fill="#E8D0A0" style="animation:twinkle 3.8s ease infinite .4s"/>
+      <circle cx="960"  cy="48"  r="1.4" fill="#E8D0A0" style="animation:twinkle 3s ease infinite 1.4s"/>
+      <circle cx="1110" cy="75"  r="1"   fill="#E8D0A0" style="animation:twinkle 4.2s ease infinite .8s"/>
+    </g>
+
+    <!-- Full rotating Dharma Chakra — large, ethereal -->
+    <g transform="translate(600,360)" opacity="0.05" style="animation:rotate360 70s linear infinite;transform-box:fill-box;transform-origin:0px 0px">
+      <circle cx="0" cy="0" r="300" fill="none" stroke="#FFD060" stroke-width="1.5"/>
+      <circle cx="0" cy="0" r="240" fill="none" stroke="#FFD060" stroke-width="1"/>
+      <circle cx="0" cy="0" r="170" fill="none" stroke="#D4A017" stroke-width="0.8"/>
+      <!-- 24 spokes -->
+      <line x1="0" y1="-300" x2="0" y2="300" stroke="#FFD060" stroke-width="0.8"/>
+      <line x1="-300" y1="0" x2="300" y2="0" stroke="#FFD060" stroke-width="0.8"/>
+      <line x1="-212" y1="-212" x2="212" y2="212" stroke="#FFD060" stroke-width="0.6"/>
+      <line x1="212" y1="-212" x2="-212" y2="212" stroke="#FFD060" stroke-width="0.6"/>
+      <line x1="-115" y1="-282" x2="115" y2="282" stroke="#FFD060" stroke-width="0.5"/>
+      <line x1="115" y1="-282" x2="-115" y2="282" stroke="#FFD060" stroke-width="0.5"/>
+      <line x1="-282" y1="-115" x2="282" y2="115" stroke="#FFD060" stroke-width="0.5"/>
+      <line x1="282" y1="-115" x2="-282" y2="115" stroke="#FFD060" stroke-width="0.5"/>
+      <line x1="-155" y1="-258" x2="155" y2="258" stroke="#FFD060" stroke-width="0.4"/>
+      <line x1="155" y1="-258" x2="-155" y2="258" stroke="#FFD060" stroke-width="0.4"/>
+      <line x1="-258" y1="-155" x2="258" y2="155" stroke="#FFD060" stroke-width="0.4"/>
+      <line x1="258" y1="-155" x2="-258" y2="155" stroke="#FFD060" stroke-width="0.4"/>
+      <!-- Center -->
+      <circle cx="0" cy="0" r="22" fill="none" stroke="#FFD060" stroke-width="2"/>
+      <circle cx="0" cy="0" r="8"  fill="#FFD060"/>
+    </g>
+
+    <!-- Temple + Modern skyline merging -->
+    <g fill="#0A0818" opacity="0.85">
+      <!-- Left temple -->
+      <path d="M80 700 L92 620 L100 560 L106 510 L111 467 L115 430 L118 398 L120 372 L123 350 L125 330 L127 314 L130 298 L133 282 L136 268 L139 254 L143 240 L147 226 L151 213 L155 201 L160 188 L165 175 L170 162 L175 150 L180 138 L186 126 L192 115 L198 104 L205 93 L212 83 L220 72 L228 62 L236 52 L244 42 L253 32 L262 22 L272 12 L282 2 L290 12 L298 22 L307 32 L316 42 L324 52 L332 62 L340 72 L348 83 L355 93 L362 104 L368 115 L374 126 L380 138 L385 150 L390 162 L394 175 L398 188 L401 201 L404 213 L406 226 L408 240 L410 254 L411 268 L413 282 L414 298 L415 314 L416 330 L417 350 L418 372 L420 398 L422 430 L425 467 L428 510 L432 560 L438 620 L446 700 Z"/>
+      <!-- Temple tiers -->
+      <rect x="95" y="658" width="355" height="42" rx="1"/>
+      <rect x="106" y="616" width="330" height="44" rx="1"/>
+      <rect x="118" y="576" width="304" height="42" rx="1"/>
+      <rect x="130" y="538" width="276" height="40" rx="1"/>
+    </g>
+
+    <!-- Right — modern skyscrapers blending in -->
+    <g fill="#080C18" opacity="0.75">
+      <rect x="780" y="280" width="70" height="420" rx="2"/>
+      <rect x="860" y="340" width="60" height="360" rx="2"/>
+      <rect x="930" y="200" width="80" height="500" rx="2"/>
+      <rect x="1020" y="310" width="65" height="390" rx="2"/>
+      <rect x="1095" y="260" width="55" height="440" rx="2"/>
+      <!-- Window lights -->
+      <g fill="#1A1A28" opacity="0.5">
+        <rect x="788" y="300" width="10" height="8" rx="1"/>
+        <rect x="808" y="300" width="10" height="8" rx="1"/>
+        <rect x="788" y="320" width="10" height="8" rx="1"/>
+        <rect x="808" y="340" width="10" height="8" rx="1"/>
+        <rect x="940" y="220" width="12" height="9" rx="1"/>
+        <rect x="965" y="240" width="12" height="9" rx="1"/>
+        <rect x="940" y="260" width="12" height="9" rx="1"/>
+      </g>
+    </g>
+
+    <!-- Saffron dawn between the two structures — integration point -->
+    <ellipse cx="620" cy="680" rx="280" ry="80" fill="url(#clsun)" opacity="0.5"/>
+    <ellipse cx="620" cy="695" rx="160" ry="50" fill="#FFD060" opacity="0.18"/>
+
+    <!-- Broken chain motif — dissolving into sunrise -->
+    <g transform="translate(560, 600)" opacity="0.15">
+      <ellipse cx="0"  cy="0"  rx="18" ry="9" fill="none" stroke="#6040A0" stroke-width="2.5" transform="rotate(20)"/>
+      <ellipse cx="36" cy="-5" rx="18" ry="9" fill="none" stroke="#6040A0" stroke-width="2.5" transform="rotate(-15)"/>
+      <ellipse cx="72" cy="0"  rx="18" ry="9" fill="none" stroke="#6040A0" stroke-width="2.5" transform="rotate(18)"/>
+      <!-- Break and dissolve into light -->
+      <line x1="90" y1="0" x2="110" y2="-5" stroke="#FFD060" stroke-width="2" opacity="0.8"/>
+      <circle cx="115" cy="-6" r="4" fill="#FFD060" opacity="0.6" filter="url(#clf2)"/>
+      <circle cx="125" cy="-10" r="3" fill="#FFD060" opacity="0.4"/>
+      <circle cx="135" cy="-14" r="2" fill="#FFD060" opacity="0.25"/>
+    </g>
+
+    <!-- Diyas on ground -->
+    <g>
+      <g transform="translate(180, 638)">
+        <ellipse cx="0" cy="12" rx="16" ry="5" fill="#5A3000" opacity="0.6"/>
+        <path d="M-4 10 Q0 -14 4 10 Q2 2 0 6 Q-2 2 -4 10Z" fill="#FF8800" opacity="0.9" style="animation:flameDance .85s ease infinite"/>
+        <path d="M-2 8 Q0 -5 2 8 Q1 3 0 5 Q-1 3 -2 8Z" fill="#FFE060" style="animation:flameDance 1s ease infinite .2s"/>
+      </g>
+      <g transform="translate(1020, 638)">
+        <ellipse cx="0" cy="12" rx="16" ry="5" fill="#5A3000" opacity="0.6"/>
+        <path d="M-4 10 Q0 -14 4 10 Q2 2 0 6 Q-2 2 -4 10Z" fill="#FF8800" opacity="0.9" style="animation:flameDance .9s ease infinite .3s"/>
+        <path d="M-2 8 Q0 -5 2 8 Q1 3 0 5 Q-1 3 -2 8Z" fill="#FFE060" style="animation:flameDance .8s ease infinite .1s"/>
+      </g>
+    </g>
+  </svg>
+
+  <div class="closing-content">
+    <span class="closing-devanagari">तमसो मा ज्योतिर्गमय</span>
+    <h2 class="closing-title r">Integration.<br>Not Imitation.</h2>
+    <p class="closing-sub r d1">Lead us from darkness to light — and let what was ours light the way.</p>
+
+    <div class="closing-body r d2">
+      <p>The future that India — and every civilization navigating a post-colonial identity — is building is not a choice between temple and skyscraper. It is the understanding that both can stand on the same ground, drawing strength from the same deep root.</p>
+      <p><strong>The false belief that modernity requires the abandonment of indigenous wisdom was never a truth. It was a colonial argument, dressed as progress.</strong> The civilizations that will lead the next century are not the ones that most perfectly imitate a Western template — they are the ones that are most authentically, most rigorously, themselves.</p>
+    </div>
+
+    <div class="final-sutra r d1">
+      <p>Colonialism did not just occupy land — it occupied narrative. True reclamation is not rejection of the modern world. It is remembering who we were before we were told who to be — and integrating that memory with the world we are building now.</p>
+    </div>
+
+    <div class="closing-body r d2" style="text-align:center;">
+      <p>India's civilizational identity was never destroyed.<br>
+      It was displaced. Suppressed. Made to feel like a liability.<br>
+      And it waited.</p>
+      <p><strong>It is no longer waiting.</strong></p>
+      <p style="color:var(--pale-gold); font-style:italic; font-family:'Cormorant Garamond',serif; font-size:1.15em; line-height:1.75;">
+        सा विद्या या विमुक्तये —<br>
+        <span style="font-size:0.8em; color:rgba(245,208,96,0.65);">That alone is knowledge which liberates.</span>
+      </p>
+    </div>
+
+    <p class="share-cue r d3">✦ &nbsp; Colonial fracture · Identity confusion · Conscious reclamation &nbsp; ✦</p>
+  </div>
+</section>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('on'); });
+  }, { threshold:0.1, rootMargin:'0px 0px -40px 0px' });
+  document.querySelectorAll('.r').forEach(el => obs.observe(el));
+</script>
+</body>
+</html>
