@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>It Wasn't Erased. It Was Renamed.</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root{--gold:#C9A84C;--gold-light:#E8C97A;--gold-pale:#F5E4B0;--royal-blue:#0D1B3E;--royal-blue-mid:#162347;--ink:#8CA0C2;--text-body:#D4C9B0;--text-muted:#8A8070;}
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background-color:var(--royal-blue);color:var(--text-body);font-family:'Outfit',sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.75' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");opacity:0.35;pointer-events:none;z-index:0;}
+  body::after{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(ellipse at center,rgba(201,168,76,0.06) 0%,transparent 70%);pointer-events:none;z-index:0;}
+  .wrapper{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:80px 40px 120px;}
+  .series-tag{display:inline-flex;align-items:center;gap:10px;font-family:'Outfit',sans-serif;font-size:10px;font-weight:500;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);margin-bottom:48px;}
+  .series-tag::before,.series-tag::after{content:'';display:block;width:28px;height:1px;background:var(--gold);opacity:0.6;}
+  .episode-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--text-muted);margin-bottom:20px;}
+  h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(36px,6vw,58px);line-height:1.12;color:var(--gold-pale);margin-bottom:12px;}
+  h1 em{font-style:italic;color:var(--gold-light);}
+  .divider{display:flex;align-items:center;gap:14px;margin:36px 0;}
+  .divider-line{flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(201,168,76,0.3),transparent);}
+  .divider-motif{font-size:14px;color:var(--gold);opacity:0.5;}
+  .hook-block{border-left:2px solid var(--gold);padding:20px 28px;margin-bottom:44px;background:rgba(201,168,76,0.04);border-radius:0 4px 4px 0;}
+  .hook-block p{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:22px;line-height:1.6;color:var(--gold-light);font-style:italic;}
+  .body-text p{font-size:16px;line-height:1.9;color:var(--text-body);margin-bottom:24px;font-weight:300;}
+  .body-text p:first-child::first-letter{font-family:'Cormorant Garamond',serif;font-size:52px;font-weight:600;line-height:0.85;float:left;margin-right:10px;margin-top:6px;color:var(--gold);}
+  .hl{color:var(--gold-light);font-style:italic;}
+  .punch{font-family:'Cormorant Garamond',serif;font-size:21px;font-weight:600;color:var(--gold-pale);margin:32px 0;line-height:1.3;}
+  .punch em{color:var(--gold-light);font-style:italic;}
+  .i-voice{background:rgba(201,168,76,0.06);border-left:3px solid var(--gold-light);padding:22px 28px;margin:40px 0;border-radius:0 4px 4px 0;}
+  .i-voice p{font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;line-height:1.7;color:var(--gold-pale);font-weight:400;}
+  .tension{text-align:center;padding:36px 20px;margin:44px 0;}
+  .tension p{font-family:'Cormorant Garamond',serif;font-size:26px;font-weight:300;color:var(--gold-pale);line-height:1.4;font-style:italic;}
+  .tension p strong{font-weight:600;color:var(--gold-light);font-style:normal;}
+  .pull-quote{text-align:center;padding:40px 20px;margin:44px 0;position:relative;}
+  .pull-quote::before,.pull-quote::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:60px;height:1px;background:rgba(201,168,76,0.4);}
+  .pull-quote::before{top:0;}.pull-quote::after{bottom:0;}
+  .pull-quote p{font-family:'Cormorant Garamond',serif;font-size:27px;font-weight:300;font-style:italic;line-height:1.45;color:var(--gold-pale);}
+  .section-label{font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);opacity:0.6;margin-bottom:16px;margin-top:48px;display:block;}
+  .truth-block{background:linear-gradient(135deg,rgba(201,168,76,0.1),rgba(201,168,76,0.04));border:1px solid rgba(201,168,76,0.2);border-radius:2px;padding:32px 36px;margin:48px 0;position:relative;overflow:hidden;}
+  .truth-block::before{content:'❝';position:absolute;top:-10px;left:20px;font-size:80px;color:var(--gold);opacity:0.08;font-family:Georgia,serif;line-height:1;}
+  .truth-block p{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:600;line-height:1.45;color:var(--gold-pale);text-align:center;position:relative;}
+  .example-cards{display:flex;flex-direction:column;gap:16px;margin:44px 0;}
+  .example-card{background:rgba(22,35,71,0.8);border:1px solid rgba(201,168,76,0.15);border-radius:2px;padding:24px 28px;}
+  .example-card .card-label{font-family:'Cinzel',serif;font-size:8px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);opacity:0.6;margin-bottom:10px;}
+  .example-card .card-claim{font-family:'Cormorant Garamond',serif;font-size:18px;color:var(--gold-pale);margin-bottom:8px;font-style:italic;}
+  .example-card .card-reality{font-size:14px;color:var(--ink);line-height:1.7;}
+  .bridge-block{margin:56px 0 0;padding-top:40px;border-top:1px solid rgba(201,168,76,0.15);}
+  .bridge-label{font-family:'Cinzel',serif;font-size:8px;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);opacity:0.5;margin-bottom:14px;}
+  .bridge-text{font-size:15px;line-height:1.75;color:var(--ink);font-style:italic;}
+  .ornament{display:block;margin:0 auto;opacity:0.18;width:120px;margin-bottom:48px;}
+  .cta-block{margin-top:72px;padding:48px 40px;background:var(--royal-blue-mid);border:1px solid rgba(201,168,76,0.25);border-radius:2px;text-align:center;position:relative;overflow:hidden;}
+  .cta-block::before{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
+  .cta-block .series-note{font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.3em;color:var(--text-muted);text-transform:uppercase;margin-bottom:18px;}
+  .next-label{font-family:'Cinzel',serif;font-size:8px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);opacity:0.7;margin-bottom:10px;}
+  .cta-block h3{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:28px;color:var(--gold-pale);margin-bottom:12px;line-height:1.3;}
+  .cta-block p{font-size:14px;color:var(--ink);line-height:1.7;margin-bottom:28px;max-width:400px;margin-left:auto;margin-right:auto;}
+  .cta-btn{display:inline-block;padding:14px 36px;border:1px solid var(--gold);color:var(--gold);font-family:'Cinzel',serif;font-size:10px;letter-spacing:0.2em;text-transform:uppercase;text-decoration:none;transition:background 0.3s ease;background:transparent;}
+  .cta-btn:hover{background:rgba(201,168,76,0.12);}
+  @media(max-width:600px){.wrapper{padding:48px 24px 80px;}h1{font-size:34px;}}
+  @keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+  .wrapper > *{animation:fadeUp 0.7s ease both;}
+  .wrapper > *:nth-child(1){animation-delay:0.05s;}.wrapper > *:nth-child(2){animation-delay:0.15s;}
+  .wrapper > *:nth-child(3){animation-delay:0.25s;}.wrapper > *:nth-child(4){animation-delay:0.35s;}
+  .wrapper > *:nth-child(n+5){animation-delay:0.45s;}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="series-tag">The Identity That Was Edited &nbsp;·&nbsp; Episode 3 → 4</div>
+  <p class="episode-label">Micro-Article 03 &nbsp;/&nbsp; Erasure → Rebranding</p>
+  <h1>It Wasn't Erased.<br><em>It Was Renamed.</em></h1>
+
+  <div class="divider"><div class="divider-line"></div><span class="divider-motif">✦</span><div class="divider-line"></div></div>
+
+  <div class="hook-block">
+    <p>You use a number system every day.<br>
+    You call them Arabic numerals.<br>
+    They are not Arabic.<br>
+    They are Indian. And that single mislabeling<br>
+    tells you almost everything you need to know.</p>
+  </div>
+
+  <div class="body-text">
+    <p>History is not a neutral record of what happened. It is a record of what was deemed worth remembering — and more importantly, who got to do the deeming. The civilisation that controls the narration of the past controls something far more consequential: the present self-understanding of every people whose story gets told through someone else's pen. For India, that pen was held for two centuries by a colonial power with very clear reasons for what to illuminate and what to leave in the dark.</p>
+
+    <p>What happened to India's intellectual legacy was not erasure. Erasure would have been too obvious. Too easy to contest. What actually happened was more elegant and more durable: <span class="hl">selective absorption and quiet reattribution</span>. Knowledge was extracted from its context, stripped of its origins, and returned to the world bearing a different passport.</p>
+  </div>
+
+  <div class="tension">
+    <p>The inheritance wasn't stolen in the night.<br><strong>It was repackaged and sold back to you at a premium.</strong></p>
+  </div>
+
+  <span class="section-label">The Specific Acts of Renaming</span>
+
+  <div class="example-cards">
+    <div class="example-card">
+      <p class="card-label">Mathematics — The Number System</p>
+      <p class="card-claim">"Arabic numerals" and the concept of zero</p>
+      <p class="card-reality">The numeral system you use — including zero as a positional number — was developed in India. The mathematician Brahmagupta formalised zero's properties in the 7th century CE. Arab scholars encountered this system, adopted it, and transmitted it westward. Europe received it from Arab intermediaries and named it accordingly. The Indian origin was not foregrounded. It is not foregrounded in most school curricula today.</p>
+    </div>
+    <div class="example-card">
+      <p class="card-label">Astronomy — Heliocentric Calculation</p>
+      <p class="card-claim">Aryabhata's work, attributed to European discovery</p>
+      <p class="card-reality">In 499 CE — a full millennium before Copernicus — Aryabhata proposed that the Earth rotates on its axis, calculated the length of the solar year to within minutes of today's precise measurement, and modelled the solar system with extraordinary accuracy. His work was known, translated, and used. His name was not carried forward in the dominant historical narrative of scientific discovery.</p>
+    </div>
+    <div class="example-card">
+      <p class="card-label">Medicine — Surgery and Ethics</p>
+      <p class="card-claim">Sushruta's Compendium, predating Western surgical knowledge</p>
+      <p class="card-reality">Sushruta, practising around 600 BCE, described over 300 surgical procedures, 120 surgical instruments, and the principles of rhinoplasty — reconstructive nasal surgery — in technical detail that European medicine would not independently reach for over a thousand years. The Hippocratic Oath's ethical framework appears centuries after Sushruta's own code of medical ethics.</p>
+    </div>
+    <div class="example-card">
+      <p class="card-label">Linguistics and Computing</p>
+      <p class="card-claim">Panini's grammar — the foundation modern computer science drew from</p>
+      <p class="card-reality">Panini's Ashtadhyayi, written around the 4th century BCE, is a formal grammar of Sanskrit built on 3,959 rules — a rule-based, algorithmic system so precise that computer scientists in the 20th century directly cited it when developing formal language theory and programming language design. Panini essentially wrote the world's first formal language specification. He is not in your school syllabus.</p>
+    </div>
+  </div>
+
+  <div class="i-voice">
+    <p>I was twenty-four when I first read about Sushruta. I had just finished a biology degree. Nobody had mentioned him once. I didn't feel angry — I felt something stranger. A kind of retroactive loneliness, like I had grown up in a house with a locked room that nobody told me existed.</p>
+  </div>
+
+  <p class="punch">You've been using your own inheritance your whole life.<br><em>Under someone else's name.</em></p>
+
+  <span class="section-label">Why You Still Trust External Validation First</span>
+
+  <div class="body-text">
+    <p>Now here is the part you need to sit with honestly. Because the historical record is one thing — but the psychological effect it created in you is something you are still living with today.</p>
+
+    <p>When traditional Indian medicine is studied by a Western university, you find it more credible than you did before the study. When a Western wellness brand markets turmeric as a "golden milk superfood," the same turmeric that has been in your kitchen your entire life suddenly feels validated. When Western neuroscientists publish papers on meditation and its effects on the brain, you find it easier to recommend meditation to someone than you did when it was just something your grandmother did every morning.</p>
+
+    <p>That is not stupidity. That is not weakness. That is the precise, predictable outcome of a credibility hierarchy that was installed in you through education, media, and the accumulated cultural messaging of your entire life. The hierarchy says: knowledge is most trustworthy when it arrives from certain sources. And those sources — for historical reasons that had nothing to do with the quality of the knowledge — are primarily Western.</p>
+  </div>
+
+  <div class="i-voice">
+    <p>I catch myself doing this still. I'll be explaining something rooted in Indian philosophy and I'll instinctively reach for the Western parallel — not to translate, but to legitimise. As if the idea needs a Western cosigner before I can fully stand behind it.</p>
+  </div>
+
+  <div class="pull-quote">
+    <p>"You doubt your own legacy<br>while using it every single day.<br>The doubt was installed.<br>The legacy was always there."</p>
+  </div>
+
+  <span class="section-label">The Deeper Damage: A Broken Standard of Credibility</span>
+
+  <div class="body-text">
+    <p>The real cost of the rebranding is not historical injustice — though that is real. The real cost is what it did to your relationship with your own capacity for knowing. When a civilisation's contributions are systematically omitted from the story of human progress, that civilisation's descendants do not grow up believing they come from a tradition of discovery and inquiry. They grow up believing they are recipients of modernity — not originators of it.</p>
+
+    <p>And that belief shapes everything. What you pursue. Who you defer to. What you feel entitled to question. What you assume requires external validation before you can trust it.</p>
+
+    <p>Reclaiming the historical record is not about national pride or competitive score-keeping between civilisations. It is about restoring an accurate relationship between you and your own intellectual inheritance — so that you can stand in it, draw from it, and build forward from it without needing anyone else's permission to do so.</p>
+  </div>
+
+  <div class="truth-block">
+    <p>It wasn't lost. It was relabeled.<br>You were taught to trust the new label.<br>Now you know where it came from.</p>
+  </div>
+
+  <div class="bridge-block">
+    <p class="bridge-label">Leading Into Episode 4</p>
+    <p class="bridge-text">
+      But knowing the facts is not enough. Because the deepest damage was never about the record. It was about what happened to the people who internalised the record — generation after generation, absorbing the message that their way of being in the world was less advanced, less legitimate, less serious.<br><br>
+      The next chapter goes into that interior damage. What psychological colonisation actually looks like in your daily life — and why it didn't leave when the British did.
+    </p>
+  </div>
+
+  <svg class="ornament" viewBox="0 0 120 120" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#C9A84C" stroke-width="0.8">
+    <circle cx="60" cy="60" r="55"/><circle cx="60" cy="60" r="40"/><circle cx="60" cy="60" r="25"/><circle cx="60" cy="60" r="8"/>
+    <line x1="60" y1="5" x2="60" y2="115"/><line x1="5" y1="60" x2="115" y2="60"/>
+    <line x1="21" y1="21" x2="99" y2="99"/><line x1="99" y1="21" x2="21" y2="99"/>
+    <polygon points="60,50 64,57 72,57 66,62 68,70 60,65 52,70 54,62 48,57 56,57" stroke-width="0.6"/>
+  </svg>
+
+  <div class="cta-block">
+    <p class="series-note">Micro-Article 03 of 05 &nbsp;·&nbsp; The Identity That Was Edited</p>
+    <p class="next-label">Up Next in the Series</p>
+    <h3>"The Colonization That Stayed<br>After Independence"</h3>
+    <p>The land was returned in 1947. The mind was not. What psychological colonisation looks like in your daily life — and why pride still feels like it needs permission.</p>
+    <a class="cta-btn" href="micro-article-4.html">Continue to Micro-Article 04 →</a>
+  </div>
+
+</div>
+</body>
+</html>
