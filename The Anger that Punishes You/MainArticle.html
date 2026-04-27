@@ -1,0 +1,337 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Anger That Punishes You — Mind Anchor · Jai</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400;1,600&family=Cinzel:wght@400;600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy:#0A1040;--navy-mid:#111852;--navy-light:#1A2468;
+    --gold:#C8A951;--gold-light:#E2C97A;--gold-pale:#F4E8BC;
+    --text-body:#D0C8B0;--text-muted:#6A7090;--ink:#8090BC;
+  }
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{background-color:var(--navy);color:var(--text-body);font-family:'Outfit',sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden;}
+  body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");opacity:0.4;pointer-events:none;z-index:0;}
+
+  /* HERO */
+  .hero{position:relative;z-index:1;min-height:96vh;display:flex;flex-direction:column;justify-content:flex-end;padding:0 0 72px;border-bottom:1px solid rgba(200,169,81,0.12);overflow:hidden;}
+  .hero-anchor{position:absolute;top:50%;left:50%;transform:translate(-50%,-54%);width:min(700px,95vw);opacity:0.045;pointer-events:none;}
+  .hero-glow{position:absolute;top:30%;left:50%;transform:translate(-50%,-50%);width:800px;height:800px;background:radial-gradient(ellipse at center,rgba(200,169,81,0.09) 0%,rgba(17,24,82,0.05) 45%,transparent 72%);pointer-events:none;}
+  .hero-inner{position:relative;z-index:1;max-width:780px;margin:0 auto;padding:0 48px;width:100%;}
+  .brand-tag{display:inline-flex;align-items:center;gap:10px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.4em;text-transform:uppercase;color:var(--gold);opacity:0.65;margin-bottom:36px;}
+  .brand-tag::before{content:'';display:block;width:24px;height:1px;background:var(--gold);opacity:0.5;}
+  .hero-kicker{font-family:'Outfit',sans-serif;font-size:11px;letter-spacing:0.25em;text-transform:uppercase;color:var(--gold);opacity:0.5;margin-bottom:24px;}
+  .hero h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(46px,8.5vw,90px);line-height:1.02;color:var(--gold-pale);letter-spacing:-0.025em;margin-bottom:28px;}
+  .hero h1 em{font-style:italic;color:var(--gold-light);}
+  .hero h1 span{display:block;}
+  .hero-deck{font-family:'Cormorant Garamond',serif;font-size:clamp(17px,2.2vw,21px);font-style:italic;color:var(--ink);line-height:1.65;max-width:540px;margin-bottom:48px;}
+  .hero-rule{display:flex;align-items:center;gap:14px;width:200px;}
+  .hero-rule-line{flex:1;height:1px;background:rgba(200,169,81,0.3);}
+  .hero-rule-dot{width:4px;height:4px;border-radius:50%;background:var(--gold);opacity:0.55;}
+
+  /* WRAPPER */
+  .wrapper{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:88px 48px 100px;}
+
+  /* TYPOGRAPHY */
+  .body-text p{font-size:17px;line-height:1.92;color:var(--text-body);margin-bottom:26px;font-weight:300;}
+  .body-text p:first-child::first-letter{font-family:'Cormorant Garamond',serif;font-size:56px;font-weight:600;line-height:0.82;float:left;margin-right:10px;margin-top:8px;color:var(--gold);}
+  .hl{color:var(--gold-light);font-style:italic;}
+
+  .section-label{font-family:'Cinzel',serif;font-size:8.5px;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);opacity:0.55;margin-bottom:20px;margin-top:56px;display:block;}
+
+  /* PUNCH */
+  .punch{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--gold-pale);margin:36px 0;line-height:1.28;}
+  .punch em{color:var(--gold-light);font-style:italic;}
+  .stop{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--gold);font-style:italic;margin:28px 0;display:block;letter-spacing:0.01em;}
+
+  /* TENSION */
+  .tension{text-align:center;padding:40px 20px;margin:52px 0;position:relative;}
+  .tension::before,.tension::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:40px;height:1px;background:rgba(200,169,81,0.35);}
+  .tension::before{top:0;}.tension::after{bottom:0;}
+  .tension p{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3.5vw,30px);font-weight:300;font-style:italic;color:var(--gold-pale);line-height:1.42;}
+  .tension p strong{font-weight:600;font-style:normal;color:var(--gold-light);display:block;}
+
+  /* I-VOICE */
+  .i-voice{background:rgba(200,169,81,0.055);border-left:3px solid var(--gold-light);padding:24px 30px;margin:44px 0;border-radius:0 3px 3px 0;}
+  .i-voice p{font-family:'Cormorant Garamond',serif;font-size:19.5px;font-style:italic;line-height:1.72;color:var(--gold-pale);font-weight:400;}
+
+  /* PULL QUOTE */
+  .pull-quote{text-align:center;padding:48px 20px;margin:52px 0;position:relative;}
+  .pull-quote::before,.pull-quote::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:64px;height:1px;background:rgba(200,169,81,0.4);}
+  .pull-quote::before{top:0;}.pull-quote::after{bottom:0;}
+  .pull-quote p{font-family:'Cormorant Garamond',serif;font-size:clamp(23px,3.5vw,32px);font-weight:300;font-style:italic;line-height:1.42;color:var(--gold-pale);}
+
+  /* HOOK */
+  .hook-block{border-left:2px solid var(--gold);padding:22px 30px;margin-bottom:52px;background:rgba(200,169,81,0.04);border-radius:0 4px 4px 0;}
+  .hook-block p{font-family:'Cormorant Garamond',serif;font-weight:400;font-size:22px;line-height:1.6;color:var(--gold-light);font-style:italic;}
+
+  /* TRUTH BLOCK */
+  .truth-block{background:linear-gradient(135deg,rgba(200,169,81,0.1),rgba(200,169,81,0.03));border:1px solid rgba(200,169,81,0.22);border-radius:2px;padding:36px 42px;margin:52px 0;position:relative;overflow:hidden;}
+  .truth-block::before{content:'❝';position:absolute;top:-12px;left:22px;font-size:88px;color:var(--gold);opacity:0.07;font-family:Georgia,serif;line-height:1;}
+  .truth-block p{font-family:'Cormorant Garamond',serif;font-size:24px;font-weight:600;line-height:1.48;color:var(--gold-pale);text-align:center;position:relative;}
+
+  /* SCENE */
+  .scene{background:rgba(10,16,64,0.7);border:1px solid rgba(200,169,81,0.12);border-radius:2px;padding:28px 32px;margin:44px 0;}
+  .scene-label{font-family:'Cinzel',serif;font-size:8px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);opacity:0.5;margin-bottom:14px;}
+  .scene p{font-family:'Cormorant Garamond',serif;font-size:18px;font-style:italic;line-height:1.75;color:var(--text-body);font-weight:400;}
+
+  /* DIVIDER */
+  .divider{display:flex;align-items:center;gap:16px;margin:60px 0;}
+  .divider-line{flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(200,169,81,0.25),transparent);}
+  .divider-motif{font-size:13px;color:var(--gold);opacity:0.4;}
+
+  /* ANCHOR ORNAMENT */
+  .anchor-ornament{display:block;margin:0 auto;opacity:0.14;width:56px;margin-bottom:48px;}
+
+  /* CLOSING */
+  .closing-block{margin-top:80px;padding:56px 44px;background:linear-gradient(145deg,var(--navy-mid),rgba(10,16,64,0.96));border:1px solid rgba(200,169,81,0.28);border-radius:2px;text-align:center;position:relative;overflow:hidden;}
+  .closing-block::before,.closing-block::after{content:'';position:absolute;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
+  .closing-block::before{top:0;}.closing-block::after{bottom:0;}
+  .closing-brand{font-family:'Cinzel',serif;font-size:8.5px;letter-spacing:0.38em;text-transform:uppercase;color:var(--text-muted);margin-bottom:22px;}
+  .closing-block h3{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(24px,3.5vw,34px);color:var(--gold-pale);margin-bottom:14px;line-height:1.32;}
+  .closing-block p{font-size:15px;color:var(--ink);line-height:1.78;max-width:420px;margin:0 auto 32px;}
+  .closing-btn{display:inline-block;padding:14px 40px;border:1px solid var(--gold);color:var(--gold);font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;background:transparent;transition:background 0.3s ease;}
+  .closing-btn:hover{background:rgba(200,169,81,0.1);}
+
+  @keyframes fadeUp{from{opacity:0;transform:translateY(22px);}to{opacity:1;transform:translateY(0);}}
+  .hero-inner > *{animation:fadeUp 0.9s ease both;}
+  .hero-inner > *:nth-child(1){animation-delay:0.08s;}.hero-inner > *:nth-child(2){animation-delay:0.22s;}
+  .hero-inner > *:nth-child(3){animation-delay:0.38s;}.hero-inner > *:nth-child(4){animation-delay:0.52s;}
+  .hero-inner > *:nth-child(n+5){animation-delay:0.65s;}
+  .wrapper > *{animation:fadeUp 0.7s ease both;animation-delay:0.1s;}
+
+  @media(max-width:640px){
+    .hero-inner{padding:0 28px;}.wrapper{padding:64px 28px 80px;}
+    .closing-block{padding:40px 24px;}.truth-block{padding:28px 24px;}
+  }
+</style>
+</head>
+<body>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-glow"></div>
+  <svg class="hero-anchor" viewBox="0 0 200 260" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#C8A951" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="100" cy="38" r="22"/>
+    <line x1="100" y1="60" x2="100" y2="220"/>
+    <line x1="54" y1="98" x2="146" y2="98"/>
+    <path d="M58,220 Q30,200 30,170 Q30,148 54,140"/>
+    <path d="M142,220 Q170,200 170,170 Q170,148 146,140"/>
+    <path d="M58,220 Q100,236 142,220"/>
+  </svg>
+  <div class="hero-inner">
+    <div class="brand-tag">Mind Anchor &nbsp;·&nbsp; Jai</div>
+    <p class="hero-kicker">On Anger, Ego & Self-Sabotage</p>
+    <h1>
+      <span>The Anger</span>
+      <span>That Punishes</span>
+      <em>You</em>
+    </h1>
+    <p class="hero-deck">Anger has a way of making intelligent people irrational.<br>Not loud. Not always obvious.<br>But irrational all the same.</p>
+    <div class="hero-rule">
+      <div class="hero-rule-line"></div>
+      <div class="hero-rule-dot"></div>
+      <div class="hero-rule-line"></div>
+    </div>
+  </div>
+</section>
+
+<!-- BODY -->
+<div class="wrapper">
+
+  <div class="hook-block">
+    <p>The moment someone gets under your skin, something shifts. Your mind stops asking "what is best for me?" and starts asking "how do I get away from them?" That is when the poor decisions begin. And most people never notice the switch has happened.</p>
+  </div>
+
+  <!-- ═══ PART 1 — The Core Mechanism ═══ -->
+  <div class="body-text">
+    <p>Anger does not just change how you see other people. It changes how you treat yourself. That is the part most people miss — because we are so focused on the person who made us angry that we stop watching what we are quietly doing to ourselves in response.</p>
+
+    <p>When you are genuinely triggered — not mildly irritated, but emotionally activated — your thinking narrows. The question changes from "what serves me well here?" to "what keeps me away from them?" And once that shift happens, you are no longer making clean decisions. You are making reactive ones. Reactive decisions made to protect a bruised ego have a very specific failure pattern: they hurt you more than they hurt the person you are trying to avoid.</p>
+  </div>
+
+  <div class="tension">
+    <p>You think you are protecting yourself.<br><strong>You are punishing yourself.</strong><br>Anger makes it hard to see which is which.</p>
+  </div>
+
+  <!-- ═══ PART 2 — What It Looks Like ═══ -->
+  <span class="section-label">What This Actually Looks Like</span>
+
+  <div class="body-text">
+    <p>Here is the behaviour — specific, not abstract. A person would rather stand beside a complete stranger than sit near someone they are upset with — even when the stranger is unknown and the other person has never actually meant them harm. They choose the unfamiliar over the manageable. Not because the stranger is safer. Because the distance from the person they are angry with feels like relief, even when it costs them something real.</p>
+
+    <p>The mind does not always choose what is safe. It chooses what feels emotionally satisfying in the moment. And in that moment, distance from the person who upset you feels like winning. It feels like dignity. It feels like you are protecting something important about yourself.</p>
+  </div>
+
+  <p class="punch">It is not winning.<br><em>It is the ego performing strength it does not have.</em></p>
+
+  <div class="body-text">
+    <p>The performance is convincing because it feels righteous. You are not being irrational — you are maintaining standards. You are not avoiding — you are protecting your energy. The internal story is always noble. But if you ignore the story and look at the outcome, the pattern becomes visible: you consistently end up in worse positions, more discomfort, more risk, more inconvenience — all to maintain distance from one person. That is not strategy. That is ego under pressure. And ego under pressure does not make good decisions. It makes decisions that feel satisfying for a few seconds and cost considerably more than that.</p>
+  </div>
+
+  <div class="i-voice">
+    <p>I have watched this in people I respect. Smart, self-aware people making genuinely poor calls — not from ignorance, but from a specific emotional state they had not named. The anger was directing the decision and calling itself discernment. It is one of the more convincing disguises I have seen the ego wear.</p>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><span class="divider-motif">⚓</span><div class="divider-line"></div></div>
+
+  <!-- ═══ PART 3 — Anger's Disguises ═══ -->
+  <span class="section-label">The Disguises Anger Wears</span>
+
+  <div class="body-text">
+    <p>This is where it gets more complicated — and more important. Anger is rarely obvious to the person experiencing it. It does not arrive labelled as "irrational emotional reaction." It arrives dressed in language that sounds considered. Mature, even.</p>
+
+    <p>It arrives as boundaries. As discernment. As "I am simply choosing not to engage with that energy." As "I know my worth and I do not have to tolerate this." These are real concepts — genuinely useful in the right context. The problem is that anger borrows their vocabulary and uses it as cover. When you are reactive, the justifications you reach for are the ones that make the reaction sound principled. And the smarter you are, the better and faster you construct those justifications.</p>
+
+    <p>The tell is in the timing. Genuine discernment is slow and clear. It considers the situation and decides. Anger dressed as discernment is fast and certain. It does not consider — it concludes. The conclusion was already made before the reasoning started. The reasoning is just the story you build around a decision your ego already made on your behalf.</p>
+  </div>
+
+  <div class="scene">
+    <p class="scene-label">Recognising the Disguise</p>
+    <p>You feel certain that stepping away is the right call. The certainty itself is the signal worth examining. Genuine clarity has a particular texture — it is calm, it can be revisited, it does not need the other person to be wrong in order to hold. Reactive certainty is different. It needs the other person to be wrong. It needs the full weight of the justification because without it, the decision starts to look like what it actually is: an ego protecting itself from discomfort.</p>
+  </div>
+
+  <div class="i-voice">
+    <p>I have caught myself using the language of boundaries to describe what was actually avoidance. The difference is not always obvious in the moment. But there is a question that cuts through it: am I moving toward something I want, or am I moving away from someone I cannot face right now? One of those is a decision. The other is a reaction with better branding.</p>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><span class="divider-motif">⚓</span><div class="divider-line"></div></div>
+
+  <!-- ═══ PART 4 — Why Smart People Are Most Vulnerable ═══ -->
+  <span class="section-label">Why Intelligent People Are Most Vulnerable to This</span>
+
+  <div class="body-text">
+    <p>There is a specific irony here that is worth naming. The people most likely to fall into this pattern are not people who lack self-awareness. They are often people who have a great deal of it — who read, reflect, understand psychology, and have done work on themselves. The intelligence does not protect them. It makes the pattern harder to spot, because they are better at building the story that explains why this specific reactive decision is actually the right one.</p>
+
+    <p>An emotionally unsophisticated person might just say "I do not want to be around them." That is transparent. Easy to examine. An emotionally intelligent person will have four convincing reasons why maintaining distance is aligned with their values, their growth, their wellbeing, and their sense of self. The architecture of the justification is more elaborate. And more elaborate architecture is harder to see through — especially from the inside.</p>
+
+    <p>The more tools you have for understanding behaviour, the more tools you have for rationalising your own. This is not a reason to stop developing self-awareness. It is a reason to apply that same awareness specifically to the moments when you feel most certain you are making a principled decision — because certainty, under emotional activation, is not a reliable signal of correctness. It is often the opposite.</p>
+  </div>
+
+  <p class="punch">The smarter you are,<br><em>the better the story you build around a bad decision.</em></p>
+
+  <div class="divider"><div class="divider-line"></div><span class="divider-motif">⚓</span><div class="divider-line"></div></div>
+
+  <!-- ═══ PART 5 — The Mechanism / Self-Sabotage ═══ -->
+  <span class="section-label">How Ego Becomes Self-Sabotage</span>
+
+  <div class="body-text">
+    <p>Here is what is happening underneath the behaviour. When someone wrongs you — or when you perceive that they have — your ego registers a threat. Not a physical one. A relational one. Your sense of self, your dignity, your narrative of how you deserve to be treated, has been challenged. And the ego's response to that challenge is immediate. It wants distance. It wants to signal — to the other person and to yourself — that you are not affected. That you do not need them. That their presence is something you no longer accept.</p>
+
+    <p>And in that drive to signal indifference, you start making choices that work against your own interest. You take the worse seat to avoid sitting near them. You choose the longer, harder route to avoid crossing their path. You skip the conversation you need to have because they are part of it. You accept a more stressful situation rather than the manageable one that requires their presence. You are not protecting yourself. <span class="hl">You are paying a tax to your own ego.</span> And the ego does not issue refunds.</p>
+  </div>
+
+  <div class="scene">
+    <p class="scene-label">The Pattern in Specific</p>
+    <p>The rational option — the comfortable seat, the useful conversation, the practical choice — is near them. So you choose something else. Worse, less convenient, more uncomfortable. Not because it serves you better. Because it is farther from the person you do not want to face. You tell yourself it is fine. But your body registers what happened: you made a worse decision for yourself so you could feel like you won something. You won nothing. You paid for the feeling of winning.</p>
+  </div>
+
+  <div class="i-voice">
+    <p>I once chose a genuinely uncomfortable situation over a reasonable one because the reasonable one required me to be near someone I was angry with. I told myself I was maintaining my standards. What I was actually doing was letting my ego spend my own comfort as currency. The other person did not notice. I was the only one paying. That asymmetry, once I saw it clearly, was difficult to un-see.</p>
+  </div>
+
+  <div class="pull-quote">
+    <p>"In trying not to be near<br>the person you dislike,<br>you often end up hurting yourself<br>more than they ever could."</p>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><span class="divider-motif">⚓</span><div class="divider-line"></div></div>
+
+  <!-- ═══ PART 6 — The Compound Cost ═══ -->
+  <span class="section-label">The Cost You Stop Noticing Because You Pay It So Often</span>
+
+  <div class="body-text">
+    <p>One reactive decision is recoverable. You chose the worse seat. Fine. You avoided one useful conversation. It passes. The cost of a single incident is small enough that it disappears into the noise of daily life. This is part of why the pattern goes unexamined. Each individual instance seems insignificant. What does not get tracked is the cumulative total.</p>
+
+    <p>Over months, this pattern compounds. The opportunities not taken because the right person to ask happened to be someone you were carrying tension with. The professional situations navigated less effectively because your energy was going into avoidance architecture. The relationships that cooled because the anger made proximity feel like a concession. The decisions made from a reactive frame that produced outcomes you would not have chosen from a clear one. None of these entries are dramatic. Together, they form a ledger of cost that is entirely self-authored.</p>
+
+    <p>And the other person is rarely on the other side of that ledger. They moved on. Or they never noticed. The person the anger was about is often living their life with no awareness of the ongoing costs you are paying to maintain your distance from them. <span class="hl">You are the only accountant in this arrangement.</span> And you are the only one being charged.</p>
+  </div>
+
+  <div class="truth-block">
+    <p>Unresolved anger is dangerous —<br>not because it always explodes outward.<br>But because it turns inward quietly,<br>making you choose against yourself<br>while calling it self-protection.</p>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><span class="divider-motif">⚓</span><div class="divider-line"></div></div>
+
+  <!-- ═══ PART 7 — Chosen Distance vs Reactive Distance ═══ -->
+  <span class="section-label">The Difference Between Chosen Distance and Reactive Distance</span>
+
+  <div class="body-text">
+    <p>Not all distance is avoidance. This distinction matters because conflating the two makes it difficult to examine your own behaviour honestly. There are situations where removing yourself from someone is the right, considered, clearly reasoned decision — where the distance serves your actual interest and is made from a calm enough state that you could explain it without needing the other person to be villainised in the telling.</p>
+
+    <p>That is chosen distance. It is stable. It does not require maintenance. You made the decision and it sits quietly without needing to be re-justified every time you encounter them in a shared context. You can be in the same room and be fine, because the decision was made from clarity, not from activation.</p>
+
+    <p>Reactive distance is different in every way that matters. It is not stable — it requires constant maintenance, constant re-justification, constant management of situations to preserve the separation. It is fragile in exactly the way that anything built on emotion rather than reasoning is fragile. And it is costly in a way that chosen distance is not, because it is not serving your interest. It is serving your ego's need to not be seen as the person who needs to be near someone they disapprove of.</p>
+
+    <p>The test is simple and uncomfortable: if the other person were completely indifferent to your distance — if they neither noticed nor cared — would you still choose it? If the answer is no, then the distance was never really about you. It was a performance for an audience that was not watching.</p>
+  </div>
+
+  <span class="stop">Distance that requires an audience is not strength. It is theatre.</span>
+
+  <div class="divider"><div class="divider-line"></div><span class="divider-motif">⚓</span><div class="divider-line"></div></div>
+
+  <!-- ═══ PART 8 — What Real Strength Looks Like ═══ -->
+  <span class="section-label">What It Actually Looks Like to Be Unbothered</span>
+
+  <div class="body-text">
+    <p>We tend to frame emotional distance as strength. I have moved past that. I do not engage with that anymore. I am protecting my peace. These phrases carry genuine meaning in the right context. The problem is that they are applied equally to genuine equanimity and to reactive avoidance, and the two feel identical from the inside when you are activated.</p>
+
+    <p>Real strength, in this context, looks specific. It looks like staying in the room and making the decision that serves you best regardless of who is present. It looks like your behaviour being governed by your own interest rather than by the emotional static another person generates in you. It looks like being able to choose the better seat — even if the better seat is near them — because you are clear enough to know that what you are choosing is comfort, not capitulation.</p>
+
+    <p>That requires more than avoidance. It requires you to be more anchored than triggered. Not calm in the sense of feeling nothing. Anchored in the sense that what you feel does not get to override what you actually decide. The anger can be present. You simply do not hand it the wheel and let it drive you into worse positions while calling the journey self-respect.</p>
+  </div>
+
+  <div class="i-voice">
+    <p>The question I started asking myself — and it is not a comfortable one — is this: am I making this decision because it is genuinely good for me, or because it keeps me away from them? If the honest answer is the second one, I already know I am not thinking clearly. The anger has taken over. And I am about to go somewhere I did not actually choose to go.</p>
+  </div>
+
+  <div class="divider"><div class="divider-line"></div><span class="divider-motif">⚓</span><div class="divider-line"></div></div>
+
+  <!-- ═══ PART 9 — What To Do ═══ -->
+  <span class="section-label">What To Do With This</span>
+
+  <div class="body-text">
+    <p>This is not about forgiving the other person. It is not about deciding what they did was acceptable, or resolving the conflict, or choosing to be close to someone who has shown you clearly that you should not be. Those are separate conversations. This is narrower and more practical: <span class="hl">do not let their effect on you become your problem.</span></p>
+
+    <p>The practical version starts with one question, asked in the moment before a decision: which question is actually driving this choice? Is it "what is best for me here?" or "what keeps me away from them?" If you can answer that honestly, you already know whether you are deciding or reacting. And if you are reacting, you know what it is going to cost you — because you have seen the pattern enough times now to recognise it.</p>
+
+    <p>You do not have to suppress the anger to make a better decision. Suppression is its own problem and it compounds over time. The anger can be fully present. What you are doing is refusing to let it govern the logistics of your life — the seats you choose, the conversations you avoid, the opportunities you pass because the person attached to them is someone you are carrying tension with.</p>
+
+    <p>Feel it. Know it is there. And then ask, from inside that feeling: what actually serves me right now? Not what makes the statement I want to make. Not what feels emotionally satisfying for the next four seconds. What genuinely serves me. That question — asked honestly, in the middle of the activation — is where the self-sabotage stops.</p>
+  </div>
+
+  <div class="truth-block">
+    <p>You can be angry and still make good decisions.<br>You can be upset and still choose the better option.<br>You can feel all of it —<br>and still refuse to let it govern you.<br>That is not suppression.<br>That is an anchored mind.</p>
+  </div>
+
+  <div class="body-text">
+    <p>The person you are angry with may never know what this cost you. The worse seat. The avoided conversation. The opportunity you passed. They went home fine. You paid the entire bill for a performance they were not watching.</p>
+
+    <p>Once you see that clearly, it is very difficult to un-see. And once you stop paying for performances nobody is watching, you get something back — not the relationship, not the resolution, but something more immediately useful: your own decision-making, returned to you, governed by your interest again.</p>
+
+    <p>That is the whole point. Not peace with them. Peace with yourself — because you stopped letting them spend it.</p>
+  </div>
+
+  <!-- Anchor ornament -->
+  <svg class="anchor-ornament" style="margin-top:64px;" viewBox="0 0 80 104" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#C8A951" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="40" cy="15" r="9"/>
+    <line x1="40" y1="24" x2="40" y2="88"/>
+    <line x1="18" y1="38" x2="62" y2="38"/>
+    <path d="M20,88 Q6,78 6,64 Q6,52 18,46"/>
+    <path d="M60,88 Q74,78 74,64 Q74,52 62,46"/>
+    <path d="M20,88 Q40,97 60,88"/>
+  </svg>
+
+  <!-- Closing -->
+  <div class="closing-block">
+    <p class="closing-brand">Mind Anchor &nbsp;·&nbsp; Jai</p>
+    <h3>The mind that doesn't get pulled<br>from its anchor is the mind that wins.</h3>
+    <p>More on ego, decision-making under pressure, and what it actually means to think clearly when it matters most.</p>
+    <a class="closing-btn" href="#">Follow via Link in Bio →</a>
+  </div>
+
+</div>
+</body>
+</html>

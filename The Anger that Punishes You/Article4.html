@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Some Distance Is Protection. Some Distance Is Performance. — Mind Anchor · Jai</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1040;--navy-mid:#111852;--gold:#C8A951;--gold-light:#E2C97A;--gold-pale:#F4E8BC;--text-body:#D0C8B0;--text-muted:#6A7090;--ink:#8090BC;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background-color:var(--navy);color:var(--text-body);font-family:'Outfit',sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");opacity:0.4;pointer-events:none;z-index:0;}
+body::after{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(ellipse at center,rgba(200,169,81,0.06) 0%,transparent 68%);pointer-events:none;z-index:0;}
+.wrapper{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:80px 48px 120px;}
+.series-tag{display:inline-flex;align-items:center;gap:10px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);opacity:0.65;margin-bottom:44px;}
+.series-tag::before,.series-tag::after{content:'';display:block;width:24px;height:1px;background:var(--gold);opacity:0.5;}
+.ep-label{font-family:'Cinzel',serif;font-size:8.5px;letter-spacing:0.3em;text-transform:uppercase;color:var(--text-muted);margin-bottom:18px;}
+h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(32px,5.5vw,54px);line-height:1.1;color:var(--gold-pale);margin-bottom:10px;letter-spacing:-0.015em;}
+h1 em{font-style:italic;color:var(--gold-light);}
+.divider{display:flex;align-items:center;gap:14px;margin:36px 0;}
+.divider-line{flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(200,169,81,0.28),transparent);}
+.divider-motif{font-size:13px;color:var(--gold);opacity:0.4;}
+.hook{border-left:2px solid var(--gold);padding:20px 28px;margin-bottom:48px;background:rgba(200,169,81,0.04);border-radius:0 4px 4px 0;}
+.hook p{font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.62;color:var(--gold-light);font-style:italic;font-weight:400;}
+.body-text p{font-size:16.5px;line-height:1.92;color:var(--text-body);margin-bottom:25px;font-weight:300;}
+.body-text p:first-child::first-letter{font-family:'Cormorant Garamond',serif;font-size:54px;font-weight:600;line-height:0.82;float:left;margin-right:10px;margin-top:7px;color:var(--gold);}
+.hl{color:var(--gold-light);font-style:italic;}
+.sec{font-family:'Cinzel',serif;font-size:8.5px;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);opacity:0.52;margin-bottom:18px;margin-top:52px;display:block;}
+.punch{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--gold-pale);margin:34px 0;line-height:1.28;}
+.punch em{color:var(--gold-light);font-style:italic;}
+.stop{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--gold);font-style:italic;margin:26px 0;display:block;}
+.tension{text-align:center;padding:38px 16px;margin:50px 0;position:relative;}
+.tension::before,.tension::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:36px;height:1px;background:rgba(200,169,81,0.35);}
+.tension::before{top:0;}.tension::after{bottom:0;}
+.tension p{font-family:'Cormorant Garamond',serif;font-size:clamp(21px,3.2vw,28px);font-weight:300;font-style:italic;color:var(--gold-pale);line-height:1.44;}
+.tension p strong{font-weight:600;font-style:normal;color:var(--gold-light);display:block;}
+.i-voice{background:rgba(200,169,81,0.055);border-left:3px solid var(--gold-light);padding:22px 28px;margin:42px 0;border-radius:0 3px 3px 0;}
+.i-voice p{font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;line-height:1.72;color:var(--gold-pale);font-weight:400;}
+.pull{text-align:center;padding:44px 16px;margin:50px 0;position:relative;}
+.pull::before,.pull::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:56px;height:1px;background:rgba(200,169,81,0.4);}
+.pull::before{top:0;}.pull::after{bottom:0;}
+.pull p{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3.4vw,30px);font-weight:300;font-style:italic;line-height:1.44;color:var(--gold-pale);}
+.compare{display:grid;grid-template-columns:1fr 1fr;gap:2px;margin:44px 0;border:1px solid rgba(200,169,81,0.15);}
+.compare-head{padding:13px 20px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.22em;text-transform:uppercase;background:rgba(200,169,81,0.08);color:var(--gold);text-align:center;}
+.compare-cell{padding:18px 20px;font-size:14.5px;line-height:1.72;color:var(--text-body);background:rgba(13,27,62,0.6);border-top:1px solid rgba(200,169,81,0.08);}
+.compare-cell.l{border-right:1px solid rgba(200,169,81,0.08);}
+.compare-cell em{color:var(--gold-light);font-style:normal;font-size:11px;display:block;margin-bottom:5px;font-family:'Cinzel',serif;letter-spacing:0.12em;text-transform:uppercase;opacity:0.65;}
+.truth{background:linear-gradient(135deg,rgba(200,169,81,0.1),rgba(200,169,81,0.03));border:1px solid rgba(200,169,81,0.2);border-radius:2px;padding:34px 40px;margin:50px 0;position:relative;overflow:hidden;}
+.truth::before{content:'❝';position:absolute;top:-10px;left:20px;font-size:86px;color:var(--gold);opacity:0.07;font-family:Georgia,serif;line-height:1;}
+.truth p{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:600;line-height:1.48;color:var(--gold-pale);text-align:center;position:relative;}
+.bridge{margin:56px 0 0;padding-top:38px;border-top:1px solid rgba(200,169,81,0.14);}
+.bridge-lbl{font-family:'Cinzel',serif;font-size:8px;letter-spacing:0.34em;text-transform:uppercase;color:var(--gold);opacity:0.45;margin-bottom:12px;}
+.bridge p{font-size:15px;line-height:1.78;color:var(--ink);font-style:italic;}
+.anchor-sm{display:block;margin:56px auto 44px;opacity:0.14;width:48px;}
+.cta-block{margin-top:64px;padding:48px 40px;background:linear-gradient(145deg,var(--navy-mid),rgba(10,16,64,0.96));border:1px solid rgba(200,169,81,0.26);border-radius:2px;text-align:center;position:relative;overflow:hidden;}
+.cta-block::before,.cta-block::after{content:'';position:absolute;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
+.cta-block::before{top:0;}.cta-block::after{bottom:0;}
+.cta-brand{font-family:'Cinzel',serif;font-size:8.5px;letter-spacing:0.38em;text-transform:uppercase;color:var(--text-muted);margin-bottom:18px;}
+.next-lbl{font-family:'Cinzel',serif;font-size:8px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);opacity:0.65;margin-bottom:10px;}
+.cta-block h3{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(22px,3.2vw,30px);color:var(--gold-pale);margin-bottom:12px;line-height:1.3;}
+.cta-block p{font-size:14px;color:var(--ink);line-height:1.75;margin-bottom:26px;max-width:400px;margin-left:auto;margin-right:auto;}
+.cta-btn{display:inline-block;padding:13px 38px;border:1px solid var(--gold);color:var(--gold);font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;background:transparent;transition:background 0.3s;}
+.cta-btn:hover{background:rgba(200,169,81,0.1);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.wrapper > *{animation:fadeUp 0.7s ease both;animation-delay:0.08s;}
+@media(max-width:620px){.wrapper{padding:56px 24px 80px;}h1{font-size:28px;}.cta-block{padding:36px 22px;}.compare{grid-template-columns:1fr;}.compare-cell.l{border-right:none;border-bottom:1px solid rgba(200,169,81,0.08);}}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="series-tag">Mind Anchor · Jai &nbsp;·&nbsp; Anger Series</div>
+  <p class="ep-label">Micro-Article 04 &nbsp;/&nbsp; Distance → Theatre</p>
+  <h1>Some Distance Is Protection.<br><em>Some Distance Is Performance.</em></h1>
+
+  <div class="divider"><div class="divider-line"></div><span class="divider-motif">⚓</span><div class="divider-line"></div></div>
+
+  <div class="hook">
+    <p>If the other person stopped watching —<br>stopped noticing your distance entirely —<br>would you still maintain it?<br>Your answer tells you everything.</p>
+  </div>
+
+  <div class="body-text">
+    <p>Not all distance from a person is the same thing. There is a version that is clean, considered, and genuinely in your interest. You assessed the situation, decided this relationship is not one you want to invest in, and moved accordingly. That distance sits quietly in you. It does not require maintenance. You can be in the same room as the person and feel neither pulled toward them nor compelled to perform your separation from them.</p>
+
+    <p>And then there is the other kind. The kind that needs to be seen. The kind that is partly — or entirely — directed at the person you are avoiding, performing something for their benefit. That kind costs you. Because to perform distance you have to stay close enough to be noticed. And staying close enough to be noticed means the person you are supposedly distancing yourself from is still inside your head, still shaping your behaviour, still occupying space you told yourself they no longer had access to.</p>
+  </div>
+
+  <div class="tension">
+    <p>Distance that requires an audience<br><strong>is not strength.</strong><br>It is theatre.<br>And you are the only one paying for the production.</p>
+  </div>
+
+  <span class="sec">The Two Types — Side by Side</span>
+
+  <div class="compare">
+    <div class="compare-head">Chosen Distance</div>
+    <div class="compare-head">Reactive Distance</div>
+    <div class="compare-cell l"><em>Origin</em>Made from a calm, considered state after reflecting on what you actually want</div>
+    <div class="compare-cell"><em>Origin</em>Made from an activated emotional state, quickly, with certainty that feels like clarity</div>
+    <div class="compare-cell l"><em>Stability</em>Stable. Does not require re-justification each time you encounter the person</div>
+    <div class="compare-cell"><em>Stability</em>Requires constant maintenance — the story needs to be retold to hold</div>
+    <div class="compare-cell l"><em>In shared spaces</em>You can be in the same room and be genuinely unbothered</div>
+    <div class="compare-cell"><em>In shared spaces</em>Their presence activates you — you adjust your behaviour in response to theirs</div>
+    <div class="compare-cell l"><em>Audience</em>Would hold even if they never noticed. Not dependent on their awareness</div>
+    <div class="compare-cell"><em>Audience</em>Is partly or largely directed at them — shaped by whether they are watching</div>
+    <div class="compare-cell l"><em>Cost</em>Low. The decision was made and it sits without ongoing expense</div>
+    <div class="compare-cell"><em>Cost</em>High. Daily energy spent managing separation, adjusting to their presence</div>
+  </div>
+
+  <div class="body-text">
+    <p>The uncomfortable thing about this distinction is that both feel the same from inside the experience. When you are in the reactive version, it does not feel like performance. It feels like principle. It feels like you are doing the right thing for the right reasons. The sensation of righteousness is identical in both cases. The difference is only visible when you examine it honestly — which is exactly what the ego does not want you to do.</p>
+  </div>
+
+  <div class="i-voice">
+    <p>I have noticed in myself that the reactive version has a specific tell: I become aware of whether they have clocked my distance. I find myself tracking whether they seem affected by it. That tracking is information. Genuine indifference does not need to be tracked. If I am monitoring their response to my behaviour, I am still in relationship with them — just a hostile one, at a distance, while telling myself I have moved on.</p>
+  </div>
+
+  <p class="punch">You have not moved on<br><em>if you are still monitoring whether they notice you have.</em></p>
+
+  <span class="sec">The Ego Theatre Problem</span>
+
+  <div class="body-text">
+    <p>Here is what ego theatre actually costs you. When the distance is performative — when it is directed at being noticed — you cannot take the options that would serve you best if those options compromise the performance. The better seat near them? You cannot take it without undermining the show. The practical conversation you need to have? Cannot happen without appearing to have relented. The opportunity that incidentally involves them? Passed, because taking it does not fit the narrative of the distance you have been performing.</p>
+
+    <p>Every one of those is a real cost. You are paying in comfort, in opportunity, in energy — not to protect yourself, but to maintain a performance for an audience that may not even be watching. And if they are not watching — if they have moved on and genuinely do not notice whether you are near them or not — then you have paid the full cost of a production that had no audience. The theatre ran. You paid for it. Nobody came.</p>
+  </div>
+
+  <div class="i-voice">
+    <p>The version of this that took the longest to see clearly: I was performing distance for someone who, I eventually discovered, had not thought about the situation in months. I had been arranging my behaviour around their hypothetical gaze for a long time. When I realised they were not watching, it did not feel like relief. It felt like I had been talking loudly in an empty room. All that energy, all those costs, all that careful positioning — for an audience of zero.</p>
+  </div>
+
+  <div class="pull">
+    <p>"Distance that requires the other person<br>to notice it — is not about you.<br>It is about them.<br>And they may not be paying attention."</p>
+  </div>
+
+  <span class="sec">What Genuine Distance Feels Like</span>
+
+  <div class="body-text">
+    <p>When you have genuinely moved on from someone — not as a performance, but as a settled internal state — their proximity simply does not activate you. You can take the better seat without it meaning anything. You can have the practical conversation without it feeling like capitulation. You can choose the option that serves you best, even if it incidentally serves them too, because your interest is no longer competing with your ego's need to be seen maintaining a posture.</p>
+
+    <p>That is the goal. Not the performance of indifference. The actual thing — where their presence is simply neutral information, and your decisions are governed entirely by what is good for you rather than by how your choices look relative to theirs.</p>
+  </div>
+
+  <div class="truth">
+    <p>Real distance doesn't need to be performed.<br>Real indifference doesn't need to be monitored.<br>If yours does — examine what<br>is actually still holding on.</p>
+  </div>
+
+  <div class="bridge">
+    <p class="bridge-lbl">Leading Into Episode 5</p>
+    <p>There is one more layer to this that is worth examining — and it is the one that catches the most capable, reflective people off guard. Intelligence does not protect you from reactive decisions. In a specific way, it makes the pattern harder to see. The next article is about exactly that.</p>
+  </div>
+
+  <svg class="anchor-sm" viewBox="0 0 80 104" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#C8A951" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="40" cy="15" r="9"/><line x1="40" y1="24" x2="40" y2="88"/><line x1="18" y1="38" x2="62" y2="38"/>
+    <path d="M20,88 Q6,78 6,64 Q6,52 18,46"/><path d="M60,88 Q74,78 74,64 Q74,52 62,46"/><path d="M20,88 Q40,97 60,88"/>
+  </svg>
+
+  <div class="cta-block">
+    <p class="cta-brand">Mind Anchor &nbsp;·&nbsp; Jai</p>
+    <p class="next-lbl">Up Next</p>
+    <h3>"The Smarter You Are,<br>the Better You Explain Bad Decisions."</h3>
+    <p>Why self-awareness and intelligence don't protect you from reactive choices — and sometimes make them harder to catch.</p>
+    <a class="cta-btn" href="anger-ma5.html">Continue to Article 05 →</a>
+  </div>
+
+</div>
+</body>
+</html>

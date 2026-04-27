@@ -1,0 +1,161 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sometimes 'Boundaries' Are Just Anger Wearing Better Clothes — Mind Anchor · Jai</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Cinzel:wght@400;600&family=Outfit:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0A1040;--navy-mid:#111852;--gold:#C8A951;--gold-light:#E2C97A;--gold-pale:#F4E8BC;--text-body:#D0C8B0;--text-muted:#6A7090;--ink:#8090BC;}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{background-color:var(--navy);color:var(--text-body);font-family:'Outfit',sans-serif;font-weight:300;min-height:100vh;overflow-x:hidden;}
+body::before{content:'';position:fixed;inset:0;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.045'/%3E%3C/svg%3E");opacity:0.4;pointer-events:none;z-index:0;}
+body::after{content:'';position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);width:900px;height:900px;background:radial-gradient(ellipse at center,rgba(200,169,81,0.06) 0%,transparent 68%);pointer-events:none;z-index:0;}
+.wrapper{position:relative;z-index:1;max-width:720px;margin:0 auto;padding:80px 48px 120px;}
+.series-tag{display:inline-flex;align-items:center;gap:10px;font-family:'Cinzel',serif;font-size:9px;letter-spacing:0.35em;text-transform:uppercase;color:var(--gold);opacity:0.65;margin-bottom:44px;}
+.series-tag::before,.series-tag::after{content:'';display:block;width:24px;height:1px;background:var(--gold);opacity:0.5;}
+.ep-label{font-family:'Cinzel',serif;font-size:8.5px;letter-spacing:0.3em;text-transform:uppercase;color:var(--text-muted);margin-bottom:18px;}
+h1{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(32px,5.5vw,54px);line-height:1.1;color:var(--gold-pale);margin-bottom:10px;letter-spacing:-0.015em;}
+h1 em{font-style:italic;color:var(--gold-light);}
+.divider{display:flex;align-items:center;gap:14px;margin:36px 0;}
+.divider-line{flex:1;height:1px;background:linear-gradient(to right,transparent,rgba(200,169,81,0.28),transparent);}
+.divider-motif{font-size:13px;color:var(--gold);opacity:0.4;}
+.hook{border-left:2px solid var(--gold);padding:20px 28px;margin-bottom:48px;background:rgba(200,169,81,0.04);border-radius:0 4px 4px 0;}
+.hook p{font-family:'Cormorant Garamond',serif;font-size:21px;line-height:1.62;color:var(--gold-light);font-style:italic;font-weight:400;}
+.body-text p{font-size:16.5px;line-height:1.92;color:var(--text-body);margin-bottom:25px;font-weight:300;}
+.body-text p:first-child::first-letter{font-family:'Cormorant Garamond',serif;font-size:54px;font-weight:600;line-height:0.82;float:left;margin-right:10px;margin-top:7px;color:var(--gold);}
+.hl{color:var(--gold-light);font-style:italic;}
+.sec{font-family:'Cinzel',serif;font-size:8.5px;letter-spacing:0.32em;text-transform:uppercase;color:var(--gold);opacity:0.52;margin-bottom:18px;margin-top:52px;display:block;}
+.punch{font-family:'Cormorant Garamond',serif;font-size:22px;font-weight:600;color:var(--gold-pale);margin:34px 0;line-height:1.28;}
+.punch em{color:var(--gold-light);font-style:italic;}
+.stop{font-family:'Cormorant Garamond',serif;font-size:18px;font-weight:600;color:var(--gold);font-style:italic;margin:26px 0;display:block;}
+.tension{text-align:center;padding:38px 16px;margin:50px 0;position:relative;}
+.tension::before,.tension::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:36px;height:1px;background:rgba(200,169,81,0.35);}
+.tension::before{top:0;}.tension::after{bottom:0;}
+.tension p{font-family:'Cormorant Garamond',serif;font-size:clamp(21px,3.2vw,28px);font-weight:300;font-style:italic;color:var(--gold-pale);line-height:1.44;}
+.tension p strong{font-weight:600;font-style:normal;color:var(--gold-light);display:block;}
+.i-voice{background:rgba(200,169,81,0.055);border-left:3px solid var(--gold-light);padding:22px 28px;margin:42px 0;border-radius:0 3px 3px 0;}
+.i-voice p{font-family:'Cormorant Garamond',serif;font-size:19px;font-style:italic;line-height:1.72;color:var(--gold-pale);font-weight:400;}
+.pull{text-align:center;padding:44px 16px;margin:50px 0;position:relative;}
+.pull::before,.pull::after{content:'';position:absolute;left:50%;transform:translateX(-50%);width:56px;height:1px;background:rgba(200,169,81,0.4);}
+.pull::before{top:0;}.pull::after{bottom:0;}
+.pull p{font-family:'Cormorant Garamond',serif;font-size:clamp(22px,3.4vw,30px);font-weight:300;font-style:italic;line-height:1.44;color:var(--gold-pale);}
+.scene{background:rgba(10,16,64,0.72);border:1px solid rgba(200,169,81,0.13);border-radius:2px;padding:26px 30px;margin:42px 0;}
+.scene-lbl{font-family:'Cinzel',serif;font-size:8px;letter-spacing:0.28em;text-transform:uppercase;color:var(--gold);opacity:0.5;margin-bottom:12px;}
+.scene p{font-family:'Cormorant Garamond',serif;font-size:17.5px;font-style:italic;line-height:1.75;color:var(--text-body);font-weight:400;}
+.truth{background:linear-gradient(135deg,rgba(200,169,81,0.1),rgba(200,169,81,0.03));border:1px solid rgba(200,169,81,0.2);border-radius:2px;padding:34px 40px;margin:50px 0;position:relative;overflow:hidden;}
+.truth::before{content:'❝';position:absolute;top:-10px;left:20px;font-size:86px;color:var(--gold);opacity:0.07;font-family:Georgia,serif;line-height:1;}
+.truth p{font-family:'Cormorant Garamond',serif;font-size:23px;font-weight:600;line-height:1.48;color:var(--gold-pale);text-align:center;position:relative;}
+.bridge{margin:56px 0 0;padding-top:38px;border-top:1px solid rgba(200,169,81,0.14);}
+.bridge-lbl{font-family:'Cinzel',serif;font-size:8px;letter-spacing:0.34em;text-transform:uppercase;color:var(--gold);opacity:0.45;margin-bottom:12px;}
+.bridge p{font-size:15px;line-height:1.78;color:var(--ink);font-style:italic;}
+.anchor-sm{display:block;margin:56px auto 44px;opacity:0.14;width:48px;}
+.cta-block{margin-top:64px;padding:48px 40px;background:linear-gradient(145deg,var(--navy-mid),rgba(10,16,64,0.96));border:1px solid rgba(200,169,81,0.26);border-radius:2px;text-align:center;position:relative;overflow:hidden;}
+.cta-block::before,.cta-block::after{content:'';position:absolute;left:0;right:0;height:2px;background:linear-gradient(to right,transparent,var(--gold),transparent);}
+.cta-block::before{top:0;}.cta-block::after{bottom:0;}
+.cta-brand{font-family:'Cinzel',serif;font-size:8.5px;letter-spacing:0.38em;text-transform:uppercase;color:var(--text-muted);margin-bottom:18px;}
+.next-lbl{font-family:'Cinzel',serif;font-size:8px;letter-spacing:0.3em;text-transform:uppercase;color:var(--gold);opacity:0.65;margin-bottom:10px;}
+.cta-block h3{font-family:'Cormorant Garamond',serif;font-weight:300;font-size:clamp(22px,3.2vw,30px);color:var(--gold-pale);margin-bottom:12px;line-height:1.3;}
+.cta-block p{font-size:14px;color:var(--ink);line-height:1.75;margin-bottom:26px;max-width:400px;margin-left:auto;margin-right:auto;}
+.cta-btn{display:inline-block;padding:13px 38px;border:1px solid var(--gold);color:var(--gold);font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:0.22em;text-transform:uppercase;text-decoration:none;background:transparent;transition:background 0.3s;}
+.cta-btn:hover{background:rgba(200,169,81,0.1);}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px);}to{opacity:1;transform:translateY(0);}}
+.wrapper > *{animation:fadeUp 0.7s ease both;animation-delay:0.08s;}
+@media(max-width:620px){.wrapper{padding:56px 24px 80px;}h1{font-size:28px;}.cta-block{padding:36px 22px;}}
+</style>
+</head>
+<body>
+<div class="wrapper">
+
+  <div class="series-tag">Mind Anchor · Jai &nbsp;·&nbsp; Anger Series</div>
+  <p class="ep-label">Micro-Article 03 &nbsp;/&nbsp; Ego → Disguises</p>
+  <h1>Sometimes "Boundaries" Are Just<br><em>Anger Wearing Better Clothes.</em></h1>
+
+  <div class="divider"><div class="divider-line"></div><span class="divider-motif">⚓</span><div class="divider-line"></div></div>
+
+  <div class="hook">
+    <p>The most dangerous version of anger<br>is not the one that screams.<br>It is the one that has learned<br>to sound exactly like wisdom.</p>
+  </div>
+
+  <div class="body-text">
+    <p>Boundaries are real. They are necessary. Used correctly, they are one of the most important tools available for protecting your time, your energy, and the relationships worth protecting. This article is not an argument against them. It is an argument for being honest with yourself about when you are actually using them — and when you are using the word to describe something else entirely.</p>
+
+    <p>Because anger, when it is sophisticated enough, does not show up as anger. It shows up as discernment. As principle. As a clear-eyed assessment that this person is simply not worth your energy. It borrows the vocabulary of emotional maturity and uses it as a container for something that is actually reactive, unprocessed, and still very much in charge of your behaviour.</p>
+  </div>
+
+  <div class="tension">
+    <p>Genuine boundaries protect your interest.<br><strong>Anger dressed as boundaries<br>protects your ego.</strong><br>They look identical from the outside.</p>
+  </div>
+
+  <span class="sec">How to Tell Which One You Are Actually Using</span>
+
+  <div class="body-text">
+    <p>The distinction lives in one place: the interior process that produced the decision. Genuine boundaries are slow. They emerge from a considered assessment of a pattern of behaviour, your own needs, and what you are willing to accept going forward. They can be explained without requiring the other person to be a villain. They are stable — you made the decision and it holds without constant re-justification.</p>
+
+    <p>Reactive distance is fast. It is certain. It feels righteous in a specific way — the kind of righteous that needs the other person to be wrong in order to stay intact. It requires maintenance. Every time you encounter them in a shared context, you feel the need to re-establish the distance, re-tell yourself the story of why, re-confirm that your decision is the correct one. That is not a boundary. That is an ego that has not settled.</p>
+  </div>
+
+  <div class="i-voice">
+    <p>I have used the word "boundaries" to describe what was, on closer examination, just avoidance I had not examined. The tell was the maintenance. A real boundary does not require daily upkeep. It does not need the other person to stay wrong so that I can stay comfortable with the decision. When I noticed I was spending mental energy reinforcing the story, I knew the story was holding something it should not have been.</p>
+  </div>
+
+  <p class="punch">If the boundary needs constant defending,<br><em>it is not a boundary. It is a wound.</em></p>
+
+  <span class="sec">The Vocabulary Theft</span>
+
+  <div class="body-text">
+    <p>Language shapes what is available for self-examination. When you call reactive avoidance a "boundary," you put it in a category that feels settled and mature — and therefore beyond question. You are not avoidant; you are boundaried. You are not reactive; you are discerning. You are not running from something uncomfortable; you are choosing not to accept what you have decided is unacceptable.</p>
+
+    <p>The problem is that this framing closes the question before it can be asked honestly. Once something is labelled as a boundary, examining it starts to feel like self-betrayal — like you are undermining your own standards or giving in to someone who wronged you. The label creates a kind of immunity to self-reflection. And that immunity is exactly what the ego needs to stay in charge without being noticed.</p>
+  </div>
+
+  <div class="scene">
+    <p class="scene-lbl">The Test That Cuts Through It</p>
+    <p>Ask yourself this: if the other person were to sincerely apologise, acknowledge what they did, and show clear evidence of changed behaviour — would your decision change? If the answer is yes, then what you have is not a boundary. It is a response to their behaviour that remains open to revision. That is reasonable. But call it what it is. A boundary, properly defined, is not contingent on their behaviour changing. It is a decision about what you accept, made from your own values — not a punishment held in place until they repent.</p>
+  </div>
+
+  <div class="body-text">
+    <p>This is not a semantic game. It matters because the two things require different responses from you. If what you have is a genuine boundary — a considered decision about what you accept in your life — then you can hold it calmly, without resentment, without needing the other person to be a certain way. If what you have is unprocessed anger that has borrowed the language of boundaries, then the work is not enforcement. The work is the anger itself. And until you do that work, the boundary will keep requiring the maintenance that real boundaries do not need.</p>
+  </div>
+
+  <div class="i-voice">
+    <p>The clearest version of this I can offer: I once held what I called a firm principle about not engaging with a certain person, framed it to myself in very clean language about values and standards, and then noticed that every time the situation shifted in their favour I felt something I could only describe as agitated. That agitation was information. Settled decisions do not produce agitation. Unresolved anger produces agitation. The principle was real. The framing was wrong.</p>
+  </div>
+
+  <div class="pull">
+    <p>"Avoidance that calls itself discernment<br>is harder to examine.<br>The label protects it<br>from the questions it most needs."</p>
+  </div>
+
+  <span class="sec">What Genuine Discernment Actually Feels Like</span>
+
+  <div class="body-text">
+    <p>When you have genuinely processed something — when the decision about how to relate to a person comes from clarity rather than from an activated emotional state — it has a particular quality. It is quiet. It does not need to be performed. You can be in the same room as the person and feel neither compelled to connect nor compelled to signal your distance. The decision sits in you without requiring anything from the situation to keep it in place.</p>
+
+    <p>That is what you are working toward. Not the absence of anger — that is not always available, and it is not always the right goal. But the ability to make decisions about a person from a place that is yours, not theirs. Governed by your values and your interest, not by how the anger needs the situation to look.</p>
+  </div>
+
+  <div class="truth">
+    <p>A real boundary doesn't need to be explained,<br>defended, or maintained daily.<br>If it does, examine what is actually<br>holding it in place.</p>
+  </div>
+
+  <div class="bridge">
+    <p class="bridge-lbl">Leading Into Episode 4</p>
+    <p>Once you see that avoidance can disguise itself as principle, the next layer becomes visible: some of what we call "keeping our distance" is not even really about the other person. It is about whether they are watching. Whether they notice. Whether the distance is being registered by an audience — which tells you everything about whether it is actually serving you.</p>
+  </div>
+
+  <svg class="anchor-sm" viewBox="0 0 80 104" xmlns="http://www.w3.org/2000/svg" fill="none" stroke="#C8A951" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round">
+    <circle cx="40" cy="15" r="9"/><line x1="40" y1="24" x2="40" y2="88"/><line x1="18" y1="38" x2="62" y2="38"/>
+    <path d="M20,88 Q6,78 6,64 Q6,52 18,46"/><path d="M60,88 Q74,78 74,64 Q74,52 62,46"/><path d="M20,88 Q40,97 60,88"/>
+  </svg>
+
+  <div class="cta-block">
+    <p class="cta-brand">Mind Anchor &nbsp;·&nbsp; Jai</p>
+    <p class="next-lbl">Up Next</p>
+    <h3>"Some Distance Is Protection.<br>Some Distance Is Performance."</h3>
+    <p>The difference between chosen distance and reactive distance — and the one test that tells you immediately which one you are operating from.</p>
+    <a class="cta-btn" href="anger-ma4.html">Continue to Article 04 →</a>
+  </div>
+
+</div>
+</body>
+</html>
