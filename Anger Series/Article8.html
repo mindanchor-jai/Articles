@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Building the Immunity — Mind Anchor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #07090a;
+    --surface: #0d1112;
+    --surface2: #13191a;
+    --border: #1c2628;
+    --text: #d5e2e0;
+    --muted: #486068;
+    --accent: #38a898;
+    --accent2: #58c8b8;
+    --number: #0c2028;
+    --tag-bg: #081618;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'EB Garamond', serif; font-size: 18px; line-height: 1.8; min-height: 100vh; }
+
+  .logo-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(7,9,10,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo-mark { width: 36px; height: 36px; border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; position: relative; }
+  .logo-mark::before { content: ''; width: 10px; height: 10px; background: var(--accent); display: block; }
+  .logo-mark::after { content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); width: 2px; height: 6px; background: var(--accent); }
+  .logo-text { font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; }
+  .nav-series { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  .hero { min-height: 100vh; padding: 120px 2rem 80px; display: flex; flex-direction: column; justify-content: center; max-width: 900px; margin: 0 auto; position: relative; }
+  .manifestation-tag { display: inline-flex; align-items: center; gap: 8px; background: var(--tag-bg); border: 1px solid var(--border); border-left: 3px solid var(--accent); padding: 6px 16px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+  .hero-number { font-family: 'Playfair Display', serif; font-size: clamp(120px, 20vw, 220px); font-weight: 900; color: var(--number); line-height: 0.8; position: absolute; right: -20px; top: 100px; pointer-events: none; user-select: none; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(42px, 7vw, 80px); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; color: var(--text); margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
+  .hero-title em { font-style: italic; color: var(--accent); }
+  .hero-insight { font-family: 'Playfair Display', serif; font-size: clamp(18px, 2.5vw, 24px); font-style: italic; color: var(--accent2); max-width: 640px; line-height: 1.5; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; border-left: 2px solid var(--accent); padding-left: 1.5rem; margin-bottom: 3rem; }
+  .scroll-hint { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.1em; opacity: 0; animation: fadeUp 0.8s 1s forwards; display: flex; align-items: center; gap: 12px; }
+  .scroll-hint::after { content: ''; width: 60px; height: 1px; background: var(--muted); }
+
+  .content { max-width: 900px; margin: 0 auto; padding: 0 2rem 6rem; }
+  .section { margin-bottom: 5rem; opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .section.visible { opacity: 1; transform: translateY(0); }
+  .section-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 12px; }
+  .section-label::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 4vw, 38px); font-weight: 700; color: var(--text); margin-bottom: 1.5rem; line-height: 1.2; }
+  .hook-block { background: var(--surface); border: 1px solid var(--border); padding: 3rem; position: relative; overflow: hidden; }
+  .hook-block::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--accent), transparent); }
+  .hook-block p { font-family: 'EB Garamond', serif; font-size: clamp(18px, 2vw, 22px); line-height: 1.75; color: var(--text); }
+  .hook-block p + p { margin-top: 1.2em; }
+  .hook-block strong { color: var(--accent2); font-weight: 500; }
+  .text-body { font-family: 'EB Garamond', serif; font-size: clamp(17px, 1.8vw, 20px); line-height: 1.85; color: #80b0a8; }
+  .text-body p + p { margin-top: 1.2em; }
+  .text-body em { color: var(--accent2); font-style: italic; }
+
+  /* Governance protocol table */
+  .protocol-table { width: 100%; border-collapse: collapse; margin-top: 1.5rem; }
+  .protocol-table th { background: var(--surface2); border: 1px solid var(--border); padding: 0.75rem 1.25rem; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; text-align: left; }
+  .protocol-table td { border: 1px solid var(--border); padding: 1rem 1.25rem; font-size: 17px; color: #6898a0; vertical-align: top; background: var(--surface); font-family: 'EB Garamond', serif; line-height: 1.5; }
+  .protocol-table tr:hover td { background: var(--surface2); }
+  .protocol-table td:first-child { color: var(--accent2); font-weight: 500; }
+
+  /* Evolution ladder */
+  .evolution-ladder { margin: 2rem 0; }
+  .ladder-step { display: flex; align-items: flex-start; gap: 1.5rem; padding: 1.25rem 0; border-bottom: 1px solid var(--border); }
+  .ladder-step:last-child { border-bottom: none; }
+  .ladder-num { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent); letter-spacing: 0.1em; width: 28px; flex-shrink: 0; padding-top: 3px; }
+  .ladder-content { flex: 1; }
+  .ladder-title { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--text); margin-bottom: 0.25rem; }
+  .ladder-desc { font-family: 'EB Garamond', serif; font-size: 16px; color: #6898a0; line-height: 1.5; }
+
+  /* Products grid */
+  .products-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5px; background: var(--border); margin-top: 1.5rem; }
+  .product-card { background: var(--surface); padding: 1.75rem; }
+  .product-icon { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.6rem; }
+  .product-card p { font-family: 'EB Garamond', serif; font-size: 16px; color: #6090a0; line-height: 1.55; }
+
+  .pullquote { margin: 3rem 0; padding: 2.5rem 3rem; border-left: 4px solid var(--accent); background: var(--surface); }
+  .pullquote p { font-family: 'Playfair Display', serif; font-size: clamp(20px, 2.5vw, 28px); font-style: italic; line-height: 1.5; color: var(--text); }
+  .pullquote cite { display: block; margin-top: 1rem; font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.08em; font-style: normal; }
+
+  .truth-block { background: var(--accent); padding: 3rem; margin: 3rem 0; }
+  .truth-block p { font-family: 'Playfair Display', serif; font-size: clamp(20px, 2.5vw, 28px); font-style: italic; color: #010808; line-height: 1.5; }
+  .truth-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: #083028; text-transform: uppercase; margin-bottom: 1rem; }
+
+  .cta-block { background: var(--surface2); border: 1px solid var(--border); border-top: 3px solid var(--accent); padding: 2.5rem; margin: 3rem 0; }
+  .cta-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 1rem; }
+  .cta-block p { font-family: 'EB Garamond', serif; font-size: 19px; font-style: italic; color: var(--text); line-height: 1.7; }
+
+  .dist-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); margin-top: 1.5rem; }
+  .dist-card { background: var(--surface); padding: 1.5rem 2rem; }
+  .dist-platform { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem; }
+  .dist-card p { font-family: 'EB Garamond', serif; font-size: 16px; color: #508888; line-height: 1.6; }
+
+  /* Series completion panel */
+  .series-complete {
+    background: var(--surface2); border: 1px solid var(--border);
+    border-top: 3px solid var(--accent);
+    padding: 3rem; margin: 3rem 0;
+  }
+  .series-complete-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 2rem; }
+  .series-links { display: flex; flex-wrap: wrap; gap: 8px; }
+  .series-link { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; padding: 6px 14px; border: 1px solid var(--border); text-transform: uppercase; transition: all 0.2s; }
+  .series-link:hover { color: var(--accent); border-color: var(--accent); background: var(--tag-bg); }
+
+  .article-nav { border-top: 1px solid var(--border); padding: 3rem 2rem; max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+  .nav-link { text-decoration: none; display: flex; flex-direction: column; gap: 6px; max-width: 280px; }
+  .nav-link-dir { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .nav-link-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--text); transition: color 0.2s; line-height: 1.2; }
+  .nav-link:hover .nav-link-title { color: var(--accent); }
+  .nav-link.prev .nav-link-dir::after { content: ' ← Prev'; }
+
+  .index-nav { max-width: 900px; margin: 0 auto 2rem; padding: 0 2rem; display: flex; flex-wrap: wrap; gap: 8px; }
+  .index-link { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; padding: 5px 12px; border: 1px solid var(--border); text-transform: uppercase; transition: all 0.2s; }
+  .index-link:hover, .index-link.current { color: var(--accent); border-color: var(--accent); background: var(--tag-bg); }
+  .index-link.current { pointer-events: none; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 4rem 0; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 640px) { .products-grid { grid-template-columns: 1fr; } .dist-grid { grid-template-columns: 1fr; } .hero-number { font-size: 30vw; right: -10px; } }
+</style>
+</head>
+<body>
+
+<header class="logo-bar">
+  <a href="article-01.html" class="logo">
+    <div class="logo-mark"></div>
+    <span class="logo-text">Mind Anchor</span>
+  </a>
+  <span class="nav-series">ProximityOS Series</span>
+</header>
+
+<nav class="index-nav" style="padding-top:80px;">
+  <a href="article-01.html" class="index-link">01</a>
+  <a href="article-02.html" class="index-link">02</a>
+  <a href="article-03.html" class="index-link">03</a>
+  <a href="article-04.html" class="index-link">04</a>
+  <a href="article-05.html" class="index-link">05</a>
+  <a href="article-06.html" class="index-link">06</a>
+  <a href="article-07.html" class="index-link">07</a>
+  <a href="article-08.html" class="index-link current">08</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-number">08</div>
+  <div class="manifestation-tag">Manifestation 08 · Emotional Governance Infrastructure</div>
+  <h1 class="hero-title">Building<br>the <em>Immunity</em></h1>
+  <p class="hero-insight">Don't wait for leaders to be mature. Build systems that make maturity mandatory. Strategy shouldn't depend on how the CEO slept last night.</p>
+  <div class="scroll-hint">Read the full framework</div>
+</section>
+
+<main class="content">
+
+  <div class="section">
+    <div class="section-label">Hook</div>
+    <div class="hook-block">
+      <p>Most organizations fail psychologically before they fail financially. <strong>The balance sheet just takes longer to notice.</strong></p>
+      <p>The founder has a bad month. The CEO goes through a divorce. The board chair feels threatened by a new executive. And suddenly — not dramatically, not obviously — the quality of decisions degrades.</p>
+      <p>Not because anyone was malicious. <strong>Because the system had no immunity.</strong> Because emotional governance was left to chance, to personality, to the hope that everyone would simply be mature enough.</p>
+      <p>The future belongs to emotionally governable systems.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Emotional Focus</div>
+    <h2 class="section-title">Collective Maturity — Institutional Immunity</h2>
+    <div class="text-body">
+      <p>The organization no longer depends on any single person's emotional state. Structural safeguards ensure that even triggered individuals cannot corrupt strategic decisions. The system protects itself — and everyone inside it.</p>
+    </div>
+    <div class="pullquote">
+      <p>"Most organizations fail psychologically before they fail financially. The balance sheet just takes longer to notice. Emotional governance is not soft. It is infrastructure."</p>
+      <cite>ProximityOS Framework</cite>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Strategic Focus</div>
+    <h2 class="section-title">Formal Governance and Institutional Infrastructure</h2>
+    <div class="text-body">
+      <p>Emotional governance becomes policy, metrics, decision architecture, and institutional discipline. The organization develops antibodies against emotional capture.</p>
+    </div>
+    <table class="protocol-table">
+      <thead>
+        <tr>
+          <th>Protocol</th>
+          <th>What It Does</th>
+          <th>Why It Matters</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Proximity Tax Audit</td>
+          <td>Quarterly reviews of decisions for emotional distortion patterns</td>
+          <td>Makes the invisible visible. Gives leadership a language for what's been unnamed.</td>
+        </tr>
+        <tr>
+          <td>Cooling-Off Window</td>
+          <td>Mandatory 24-hour delays for decisions made under emotional activation</td>
+          <td>Separates the trigger from the outcome. Time is the cheapest governance tool available.</td>
+        </tr>
+        <tr>
+          <td>Independent Review Trigger</td>
+          <td>When leadership discomfort scores exceed threshold, external review activates</td>
+          <td>Removes the ego from its own audit. The system checks what the person cannot.</td>
+        </tr>
+        <tr>
+          <td>Emotional Risk as Agenda Item</td>
+          <td>Board-level standing item; founder psychology treated as governance category</td>
+          <td>Legitimizes the conversation at the highest level. Makes it structural, not personal.</td>
+        </tr>
+        <tr>
+          <td>Governance Training</td>
+          <td>Not soft skills — structural protocols for high-stakes emotional pressure</td>
+          <td>Builds organizational muscle. Individual maturity becomes collective competency.</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Founder / Builder Angle</div>
+    <h2 class="section-title">Founder Psychology Is No Longer Private</h2>
+    <div class="text-body">
+      <p>Boards, investors, and leadership teams begin treating emotional distortion as a formal governance risk — alongside financial, legal, and operational risk. It is now a due diligence category.</p>
+    </div>
+    <div class="text-body">
+      <p><em>The organization becomes anti-fragile — not despite emotional pressure, but because it has built immunity to it.</em></p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="truth-block">
+      <div class="truth-label">Direct Truth</div>
+      <p>"Emotional governance is now a strategic requirement. The organizations that build it will compound. The organizations that don't will be managed by the unaddressed wounds of their most powerful people."</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Transition Role</div>
+    <h2 class="section-title">The Final Evolution</h2>
+    <div class="text-body">
+      <p>This is where the full progression completes. What began as a personal recognition — a chair chosen in a conference room, a feeling misnamed as wisdom — ends as an institutional imperative.</p>
+    </div>
+    <div class="evolution-ladder">
+      <div class="ladder-step">
+        <div class="ladder-num">01</div>
+        <div class="ladder-content">
+          <div class="ladder-title">Personal Discomfort Recognition</div>
+          <div class="ladder-desc">The avoidance reflex identified. The seed of the pattern named.</div>
+        </div>
+      </div>
+      <div class="ladder-step">
+        <div class="ladder-num">02</div>
+        <div class="ladder-content">
+          <div class="ladder-title">Strategic Cost Quantification</div>
+          <div class="ladder-desc">The invoice arrives. Avoidance becomes economically measurable.</div>
+        </div>
+      </div>
+      <div class="ladder-step">
+        <div class="ladder-num">03</div>
+        <div class="ladder-content">
+          <div class="ladder-title">Autonomy Loss and Reactive Governance</div>
+          <div class="ladder-desc">The ghost architect revealed. Running is not navigating.</div>
+        </div>
+      </div>
+      <div class="ladder-step">
+        <div class="ladder-num">04</div>
+        <div class="ladder-content">
+          <div class="ladder-title">Moral Camouflage and Ideology</div>
+          <div class="ladder-desc">The ego learns virtue language. Avoidance becomes righteousness.</div>
+        </div>
+      </div>
+      <div class="ladder-step">
+        <div class="ladder-num">05</div>
+        <div class="ladder-content">
+          <div class="ladder-title">Organizational Infrastructure Corruption</div>
+          <div class="ladder-desc">The shadow OS emerges. The wound becomes the operating system.</div>
+        </div>
+      </div>
+      <div class="ladder-step">
+        <div class="ladder-num">06</div>
+        <div class="ladder-content">
+          <div class="ladder-title">Recovery and Separation Capacity</div>
+          <div class="ladder-desc">The decoupled mind. Feeling and decision learn to operate independently.</div>
+        </div>
+      </div>
+      <div class="ladder-step">
+        <div class="ladder-num">07</div>
+        <div class="ladder-content">
+          <div class="ladder-title">Competitive Advantage</div>
+          <div class="ladder-desc">Weaponized neutrality. The unprovokable leader plays a different game.</div>
+        </div>
+      </div>
+      <div class="ladder-step">
+        <div class="ladder-num">08</div>
+        <div class="ladder-content">
+          <div class="ladder-title">Institutional Immunity and Scale</div>
+          <div class="ladder-desc">Emotional governance infrastructure. The system protects itself permanently.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Human Recognition Trigger</div>
+    <div class="pullquote">
+      <p>"Our systems mirror our unresolved psychology. But they don't have to. We can build something better."</p>
+      <cite>Emotional governance is not about controlling people — it is about designing systems that protect strategy from psychology.</cite>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="cta-block">
+      <div class="cta-label">Call to Action</div>
+      <p>"Build the system that protects your mission from your moods. Not because you're weak. Because you're strategic. Architecture &gt; Willpower."</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div class="section-label">Distribution Potential</div>
+    <h2 class="section-title">Platform Strategy</h2>
+    <div class="dist-grid">
+      <div class="dist-card">
+        <div class="dist-platform">Carousel</div>
+        <p>The full 8-step ladder as a visual progression. Each slide = one manifestation. Final slide: "Which step are you on?" Invitation to diagnose — and return to the beginning of the framework.</p>
+      </div>
+      <div class="dist-card">
+        <div class="dist-platform">Newsletter</div>
+        <p>The future of leadership infrastructure. "What happens when organizations stop hoping for mature leaders and start building systems that enforce strategic clarity regardless of emotional state."</p>
+      </div>
+      <div class="dist-card">
+        <div class="dist-platform">Reel</div>
+        <p>Governance architecture visualized: formal org chart transforms into a protected, layered system with immunity protocols. Systems thinking, clean aesthetic, civilizational tone.</p>
+      </div>
+      <div class="dist-card">
+        <div class="dist-platform">Story</div>
+        <p>"Architecture beats willpower. Every time." Single frame. No elaboration. The entire framework in five words.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Long-Term Ecosystem</div>
+    <h2 class="section-title">This Is Where Mind Anchor Becomes Infrastructure</h2>
+    <div class="products-grid">
+      <div class="product-card">
+        <div class="product-icon">Advisory</div>
+        <p>Organizational diagnostics and governance redesign for boards, founders, and executive teams</p>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">Workshops</div>
+        <p>Emotional governance training — not soft skills, but structural protocols for high-stakes environments</p>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">Audit Tools</div>
+        <p>Proximity Tax audit protocols and decision architecture frameworks for operational use</p>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">Founder OS</div>
+        <p>Operating system positioning for high-performance leadership — content to product pipeline</p>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">Board Products</div>
+        <p>Emotional risk due diligence and founder psychology assessment for investors and boards</p>
+      </div>
+      <div class="product-card">
+        <div class="product-icon">Certification</div>
+        <p>Emotionally Governed Organization certification — an institutional standard for strategic clarity</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- Series navigation panel -->
+  <div class="section">
+    <div class="series-complete">
+      <div class="series-complete-label">Full ProximityOS Series — Read All Eight</div>
+      <div class="series-links">
+        <a href="article-01.html" class="series-link">01 · The Geometry of Avoidance</a>
+        <a href="article-02.html" class="series-link">02 · The Invoice for Distance</a>
+        <a href="article-03.html" class="series-link">03 · The Ghost Architect</a>
+        <a href="article-04.html" class="series-link">04 · The Virtue Camouflage</a>
+        <a href="article-05.html" class="series-link">05 · The Shadow OS</a>
+        <a href="article-06.html" class="series-link">06 · The Decoupled Mind</a>
+        <a href="article-07.html" class="series-link">07 · The Unprovokable Leader</a>
+        <a href="article-08.html" class="series-link">08 · Building the Immunity</a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<nav class="article-nav">
+  <a href="article-07.html" class="nav-link prev">
+    <span class="nav-link-dir"></span>
+    <span class="nav-link-title">The Unprovokable Leader</span>
+  </a>
+  <a href="article-01.html" class="nav-link next" style="text-align:right;">
+    <span class="nav-link-dir" style="display:block;text-align:right;">↺ Begin Again</span>
+    <span class="nav-link-title">The Geometry of Avoidance</span>
+  </a>
+</nav>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.section').forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

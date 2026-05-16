@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Shadow OS — Mind Anchor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080a0c;
+    --surface: #0e1216;
+    --surface2: #141a20;
+    --border: #1e2830;
+    --text: #d8dde8;
+    --muted: #5a6878;
+    --accent: #6888b8;
+    --accent2: #88a8d8;
+    --number: #121a28;
+    --tag-bg: #0c1420;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'EB Garamond', serif; font-size: 18px; line-height: 1.8; min-height: 100vh; }
+
+  .logo-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(8,10,12,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo-mark { width: 36px; height: 36px; border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; position: relative; }
+  .logo-mark::before { content: ''; width: 10px; height: 10px; background: var(--accent); display: block; }
+  .logo-mark::after { content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); width: 2px; height: 6px; background: var(--accent); }
+  .logo-text { font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; }
+  .nav-series { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  .hero { min-height: 100vh; padding: 120px 2rem 80px; display: flex; flex-direction: column; justify-content: center; max-width: 900px; margin: 0 auto; position: relative; }
+  .manifestation-tag { display: inline-flex; align-items: center; gap: 8px; background: var(--tag-bg); border: 1px solid var(--border); border-left: 3px solid var(--accent); padding: 6px 16px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+  .hero-number { font-family: 'Playfair Display', serif; font-size: clamp(120px, 20vw, 220px); font-weight: 900; color: var(--number); line-height: 0.8; position: absolute; right: -20px; top: 100px; pointer-events: none; user-select: none; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(42px, 7vw, 80px); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; color: var(--text); margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
+  .hero-title em { font-style: italic; color: var(--accent); }
+  .hero-insight { font-family: 'Playfair Display', serif; font-size: clamp(18px, 2.5vw, 24px); font-style: italic; color: var(--accent2); max-width: 640px; line-height: 1.5; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; border-left: 2px solid var(--accent); padding-left: 1.5rem; margin-bottom: 3rem; }
+  .scroll-hint { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.1em; opacity: 0; animation: fadeUp 0.8s 1s forwards; display: flex; align-items: center; gap: 12px; }
+  .scroll-hint::after { content: ''; width: 60px; height: 1px; background: var(--muted); }
+
+  .content { max-width: 900px; margin: 0 auto; padding: 0 2rem 6rem; }
+  .section { margin-bottom: 5rem; opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .section.visible { opacity: 1; transform: translateY(0); }
+  .section-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 12px; }
+  .section-label::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 4vw, 38px); font-weight: 700; color: var(--text); margin-bottom: 1.5rem; line-height: 1.2; }
+  .hook-block { background: var(--surface); border: 1px solid var(--border); padding: 3rem; position: relative; overflow: hidden; }
+  .hook-block::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--accent), transparent); }
+  .hook-block p { font-family: 'EB Garamond', serif; font-size: clamp(18px, 2vw, 22px); line-height: 1.75; color: var(--text); }
+  .hook-block p + p { margin-top: 1.2em; }
+  .hook-block strong { color: var(--accent2); font-weight: 500; }
+  .text-body { font-family: 'EB Garamond', serif; font-size: clamp(17px, 1.8vw, 20px); line-height: 1.85; color: #9098b0; }
+  .text-body p + p { margin-top: 1.2em; }
+
+  /* Shadow org chart */
+  .shadow-chart { margin: 2rem 0; }
+  .chart-row { display: flex; gap: 1.5px; background: var(--border); margin-bottom: 1.5px; }
+  .chart-row:last-child { margin-bottom: 0; }
+  .chart-cell { flex: 1; padding: 1.5rem; background: var(--surface); }
+  .chart-cell-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.5rem; }
+  .chart-cell-label.formal { color: #5a6878; }
+  .chart-cell-label.shadow { color: var(--accent); }
+  .chart-cell p { font-family: 'EB Garamond', serif; font-size: 16px; line-height: 1.6; color: #8090a8; }
+  .chart-cell p.shadow-text { color: var(--accent2); font-style: italic; }
+
+  .focus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--border); margin-top: 1.5rem; }
+  .focus-card { background: var(--surface); padding: 2rem; }
+  .focus-card-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.75rem; }
+  .focus-card p { font-family: 'EB Garamond', serif; font-size: 17px; line-height: 1.7; color: #8898b0; }
+
+  .pullquote { margin: 3rem 0; padding: 2.5rem 3rem; border-left: 4px solid var(--accent); background: var(--surface); }
+  .pullquote p { font-family: 'Playfair Display', serif; font-size: clamp(20px, 2.5vw, 28px); font-style: italic; line-height: 1.5; color: var(--text); }
+  .pullquote cite { display: block; margin-top: 1rem; font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.08em; font-style: normal; }
+
+  .truth-block { background: var(--accent); padding: 3rem; margin: 3rem 0; }
+  .truth-block p { font-family: 'Playfair Display', serif; font-size: clamp(20px, 2.5vw, 28px); font-style: italic; color: #020408; line-height: 1.5; }
+  .truth-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: #203048; text-transform: uppercase; margin-bottom: 1rem; }
+
+  .cta-block { background: var(--surface2); border: 1px solid var(--border); border-top: 3px solid var(--accent); padding: 2.5rem; margin: 3rem 0; }
+  .cta-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 1rem; }
+  .cta-block p { font-family: 'EB Garamond', serif; font-size: 19px; font-style: italic; color: var(--text); line-height: 1.7; }
+
+  .dist-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); margin-top: 1.5rem; }
+  .dist-card { background: var(--surface); padding: 1.5rem 2rem; }
+  .dist-platform { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem; }
+  .dist-card p { font-family: 'EB Garamond', serif; font-size: 16px; color: #6878a0; line-height: 1.6; }
+
+  .article-nav { border-top: 1px solid var(--border); padding: 3rem 2rem; max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+  .nav-link { text-decoration: none; display: flex; flex-direction: column; gap: 6px; max-width: 280px; }
+  .nav-link-dir { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .nav-link-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--text); transition: color 0.2s; line-height: 1.2; }
+  .nav-link:hover .nav-link-title { color: var(--accent); }
+  .nav-link.next { text-align: right; }
+  .nav-link.next .nav-link-dir::before { content: 'Next → '; }
+  .nav-link.prev .nav-link-dir::after { content: ' ← Prev'; }
+
+  .index-nav { max-width: 900px; margin: 0 auto 2rem; padding: 0 2rem; display: flex; flex-wrap: wrap; gap: 8px; }
+  .index-link { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; padding: 5px 12px; border: 1px solid var(--border); text-transform: uppercase; transition: all 0.2s; }
+  .index-link:hover, .index-link.current { color: var(--accent); border-color: var(--accent); background: var(--tag-bg); }
+  .index-link.current { pointer-events: none; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 4rem 0; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 640px) { .focus-grid, .dist-grid, .chart-row { flex-direction: column; grid-template-columns: 1fr; } .hero-number { font-size: 30vw; right: -10px; } }
+</style>
+</head>
+<body>
+
+<header class="logo-bar">
+  <a href="article-01.html" class="logo">
+    <div class="logo-mark"></div>
+    <span class="logo-text">Mind Anchor</span>
+  </a>
+  <span class="nav-series">ProximityOS Series</span>
+</header>
+
+<nav class="index-nav" style="padding-top:80px;">
+  <a href="article-01.html" class="index-link">01</a>
+  <a href="article-02.html" class="index-link">02</a>
+  <a href="article-03.html" class="index-link">03</a>
+  <a href="article-04.html" class="index-link">04</a>
+  <a href="article-05.html" class="index-link current">05</a>
+  <a href="article-06.html" class="index-link">06</a>
+  <a href="article-07.html" class="index-link">07</a>
+  <a href="article-08.html" class="index-link">08</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-number">05</div>
+  <div class="manifestation-tag">Manifestation 05 · Shadow Governance Architecture</div>
+  <h1 class="hero-title">The Shadow<br><em>OS</em></h1>
+  <p class="hero-insight">Your company doesn't serve the market. It serves your unaddressed triggers. The org chart says one thing. The founder's trauma says another.</p>
+  <div class="scroll-hint">Read the full framework</div>
+</section>
+
+<main class="content">
+
+  <div class="section">
+    <div class="section-label">Hook</div>
+    <div class="hook-block">
+      <p>Your org chart tells you who reports to whom. Your values document tells you what the culture believes. Your strategy deck tells you where the company is going.</p>
+      <p><strong>None of them tell you the truth.</strong></p>
+      <p>The truth is this: most organizations unconsciously optimize around the emotional limitations of their most powerful person. The formal strategy exists on paper. <strong>The actual strategy is: keep the leader comfortable.</strong></p>
+      <p>This is the Shadow Governance Architecture. And it is running your company right now.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Strategic Focus</div>
+    <h2 class="section-title">The Formal vs. The Shadow</h2>
+    <div class="shadow-chart">
+      <div class="chart-row">
+        <div class="chart-cell">
+          <div class="chart-cell-label formal">Formal Policy</div>
+          <p>"We hire people who align with our values."</p>
+        </div>
+        <div class="chart-cell">
+          <div class="chart-cell-label shadow">Shadow Translation</div>
+          <p class="shadow-text">We hire people who don't trigger the founder's insecurities.</p>
+        </div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-cell">
+          <div class="chart-cell-label formal">Formal Communication</div>
+          <p>"Let's keep things constructive and positive."</p>
+        </div>
+        <div class="chart-cell">
+          <div class="chart-cell-label shadow">Shadow Translation</div>
+          <p class="shadow-text">Don't bring me problems. Filter the truth before it reaches me.</p>
+        </div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-cell">
+          <div class="chart-cell-label formal">Formal Culture</div>
+          <p>"We're a team-first, collaborative family."</p>
+        </div>
+        <div class="chart-cell">
+          <div class="chart-cell-label shadow">Shadow Translation</div>
+          <p class="shadow-text">Silence is safety. Agreement is survival. Leave and you've betrayed us.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Emotional Focus</div>
+    <h2 class="section-title">Fear Hidden Inside Systems</h2>
+    <div class="text-body">
+      <p>The organization adapts to the psychological limitations of its most powerful member. What begins as a personal trigger becomes a structural constraint. The architecture formalizes the avoidance.</p>
+    </div>
+    <div class="pullquote">
+      <p>"Most toxic systems are not malicious. They are emotionally optimized — built to protect one person's unaddressed wounds at the expense of everyone else's performance."</p>
+      <cite>ProximityOS Framework</cite>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Founder / Builder Angle</div>
+    <h2 class="section-title">Maximum Commercial Relevance</h2>
+    <div class="text-body">
+      <p>This is where individual psychology becomes organizational infrastructure — and where boards, investors, and advisors begin paying for diagnosis.</p>
+    </div>
+    <div class="focus-grid">
+      <div class="focus-card">
+        <div class="focus-card-label">The Symptom</div>
+        <p>High-performers leave. Truth gets filtered at every level. Innovation declines. The company drifts without anyone understanding why.</p>
+      </div>
+      <div class="focus-card">
+        <div class="focus-card-label">The Actual Cause</div>
+        <p>The organization is emotionally optimized — for the leader's comfort, not for market performance. It serves the wound, not the mission.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="truth-block">
+      <div class="truth-label">Direct Truth</div>
+      <p>"The founder did not build strategy. The founder built emotional protection. And the entire company now lives inside that architecture."</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Transition Role</div>
+    <h2 class="section-title">Individual Psychology Becomes Organizational Infrastructure</h2>
+    <div class="text-body">
+      <p>This is where the ecosystem commercializes heavily — because organizations will pay to diagnose and fix this. Boards will demand audits. Investors will include it in due diligence. The framework becomes a product category.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Human Recognition Trigger</div>
+    <div class="pullquote">
+      <p>"Our systems may not actually serve the mission. They serve something else entirely — something we've never named."</p>
+      <cite>Organizational dysfunction is rarely malicious. It is almost always emotionally optimized.</cite>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="cta-block">
+      <div class="cta-label">Call to Action</div>
+      <p>"What part of your company exists mainly to avoid discomfort? Not to create value. Not to serve customers. Just to keep someone from feeling triggered. Name one structure. That's your Shadow OS."</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div class="section-label">Distribution Potential</div>
+    <h2 class="section-title">Platform Strategy</h2>
+    <div class="dist-grid">
+      <div class="dist-card">
+        <div class="dist-platform">Carousel</div>
+        <p>The formal/shadow decoder as slides. "What the policy says" vs "what it actually does." Organizational recognition triggers that spread inside companies.</p>
+      </div>
+      <div class="dist-card">
+        <div class="dist-platform">Newsletter</div>
+        <p>How emotional dysfunction becomes organizational infrastructure. "Most failed companies don't die because of the market. They die because leadership's unaddressed psychology became the operating system."</p>
+      </div>
+      <div class="dist-card">
+        <div class="dist-platform">Reel</div>
+        <p>Org chart animation where the formal structure slowly dissolves, revealing the shadow architecture underneath. No voice. Just the reveal.</p>
+      </div>
+      <div class="dist-card">
+        <div class="dist-platform">Story</div>
+        <p>"Does your company serve the market — or the mood?" Two options. No explanation needed.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Framework Connection</div>
+    <h2 class="section-title">The Systemic Layer</h2>
+    <div class="text-body">
+      <p>Manifestation 5: Shadow Governance Architecture. Where individual avoidance becomes structural constraint, and personal psychology becomes organizational infrastructure. Opens the door to advisory services, diagnostic tools, governance audits, and investor due diligence protocols.</p>
+    </div>
+  </div>
+
+</main>
+
+<nav class="article-nav">
+  <a href="article-04.html" class="nav-link prev">
+    <span class="nav-link-dir"></span>
+    <span class="nav-link-title">The Virtue Camouflage</span>
+  </a>
+  <a href="article-06.html" class="nav-link next">
+    <span class="nav-link-dir"></span>
+    <span class="nav-link-title">The Decoupled Mind</span>
+  </a>
+</nav>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.section').forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

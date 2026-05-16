@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Virtue Camouflage — Mind Anchor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0c0a;
+    --surface: #141410;
+    --surface2: #1c1c16;
+    --border: #2c2c20;
+    --text: #e5e4d8;
+    --muted: #787260;
+    --accent: #a0945a;
+    --accent2: #c8b87a;
+    --number: #383220;
+    --tag-bg: #1c1a10;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'EB Garamond', serif; font-size: 18px; line-height: 1.8; min-height: 100vh; }
+
+  .logo-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(12,12,10,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo-mark { width: 36px; height: 36px; border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; position: relative; }
+  .logo-mark::before { content: ''; width: 10px; height: 10px; background: var(--accent); display: block; }
+  .logo-mark::after { content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); width: 2px; height: 6px; background: var(--accent); }
+  .logo-text { font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; }
+  .nav-series { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  .hero { min-height: 100vh; padding: 120px 2rem 80px; display: flex; flex-direction: column; justify-content: center; max-width: 900px; margin: 0 auto; position: relative; }
+  .manifestation-tag { display: inline-flex; align-items: center; gap: 8px; background: var(--tag-bg); border: 1px solid var(--border); border-left: 3px solid var(--accent); padding: 6px 16px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+  .hero-number { font-family: 'Playfair Display', serif; font-size: clamp(120px, 20vw, 220px); font-weight: 900; color: var(--number); line-height: 0.8; position: absolute; right: -20px; top: 100px; pointer-events: none; user-select: none; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(42px, 7vw, 80px); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; color: var(--text); margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
+  .hero-title em { font-style: italic; color: var(--accent); }
+  .hero-insight { font-family: 'Playfair Display', serif; font-size: clamp(18px, 2.5vw, 24px); font-style: italic; color: var(--accent2); max-width: 640px; line-height: 1.5; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; border-left: 2px solid var(--accent); padding-left: 1.5rem; margin-bottom: 3rem; }
+  .scroll-hint { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.1em; opacity: 0; animation: fadeUp 0.8s 1s forwards; display: flex; align-items: center; gap: 12px; }
+  .scroll-hint::after { content: ''; width: 60px; height: 1px; background: var(--muted); }
+
+  .content { max-width: 900px; margin: 0 auto; padding: 0 2rem 6rem; }
+  .section { margin-bottom: 5rem; opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .section.visible { opacity: 1; transform: translateY(0); }
+  .section-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 12px; }
+  .section-label::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 4vw, 38px); font-weight: 700; color: var(--text); margin-bottom: 1.5rem; line-height: 1.2; }
+  .hook-block { background: var(--surface); border: 1px solid var(--border); padding: 3rem; position: relative; overflow: hidden; }
+  .hook-block::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--accent), transparent); }
+  .hook-block p { font-family: 'EB Garamond', serif; font-size: clamp(18px, 2vw, 22px); line-height: 1.75; color: var(--text); }
+  .hook-block p + p { margin-top: 1.2em; }
+  .hook-block strong { color: var(--accent2); font-weight: 500; }
+  .text-body { font-family: 'EB Garamond', serif; font-size: clamp(17px, 1.8vw, 20px); line-height: 1.85; color: #b0a888; }
+  .text-body p + p { margin-top: 1.2em; }
+
+  /* Vocabulary decoder */
+  .vocab-decoder { margin-top: 1.5rem; border: 1px solid var(--border); overflow: hidden; }
+  .vocab-row { display: grid; grid-template-columns: 1fr 1fr; border-bottom: 1px solid var(--border); }
+  .vocab-row:last-child { border-bottom: none; }
+  .vocab-cell { padding: 1.25rem 1.5rem; font-family: 'EB Garamond', serif; font-size: 17px; line-height: 1.5; }
+  .vocab-cell.spoken { color: var(--accent2); background: var(--surface); font-style: italic; }
+  .vocab-cell.truth { color: #807060; background: var(--surface2); }
+  .vocab-header { background: var(--surface2); }
+  .vocab-header .vocab-cell { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; text-transform: uppercase; color: var(--muted); font-style: normal; }
+
+  .focus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--border); margin-top: 1.5rem; }
+  .focus-card { background: var(--surface); padding: 2rem; }
+  .focus-card-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.75rem; }
+  .focus-card p { font-family: 'EB Garamond', serif; font-size: 17px; line-height: 1.7; color: #a09878; }
+
+  .pullquote { margin: 3rem 0; padding: 2.5rem 3rem; border-left: 4px solid var(--accent); background: var(--surface); }
+  .pullquote p { font-family: 'Playfair Display', serif; font-size: clamp(20px, 2.5vw, 28px); font-style: italic; line-height: 1.5; color: var(--text); }
+  .pullquote cite { display: block; margin-top: 1rem; font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.08em; font-style: normal; }
+
+  .truth-block { background: var(--accent); padding: 3rem; margin: 3rem 0; }
+  .truth-block p { font-family: 'Playfair Display', serif; font-size: clamp(20px, 2.5vw, 28px); font-style: italic; color: #080800; line-height: 1.5; }
+  .truth-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: #504020; text-transform: uppercase; margin-bottom: 1rem; }
+
+  .cta-block { background: var(--surface2); border: 1px solid var(--border); border-top: 3px solid var(--accent); padding: 2.5rem; margin: 3rem 0; }
+  .cta-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 1rem; }
+  .cta-block p { font-family: 'EB Garamond', serif; font-size: 19px; font-style: italic; color: var(--text); line-height: 1.7; }
+
+  .dist-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); margin-top: 1.5rem; }
+  .dist-card { background: var(--surface); padding: 1.5rem 2rem; }
+  .dist-platform { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem; }
+  .dist-card p { font-family: 'EB Garamond', serif; font-size: 16px; color: #908870; line-height: 1.6; }
+
+  .article-nav { border-top: 1px solid var(--border); padding: 3rem 2rem; max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+  .nav-link { text-decoration: none; display: flex; flex-direction: column; gap: 6px; max-width: 280px; }
+  .nav-link-dir { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .nav-link-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--text); transition: color 0.2s; line-height: 1.2; }
+  .nav-link:hover .nav-link-title { color: var(--accent); }
+  .nav-link.next { text-align: right; }
+  .nav-link.next .nav-link-dir::before { content: 'Next → '; }
+  .nav-link.prev .nav-link-dir::after { content: ' ← Prev'; }
+
+  .index-nav { max-width: 900px; margin: 0 auto 2rem; padding: 0 2rem; display: flex; flex-wrap: wrap; gap: 8px; }
+  .index-link { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; padding: 5px 12px; border: 1px solid var(--border); text-transform: uppercase; transition: all 0.2s; }
+  .index-link:hover, .index-link.current { color: var(--accent); border-color: var(--accent); background: var(--tag-bg); }
+  .index-link.current { pointer-events: none; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 4rem 0; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 640px) { .focus-grid, .dist-grid, .vocab-row { grid-template-columns: 1fr; } .hero-number { font-size: 30vw; right: -10px; } }
+</style>
+</head>
+<body>
+
+<header class="logo-bar">
+  <a href="article-01.html" class="logo">
+    <div class="logo-mark"></div>
+    <span class="logo-text">Mind Anchor</span>
+  </a>
+  <span class="nav-series">ProximityOS Series</span>
+</header>
+
+<nav class="index-nav" style="padding-top:80px;">
+  <a href="article-01.html" class="index-link">01</a>
+  <a href="article-02.html" class="index-link">02</a>
+  <a href="article-03.html" class="index-link">03</a>
+  <a href="article-04.html" class="index-link current">04</a>
+  <a href="article-05.html" class="index-link">05</a>
+  <a href="article-06.html" class="index-link">06</a>
+  <a href="article-07.html" class="index-link">07</a>
+  <a href="article-08.html" class="index-link">08</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-number">04</div>
+  <div class="manifestation-tag">Manifestation 04 · The Righteousness Loop</div>
+  <h1 class="hero-title">The Virtue<br><em>Camouflage</em></h1>
+  <p class="hero-insight">The ego is most dangerous when it learns therapeutic vocabulary. Avoidance stops feeling like fear and starts feeling like integrity.</p>
+  <div class="scroll-hint">Read the full framework</div>
+</section>
+
+<main class="content">
+
+  <div class="section">
+    <div class="section-label">Hook</div>
+    <div class="hook-block">
+      <p>Be careful: you might not be protecting your peace. <strong>You might just be protecting your ego with a better dictionary.</strong></p>
+      <p>"I'm protecting my energy." "I'm setting a boundary." "This doesn't align with where I'm going."</p>
+      <p>Each of these sentences can be true. Each can also be a lie. And the difficulty — the real difficulty — is that <strong>they sound identical from the inside.</strong></p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Emotional Focus</div>
+    <h2 class="section-title">Righteousness as a Shield Against Feedback</h2>
+    <div class="text-body">
+      <p>The brain anesthetizes self-awareness through virtue language. Once avoidance is reframed as moral necessity, the person becomes unreachable — because feedback now feels like an attack on their values, not a reflection of their patterns.</p>
+    </div>
+    <div class="pullquote">
+      <p>"The ego becomes most dangerous when it learns moral language. A wounded person with virtuous vocabulary is nearly impossible to reach."</p>
+      <cite>ProximityOS Framework</cite>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Strategic Focus</div>
+    <h2 class="section-title">The Vocabulary of Ego-Protection</h2>
+    <div class="text-body">
+      <p>Emotion disguises itself. Here is the decoder.</p>
+    </div>
+    <div class="vocab-decoder">
+      <div class="vocab-row vocab-header">
+        <div class="vocab-cell">What Is Said</div>
+        <div class="vocab-cell">What It Often Means</div>
+      </div>
+      <div class="vocab-row">
+        <div class="vocab-cell spoken">"They weren't a culture fit."</div>
+        <div class="vocab-cell truth">They challenged my thinking and I couldn't tolerate the friction.</div>
+      </div>
+      <div class="vocab-row">
+        <div class="vocab-cell spoken">"We value harmony."</div>
+        <div class="vocab-cell truth">Don't create friction. Silence is safety here.</div>
+      </div>
+      <div class="vocab-row">
+        <div class="vocab-cell spoken">"We need alignment."</div>
+        <div class="vocab-cell truth">Agree with me. Dissent is not welcome.</div>
+      </div>
+      <div class="vocab-row">
+        <div class="vocab-cell spoken">"Protecting our energy."</div>
+        <div class="vocab-cell truth">Avoiding accountability under therapeutic cover.</div>
+      </div>
+      <div class="vocab-row">
+        <div class="vocab-cell spoken">"I'm setting a boundary."</div>
+        <div class="vocab-cell truth">Sometimes true. Sometimes a wound wearing a policy uniform.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Founder / Builder Angle</div>
+    <h2 class="section-title">Organizations Begin Institutionalizing Ego-Protection as Culture</h2>
+    <div class="text-body">
+      <p>The founder believes they are building a healthy culture. They are actually building a system that filters out truth.</p>
+    </div>
+    <div class="focus-grid">
+      <div class="focus-card">
+        <div class="focus-card-label">The Immediate Cost</div>
+        <p>The most competent challengers are removed. The loop closes permanently. The leader feels virtuous while strategically self-harming.</p>
+      </div>
+      <div class="focus-card">
+        <div class="focus-card-label">The Compound Cost</div>
+        <p>The person becomes impervious to correction. Avoidance now feels like integrity. Every withdrawal is celebrated as wisdom.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="truth-block">
+      <div class="truth-label">Direct Truth</div>
+      <p>"You did not remove friction. You removed challenge. You did not protect your peace. You protected your ego."</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Transition Role</div>
+    <h2 class="section-title">Avoidance Becomes Ideology</h2>
+    <div class="text-body">
+      <p>This is where the problem becomes systemic rather than personal. The person is no longer just avoiding; they are <em>righteously</em> avoiding. And righteousness is one of the most effective anesthetics against strategic self-reflection.</p>
+      <p>The framework escalates: reaction → ideology. The audience is now looking at not just a behavior, but a belief system built around a wound.</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Human Recognition Trigger</div>
+    <div class="pullquote">
+      <p>"I may be lying to myself elegantly."</p>
+      <cite>The language of growth can be used to serve the ego's most primitive impulses — and you have done this yourself.</cite>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="cta-block">
+      <div class="cta-label">Call to Action</div>
+      <p>"Was this boundary created before or after discomfort? If it arrived within hours or days of a trigger — it began as avoidance. That doesn't mean it's wrong. But it means it deserves examination before it's named wisdom."</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div class="section-label">Distribution Potential</div>
+    <h2 class="section-title">Platform Strategy</h2>
+    <div class="dist-grid">
+      <div class="dist-card">
+        <div class="dist-platform">Carousel</div>
+        <p>The vocabulary decoder as slides. Each "spoken" phrase on one side, the "truth" translation revealed on the next. Provocative, shareable, uncomfortable.</p>
+      </div>
+      <div class="dist-card">
+        <div class="dist-platform">Newsletter</div>
+        <p>Therapeutic language as strategic camouflage. "When emotional avoidance learns corporate vocabulary — and how to spot the difference between a real boundary and a disguised wound."</p>
+      </div>
+      <div class="dist-card">
+        <div class="dist-platform">Reel</div>
+        <p>Text-only scroll: virtue phrases appearing and then dissolving into their true translations. Unsettling, clean, direct.</p>
+      </div>
+      <div class="dist-card">
+        <div class="dist-platform">Story</div>
+        <p>Poll: "When you said 'it's a values issue' — was it? Yes / Not entirely / I honestly don't know." No right answer. Just the question.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Framework Connection</div>
+    <h2 class="section-title">The Ideological Layer</h2>
+    <div class="text-body">
+      <p>Manifestation 4: The Righteousness Loop. Where avoidance becomes identity and feedback becomes impossible. Speaks directly to therapeutic culture's shadow side, leadership cultures that use "values" to avoid accountability, and the gap between performed self-awareness and actual self-awareness.</p>
+    </div>
+  </div>
+
+</main>
+
+<nav class="article-nav">
+  <a href="article-03.html" class="nav-link prev">
+    <span class="nav-link-dir"></span>
+    <span class="nav-link-title">The Ghost Architect</span>
+  </a>
+  <a href="article-05.html" class="nav-link next">
+    <span class="nav-link-dir"></span>
+    <span class="nav-link-title">The Shadow OS</span>
+  </a>
+</nav>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.section').forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

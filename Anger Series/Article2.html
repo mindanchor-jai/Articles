@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Invoice for Distance — Mind Anchor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #0c0a0a;
+    --surface: #141010;
+    --surface2: #1a1414;
+    --border: #2e2424;
+    --text: #e8e0d8;
+    --muted: #7a6a62;
+    --accent: #c85a3e;
+    --accent2: #e8825e;
+    --number: #3a2420;
+    --tag-bg: #1e1210;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'EB Garamond', serif;
+    font-size: 18px;
+    line-height: 1.8;
+    min-height: 100vh;
+  }
+
+  .logo-bar {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    background: rgba(12,10,10,0.95);
+    backdrop-filter: blur(12px);
+    border-bottom: 1px solid var(--border);
+    padding: 0 2rem;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+  }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo-mark {
+    width: 36px; height: 36px;
+    border: 2px solid var(--accent);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+  }
+  .logo-mark::before { content: ''; width: 10px; height: 10px; background: var(--accent); display: block; }
+  .logo-mark::after { content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); width: 2px; height: 6px; background: var(--accent); }
+  .logo-text { font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; }
+  .nav-series { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  .hero {
+    min-height: 100vh; padding: 120px 2rem 80px;
+    display: flex; flex-direction: column; justify-content: center;
+    max-width: 900px; margin: 0 auto; position: relative;
+  }
+  .manifestation-tag {
+    display: inline-flex; align-items: center; gap: 8px;
+    background: var(--tag-bg); border: 1px solid var(--border);
+    border-left: 3px solid var(--accent);
+    padding: 6px 16px;
+    font-family: 'Space Mono', monospace; font-size: 11px;
+    letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase;
+    margin-bottom: 2.5rem;
+    opacity: 0; animation: fadeUp 0.8s 0.2s forwards;
+  }
+  .hero-number {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(120px, 20vw, 220px);
+    font-weight: 900; color: var(--number);
+    line-height: 0.8; position: absolute;
+    right: -20px; top: 100px;
+    pointer-events: none; user-select: none;
+  }
+  .hero-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(42px, 7vw, 80px); font-weight: 700;
+    line-height: 1.05; letter-spacing: -0.02em; color: var(--text);
+    margin-bottom: 1.5rem;
+    opacity: 0; animation: fadeUp 0.8s 0.4s forwards;
+  }
+  .hero-title em { font-style: italic; color: var(--accent); }
+  .hero-insight {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(18px, 2.5vw, 24px); font-style: italic;
+    color: var(--accent2); max-width: 640px; line-height: 1.5;
+    opacity: 0; animation: fadeUp 0.8s 0.6s forwards;
+    border-left: 2px solid var(--accent); padding-left: 1.5rem; margin-bottom: 3rem;
+  }
+  .scroll-hint {
+    font-family: 'Space Mono', monospace; font-size: 11px;
+    color: var(--muted); letter-spacing: 0.1em;
+    opacity: 0; animation: fadeUp 0.8s 1s forwards;
+    display: flex; align-items: center; gap: 12px;
+  }
+  .scroll-hint::after { content: ''; width: 60px; height: 1px; background: var(--muted); }
+
+  .content { max-width: 900px; margin: 0 auto; padding: 0 2rem 6rem; }
+  .section {
+    margin-bottom: 5rem;
+    opacity: 0; transform: translateY(30px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .section.visible { opacity: 1; transform: translateY(0); }
+  .section-label {
+    font-family: 'Space Mono', monospace; font-size: 10px;
+    letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase;
+    margin-bottom: 1rem; display: flex; align-items: center; gap: 12px;
+  }
+  .section-label::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+  .section-title {
+    font-family: 'Playfair Display', serif;
+    font-size: clamp(26px, 4vw, 38px); font-weight: 700;
+    color: var(--text); margin-bottom: 1.5rem; line-height: 1.2;
+  }
+  .hook-block {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 3rem; position: relative; overflow: hidden;
+  }
+  .hook-block::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--accent), transparent); }
+  .hook-block p { font-family: 'EB Garamond', serif; font-size: clamp(18px, 2vw, 22px); line-height: 1.75; color: var(--text); }
+  .hook-block p + p { margin-top: 1.2em; }
+  .hook-block strong { color: var(--accent2); font-weight: 500; }
+  .text-body { font-family: 'EB Garamond', serif; font-size: clamp(17px, 1.8vw, 20px); line-height: 1.85; color: #c0b0a5; }
+  .text-body p + p { margin-top: 1.2em; }
+
+  /* Tax breakdown table */
+  .tax-table {
+    width: 100%; border-collapse: collapse; margin-top: 1.5rem;
+    font-family: 'EB Garamond', serif;
+  }
+  .tax-table th {
+    background: var(--surface2); border: 1px solid var(--border);
+    padding: 0.75rem 1.25rem;
+    font-family: 'Space Mono', monospace; font-size: 10px;
+    letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase;
+    text-align: left;
+  }
+  .tax-table td {
+    border: 1px solid var(--border); padding: 1rem 1.25rem;
+    font-size: 17px; color: #b0a098; vertical-align: top;
+    background: var(--surface);
+  }
+  .tax-table tr:hover td { background: var(--surface2); }
+  .tax-table td:first-child { color: var(--text); font-weight: 500; }
+
+  .focus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--border); margin-top: 1.5rem; }
+  .focus-card { background: var(--surface); padding: 2rem; }
+  .focus-card-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.75rem; }
+  .focus-card p { font-family: 'EB Garamond', serif; font-size: 17px; line-height: 1.7; color: #b0a098; }
+
+  .list-items { list-style: none; padding: 0; margin-top: 1rem; }
+  .list-items li { font-family: 'EB Garamond', serif; font-size: 18px; color: #b0a098; padding: 0.6rem 0 0.6rem 1.5rem; border-bottom: 1px solid var(--border); position: relative; }
+  .list-items li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }
+
+  .pullquote { margin: 3rem 0; padding: 2.5rem 3rem; border-left: 4px solid var(--accent); background: var(--surface); }
+  .pullquote p { font-family: 'Playfair Display', serif; font-size: clamp(20px, 2.5vw, 28px); font-style: italic; line-height: 1.5; color: var(--text); }
+  .pullquote cite { display: block; margin-top: 1rem; font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.08em; font-style: normal; }
+
+  .truth-block { background: var(--accent); padding: 3rem; margin: 3rem 0; }
+  .truth-block p { font-family: 'Playfair Display', serif; font-size: clamp(20px, 2.5vw, 28px); font-style: italic; color: #0a0404; line-height: 1.5; }
+  .truth-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: #5a2a1a; text-transform: uppercase; margin-bottom: 1rem; }
+
+  .cta-block { background: var(--surface2); border: 1px solid var(--border); border-top: 3px solid var(--accent); padding: 2.5rem; margin: 3rem 0; }
+  .cta-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 1rem; }
+  .cta-block p { font-family: 'EB Garamond', serif; font-size: 19px; font-style: italic; color: var(--text); line-height: 1.7; }
+
+  .dist-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); margin-top: 1.5rem; }
+  .dist-card { background: var(--surface); padding: 1.5rem 2rem; }
+  .dist-platform { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem; }
+  .dist-card p { font-family: 'EB Garamond', serif; font-size: 16px; color: #9a8880; line-height: 1.6; }
+
+  .article-nav { border-top: 1px solid var(--border); padding: 3rem 2rem; max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+  .nav-link { text-decoration: none; display: flex; flex-direction: column; gap: 6px; max-width: 280px; }
+  .nav-link-dir { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .nav-link-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--text); transition: color 0.2s; line-height: 1.2; }
+  .nav-link:hover .nav-link-title { color: var(--accent); }
+  .nav-link.next { text-align: right; }
+  .nav-link.next .nav-link-dir::before { content: 'Next → '; }
+  .nav-link.prev .nav-link-dir::after { content: ' ← Prev'; }
+
+  .index-nav { max-width: 900px; margin: 0 auto 2rem; padding: 0 2rem; display: flex; flex-wrap: wrap; gap: 8px; }
+  .index-link { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; padding: 5px 12px; border: 1px solid var(--border); text-transform: uppercase; transition: all 0.2s; }
+  .index-link:hover, .index-link.current { color: var(--accent); border-color: var(--accent); background: var(--tag-bg); }
+  .index-link.current { pointer-events: none; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 4rem 0; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 640px) { .focus-grid, .dist-grid { grid-template-columns: 1fr; } .hero-number { font-size: 30vw; right: -10px; } }
+</style>
+</head>
+<body>
+
+<header class="logo-bar">
+  <a href="article-01.html" class="logo">
+    <div class="logo-mark"></div>
+    <span class="logo-text">Mind Anchor</span>
+  </a>
+  <span class="nav-series">ProximityOS Series</span>
+</header>
+
+<nav class="index-nav" style="padding-top:80px;">
+  <a href="article-01.html" class="index-link">01</a>
+  <a href="article-02.html" class="index-link current">02</a>
+  <a href="article-03.html" class="index-link">03</a>
+  <a href="article-04.html" class="index-link">04</a>
+  <a href="article-05.html" class="index-link">05</a>
+  <a href="article-06.html" class="index-link">06</a>
+  <a href="article-07.html" class="index-link">07</a>
+  <a href="article-08.html" class="index-link">08</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-number">02</div>
+  <div class="manifestation-tag">Manifestation 02 · The Proximity Tax</div>
+  <h1 class="hero-title">The Invoice<br>for <em>Distance</em></h1>
+  <p class="hero-insight">Silence isn't free. It's just an un-itemized bill that hits your future self — with interest.</p>
+  <div class="scroll-hint">Read the full framework</div>
+</section>
+
+<main class="content">
+
+  <div class="section">
+    <div class="section-label">Hook</div>
+    <div class="hook-block">
+      <p>Every emotional avoidance pattern eventually sends an invoice. Most people never open the envelope. They feel the cost — in lost opportunities, strained relationships, stalled growth — but they never connect it to the moment they <strong>chose distance over discomfort.</strong></p>
+      <p>The Proximity Tax is the name for that hidden cost. <strong>And you have been paying it longer than you know.</strong></p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Emotional Focus</div>
+    <h2 class="section-title">The Addictive Loop of Withdrawal-Relief</h2>
+    <div class="text-body">
+      <p>Your nervous system processes avoidance as confirmation that the choice was correct. The loop deepens with every repetition. You feel safer while actually becoming smaller.</p>
+      <p>This is not weakness. This is neurological engineering working exactly as designed — redirecting you toward comfort and away from the friction that might have produced something valuable.</p>
+    </div>
+    <div class="pullquote">
+      <p>"Every avoidance pattern has an invoice attached to it. Most people never open the envelope."</p>
+      <cite>ProximityOS Framework</cite>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Strategic Focus</div>
+    <h2 class="section-title">When Avoidance Becomes Economically Measurable</h2>
+    <div class="text-body">
+      <p>The problem shifts from "how do I feel" to "what did it cost." Loss appears with precision:</p>
+    </div>
+    <ul class="list-items">
+      <li>Opportunities forgone — the deal you didn't pursue</li>
+      <li>Leverage surrendered — the negotiation you undermined</li>
+      <li>Access denied — the room you left or never entered</li>
+      <li>Reputation erosion — the relationship you slowly abandoned</li>
+      <li>Network proximity collapsed — the connection you let atrophy</li>
+      <li>Negotiation quality degraded — the outcome you settled for</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Founder / Builder Angle</div>
+    <h2 class="section-title">Compound Taxes Across Five Categories</h2>
+    <table class="tax-table">
+      <thead>
+        <tr>
+          <th>Tax Category</th>
+          <th>What It Looks Like</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr><td>Talent Loss Tax</td><td>Firing or losing high-performers who create friction, then calling it "culture fit"</td></tr>
+        <tr><td>Communication Friction Tax</td><td>Teams walking on eggshells, decisions slowed by emotional landmines</td></tr>
+        <tr><td>Coordination Tax</td><td>Silos built around emotional triggers, information hoarded instead of shared</td></tr>
+        <tr><td>Emotional Inefficiency Tax</td><td>Slow decisions, avoided accountability, meetings that dance around the real issue</td></tr>
+        <tr><td>Arbitrage Decay</td><td>Choosing inferior vendors or opportunities because the optimal source is emotionally unavailable</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="section">
+    <div class="truth-block">
+      <div class="truth-label">Direct Truth</div>
+      <p>"Emotional relief is often financially expensive. You just aren't looking at the receipt."</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Transition Role</div>
+    <h2 class="section-title">From Personal Psychology to Strategic Economics</h2>
+    <div class="text-body">
+      <p>This is where the audience stops feeling seen and starts feeling exposed — in the productive way. The problem becomes quantifiable, discussable, and harder to ignore. It moves from the therapy room to the boardroom.</p>
+    </div>
+    <div class="focus-grid">
+      <div class="focus-card">
+        <div class="focus-card-label">Before This Article</div>
+        <p>Avoidance feels personal, private, emotional — difficult to discuss in professional contexts.</p>
+      </div>
+      <div class="focus-card">
+        <div class="focus-card-label">After This Article</div>
+        <p>Avoidance has a cost category, a name, and a line item. It can be audited, measured, and addressed.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Human Recognition Trigger</div>
+    <div class="pullquote">
+      <p>"I thought I was protecting myself. I didn't realize I was paying for distance with my future."</p>
+      <cite>The recognition that relief has a price tag — and you've been ignoring the receipt.</cite>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="cta-block">
+      <div class="cta-label">Call to Action</div>
+      <p>"Calculate the cost of the conversation you haven't had in six months. What's the number? Not the emotional cost. The strategic one."</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div class="section-label">Distribution Potential</div>
+    <h2 class="section-title">Platform Strategy</h2>
+    <div class="dist-grid">
+      <div class="dist-card">
+        <div class="dist-platform">Carousel</div>
+        <p>Each slide = one tax category. Final slide: "Which of these are you currently paying?" Visual invoice aesthetic throughout.</p>
+      </div>
+      <div class="dist-card">
+        <div class="dist-platform">Newsletter</div>
+        <p>The economics of emotional avoidance. "How unresolved emotion becomes operational inefficiency — and how to calculate what it's costing you."</p>
+      </div>
+      <div class="dist-card">
+        <div class="dist-platform">Reel</div>
+        <p>Scrolling invoice visual: each line item appearing with a cost attached. Final frame: the total. No voice. Just accumulation.</p>
+      </div>
+      <div class="dist-card">
+        <div class="dist-platform">Story</div>
+        <p>Single frame: a sealed envelope with the words "Your Proximity Tax Invoice — Opened?" Two options: Yes / Still avoiding.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Framework Connection</div>
+    <h2 class="section-title">The Economic Layer</h2>
+    <div class="text-body">
+      <p>Manifestation 2: The Proximity Tax. Quantifiable sabotage. This is where the framework becomes discussable in boardrooms, not just therapy sessions. Critical language for founders, executives, boards, investors, and consultants.</p>
+    </div>
+  </div>
+
+</main>
+
+<nav class="article-nav">
+  <a href="article-01.html" class="nav-link prev">
+    <span class="nav-link-dir"></span>
+    <span class="nav-link-title">The Geometry of Avoidance</span>
+  </a>
+  <a href="article-03.html" class="nav-link next">
+    <span class="nav-link-dir"></span>
+    <span class="nav-link-title">The Ghost Architect</span>
+  </a>
+</nav>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.section').forEach(s => observer.observe(s));
+</script>
+</body>
+</html>

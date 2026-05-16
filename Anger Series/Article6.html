@@ -1,0 +1,308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Decoupled Mind — Mind Anchor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #080c0c;
+    --surface: #0e1414;
+    --surface2: #141c1c;
+    --border: #1e2c2c;
+    --text: #d8e8e4;
+    --muted: #507070;
+    --accent: #4a9e90;
+    --accent2: #6abcac;
+    --number: #102020;
+    --tag-bg: #0a1818;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'EB Garamond', serif; font-size: 18px; line-height: 1.8; min-height: 100vh; }
+
+  .logo-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(8,12,12,0.95); backdrop-filter: blur(12px); border-bottom: 1px solid var(--border); padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo-mark { width: 36px; height: 36px; border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; position: relative; }
+  .logo-mark::before { content: ''; width: 10px; height: 10px; background: var(--accent); display: block; }
+  .logo-mark::after { content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); width: 2px; height: 6px; background: var(--accent); }
+  .logo-text { font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; }
+  .nav-series { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  .hero { min-height: 100vh; padding: 120px 2rem 80px; display: flex; flex-direction: column; justify-content: center; max-width: 900px; margin: 0 auto; position: relative; }
+  .manifestation-tag { display: inline-flex; align-items: center; gap: 8px; background: var(--tag-bg); border: 1px solid var(--border); border-left: 3px solid var(--accent); padding: 6px 16px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 2.5rem; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+  .hero-number { font-family: 'Playfair Display', serif; font-size: clamp(120px, 20vw, 220px); font-weight: 900; color: var(--number); line-height: 0.8; position: absolute; right: -20px; top: 100px; pointer-events: none; user-select: none; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(42px, 7vw, 80px); font-weight: 700; line-height: 1.05; letter-spacing: -0.02em; color: var(--text); margin-bottom: 1.5rem; opacity: 0; animation: fadeUp 0.8s 0.4s forwards; }
+  .hero-title em { font-style: italic; color: var(--accent); }
+  .hero-insight { font-family: 'Playfair Display', serif; font-size: clamp(18px, 2.5vw, 24px); font-style: italic; color: var(--accent2); max-width: 640px; line-height: 1.5; opacity: 0; animation: fadeUp 0.8s 0.6s forwards; border-left: 2px solid var(--accent); padding-left: 1.5rem; margin-bottom: 3rem; }
+  .scroll-hint { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.1em; opacity: 0; animation: fadeUp 0.8s 1s forwards; display: flex; align-items: center; gap: 12px; }
+  .scroll-hint::after { content: ''; width: 60px; height: 1px; background: var(--muted); }
+
+  .content { max-width: 900px; margin: 0 auto; padding: 0 2rem 6rem; }
+  .section { margin-bottom: 5rem; opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+  .section.visible { opacity: 1; transform: translateY(0); }
+  .section-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 12px; }
+  .section-label::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(26px, 4vw, 38px); font-weight: 700; color: var(--text); margin-bottom: 1.5rem; line-height: 1.2; }
+  .hook-block { background: var(--surface); border: 1px solid var(--border); padding: 3rem; position: relative; overflow: hidden; }
+  .hook-block::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--accent), transparent); }
+  .hook-block p { font-family: 'EB Garamond', serif; font-size: clamp(18px, 2vw, 22px); line-height: 1.75; color: var(--text); }
+  .hook-block p + p { margin-top: 1.2em; }
+  .hook-block strong { color: var(--accent2); font-weight: 500; }
+  .text-body { font-family: 'EB Garamond', serif; font-size: clamp(17px, 1.8vw, 20px); line-height: 1.85; color: #90b0a8; }
+  .text-body p + p { margin-top: 1.2em; }
+  .text-body em { color: var(--accent2); font-style: italic; }
+
+  /* Decoupling diagram */
+  .decouple-diagram {
+    background: var(--surface); border: 1px solid var(--border);
+    padding: 3rem; margin: 2rem 0; display: flex; flex-direction: column; gap: 1.5rem;
+  }
+  .decouple-row { display: flex; align-items: center; gap: 1rem; }
+  .decouple-label {
+    font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em;
+    text-transform: uppercase; width: 100px; flex-shrink: 0; color: var(--muted);
+  }
+  .decouple-bar {
+    flex: 1; height: 48px; display: flex; align-items: center; padding: 0 1.25rem;
+    border: 1px solid var(--border);
+    font-family: 'EB Garamond', serif; font-size: 16px;
+  }
+  .decouple-bar.feeling { background: #2a1c1a; border-color: #c85a3e; color: #d88878; }
+  .decouple-bar.decision { background: #0e2020; border-color: var(--accent); color: var(--accent2); }
+  .decouple-connector {
+    font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted);
+    text-align: center; padding: 0.5rem;
+    letter-spacing: 0.1em;
+  }
+
+  .list-items { list-style: none; padding: 0; margin-top: 1rem; }
+  .list-items li { font-family: 'EB Garamond', serif; font-size: 18px; color: #90b0a8; padding: 0.6rem 0 0.6rem 1.5rem; border-bottom: 1px solid var(--border); position: relative; }
+  .list-items li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }
+
+  .focus-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--border); margin-top: 1.5rem; }
+  .focus-card { background: var(--surface); padding: 2rem; }
+  .focus-card-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.75rem; }
+  .focus-card p { font-family: 'EB Garamond', serif; font-size: 17px; line-height: 1.7; color: #80a098; }
+
+  .pullquote { margin: 3rem 0; padding: 2.5rem 3rem; border-left: 4px solid var(--accent); background: var(--surface); }
+  .pullquote p { font-family: 'Playfair Display', serif; font-size: clamp(20px, 2.5vw, 28px); font-style: italic; line-height: 1.5; color: var(--text); }
+  .pullquote cite { display: block; margin-top: 1rem; font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.08em; font-style: normal; }
+
+  .truth-block { background: var(--accent); padding: 3rem; margin: 3rem 0; }
+  .truth-block p { font-family: 'Playfair Display', serif; font-size: clamp(20px, 2.5vw, 28px); font-style: italic; color: #020808; line-height: 1.5; }
+  .truth-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: #104030; text-transform: uppercase; margin-bottom: 1rem; }
+
+  .cta-block { background: var(--surface2); border: 1px solid var(--border); border-top: 3px solid var(--accent); padding: 2.5rem; margin: 3rem 0; }
+  .cta-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 1rem; }
+  .cta-block p { font-family: 'EB Garamond', serif; font-size: 19px; font-style: italic; color: var(--text); line-height: 1.7; }
+
+  .dist-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); margin-top: 1.5rem; }
+  .dist-card { background: var(--surface); padding: 1.5rem 2rem; }
+  .dist-platform { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem; }
+  .dist-card p { font-family: 'EB Garamond', serif; font-size: 16px; color: #608080; line-height: 1.6; }
+
+  .article-nav { border-top: 1px solid var(--border); padding: 3rem 2rem; max-width: 900px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+  .nav-link { text-decoration: none; display: flex; flex-direction: column; gap: 6px; max-width: 280px; }
+  .nav-link-dir { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .nav-link-title { font-family: 'Playfair Display', serif; font-size: 20px; color: var(--text); transition: color 0.2s; line-height: 1.2; }
+  .nav-link:hover .nav-link-title { color: var(--accent); }
+  .nav-link.next { text-align: right; }
+  .nav-link.next .nav-link-dir::before { content: 'Next → '; }
+  .nav-link.prev .nav-link-dir::after { content: ' ← Prev'; }
+
+  .index-nav { max-width: 900px; margin: 0 auto 2rem; padding: 0 2rem; display: flex; flex-wrap: wrap; gap: 8px; }
+  .index-link { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; padding: 5px 12px; border: 1px solid var(--border); text-transform: uppercase; transition: all 0.2s; }
+  .index-link:hover, .index-link.current { color: var(--accent); border-color: var(--accent); background: var(--tag-bg); }
+  .index-link.current { pointer-events: none; }
+  .divider { border: none; border-top: 1px solid var(--border); margin: 4rem 0; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 640px) { .focus-grid, .dist-grid { grid-template-columns: 1fr; } .hero-number { font-size: 30vw; right: -10px; } .decouple-row { flex-direction: column; align-items: flex-start; } }
+</style>
+</head>
+<body>
+
+<header class="logo-bar">
+  <a href="article-01.html" class="logo">
+    <div class="logo-mark"></div>
+    <span class="logo-text">Mind Anchor</span>
+  </a>
+  <span class="nav-series">ProximityOS Series</span>
+</header>
+
+<nav class="index-nav" style="padding-top:80px;">
+  <a href="article-01.html" class="index-link">01</a>
+  <a href="article-02.html" class="index-link">02</a>
+  <a href="article-03.html" class="index-link">03</a>
+  <a href="article-04.html" class="index-link">04</a>
+  <a href="article-05.html" class="index-link">05</a>
+  <a href="article-06.html" class="index-link current">06</a>
+  <a href="article-07.html" class="index-link">07</a>
+  <a href="article-08.html" class="index-link">08</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-number">06</div>
+  <div class="manifestation-tag">Manifestation 06 · Strategic Neutrality</div>
+  <h1 class="hero-title">The Decoupled<br><em>Mind</em></h1>
+  <p class="hero-insight">Emotions are allowed to be present — but they aren't allowed to vote. You don't need to stop feeling angry. You just need to stop letting anger drive the car.</p>
+  <div class="scroll-hint">Read the full framework</div>
+</section>
+
+<main class="content">
+
+  <div class="section">
+    <div class="section-label">Hook</div>
+    <div class="hook-block">
+      <p>The goal is not to dissolve anger. Anger is, in many cases, <strong>precisely calibrated information.</strong> The goal is something far more surgical: to refuse it the governance of your choices while continuing to acknowledge its presence.</p>
+      <p>To hold the feeling in one hand and the decision in the other — and ensure the right hand is making the move.</p>
+      <p><strong>That separation — between emotional experience and operational decision — is one of the most valuable mental distinctions a leader can build.</strong></p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Emotional Focus</div>
+    <h2 class="section-title">Cognitive Separation and Tolerance of Friction</h2>
+    <div class="text-body">
+      <p>Not suppression. Not denial. Genuine decoupling — the capacity to feel fully while choosing wisely. The "feeling hand" and the "decision hand" are trained to operate independently.</p>
+    </div>
+    <div class="decouple-diagram">
+      <div class="decouple-row">
+        <div class="decouple-label">Feeling</div>
+        <div class="decouple-bar feeling">Acknowledged. Present. Valid. Real.</div>
+      </div>
+      <div class="decouple-connector">↕ — operational separation — ↕</div>
+      <div class="decouple-row">
+        <div class="decouple-label">Decision</div>
+        <div class="decouple-bar decision">Based on value. Not comfort. Not relief.</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Strategic Focus</div>
+    <h2 class="section-title">Recovery of Strategic Range</h2>
+    <div class="text-body">
+      <p>The individual or organization learns to separate feeling from positioning from decision from governance. Emotions are real. They are simply not permitted to vote.</p>
+    </div>
+    <div class="pullquote">
+      <p>"An emotion can be real, valid, and entirely legitimate — without being allowed to vote on your strategic future. Feel it. Then set it aside. Then decide."</p>
+      <cite>ProximityOS Framework</cite>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Founder / Builder Angle</div>
+    <h2 class="section-title">This Becomes Executive Maturity</h2>
+    <div class="text-body">
+      <p>Leaders learn to tolerate — without operational corruption:</p>
+    </div>
+    <ul class="list-items">
+      <li>Friction from the best people in the room</li>
+      <li>Dissent from the clearest thinkers</li>
+      <li>Discomfort at the table with a former adversary</li>
+      <li>Proximity to their own triggers</li>
+      <li>Challenge to their ego that might actually improve the outcome</li>
+    </ul>
+    <div class="text-body" style="margin-top:1.5rem;">
+      <p>The leader can sit beside an adversary, negotiate with a betrayer, and remain strategically positioned because the objective matters more than emotional relief. <em>This is not emotional coldness. It is the architecture of genuine strategic maturity.</em></p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="truth-block">
+      <div class="truth-label">Direct Truth</div>
+      <p>"Neutrality is not weakness. It is freedom of movement. The person who can stay in the room has more options than the person who must leave."</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Transition Role</div>
+    <h2 class="section-title">The Pivot from Diagnosis to Recovery</h2>
+    <div class="text-body">
+      <p>The first five manifestations described the problem. This micro-article begins the solution. The audience is offered a path forward — not just a wound examination, but a practice to build.</p>
+    </div>
+    <div class="focus-grid">
+      <div class="focus-card">
+        <div class="focus-card-label">Articles 1–5</div>
+        <p>The problem: avoidance, cost, sovereignty loss, ideological capture, organizational corruption. Diagnosis complete.</p>
+      </div>
+      <div class="focus-card">
+        <div class="focus-card-label">Articles 6–8</div>
+        <p>The recovery: decoupling, weaponizing, institutionalizing. The audience is offered architecture, not just awareness.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Human Recognition Trigger</div>
+    <div class="pullquote">
+      <p>"I do not need to escape to stay safe. I can be uncomfortable and effective at the same time."</p>
+      <cite>Presence — real presence, not the performance of it — is the rarest resource in high-growth environments. And it is trainable.</cite>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="cta-block">
+      <div class="cta-label">Call to Action</div>
+      <p>"Sit in the room. Feel the heat. Don't leave. Not because you're supposed to — but because the objective matters more than your relief. That's the decoupled mind."</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div class="section-label">Distribution Potential</div>
+    <h2 class="section-title">Platform Strategy</h2>
+    <div class="dist-grid">
+      <div class="dist-card">
+        <div class="dist-platform">Carousel</div>
+        <p>The two hands visual: "Feeling hand" and "Decision hand." Each slide shows a high-stakes scenario and demonstrates the separation in practice.</p>
+      </div>
+      <div class="dist-card">
+        <div class="dist-platform">Newsletter</div>
+        <p>The architecture of emotional sovereignty. "How to feel everything — and still make the wise decision. The skill of separating emotional experience from operational governance."</p>
+      </div>
+      <div class="dist-card">
+        <div class="dist-platform">Reel</div>
+        <p>Slow-motion imagery of a hand holding a flame and a compass simultaneously — both present, neither dominant. Minimal text overlay: "Feel it. Set it aside. Then decide."</p>
+      </div>
+      <div class="dist-card">
+        <div class="dist-platform">Story</div>
+        <p>"Stay in the room. Feel the heat. But don't let the heat make the decision." Single frame. No explanation needed.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="section-label">Framework Connection</div>
+    <h2 class="section-title">The Recovery Layer</h2>
+    <div class="text-body">
+      <p>Manifestation 6: Strategic Neutrality. Operational independence and emotional sovereignty. The foundation of negotiation mastery, high-stakes decision-making, crisis leadership, and emotional governance systems. A skill almost no one has been explicitly taught.</p>
+    </div>
+  </div>
+
+</main>
+
+<nav class="article-nav">
+  <a href="article-05.html" class="nav-link prev">
+    <span class="nav-link-dir"></span>
+    <span class="nav-link-title">The Shadow OS</span>
+  </a>
+  <a href="article-07.html" class="nav-link next">
+    <span class="nav-link-dir"></span>
+    <span class="nav-link-title">The Unprovokable Leader</span>
+  </a>
+</nav>
+
+<script>
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.section').forEach(s => observer.observe(s));
+</script>
+</body>
+</html>
