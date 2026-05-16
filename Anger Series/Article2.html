@@ -51,6 +51,37 @@
   .logo-text { font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; }
   .nav-series { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
 
+/* MASTHEAD */
+  .masthead {
+    padding: 3.5rem 0 3rem;
+    text-align: center;
+    border-bottom: 1px solid var(--rule);
+  }
+  .masthead-logo {
+    width: 90px;
+    height: auto;
+    display: block;
+    margin: 0 auto 1.8rem;
+    filter: drop-shadow(0 0 18px rgba(200,164,74,0.25));
+  }
+  .brand-name {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.35em;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.5rem;
+    opacity: 0.85;
+  }
+  .issue-tag {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+  
   .hero {
     min-height: 100vh; padding: 120px 2rem 80px;
     display: flex; flex-direction: column; justify-content: center;
@@ -193,23 +224,21 @@
 </head>
 <body>
 
-<header class="logo-bar">
-  <a href="article-01.html" class="logo">
-    <div class="logo-mark"></div>
-    <span class="logo-text">Mind Anchor</span>
-  </a>
+<header class="masthead">
+  <img class="masthead-logo" src="Icon.png" alt="Mind Anchor" />
+    <p class="brand-name">Mind Anchor</p>
   <span class="nav-series">ProximityOS Series</span>
 </header>
 
 <nav class="index-nav" style="padding-top:80px;">
-  <a href="article-01.html" class="index-link">01</a>
-  <a href="article-02.html" class="index-link current">02</a>
-  <a href="article-03.html" class="index-link">03</a>
-  <a href="article-04.html" class="index-link">04</a>
-  <a href="article-05.html" class="index-link">05</a>
-  <a href="article-06.html" class="index-link">06</a>
-  <a href="article-07.html" class="index-link">07</a>
-  <a href="article-08.html" class="index-link">08</a>
+  <a href="Article1.html" class="index-link">01</a>
+  <a href="Article2.html" class="index-link current">02</a>
+  <a href="Article3.html" class="index-link">03</a>
+  <a href="Article4.html" class="index-link">04</a>
+  <a href="Article5.html" class="index-link">05</a>
+  <a href="Article6.html" class="index-link">06</a>
+  <a href="Article7.html" class="index-link">07</a>
+  <a href="Article8.html" class="index-link">08</a>
 </nav>
 
 <section class="hero">
@@ -355,11 +384,11 @@
 </main>
 
 <nav class="article-nav">
-  <a href="article-01.html" class="nav-link prev">
+  <a href="Article1.html" class="nav-link prev">
     <span class="nav-link-dir"></span>
     <span class="nav-link-title">The Geometry of Avoidance</span>
   </a>
-  <a href="article-03.html" class="nav-link next">
+  <a href="Article3.html" class="nav-link next">
     <span class="nav-link-dir"></span>
     <span class="nav-link-title">The Ghost Architect</span>
   </a>
