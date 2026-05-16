@@ -8,25 +8,21 @@
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
 <style>
   :root {
-    --navy: #0B1140;
-    --navy-deep: #070C2C;
-    --navy-mid: #111A50;
-    --gold: #C8A44A;
-    --gold-light: #DFC07A;
-    --gold-pale: #F0E0B0;
-    --gold-dim: #8A6E2A;
-    --white: #FAFAF7;
-    --off-white: #F2EFE5;
-    --text-body: #E8E4D8;
-    --text-muted: #9A9580;
-    --text-dim: #5A5648;
-    --rule: rgba(200,164,74,0.2);
-    --rule-strong: rgba(200,164,74,0.45);
+    --bg: #0a0a0a;
+    --surface: #111111;
+    --surface2: #181818;
+    --border: #2a2a2a;
+    --text: #e8e2d9;
+    --muted: #7a7268;
+    --accent: #c8a96e;
+    --accent2: #e8c88e;
+    --number: #3a3530;
+    --tag-bg: #1e1a14;
   }
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   html { scroll-behavior: smooth; }
   body {
-    background-color: var(--navy-deep);
+    background: var(--bg);
     color: var(--text);
     font-family: 'EB Garamond', serif;
     font-size: 18px;
@@ -82,37 +78,6 @@
     text-transform: uppercase;
   }
 
-/* MASTHEAD */
-  .masthead {
-    padding: 3.5rem 0 3rem;
-    text-align: center;
-    border-bottom: 1px solid var(--rule);
-  }
-  .masthead-logo {
-    width: 90px;
-    height: auto;
-    display: block;
-    margin: 0 auto 1.8rem;
-    filter: drop-shadow(0 0 18px rgba(200,164,74,0.25));
-  }
-  .brand-name {
-    font-family: 'Jost', sans-serif;
-    font-weight: 400;
-    letter-spacing: 0.35em;
-    font-size: 11px;
-    text-transform: uppercase;
-    color: var(--gold);
-    margin-bottom: 0.5rem;
-    opacity: 0.85;
-  }
-  .issue-tag {
-    font-family: 'Jost', sans-serif;
-    font-size: 10px;
-    letter-spacing: 0.22em;
-    text-transform: uppercase;
-    color: var(--text-muted);
-  }
-  
   /* HERO */
   .hero {
     min-height: 100vh;
@@ -139,7 +104,7 @@
     font-family: 'Playfair Display', serif;
     font-size: clamp(120px, 20vw, 220px);
     font-weight: 900;
-    color: var(--gold);
+    color: var(--number);
     line-height: 0.8;
     position: absolute;
     right: -20px; top: 100px;
@@ -479,22 +444,24 @@
 <body>
 
 <!-- LOGO BAR -->
-<header class="masthead">
-  <img class="masthead-logo" src="Icon.png" alt="Mind Anchor" />
-    <p class="brand-name">Mind Anchor</p>
+<header class="logo-bar">
+  <a href="article-01.html" class="logo">
+    <div class="logo-mark"></div>
+    <span class="logo-text">Mind Anchor</span>
+  </a>
   <span class="nav-series">ProximityOS Series</span>
 </header>
 
 <!-- INDEX NAV -->
-<nav class="index-nav" style="padding-top:70px;">
-  <a href="Article1.html" class="index-link current">01</a>
-  <a href="Article2.html" class="index-link">02</a>
-  <a href="Article3.html" class="index-link">03</a>
-  <a href="Article4.html" class="index-link">04</a>
-  <a href="Article5.html" class="index-link">05</a>
-  <a href="Article6.html" class="index-link">06</a>
-  <a href="Article7.html" class="index-link">07</a>
-  <a href="Article8.html" class="index-link">08</a>
+<nav class="index-nav" style="padding-top:80px;">
+  <a href="article-01.html" class="index-link current">01</a>
+  <a href="article-02.html" class="index-link">02</a>
+  <a href="article-03.html" class="index-link">03</a>
+  <a href="article-04.html" class="index-link">04</a>
+  <a href="article-05.html" class="index-link">05</a>
+  <a href="article-06.html" class="index-link">06</a>
+  <a href="article-07.html" class="index-link">07</a>
+  <a href="article-08.html" class="index-link">08</a>
 </nav>
 
 <!-- HERO -->
@@ -650,7 +617,7 @@
 <!-- NAVIGATION -->
 <nav class="article-nav">
   <div></div>
-  <a href="Article2.html" class="nav-link next">
+  <a href="article-02.html" class="nav-link next">
     <span class="nav-link-dir"></span>
     <span class="nav-link-title">The Invoice for Distance</span>
   </a>
