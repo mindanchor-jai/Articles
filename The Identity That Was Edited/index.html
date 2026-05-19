@@ -1,61 +1,324 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>India Wasn’t Lost. It Was Reframed.</title>
-    <h1>India Wasn’t Lost. It Was Reframed.</h1>
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-<style>
-   .grid {
-        display: grid:
-        grid-template-columns: repeat(auto-fit, minmax(260fx, 1fr));
-        gap: 20px;
+  <title>India Wasn’t Lost. It Was Reframed. | Mind Anchor</title>
+
+  <style>
+    :root {
+      --navy: #030817;
+      --navy-2: #07112f;
+      --gold: #d6aa42;
+      --gold-soft: #f5d77b;
+      --ivory: #f8f0dc;
+      --muted: #a9a18f;
     }
 
-    .card {
-        border: 1px solid #C5A059;
-        border-radius: 12px;
-        paddings: 16px;
-    } 
-</style>
-    
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ivory);
+      background:
+        linear-gradient(135deg, rgba(214,170,66,0.08), transparent 24%),
+        linear-gradient(245deg, rgba(245,215,123,0.055), transparent 32%),
+        radial-gradient(circle at 50% 18%, rgba(214,170,66,0.055), transparent 28%),
+        radial-gradient(circle at 18% 78%, rgba(245,215,123,0.035), transparent 24%),
+        linear-gradient(180deg, #07112f 0%, #030817 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.014) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.014) 1px, transparent 1px);
+      background-size: 86px 86px;
+      mask-image: radial-gradient(circle at center, black 38%, transparent 92%);
+      pointer-events: none;
+    }
+
+    main {
+      max-width: 1400px;
+      margin: auto;
+      padding: 70px 24px 120px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 140px;
+    }
+
+    .logo {
+      width: 130px;
+      margin-bottom: 30px;
+      filter:
+        drop-shadow(0 0 24px rgba(214,170,66,0.25))
+        drop-shadow(0 0 60px rgba(214,170,66,0.10));
+    }
+
+    .eyebrow {
+      color: var(--gold-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      font-size: 0.72rem;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(3rem, 8vw, 6.4rem);
+      line-height: 0.98;
+      font-weight: 400;
+      color: var(--gold-soft);
+      letter-spacing: 0.035em;
+      margin-bottom: 28px;
+    }
+
+    .intro {
+      max-width: 780px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.9;
+    }
+
+    .map {
+      position: relative;
+      min-height: 1680px;
+    }
+
+    .path {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .path svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .path path {
+      stroke: rgba(214,170,66,0.14);
+      stroke-width: 1.15;
+      fill: none;
+    }
+
+    .node {
+      position: absolute;
+      width: 320px;
+    }
+
+    .node::before {
+      content: "";
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background: var(--gold-soft);
+      border-radius: 50%;
+      top: -24px;
+      left: 0;
+      box-shadow:
+        0 0 16px rgba(245,215,123,0.75),
+        0 0 44px rgba(214,170,66,0.35);
+    }
+
+    .label {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.7rem;
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      line-height: 1.08;
+      font-weight: 400;
+      margin-bottom: 18px;
+      color: var(--ivory);
+    }
+
+    .description {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 0.98rem;
+      margin-bottom: 20px;
+    }
+
+    .open {
+      color: var(--gold-soft);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.72rem;
+      border-bottom: 1px solid rgba(214,170,66,0.4);
+      padding-bottom: 8px;
+      transition: 0.3s ease;
+    }
+
+    .open:hover {
+      color: var(--ivory);
+      border-color: var(--ivory);
+      letter-spacing: 0.22em;
+    }
+
+    .n1 { top: 60px; left: 8%; }
+    .n2 { top: 260px; right: 8%; }
+    .n3 { top: 510px; left: 18%; }
+    .n4 { top: 770px; right: 18%; }
+    .n5 { top: 1030px; left: 10%; }
+    .n6 { top: 1300px; right: 12%; }
+
+    footer {
+      text-align: center;
+      margin-top: 120px;
+      color: rgba(248,240,220,0.42);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.78rem;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        margin-bottom: 90px;
+      }
+
+      .map {
+        min-height: auto;
+      }
+
+      .path {
+        display: none;
+      }
+
+      .node {
+        position: relative;
+        width: 100%;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        margin-bottom: 86px;
+        padding-left: 28px;
+        border-left: 1px solid rgba(214,170,66,0.22);
+      }
+
+      .node::before {
+        left: -7px;
+        top: 2px;
+      }
+
+      h2 {
+        font-size: 1.7rem;
+      }
+
+      .logo {
+        width: 105px;
+      }
+    }
+  </style>
+</head>
+
 <body>
-<section class= "grid">
-    <div class= 'card'>
-        <h2>Main Article </h2>
-        <p>The Identity That Was Edited </p>
-        <a href= "MainArticle.html"> Open Article</a>
-    </div>
-    
-    <div class= 'card'>
-        <h2>Micro Article 1 </h2>
-        <p>You Didn't Lose Your Identity. It Was Redesigned. </p>
-        <a href= "Article1.html"> Open Article</a>
-    </div>
 
-    <div class= 'card'>
-        <h2>Micro Article 2 </h2>
-        <p>The Day Learning Stopped Being Understanding </p>
-        <a href= "Article2.html"> Open Article</a>
-    </div>
+  <main>
 
-    <div class= 'card'>
-        <h2>Micro Article 3 </h2>
-        <p>It Wasn't Erased. It Was Renamed. </p>
-        <a href= "Article3.html"> Open Article</a>
-    </div>
+    <header>
+      <img class="logo" src="Icon.png" alt="Mind Anchor Logo" />
 
-    <div class= 'card'>
-        <h2>Micro Article 4 </h2>
-        <p>The Colonisation That Stayed - Long After Independence </p>
-        <a href= "Article4.html"> Open Article</a>
-    </div>
+      <p class="eyebrow">Mind Anchor Identity Series</p>
 
-    <div class= 'card'>
-        <h2>Micro Article 5 </h2>
-        <p>The Difference Between Return and Reclamation </p>
-        <a href= "Article5.html"> Open Article</a>
-    </div>
-</section>
+      <h1>India Wasn’t Lost.<br>It Was Reframed.</h1>
+
+      <p class="intro">
+        A civilizational identity series exploring how culture, education,
+        language, and memory were not simply erased — but renamed,
+        reframed, and psychologically redesigned.
+      </p>
+    </header>
+
+    <section class="map">
+
+      <div class="path">
+        <svg viewBox="0 0 1400 1680" preserveAspectRatio="none">
+          <path d="M180 120
+                   C520 220, 900 120, 1180 320
+                   S900 610, 360 720
+                   S460 1030, 1150 1200
+                   S900 1500, 320 1480" />
+        </svg>
+      </div>
+
+      <article class="node n1">
+        <p class="label">Main Article</p>
+        <h2>The Identity That Was Edited</h2>
+        <p class="description">
+          The central essay on how identity was not simply lost, but consciously reframed.
+        </p>
+        <a class="open" href="MainArticle.html">Open Article →</a>
+      </article>
+
+      <article class="node n2">
+        <p class="label">Micro Article 01</p>
+        <h2>You Didn’t Lose Your Identity</h2>
+        <p class="description">
+          You did not lose it. It was redesigned through education, language, and memory.
+        </p>
+        <a class="open" href="Article1.html">Open Article →</a>
+      </article>
+
+      <article class="node n3">
+        <p class="label">Micro Article 02</p>
+        <h2>The Day Learning Stopped Being Understanding</h2>
+        <p class="description">
+          When education shifted from comprehension to repetition, identity began changing quietly.
+        </p>
+        <a class="open" href="Article2.html">Open Article →</a>
+      </article>
+
+      <article class="node n4">
+        <p class="label">Micro Article 03</p>
+        <h2>It Wasn’t Erased. It Was Renamed.</h2>
+        <p class="description">
+          The old knowledge survived, but often under borrowed names and foreign validation.
+        </p>
+        <a class="open" href="Article3.html">Open Article →</a>
+      </article>
+
+      <article class="node n5">
+        <p class="label">Micro Article 04</p>
+        <h2>The Colonisation That Stayed</h2>
+        <p class="description">
+          Long after independence, the deeper psychological architecture continued operating.
+        </p>
+        <a class="open" href="Article4.html">Open Article →</a>
+      </article>
+
+      <article class="node n6">
+        <p class="label">Micro Article 05</p>
+        <h2>The Difference Between Return and Reclamation</h2>
+        <p class="description">
+          Return is nostalgia. Reclamation is the conscious rebuilding of civilizational confidence.
+        </p>
+        <a class="open" href="Article5.html">Open Article →</a>
+      </article>
+
+    </section>
+
+    <footer>
+      Mind Anchor — Jai
+    </footer>
+
+  </main>
+
 </body>
 </html>
