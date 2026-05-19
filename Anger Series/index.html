@@ -1,81 +1,297 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <title>The Proximity OS</title>
-    <h1>The Proximity OS</h1>
-</head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Proximity OS | Mind Anchor</title>
 
-<style>
-   .grid {
-        display: grid:
-        grid-template-columns: repeat(auto-fit, minmax(260fx, 1fr));
-        gap: 20px;
+  <style>
+    :root {
+      --navy: #050b2f;
+      --navy-deep: #020515;
+      --gold: #d6aa42;
+      --gold-soft: #f5d77b;
+      --ivory: #f8f0dc;
+      --muted: #b9b09d;
+      --border: rgba(214, 170, 66, 0.32);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      font-family: Georgia, "Times New Roman", serif;
+      background:
+        radial-gradient(circle at top, rgba(214,170,66,0.18), transparent 34%),
+        linear-gradient(180deg, var(--navy), var(--navy-deep));
+      color: var(--ivory);
+      padding: 56px 24px 72px;
+    }
+
+    main {
+      max-width: 1180px;
+      margin: 0 auto;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 64px;
+    }
+
+    header img {
+      width: 138px;
+      margin-bottom: 28px;
+    }
+
+    .eyebrow {
+      color: var(--gold-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.76rem;
+      margin-bottom: 16px;
+    }
+
+    h1 {
+      font-size: clamp(2.6rem, 6vw, 5.4rem);
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      color: var(--gold-soft);
+      margin-bottom: 18px;
+    }
+
+    .intro {
+      max-width: 720px;
+      margin: 0 auto;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.75;
+    }
+
+    .divider {
+      width: 110px;
+      height: 1px;
+      margin: 36px auto 0;
+      background: linear-gradient(90deg, transparent, var(--gold), transparent);
+    }
+
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(295px, 1fr));
+      gap: 26px;
     }
 
     .card {
-        border: 1px solid #C5A059;
-        border-radius: 12px;
-        paddings: 16px;
-    } 
-</style>
-    
+      position: relative;
+      min-height: 330px;
+      padding: 32px 30px;
+      border: 1px solid var(--border);
+      border-radius: 26px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.075), rgba(255,255,255,0.025));
+      box-shadow: 0 26px 72px rgba(0, 0, 0, 0.28);
+      overflow: hidden;
+      transition: transform 0.35s ease, border-color 0.35s ease;
+    }
+
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at top right, rgba(245,215,123,0.16), transparent 42%);
+      opacity: 0;
+      transition: opacity 0.35s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-8px);
+      border-color: rgba(245,215,123,0.65);
+    }
+
+    .card:hover::before {
+      opacity: 1;
+    }
+
+    .card-inner {
+      position: relative;
+      z-index: 1;
+      display: flex;
+      flex-direction: column;
+      height: 100%;
+    }
+
+    .label {
+      color: var(--gold);
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+    }
+
+    h2 {
+      font-size: 1.55rem;
+      line-height: 1.2;
+      font-weight: 500;
+      margin-bottom: 18px;
+    }
+
+    p {
+      color: var(--muted);
+      font-size: 1rem;
+      line-height: 1.72;
+      margin-bottom: 30px;
+    }
+
+    a {
+      margin-top: auto;
+      width: fit-content;
+      color: var(--gold-soft);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.15em;
+      font-size: 0.78rem;
+      border-bottom: 1px solid rgba(214,170,66,0.48);
+      padding-bottom: 8px;
+      transition: color 0.3s ease, border-color 0.3s ease;
+    }
+
+    a:hover {
+      color: var(--ivory);
+      border-color: var(--ivory);
+    }
+
+    footer {
+      text-align: center;
+      margin-top: 74px;
+      color: rgba(248,240,220,0.46);
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 0.14em;
+    }
+
+    @media (max-width: 640px) {
+      body {
+        padding: 42px 18px 56px;
+      }
+
+      header img {
+        width: 108px;
+      }
+
+      .card {
+        min-height: auto;
+      }
+    }
+  </style>
+</head>
+
 <body>
-<section class= "grid">
-    <div class= 'card'>
-        <h2>Main Article - Pyrrhic Avoidance </h2>
-        <p>The hidden architecture of how anger corrupts the decisions you believe you are making for yourself. </p>
-        <a href= "MainArticle.html"> Open Article</a>
-    </div>
+  <main>
+    <header>
+      <img src="Icon.png" alt="Mind Anchor Icon" />
 
-    <div class= 'card'>
-        <h2>Micro Article #1 - The Geometry of Avoidance </h2>
-        <p>You aren't choosing a seat. You're fleeing a feeling. 
-            The most expensive decision you make today won't be in a spreadsheet — 
-            it will be which chair you chose in the conference room. </p>
-        <a href= "Article1.html"> Open Article</a>
-    </div>
+      <p class="eyebrow">Mind Anchor Framework Series</p>
+      <h1>The Proximity OS</h1>
 
-    <div class= 'card'>
-        <h2>Micro Article #2 - The Invoice for Distance </h2>
-        <p>Silence isn't free. It's just an un-itemized bill that hits your future self - with interest. </p>
-        <a href= "Article2.html"> Open Article</a>
-    </div>
+      <p class="intro">
+        A psychological operating system exploring how anger, avoidance, ego, and emotional proximity
+        silently distort the decisions we believe are strategic.
+      </p>
 
-    <div class= 'card'>
-        <h2>Micro Article #3 - The Ghost Architect </h2>
-        <p>If you only move "away" from someone, they are the one deciding where you go. You aren't navigating. You're orbiting a wound. </p>
-        <a href= "Article3.html"> Open Article</a>
-    </div>
+      <div class="divider"></div>
+    </header>
 
-    <div class= 'card'>
-        <h2>Micro Article #4 - The Virtue Camouflage </h2>
-        <p>The ego is most dangerous when it learns therapeutic vocabulary. Avoidance stops feeling like fear and starts feeling like integrity. </p>
-        <a href= "Article4.html"> Open Article</a>
-    </div>
+    <section class="grid">
 
-    <div class= 'card'>
-        <h2>Micro Article #5 - The Shadow OS </h2>
-        <p>Your company doesn't serve the market. It serves your unaddressed triggers. The org chart says one thing. The founder's trauma says another. </p>
-        <a href= "Article5.html"> Open Article</a>
-    </div>
+      <article class="card">
+        <div class="card-inner">
+          <p class="label">Main Article</p>
+          <h2>Pyrrhic Avoidance</h2>
+          <p>The hidden architecture of how anger corrupts the decisions you believe you are making for yourself.</p>
+          <a href="MainArticle.html">Open Article</a>
+        </div>
+      </article>
 
-    <div class= 'card'>
-        <h2>Micro Article #6 - The Decoupled Mind </h2>
-        <p>Emotions are allowed to be present — but they aren't allowed to vote. You don't need to stop feeling angry. You just need to stop letting anger drive the car. </p>
-        <a href= "Article6.html"> Open Article</a>
-    </div>
+      <article class="card">
+        <div class="card-inner">
+          <p class="label">Micro Article 01</p>
+          <h2>The Geometry of Avoidance</h2>
+          <p>You are not choosing a seat. You are fleeing a feeling. The most expensive decision may be which chair you choose.</p>
+          <a href="Article1.html">Open Article</a>
+        </div>
+      </article>
 
-    <div class= 'card'>
-        <h2>Micro Article #7 - The Unprovokable Leader </h2>
-        <p>When you cannot be triggered, you cannot be manipulated. The most dangerous person in the room is not the one with the most power — it's the one who doesn't need to be liked. </p>
-        <a href= "Article7.html"> Open Article</a>
-    </div>
+      <article class="card">
+        <div class="card-inner">
+          <p class="label">Micro Article 02</p>
+          <h2>The Invoice for Distance</h2>
+          <p>Silence is not free. It is an un-itemized bill that hits your future self — with interest.</p>
+          <a href="Article2.html">Open Article</a>
+        </div>
+      </article>
 
-    <div class= 'card'>
-        <h2>Micro Article #8 - Building the Immunity </h2>
-        <p>Don't wait for leaders to be mature. Build systems that make maturity mandatory. Strategy shouldn't depend on how the CEO slept last night. </p>
-        <a href= "Article8.html"> Open Article</a>
-    </div>
-</section>
+      <article class="card">
+        <div class="card-inner">
+          <p class="label">Micro Article 03</p>
+          <h2>The Ghost Architect</h2>
+          <p>If you only move away from someone, they are still deciding where you go. You are orbiting a wound.</p>
+          <a href="Article3.html">Open Article</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-inner">
+          <p class="label">Micro Article 04</p>
+          <h2>The Virtue Camouflage</h2>
+          <p>The ego is most dangerous when it learns therapeutic vocabulary. Avoidance starts sounding like integrity.</p>
+          <a href="Article4.html">Open Article</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-inner">
+          <p class="label">Micro Article 05</p>
+          <h2>The Shadow OS</h2>
+          <p>Your company does not serve the market. It often serves the founder’s unaddressed triggers.</p>
+          <a href="Article5.html">Open Article</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-inner">
+          <p class="label">Micro Article 06</p>
+          <h2>The Decoupled Mind</h2>
+          <p>Emotions are allowed to be present — but they are not allowed to vote.</p>
+          <a href="Article6.html">Open Article</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-inner">
+          <p class="label">Micro Article 07</p>
+          <h2>The Unprovokable Leader</h2>
+          <p>When you cannot be triggered, you cannot be manipulated.</p>
+          <a href="Article7.html">Open Article</a>
+        </div>
+      </article>
+
+      <article class="card">
+        <div class="card-inner">
+          <p class="label">Micro Article 08</p>
+          <h2>Building the Immunity</h2>
+          <p>Do not wait for leaders to be mature. Build systems that make maturity mandatory.</p>
+          <a href="Article8.html">Open Article</a>
+        </div>
+      </article>
+
+    </section>
+
+    <footer>
+      Mind Anchor — Jai
+    </footer>
+  </main>
 </body>
 </html>
