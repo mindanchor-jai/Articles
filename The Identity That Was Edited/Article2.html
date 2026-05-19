@@ -63,12 +63,106 @@
   .wrapper > *:nth-child(1){animation-delay:0.05s;}.wrapper > *:nth-child(2){animation-delay:0.15s;}
   .wrapper > *:nth-child(3){animation-delay:0.25s;}.wrapper > *:nth-child(4){animation-delay:0.35s;}
   .wrapper > *:nth-child(n+5){animation-delay:0.45s;}
+
+/* === Mind Anchor Graphic Rebuild Override === */
+:root{
+  --gold:#C9A84C; --gold-light:#E8C97A; --gold-pale:#F5E4B0;
+  --navy-deep:#05081F; --navy:#070C2C; --navy-mid:#0B1140; --navy-soft:#111A50;
+  --ink:#8CA0C2; --text-body:#D4C9B0; --text-muted:#8A8070;
+  --rule:rgba(201,168,76,0.24); --rule-strong:rgba(201,168,76,0.44);
+}
+body{
+  background:
+    radial-gradient(circle at 50% -10%, rgba(201,168,76,0.10), transparent 28rem),
+    radial-gradient(circle at 85% 18%, rgba(201,168,76,0.045), transparent 24rem),
+    linear-gradient(180deg,#0B1140 0%,#070C2C 45%,#05081F 100%) !important;
+}
+body::before{opacity:.46!important;}
+body::after{
+  background:
+    linear-gradient(rgba(201,168,76,0.028) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(201,168,76,0.020) 1px, transparent 1px),
+    radial-gradient(ellipse at center,rgba(201,168,76,0.065) 0%,transparent 70%) !important;
+  background-size:86px 86px,86px 86px,auto!important;
+  width:100%!important;height:100%!important;inset:0!important;transform:none!important;
+  opacity:.52!important;
+}
+.wrapper{max-width:780px!important;padding-top:58px!important;position:relative!important;}
+.cover-brand{
+  min-height:70vh; display:flex; flex-direction:column; justify-content:center; align-items:center;
+  text-align:center; position:relative; margin:-18px 0 64px; padding:72px 24px 58px;
+  border:1px solid rgba(201,168,76,.20);
+  background:radial-gradient(circle at center, rgba(201,168,76,.10), transparent 52%),
+             linear-gradient(180deg, rgba(11,17,64,.58), rgba(7,12,44,.22));
+  overflow:hidden;
+}
+.cover-brand::before{content:'';position:absolute;inset:18px;border:1px solid rgba(201,168,76,.10);pointer-events:none;}
+.cover-brand::after{
+  content:'';position:absolute;width:520px;height:520px;border-radius:50%;
+  border:1px solid rgba(201,168,76,.13);
+  box-shadow:0 0 0 64px rgba(201,168,76,.018), inset 0 0 80px rgba(201,168,76,.035);
+  pointer-events:none;
+}
+.cover-icon{width:116px;height:auto;display:block;margin:0 auto 32px;filter:drop-shadow(0 0 24px rgba(201,168,76,.28));position:relative;z-index:2;}
+.cover-label{
+  font-family:'Cinzel',serif;font-size:8px;letter-spacing:.42em;text-transform:uppercase;
+  color:var(--gold);opacity:.72;margin-bottom:18px;position:relative;z-index:2;
+}
+.cover-rule{width:190px;height:1px;background:linear-gradient(to right,transparent,var(--gold),transparent);opacity:.55;margin:26px auto 0;position:relative;z-index:2;}
+.brand-watermark{position:absolute;left:50%;transform:translateX(-50%);width:min(620px,88vw);opacity:.072;pointer-events:none;user-select:none;z-index:0;filter:saturate(.95) contrast(1.05);}
+.cover-brand .brand-watermark{top:50%;transform:translate(-50%,-50%);width:min(660px,92vw);opacity:.105;}
+.wm-a{top:16%;}.wm-b{top:39%;}.wm-c{top:63%;}.wm-d{top:84%;}
+.series-tag,.episode-label,h1,.divider,.hook-block,.body-text,.tension,.i-voice,.section-label,.truth-block,.pull-quote,.punch,.bridge-block,.cta-block,.compare-grid,.example-cards,.signs-list,.pillars,.anchor-tag{
+  position:relative;z-index:2;
+}
+.series-tag{display:flex!important;justify-content:center;width:100%;margin-bottom:22px!important;color:var(--gold-light)!important;}
+.episode-label{text-align:center;}
+.anchor-tag{display:block!important;width:max-content;margin:0 auto 20px!important;}
+h1{text-align:center;font-size:clamp(42px,7vw,68px)!important;text-shadow:0 0 24px rgba(201,168,76,.08);}
+.hook-block,.i-voice,.truth-block,.cta-block{
+  background:radial-gradient(circle at top right, rgba(201,168,76,.09), transparent 44%),rgba(11,17,64,.68)!important;
+  border-color:rgba(201,168,76,.30)!important; box-shadow:0 18px 55px rgba(0,0,0,.18);
+}
+.hook-block{border-left:3px solid var(--gold)!important;}
+.divider-line{background:linear-gradient(to right,transparent,rgba(201,168,76,.48),transparent)!important;}
+.body-text p{color:#D8CDB5!important;}
+.section-label{border-top:1px solid rgba(201,168,76,.16);padding-top:28px;}
+.visual-sigil{
+  margin:42px auto;width:min(420px,90%);height:180px;border:1px solid rgba(201,168,76,.22);
+  background:radial-gradient(circle at center, rgba(201,168,76,.08), transparent 58%),rgba(5,8,31,.32);
+  position:relative;overflow:hidden;z-index:2;
+}
+.visual-sigil::before{content:'';position:absolute;inset:28px;border:1px solid rgba(201,168,76,.16);transform:rotate(45deg);}
+.visual-sigil::after{content:'';position:absolute;top:50%;left:50%;width:72%;height:1px;transform:translate(-50%,-50%);background:linear-gradient(to right,transparent,var(--gold),transparent);opacity:.55;}
+.visual-sigil span{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);font-family:'Cinzel',serif;font-size:8px;letter-spacing:.38em;text-transform:uppercase;color:var(--gold-light);background:#070C2C;padding:8px 14px;z-index:2;white-space:nowrap;}
+.cta-block{border:1px solid rgba(201,168,76,.36)!important;}
+@media(max-width:600px){
+  .wrapper{padding:36px 22px 80px!important;}
+  .cover-brand{min-height:62vh;padding:52px 18px 44px;}
+  .cover-icon{width:92px;}
+  .brand-watermark{opacity:.055;width:94vw;}
+}
+
 </style>
 </head>
 <body>
 <div class="wrapper">
 
-  <div class="series-tag">The Identity That Was Edited &nbsp;·&nbsp; Episode 2 → 3</div>
+  
+  <div class="cover-brand">
+    <img class="brand-watermark" src="Wordmark.png" alt="Mind Anchor Jai watermark">
+    <img class="cover-icon" src="Icon.png" alt="Mind Anchor icon">
+    <p class="cover-label">Mind Anchor · The Identity That Was Edited</p>
+    <div class="cover-rule"></div>
+  </div>
+
+  <img class="brand-watermark wm-a" src="Wordmark.png" alt="Mind Anchor Jai watermark">
+  <img class="brand-watermark wm-b" src="Wordmark.png" alt="Mind Anchor Jai watermark">
+  <img class="brand-watermark wm-c" src="Wordmark.png" alt="Mind Anchor Jai watermark">
+  <img class="brand-watermark wm-d" src="Wordmark.png" alt="Mind Anchor Jai watermark">
+
+  <div class="visual-sigil"><span>Episode 02</span></div>
+<div class="series-tag">The Identity That Was Edited &nbsp;·&nbsp; Episode 2 → 3</div>
   <p class="episode-label">Micro-Article 02 &nbsp;/&nbsp; Education → Control of Thought</p>
   <h1>The Day Learning Stopped<br><em>Being Understanding</em></h1>
 
