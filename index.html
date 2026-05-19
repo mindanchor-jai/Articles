@@ -3,122 +3,153 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Mind Anchor Archive</title>
+  <title>Mind Anchor Library</title>
 
   <style>
     :root {
-      --navy: #07113f;
-      --navy-deep: #030821;
+      --navy: #050b2f;
+      --navy-2: #07113f;
       --gold: #d8aa3d;
       --gold-soft: #f3d27a;
       --ivory: #f7f1df;
       --muted: #b9b3a3;
-      --card: rgba(255, 255, 255, 0.045);
-      --border: rgba(216, 170, 61, 0.28);
+      --line: rgba(216, 170, 61, 0.28);
+      --glass: rgba(255,255,255,0.045);
     }
 
     * {
-      box-sizing: border-box;
       margin: 0;
       padding: 0;
+      box-sizing: border-box;
     }
 
     body {
       min-height: 100vh;
       font-family: Georgia, "Times New Roman", serif;
-      background:
-        radial-gradient(circle at top, rgba(216,170,61,0.16), transparent 32%),
-        linear-gradient(180deg, var(--navy), var(--navy-deep));
       color: var(--ivory);
-      padding: 64px 24px;
+      background:
+        radial-gradient(circle at top center, rgba(216,170,61,0.18), transparent 28%),
+        radial-gradient(circle at bottom left, rgba(243,210,122,0.08), transparent 34%),
+        linear-gradient(180deg, var(--navy-2), var(--navy));
+      padding: 56px 22px;
     }
 
-    .archive {
-      max-width: 1120px;
-      margin: 0 auto;
+    .page {
+      max-width: 1180px;
+      margin: auto;
     }
 
-    .brand-mark {
+    header {
       text-align: center;
-      margin-bottom: 56px;
+      margin-bottom: 70px;
     }
 
-    .brand-mark img {
-      width: 120px;
-      height: auto;
-      margin-bottom: 22px;
+    .logo {
+      width: 118px;
+      margin-bottom: 28px;
+      filter: drop-shadow(0 18px 42px rgba(216,170,61,0.22));
     }
 
     .eyebrow {
       color: var(--gold-soft);
       text-transform: uppercase;
-      letter-spacing: 0.22em;
-      font-size: 0.76rem;
-      margin-bottom: 14px;
-    }
-
-    h1 {
-      font-size: clamp(2.4rem, 6vw, 5rem);
-      font-weight: 500;
-      letter-spacing: 0.04em;
-      color: var(--gold-soft);
+      letter-spacing: 0.28em;
+      font-size: 0.74rem;
       margin-bottom: 18px;
     }
 
-    .intro {
-      max-width: 680px;
-      margin: 0 auto;
-      color: var(--muted);
-      font-size: 1.05rem;
-      line-height: 1.7;
+    h1 {
+      font-size: clamp(3rem, 7vw, 6.2rem);
+      font-weight: 400;
+      letter-spacing: 0.035em;
+      color: var(--gold-soft);
+      line-height: 0.95;
     }
 
-    .divider {
-      width: 92px;
+    .intro {
+      max-width: 720px;
+      margin: 28px auto 0;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.8;
+    }
+
+    .rule {
+      width: 140px;
       height: 1px;
+      margin: 36px auto 0;
       background: linear-gradient(90deg, transparent, var(--gold), transparent);
-      margin: 34px auto 0;
+    }
+
+    .library-meta {
+      display: flex;
+      justify-content: center;
+      gap: 14px;
+      flex-wrap: wrap;
+      margin-top: 34px;
+    }
+
+    .pill {
+      border: 1px solid var(--line);
+      color: var(--gold-soft);
+      padding: 9px 15px;
+      border-radius: 999px;
+      font-size: 0.72rem;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      background: rgba(255,255,255,0.035);
     }
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      grid-template-columns: repeat(3, 1fr);
       gap: 26px;
-      margin-top: 64px;
     }
 
     .card {
       position: relative;
-      padding: 34px 30px;
-      min-height: 320px;
-      border: 1px solid var(--border);
-      border-radius: 24px;
+      min-height: 390px;
+      padding: 32px;
+      border: 1px solid var(--line);
+      border-radius: 30px;
       background:
         linear-gradient(180deg, rgba(255,255,255,0.07), rgba(255,255,255,0.025));
-      box-shadow: 0 24px 70px rgba(0, 0, 0, 0.28);
+      box-shadow: 0 28px 80px rgba(0,0,0,0.28);
       overflow: hidden;
-      transition: transform 0.35s ease, border-color 0.35s ease;
+      transition: 0.35s ease;
     }
 
     .card::before {
       content: "";
       position: absolute;
       inset: 0;
-      background: radial-gradient(circle at top right, rgba(216,170,61,0.18), transparent 38%);
+      background: radial-gradient(circle at top right, rgba(243,210,122,0.18), transparent 42%);
       opacity: 0;
-      transition: opacity 0.35s ease;
+      transition: 0.35s ease;
+    }
+
+    .card::after {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 32px;
+      right: 32px;
+      height: 1px;
+      background: linear-gradient(90deg, transparent, var(--gold-soft), transparent);
+      opacity: 0.45;
     }
 
     .card:hover {
-      transform: translateY(-8px);
-      border-color: rgba(243, 210, 122, 0.62);
+      transform: translateY(-10px);
+      border-color: rgba(243,210,122,0.68);
+      box-shadow: 0 34px 95px rgba(0,0,0,0.42);
     }
 
     .card:hover::before {
       opacity: 1;
     }
 
-    .card-content {
+    .inner {
       position: relative;
       z-index: 1;
       height: 100%;
@@ -127,125 +158,159 @@
     }
 
     .number {
+      font-size: 0.76rem;
+      letter-spacing: 0.22em;
       color: var(--gold);
-      font-size: 0.82rem;
-      letter-spacing: 0.18em;
-      margin-bottom: 28px;
+      text-transform: uppercase;
+      margin-bottom: 34px;
     }
 
-    .card h2 {
-      font-size: 1.65rem;
-      line-height: 1.15;
-      font-weight: 500;
-      color: var(--ivory);
+    .tag {
+      width: fit-content;
       margin-bottom: 18px;
+      padding: 7px 11px;
+      border: 1px solid rgba(216,170,61,0.28);
+      border-radius: 999px;
+      color: rgba(247,241,223,0.72);
+      font-size: 0.68rem;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
     }
 
-    .card p {
+    h2 {
+      font-size: 1.72rem;
+      font-weight: 400;
+      line-height: 1.15;
+      margin-bottom: 18px;
+      color: var(--ivory);
+    }
+
+    .desc {
       color: var(--muted);
       font-size: 1rem;
-      line-height: 1.7;
-      margin-bottom: 32px;
+      line-height: 1.72;
+      margin-bottom: 34px;
     }
 
-    .card a {
+    .open {
       margin-top: auto;
       display: inline-flex;
       width: fit-content;
       align-items: center;
-      gap: 10px;
+      gap: 12px;
       color: var(--gold-soft);
       text-decoration: none;
-      font-size: 0.82rem;
       text-transform: uppercase;
-      letter-spacing: 0.16em;
-      border-bottom: 1px solid rgba(216,170,61,0.45);
+      letter-spacing: 0.18em;
+      font-size: 0.74rem;
       padding-bottom: 8px;
-      transition: color 0.3s ease, border-color 0.3s ease;
+      border-bottom: 1px solid rgba(216,170,61,0.48);
+      transition: 0.3s ease;
     }
 
-    .card a:hover {
+    .open:hover {
       color: var(--ivory);
       border-color: var(--ivory);
+      gap: 18px;
     }
 
     footer {
-      margin-top: 72px;
       text-align: center;
-      color: rgba(247,241,223,0.48);
-      font-size: 0.82rem;
-      letter-spacing: 0.12em;
+      margin-top: 76px;
+      color: rgba(247,241,223,0.45);
+      font-size: 0.78rem;
+      letter-spacing: 0.18em;
       text-transform: uppercase;
     }
 
-    @media (max-width: 640px) {
-      body {
-        padding: 42px 18px;
-      }
-
-      .brand-mark img {
-        width: 92px;
-      }
-
+    @media (max-width: 900px) {
       .grid {
-        margin-top: 46px;
+        grid-template-columns: 1fr;
       }
 
       .card {
         min-height: auto;
       }
     }
+
+    @media (max-width: 560px) {
+      body {
+        padding: 42px 16px;
+      }
+
+      .logo {
+        width: 92px;
+      }
+
+      .card {
+        padding: 28px 24px;
+        border-radius: 24px;
+      }
+
+      h2 {
+        font-size: 1.48rem;
+      }
+    }
   </style>
 </head>
 
 <body>
-  <main class="archive">
-    <header class="brand-mark">
-      <img src="Icon.png" alt="Mind Anchor Logo" />
+  <main class="page">
+    <header>
+      <img class="logo" src="Icon.png" alt="Mind Anchor Logo" />
 
       <p class="eyebrow">Mind Anchor Library</p>
       <h1>Archive</h1>
 
       <p class="intro">
-        A curated collection of essays, frameworks, and psychological systems exploring identity,
+        A curated library of essays, frameworks, and psychological systems exploring identity,
         pressure, decision-making, and the invisible patterns shaping human performance.
       </p>
 
-      <div class="divider"></div>
+      <div class="rule"></div>
+
+      <div class="library-meta">
+        <span class="pill">Essays</span>
+        <span class="pill">Frameworks</span>
+        <span class="pill">Systems Thinking</span>
+      </div>
     </header>
 
     <section class="grid">
       <article class="card">
-        <div class="card-content">
-          <p class="number">ARTICLE 01</p>
+        <div class="inner">
+          <p class="number">Article 01</p>
+          <span class="tag">Identity · Resilience</span>
           <h2>Greatness Is Earned</h2>
-          <p>
+          <p class="desc">
             “The original winner is someone who loses — because that person knows the real value of winning.”
           </p>
-          <a href="Greatness.html">Open Article</a>
+          <a class="open" href="Greatness.html">Open Article →</a>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-content">
-          <p class="number">ARTICLE 02</p>
+        <div class="inner">
+          <p class="number">Article 02</p>
+          <span class="tag">Culture · Conditioning</span>
           <h2>The Identity That Was Edited</h2>
-          <p>
+          <p class="desc">
             You did not lose your culture. You were taught to doubt it. This is how it happened —
             and what you do now.
           </p>
-          <a href="The Identity That Was Edited/index.html">Open Folder</a>
+          <a class="open" href="The Identity That Was Edited/index.html">Open Folder →</a>
         </div>
       </article>
 
       <article class="card">
-        <div class="card-content">
-          <p class="number">ARTICLE 03</p>
+        <div class="inner">
+          <p class="number">Article 03</p>
+          <span class="tag">Anger · Decision Systems</span>
           <h2>The Proximity OS</h2>
-          <p>
+          <p class="desc">
             The hidden architecture of how anger corrupts the decisions you believe you are making for yourself.
           </p>
-          <a href="Anger Series/index.html">Open Folder</a>
+          <a class="open" href="Anger Series/index.html">Open Folder →</a>
         </div>
       </article>
     </section>
