@@ -1,993 +1,1228 @@
+Here is the full updated HTML code. It keeps your article serious, brand-aligned, and positions it as the **core Proximity OS series article**, not just a standalone essay. 
+
+```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-<title>Pyrrhic Avoidance | Proximity OS | Mind Anchor</title>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Proximity OS — Mind Anchor</title>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400;1,500&family=Jost:wght@300;400;500&display=swap" rel="stylesheet">
 
 <style>
-:root {
-  --navy: #07112f;
-  --navy-deep: #030817;
-  --navy-mid: #0b1140;
-  --gold: #c8a44a;
-  --gold-light: #dfc07a;
-  --gold-pale: #f0e0b0;
-  --ivory: #fafaf7;
-  --body: #e8e4d8;
-  --muted: #aaa38d;
-  --dim: #69624e;
-  --rule: rgba(200,164,74,0.22);
-  --rule-strong: rgba(200,164,74,0.48);
-  --panel: rgba(255,255,255,0.035);
-}
-
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
-
-html { scroll-behavior: smooth; }
-
-body {
-  font-family: "Jost", sans-serif;
-  font-weight: 300;
-  line-height: 1.9;
-  color: var(--body);
-  background:
-    linear-gradient(140deg, rgba(200,164,74,0.08), transparent 24%),
-    linear-gradient(240deg, rgba(223,192,122,0.055), transparent 30%),
-    radial-gradient(circle at 50% 18%, rgba(200,164,74,0.06), transparent 28%),
-    linear-gradient(180deg, var(--navy) 0%, var(--navy-deep) 100%);
-  overflow-x: hidden;
-}
-
-body::before {
-  content: "";
-  position: fixed;
-  inset: 0;
-  background-image:
-    linear-gradient(rgba(255,255,255,0.012) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,0.012) 1px, transparent 1px);
-  background-size: 86px 86px;
-  mask-image: radial-gradient(circle at center, black 38%, transparent 92%);
-  pointer-events: none;
-}
-
-.page {
-  max-width: 880px;
-  margin: auto;
-  padding: 0 2.4rem 8rem;
-  position: relative;
-  z-index: 1;
-}
-
-.masthead {
-  text-align: center;
-  padding: 3.8rem 0 3rem;
-  border-bottom: 1px solid var(--rule);
-}
-
-.logo {
-  width: 96px;
-  margin-bottom: 1.6rem;
-  filter:
-    drop-shadow(0 0 24px rgba(200,164,74,0.25))
-    drop-shadow(0 0 60px rgba(200,164,74,0.10));
-}
-
-.brand-name {
-  font-size: 11px;
-  letter-spacing: 0.38em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 0.65rem;
-}
-
-.issue-tag {
-  font-size: 10px;
-  letter-spacing: 0.22em;
-  text-transform: uppercase;
-  color: var(--muted);
-}
-
-.hero {
-  position: relative;
-  text-align: center;
-  padding: 6rem 0 4.5rem;
-  border-bottom: 1px solid var(--rule);
-  overflow: hidden;
-}
-
-.hero::before {
-  content: "PROXIMITY";
-  position: absolute;
-  inset: 1.6rem 0 auto;
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(4rem, 14vw, 10rem);
-  letter-spacing: 0.08em;
-  color: rgba(200,164,74,0.045);
-  pointer-events: none;
-}
-
-.hero-kicker {
-  position: relative;
-  z-index: 1;
-  font-size: 10.5px;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  color: var(--gold);
-  margin-bottom: 2rem;
-}
-
-.hero-title {
-  position: relative;
-  z-index: 1;
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(3.4rem, 7vw, 6.2rem);
-  font-weight: 300;
-  line-height: 0.98;
-  color: var(--ivory);
-  margin-bottom: 1.4rem;
-}
-
-.hero-title em {
-  color: var(--gold-light);
-}
-
-.hero-subtitle {
-  position: relative;
-  z-index: 1;
-  max-width: 680px;
-  margin: 0 auto 3rem;
-  font-family: "Cormorant Garamond", serif;
-  font-style: italic;
-  font-size: 1.45rem;
-  line-height: 1.55;
-  color: var(--muted);
-}
-
-.hero-meta {
-  display: flex;
-  justify-content: center;
-  gap: 1.6rem;
-  flex-wrap: wrap;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--dim);
-}
-
-.framework-strip {
-  display: flex;
-  justify-content: center;
-  flex-wrap: wrap;
-  gap: 0.7rem;
-  padding: 1.6rem 0;
-  border-bottom: 1px solid var(--rule);
-}
-
-.framework-strip a {
-  color: var(--gold-light);
-  text-decoration: none;
-  font-size: 9.5px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  border: 1px solid var(--rule);
-  padding: 0.55rem 0.8rem;
-  transition: 0.3s ease;
-}
-
-.framework-strip a:hover {
-  border-color: var(--gold-light);
-  color: var(--ivory);
-}
-
-.article-body {
-  padding-top: 4.5rem;
-}
-
-.section {
-  margin-bottom: 5rem;
-}
-
-.section-label {
-  display: flex;
-  align-items: center;
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.section-num {
-  font-family: "Cormorant Garamond", serif;
-  font-style: italic;
-  color: var(--gold);
-  opacity: 0.55;
-}
-
-.section-line {
-  flex: 1;
-  height: 1px;
-  background: var(--rule);
-}
-
-.section-tag {
-  font-size: 9.5px;
-  letter-spacing: 0.34em;
-  text-transform: uppercase;
-  color: var(--gold);
-  opacity: 0.6;
-}
-
-.section-heading {
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(2rem, 4vw, 3rem);
-  font-weight: 500;
-  line-height: 1.12;
-  color: var(--ivory);
-  margin-bottom: 1.8rem;
-}
-
-.section-heading em {
-  color: var(--gold-light);
-}
-
-p {
-  font-size: 17px;
-  line-height: 1.92;
-  color: var(--body);
-  margin-bottom: 1.5rem;
-}
-
-strong {
-  color: var(--ivory);
-  font-weight: 500;
-}
-
-em {
-  color: var(--gold-pale);
-}
-
-.pull-quote {
-  margin: 3.4rem -1rem;
-  padding: 2.7rem 3rem;
-  border-left: 2px solid var(--gold);
-  background: rgba(200,164,74,0.035);
-  position: relative;
-}
-
-.pull-quote::before {
-  content: "“";
-  position: absolute;
-  top: -1rem;
-  left: 2.2rem;
-  font-family: "Cormorant Garamond", serif;
-  font-size: 7rem;
-  color: var(--gold);
-  opacity: 0.13;
-}
-
-.pull-quote p {
-  font-family: "Cormorant Garamond", serif;
-  font-style: italic;
-  font-size: clamp(1.35rem, 2.5vw, 1.85rem);
-  line-height: 1.55;
-  color: var(--ivory);
-  margin: 0;
-}
-
-.ip-panel,
-.concept-box {
-  margin: 3rem 0;
-  padding: 2.3rem 2.5rem;
-  border: 1px solid var(--rule-strong);
-  background:
-    linear-gradient(180deg, rgba(255,255,255,0.045), rgba(255,255,255,0.018));
-  position: relative;
-}
-
-.ip-panel::before,
-.concept-box::before {
-  content: attr(data-label);
-  position: absolute;
-  top: -0.65rem;
-  left: 1.7rem;
-  background: var(--navy-deep);
-  padding: 0 0.7rem;
-  font-size: 9.5px;
-  letter-spacing: 0.3em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-
-.ip-panel h3 {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 1.8rem;
-  font-weight: 400;
-  color: var(--gold-light);
-  margin-bottom: 0.9rem;
-}
-
-.ip-panel p,
-.concept-box p {
-  font-size: 15.8px;
-  color: var(--muted);
-  margin-bottom: 0;
-}
-
-.shift-grid {
-  margin: 2.6rem 0;
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: var(--rule);
-  border: 1px solid var(--rule);
-}
-
-.shift-item {
-  background: var(--navy-deep);
-  padding: 1.7rem 1.8rem;
-}
-
-.shift-num {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 2rem;
-  color: rgba(223,192,122,0.32);
-  margin-bottom: 0.5rem;
-}
-
-.shift-title {
-  font-size: 11px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold-light);
-  margin-bottom: 0.65rem;
-}
-
-.shift-body {
-  font-size: 14.6px;
-  color: var(--muted);
-  line-height: 1.75;
-}
-
-.scenarios {
-  margin: 2.6rem 0;
-  border-top: 1px solid var(--rule);
-}
-
-.scenario {
-  display: grid;
-  grid-template-columns: 3.2rem 1fr;
-  gap: 1.5rem;
-  padding: 2.1rem 0;
-  border-bottom: 1px solid var(--rule);
-}
-
-.scenario-num {
-  font-family: "Cormorant Garamond", serif;
-  font-size: 2.4rem;
-  color: rgba(223,192,122,0.38);
-  line-height: 1;
-}
-
-.scenario-coda {
-  font-family: "Cormorant Garamond", serif;
-  font-style: italic;
-  color: var(--muted) !important;
-}
-
-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin: 2.6rem 0;
-  border: 1px solid var(--rule-strong);
-}
-
-th {
-  padding: 0.9rem 1.2rem;
-  text-align: left;
-  font-size: 9.5px;
-  letter-spacing: 0.28em;
-  text-transform: uppercase;
-  color: var(--gold);
-  border-bottom: 1px solid var(--rule-strong);
-  font-weight: 400;
-}
-
-td {
-  padding: 1.1rem 1.2rem;
-  border-bottom: 1px solid var(--rule);
-  font-size: 15px;
-  line-height: 1.7;
-  color: var(--muted);
-}
-
-tr:last-child td {
-  border-bottom: none;
-}
-
-td:first-child {
-  color: var(--gold-light);
-  white-space: nowrap;
-}
-
-.cost-list {
-  margin: 2.4rem 0;
-  border-top: 1px solid var(--rule);
-}
-
-.cost-item {
-  display: grid;
-  grid-template-columns: 12rem 1fr;
-  gap: 1.2rem;
-  padding: 1.35rem 0;
-  border-bottom: 1px solid var(--rule);
-}
-
-.cost-label {
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  color: var(--gold);
-}
-
-.cost-desc {
-  font-size: 15.6px;
-  color: var(--muted);
-}
-
-.truth-block {
-  margin: 4rem 0;
-  padding: 3.5rem;
-  border: 1px solid var(--rule-strong);
-  text-align: center;
-  background: rgba(11,17,64,0.56);
-  position: relative;
-}
-
-.truth-block::before,
-.truth-block::after {
-  content: "";
-  position: absolute;
-  width: 42px;
-  height: 42px;
-  border-color: var(--gold);
-  border-style: solid;
-  opacity: 0.35;
-}
-
-.truth-block::before {
-  top: -1px;
-  left: -1px;
-  border-width: 1px 0 0 1px;
-}
-
-.truth-block::after {
-  right: -1px;
-  bottom: -1px;
-  border-width: 0 1px 1px 0;
-}
-
-.truth-block p {
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(1.4rem, 2.5vw, 1.9rem);
-  line-height: 1.52;
-  color: var(--ivory);
-}
-
-.thesis-line {
-  text-align: center;
-  font-family: "Cormorant Garamond", serif;
-  font-style: italic;
-  font-size: clamp(1.45rem, 3vw, 2rem);
-  color: var(--gold-light);
-  margin: 3rem 0;
-  line-height: 1.45;
-}
-
-.ecosystem-cta {
-  margin-top: 5rem;
-  padding: 3rem;
-  border: 1px solid var(--rule-strong);
-  background:
-    radial-gradient(circle at top right, rgba(223,192,122,0.12), transparent 38%),
-    rgba(255,255,255,0.025);
-}
-
-.ecosystem-cta h2 {
-  font-family: "Cormorant Garamond", serif;
-  font-size: clamp(2rem, 4vw, 3.2rem);
-  font-weight: 400;
-  color: var(--gold-light);
-  margin-bottom: 1rem;
-}
-
-.ecosystem-cta p {
-  color: var(--muted);
-  max-width: 620px;
-}
-
-.cta-links {
-  display: flex;
-  gap: 1rem;
-  flex-wrap: wrap;
-  margin-top: 2rem;
-}
-
-.cta-links a {
-  color: var(--gold-light);
-  text-decoration: none;
-  font-size: 10px;
-  letter-spacing: 0.2em;
-  text-transform: uppercase;
-  border-bottom: 1px solid var(--rule-strong);
-  padding-bottom: 0.55rem;
-}
-
-.closing {
-  text-align: center;
-  margin-top: 5rem;
-  padding-top: 4rem;
-  border-top: 1px solid var(--rule);
-}
-
-.closing-line {
-  font-family: "Cormorant Garamond", serif;
-  font-style: italic;
-  font-size: clamp(1.5rem, 3vw, 2.15rem);
-  color: var(--gold-light);
-  max-width: 650px;
-  margin: 0 auto 3rem;
-  line-height: 1.45;
-}
-
-.closing-logo {
-  width: 52px;
-  opacity: 0.55;
-  margin-bottom: 1rem;
-}
-
-.closing-brand {
-  font-size: 9.5px;
-  letter-spacing: 0.4em;
-  text-transform: uppercase;
-  color: var(--dim);
-}
-
-@media (max-width: 680px) {
-  .page {
-    padding: 0 1.4rem 5rem;
+  :root {
+    --navy: #0B1140;
+    --navy-deep: #070C2C;
+    --navy-mid: #111A50;
+    --gold: #C8A44A;
+    --gold-light: #DFC07A;
+    --gold-pale: #F0E0B0;
+    --gold-dim: #8A6E2A;
+    --white: #FAFAF7;
+    --off-white: #F2EFE5;
+    --text-body: #E8E4D8;
+    --text-muted: #9A9580;
+    --text-dim: #5A5648;
+    --rule: rgba(200,164,74,0.2);
+    --rule-strong: rgba(200,164,74,0.45);
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    background:
+      radial-gradient(circle at top, rgba(200,164,74,0.07), transparent 32rem),
+      linear-gradient(180deg, #0B1140 0%, #070C2C 55%, #05081F 100%);
+    color: var(--text-body);
+    font-family: 'Jost', sans-serif;
+    font-weight: 300;
+    line-height: 1.85;
+    font-size: 17px;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.03'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.7;
+  }
+
+  .page-wrap {
+    position: relative;
+    z-index: 1;
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 0 2.5rem 8rem;
+  }
+
+  /* MASTHEAD */
+
+  .masthead {
+    padding: 3.2rem 0 2.7rem;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .brand-lockup {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.35rem;
+  }
+
+  .masthead-logo {
+    width: 86px;
+    height: auto;
+    display: block;
+    filter: drop-shadow(0 0 20px rgba(200,164,74,0.28));
+  }
+
+  .brand-name {
+    font-family: 'Jost', sans-serif;
+    font-weight: 400;
+    letter-spacing: 0.36em;
+    font-size: 12px;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 0.45rem;
+  }
+
+  .brand-line {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--text-muted);
+  }
+
+  /* HERO */
+
+  .hero {
+    padding: 5.4rem 0 3.8rem;
+    text-align: center;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .hero-kicker {
+    font-family: 'Jost', sans-serif;
+    font-size: 10.5px;
+    letter-spacing: 0.42em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.74;
+    margin-bottom: 2rem;
+  }
+
+  .hero-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 300;
+    font-size: clamp(2.8rem, 6vw, 5.3rem);
+    line-height: 1.04;
+    letter-spacing: -0.015em;
+    color: var(--white);
+    margin-bottom: 1.3rem;
+  }
+
+  .hero-title em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  .hero-subtitle {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.38rem;
+    color: var(--text-muted);
+    font-weight: 300;
+    margin: 0 auto 3rem;
+    line-height: 1.55;
+    max-width: 680px;
   }
 
   .hero-meta {
-    gap: 0.9rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1.7rem;
+    font-size: 10.5px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    flex-wrap: wrap;
   }
 
-  .pull-quote,
-  .truth-block,
-  .ecosystem-cta {
-    margin-left: 0;
-    margin-right: 0;
-    padding: 2rem 1.5rem;
+  .hero-meta-dot {
+    width: 3px;
+    height: 3px;
+    border-radius: 50%;
+    background: var(--gold-dim);
+    display: inline-block;
   }
+
+  /* DIVIDERS */
+
+  .gold-rule {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 3.5rem 0;
+  }
+
+  .gold-rule::before,
+  .gold-rule::after {
+    content: '';
+    flex: 1;
+    height: 1px;
+    background: linear-gradient(to right, transparent, var(--rule-strong), transparent);
+  }
+
+  .gold-rule-icon {
+    color: var(--gold);
+    font-size: 1rem;
+    opacity: 0.6;
+    letter-spacing: 0.3em;
+  }
+
+  .ornament {
+    text-align: center;
+    color: var(--gold);
+    opacity: 0.3;
+    font-size: 1.1rem;
+    letter-spacing: 0.5em;
+    margin: 3rem 0;
+  }
+
+  /* SECTIONS */
+
+  .section {
+    margin-bottom: 4.7rem;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+  }
+
+  .section-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 0.85rem;
+    color: var(--gold-dim);
+    letter-spacing: 0.1em;
+    font-style: italic;
+    white-space: nowrap;
+  }
+
+  .section-line {
+    flex: 1;
+    height: 1px;
+    background: var(--rule);
+  }
+
+  .section-tag {
+    font-family: 'Jost', sans-serif;
+    font-size: 9.5px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.55;
+    white-space: nowrap;
+  }
+
+  .section-heading {
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: 500;
+    font-size: clamp(1.9rem, 3.5vw, 2.8rem);
+    line-height: 1.15;
+    color: var(--white);
+    margin-bottom: 1.8rem;
+    letter-spacing: -0.01em;
+  }
+
+  .section-heading em {
+    font-style: italic;
+    color: var(--gold-light);
+  }
+
+  p {
+    margin-bottom: 1.5rem;
+    font-size: 17px;
+    line-height: 1.9;
+    color: var(--text-body);
+    font-weight: 300;
+  }
+
+  p:last-child {
+    margin-bottom: 0;
+  }
+
+  strong {
+    font-weight: 500;
+    color: var(--off-white);
+  }
+
+  em {
+    font-style: italic;
+    color: var(--gold-pale);
+  }
+
+  /* PULL QUOTE */
+
+  .pull-quote {
+    margin: 3.5rem -1rem;
+    padding: 2.5rem 3rem;
+    border-left: 2px solid var(--gold);
+    position: relative;
+    background: rgba(200,164,74,0.035);
+  }
+
+  .pull-quote::before {
+    content: '\201C';
+    position: absolute;
+    top: -0.8rem;
+    left: 2.5rem;
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 6rem;
+    color: var(--gold);
+    opacity: 0.15;
+    line-height: 1;
+    pointer-events: none;
+  }
+
+  .pull-quote p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.55;
+    color: var(--off-white);
+    margin: 0;
+  }
+
+  /* CONCEPT BOX */
+
+  .concept-box {
+    margin: 3rem 0;
+    padding: 2rem 2.5rem;
+    border: 1px solid var(--rule-strong);
+    position: relative;
+    background: rgba(7,12,44,0.38);
+  }
+
+  .concept-box::before {
+    content: attr(data-label);
+    position: absolute;
+    top: -0.65rem;
+    left: 2rem;
+    background: var(--navy-deep);
+    padding: 0 0.7rem;
+    font-family: 'Jost', sans-serif;
+    font-size: 9.5px;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.75;
+  }
+
+  .concept-box p {
+    font-size: 15.5px;
+    color: var(--text-muted);
+    margin: 0;
+    line-height: 1.85;
+  }
+
+  .concept-box p + p {
+    margin-top: 0.9rem;
+  }
+
+  .concept-box strong {
+    color: var(--gold-light);
+    font-weight: 500;
+  }
+
+  /* SHIFT GRID */
 
   .shift-grid {
-    grid-template-columns: 1fr;
+    margin: 2.5rem 0;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    border: 1px solid var(--rule);
+    background: var(--rule);
   }
 
-  .scenario,
+  .shift-item {
+    background: var(--navy-deep);
+    padding: 1.6rem 1.8rem;
+  }
+
+  .shift-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2rem;
+    font-weight: 300;
+    color: var(--gold-dim);
+    opacity: 0.4;
+    line-height: 1;
+    margin-bottom: 0.5rem;
+  }
+
+  .shift-title {
+    font-family: 'Jost', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    opacity: 0.75;
+    margin-bottom: 0.6rem;
+  }
+
+  .shift-body {
+    font-size: 14.5px;
+    color: var(--text-muted);
+    line-height: 1.75;
+  }
+
+  /* TABLES */
+
+  .decay-table,
+  .cost-table {
+    margin: 2.5rem 0;
+    width: 100%;
+    border-collapse: collapse;
+    border: 1px solid var(--rule-strong);
+  }
+
+  .decay-table th,
+  .cost-table th {
+    font-family: 'Jost', sans-serif;
+    font-size: 9.5px;
+    letter-spacing: 0.28em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.65;
+    padding: 0.9rem 1.2rem;
+    text-align: left;
+    border-bottom: 1px solid var(--rule-strong);
+    font-weight: 400;
+  }
+
+  .decay-table td,
+  .cost-table td {
+    padding: 1rem 1.2rem;
+    border-bottom: 1px solid var(--rule);
+    font-size: 15px;
+    line-height: 1.7;
+    vertical-align: top;
+  }
+
+  .decay-table tr:last-child td,
+  .cost-table tr:last-child td {
+    border-bottom: none;
+  }
+
+  .decay-table td:first-child {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--gold-light);
+    white-space: nowrap;
+    width: 8rem;
+  }
+
+  .decay-table td:nth-child(2) {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+    width: 10rem;
+    padding-top: 1.15rem;
+  }
+
+  .decay-table td:last-child,
+  .cost-table td {
+    color: var(--text-muted);
+  }
+
+  .cost-table td:first-child {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    color: var(--gold-light);
+    opacity: 0.85;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  /* SCENARIOS */
+
+  .scenarios {
+    margin: 2.5rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .scenario {
+    display: grid;
+    grid-template-columns: 3rem 1fr;
+    gap: 0 1.5rem;
+    padding: 2rem 0;
+    border-bottom: 1px solid var(--rule);
+  }
+
+  .scenario:first-child {
+    border-top: 1px solid var(--rule);
+  }
+
+  .scenario-num {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 2.2rem;
+    font-weight: 300;
+    color: var(--gold-dim);
+    opacity: 0.5;
+    line-height: 1;
+    padding-top: 0.2rem;
+  }
+
+  .scenario-body p {
+    font-size: 16px;
+    margin-bottom: 0.6rem;
+  }
+
+  .scenario-coda {
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 15px !important;
+    color: var(--text-muted) !important;
+  }
+
+  /* EMOTIONAL COST LIST */
+
+  .cost-list {
+    margin: 2rem 0;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
   .cost-item {
-    grid-template-columns: 1fr;
+    display: grid;
+    grid-template-columns: 11rem 1fr;
+    gap: 0;
+    padding: 1.3rem 0;
+    border-bottom: 1px solid var(--rule);
   }
 
-  td:first-child {
-    white-space: normal;
+  .cost-item:first-child {
+    border-top: 1px solid var(--rule);
   }
-}
+
+  .cost-label {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.7;
+    padding-top: 0.15rem;
+  }
+
+  .cost-desc {
+    font-size: 15.5px;
+    color: var(--text-muted);
+    line-height: 1.75;
+  }
+
+  /* TRUTH BLOCK */
+
+  .truth-block {
+    margin: 4rem 0;
+    padding: 3.5rem;
+    border: 1px solid var(--rule-strong);
+    text-align: center;
+    position: relative;
+    background: rgba(11,17,64,0.6);
+  }
+
+  .truth-block::before,
+  .truth-block::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border-color: var(--gold-dim);
+    border-style: solid;
+    opacity: 0.4;
+  }
+
+  .truth-block::before {
+    top: -1px;
+    left: -1px;
+    border-width: 1px 0 0 1px;
+  }
+
+  .truth-block::after {
+    bottom: -1px;
+    right: -1px;
+    border-width: 0 1px 1px 0;
+  }
+
+  .truth-block p {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.4rem, 2.5vw, 1.9rem);
+    font-weight: 400;
+    line-height: 1.52;
+    color: var(--off-white);
+    margin: 0 0 1.2rem;
+  }
+
+  .truth-block p:last-child {
+    margin: 0;
+  }
+
+  .thesis-line {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: clamp(1.3rem, 2.5vw, 1.75rem);
+    color: var(--gold-light);
+    margin: 2.8rem 0;
+    line-height: 1.5;
+    padding: 0 1rem;
+  }
+
+  .central-question {
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.45rem;
+    color: var(--gold-light);
+    margin: 2.5rem 0;
+    line-height: 1.55;
+  }
+
+  /* SERIES CTA */
+
+  .series-cta {
+    margin: 5.5rem 0 2rem;
+    padding: 3.7rem 3rem;
+    border: 1px solid var(--rule-strong);
+    background:
+      radial-gradient(circle at top, rgba(200,164,74,0.09), transparent 45%),
+      rgba(11,17,64,0.72);
+    text-align: center;
+    position: relative;
+  }
+
+  .series-cta::before,
+  .series-cta::after {
+    content: '';
+    position: absolute;
+    width: 44px;
+    height: 44px;
+    border-color: var(--gold-dim);
+    border-style: solid;
+    opacity: 0.45;
+  }
+
+  .series-cta::before {
+    top: -1px;
+    left: -1px;
+    border-width: 1px 0 0 1px;
+  }
+
+  .series-cta::after {
+    bottom: -1px;
+    right: -1px;
+    border-width: 0 1px 1px 0;
+  }
+
+  .cta-kicker {
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.35em;
+    text-transform: uppercase;
+    color: var(--gold);
+    opacity: 0.75;
+    margin-bottom: 1.2rem;
+  }
+
+  .series-cta h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(2rem, 4vw, 3rem);
+    font-weight: 400;
+    color: var(--white);
+    margin-bottom: 1.4rem;
+  }
+
+  .series-cta p {
+    max-width: 620px;
+    margin: 0 auto 2.4rem;
+    color: var(--text-muted);
+  }
+
+  .cta-actions {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  .cta-primary,
+  .cta-secondary {
+    text-decoration: none;
+    font-family: 'Jost', sans-serif;
+    font-size: 10px;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    padding: 0.9rem 1.4rem;
+    border: 1px solid var(--gold-dim);
+    transition: all 0.22s ease;
+  }
+
+  .cta-primary {
+    background: var(--gold);
+    color: var(--navy-deep);
+  }
+
+  .cta-secondary {
+    color: var(--gold-light);
+    background: transparent;
+  }
+
+  .cta-primary:hover,
+  .cta-secondary:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 0 22px rgba(200,164,74,0.14);
+  }
+
+  /* CLOSING */
+
+  .closing-section {
+    margin-top: 5rem;
+    padding-top: 4rem;
+    border-top: 1px solid var(--rule);
+    text-align: center;
+  }
+
+  .closing-line {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: clamp(1.5rem, 3vw, 2.1rem);
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.45;
+    color: var(--gold-light);
+    max-width: 600px;
+    margin: 0 auto 3rem;
+  }
+
+  .closing-logo {
+    width: 54px;
+    height: auto;
+    display: block;
+    margin: 0 auto 1rem;
+    opacity: 0.55;
+  }
+
+  .closing-brand {
+    font-family: 'Jost', sans-serif;
+    font-size: 9.5px;
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    color: var(--text-dim);
+  }
+
+  @media (max-width: 620px) {
+    .page-wrap {
+      padding: 0 1.5rem 5rem;
+    }
+
+    .brand-lockup {
+      flex-direction: column;
+      gap: 1rem;
+      text-align: center;
+    }
+
+    .masthead-logo {
+      width: 78px;
+    }
+
+    .brand-line {
+      line-height: 1.7;
+    }
+
+    .pull-quote {
+      margin: 2.5rem 0;
+      padding: 2rem 1.5rem;
+    }
+
+    .truth-block,
+    .series-cta {
+      padding: 2.5rem 1.5rem;
+    }
+
+    .shift-grid {
+      grid-template-columns: 1fr;
+    }
+
+    .cost-item {
+      grid-template-columns: 1fr;
+      gap: 0.4rem;
+    }
+
+    .decay-table td:nth-child(2) {
+      display: none;
+    }
+
+    .scenario {
+      grid-template-columns: 1fr;
+      gap: 1rem;
+    }
+  }
 </style>
 </head>
 
 <body>
+<div class="page-wrap">
 
-<div class="page">
-
-<header class="masthead">
-  <img class="logo" src="Icon.png" alt="Mind Anchor Logo" />
-  <p class="brand-name">Mind Anchor</p>
-  <p class="issue-tag">Strategic Psychology · Systems Philosophy · Mental Infrastructure</p>
-</header>
-
-<section class="hero">
-  <p class="hero-kicker">Proximity OS · Framework Core</p>
-  <h1 class="hero-title">Pyrrhic <em>Avoidance</em></h1>
-  <p class="hero-subtitle">
-    The hidden architecture of how anger corrupts the decisions you believe you are making for yourself.
-  </p>
-
-  <div class="hero-meta">
-    <span>Core Thesis</span>
-    <span>Long-Form Essay</span>
-    <span>By Jai</span>
-  </div>
-</section>
-
-<nav class="framework-strip">
-  <a href="#risk-switch">Risk Switch</a>
-  <a href="#proximity-tax">Proximity Tax</a>
-  <a href="#weaponised-neutrality">Neutrality</a>
-  <a href="#shadow-governance">Governance</a>
-  <a href="#continue">Continue OS</a>
-</nav>
-
-<main class="article-body">
-
-<!-- I -->
-<article class="section">
-  <div class="section-label">
-    <span class="section-num">I.</span>
-    <span class="section-line"></span>
-    <span class="section-tag">Hook</span>
-  </div>
-
-  <h2 class="section-heading">The Room You Have <em>Already Been In</em></h2>
-
-  <p>There is a room you have already been in. You may not remember it by name, but you remember the sensation - the moment you walked through a door, scanned the space, and made a decision in under two seconds. Not based on where the best seat was. Not based on light or quiet or strategic proximity to the people who mattered.</p>
-
-  <p>Based entirely on where <em>they</em> were not.</p>
-
-  <p>You chose the worse position. You took the harder chair, the farther corner, the seat without the view - and told yourself it was fine. That you simply preferred it over here. That proximity was irrelevant, and this was just your choice.</p>
-
-  <p>But something in you already knew the truth: the decision was not made by your reasoning. It was made by your wound.</p>
-
-  <div class="pull-quote">
-    <p>Anger does not just change how we see other people. It changes how we treat ourselves - quietly, systematically, and in ways we rarely recognise until the cost has already compounded beyond recovery.</p>
-  </div>
-
-  <p>That is the part most people miss entirely. Anger can make us irrational enough to harm our own position - not to harm theirs. We choose distance over wisdom, discomfort over ease, uncertainty over advantage - not because those choices are better, but because they are further away from the person we can no longer bear to face. The emotion does not just distort perception. It corrupts the architecture of decision itself. And the cost of that corruption is not emotional. It is strategic, financial, and compounding.</p>
-</article>
-
-<!-- II -->
-<article class="section" id="proximity-tax">
-  <div class="section-label">
-    <span class="section-num">II.</span>
-    <span class="section-line"></span>
-    <span class="section-tag">Problem Expansion</span>
-  </div>
-
-  <h2 class="section-heading">The Question That <em>Quietly Changes</em></h2>
-
-  <p>Most people understand anger as a relational problem. It changes how we see another person - we trust them less, want less of their company, assign darker motives to their presence. That much is obvious and accepted.</p>
-
-  <p>What is far less obvious is what anger does to the <em>self</em>.</p>
-
-  <p>When you are angry - or even quietly, politely cold toward someone - something shifts in the architecture of how you make decisions. Not noisily. Not dramatically. The shift is almost imperceptible, and that is precisely what makes it dangerous. The question you are asking yourself changes. It is no longer: <em>What is best for me in this situation?</em></p>
-
-  <p>The question becomes, almost without your permission: <em>What keeps me furthest from them?</em></p>
-
-  <div class="ip-panel" data-label="Mind Anchor IP">
-    <h3>The Proximity Tax</h3>
-    <p>The hidden cost levied every time emotional state overrides strategic judgment. It is paid in time, safety, comfort, capital, opportunity, and freedom of movement.</p>
-  </div>
-
-  <p>These are not similar questions. They share the grammatical form of self-interest but operate on entirely different criteria - and they produce radically different outputs. One uses utility: long-term advantage, strategic positioning, opportunity cost. The other uses emotional relief: the immediate reduction of discomfort, the satisfaction of symbolic resistance, the body's desire for distance from the thing that wounded it.</p>
-
-  <p>The catastrophe is the substitution itself - and it goes largely unnoticed because the mind is remarkably skilled at dressing reactive decisions in the language of rational ones. You do not think: <em>I am choosing discomfort out of wounded pride.</em> You think: <em>I just prefer it over here. This feels right.</em></p>
-
-  <p>But <em>feeling right</em> and <em>being right</em> are two entirely different currencies. Anger is very good at spending one while letting you believe you are spending the other.</p>
-</article>
-
-<!-- III -->
-<article class="section" id="risk-switch">
-  <div class="section-label">
-    <span class="section-num">III.</span>
-    <span class="section-line"></span>
-    <span class="section-tag">Hidden Mechanism</span>
-  </div>
-
-  <h2 class="section-heading">The Ego-Defensive <em>Risk Switch</em></h2>
-
-  <p>To understand why this happens, we must go beneath psychology into neurology - not to be academic, but because the architecture matters. You cannot fix a system you refuse to understand.</p>
-
-  <p>The amygdala - the brain's ancient threat-detection engine - does not distinguish cleanly between physical threat and ego threat. When you feel disrespected, dismissed, or publicly humiliated, the amygdala fires with the same urgency it would if someone raised a hand against you.</p>
-
-  <div class="shift-grid">
-    <div class="shift-item">
-      <div class="shift-num">01</div>
-      <div class="shift-title">Emotional Priority Override</div>
-      <div class="shift-body">Emotion displaces logic as the primary decision filter.</div>
-    </div>
-
-    <div class="shift-item">
-      <div class="shift-num">02</div>
-      <div class="shift-title">Presence Avoidance</div>
-      <div class="shift-body">Avoiding proximity becomes more important than evaluating outcomes.</div>
-    </div>
-
-    <div class="shift-item">
-      <div class="shift-num">03</div>
-      <div class="shift-title">Short-Term Reward</div>
-      <div class="shift-body">Temporary relief is processed as confirmation that the choice was correct.</div>
-    </div>
-
-    <div class="shift-item">
-      <div class="shift-num">04</div>
-      <div class="shift-title">Self-Sabotage Rationalisation</div>
-      <div class="shift-body">The mind reframes irrational choices as dignity, principle, or self-respect.</div>
-    </div>
-  </div>
-
-  <p>This is the <strong>Ego-Defensive Risk Switch</strong>: upon emotional trigger activation, the cognitive objective function undergoes a subconscious rewrite. The algorithm shifts from <em>value maximisation</em> to <em>ego-threat proximity minimisation</em>. And because the resulting decisions feel like choices - feel like integrity, feel like self-knowledge - there is no internal alarm. The corruption presents as clarity.</p>
-</article>
-
-<!-- IV -->
-<article class="section">
-  <div class="section-label">
-    <span class="section-num">IV.</span>
-    <span class="section-line"></span>
-    <span class="section-tag">Psychological Breakdown</span>
-  </div>
-
-  <h2 class="section-heading">The Pyrrhic Bargain &amp; <em>The Sovereignty Paradox</em></h2>
-
-  <p>Give this pattern a proper name: <strong>Pyrrhic Avoidance.</strong></p>
-
-  <p>Pyrrhus of Epirus won a battle at such devastating cost in his own forces that the victory was, by any honest accounting, indistinguishable from defeat. Pyrrhic Avoidance follows the same brutal logic. You successfully create distance from the trigger. You win the avoidance. But the cost - in strategic positioning, foregone advantage, compounded opportunity loss - is greater than the distance was ever worth. You paid more to leave than it cost to stay.</p>
-
-  <div class="pull-quote">
-    <p>The uncorrupted mind asks: what is the wisest action available to me? The corrupted mind asks: what creates maximum distance between me and the source of my wound?</p>
-  </div>
-
-  <p>Beneath this lies a deeper and more disorienting truth - what might be called the <strong>Sovereignty Paradox</strong>.</p>
-
-  <p>The individual believes they are acting from power. They walked away. They refused proximity. They denied the other person their presence - and in doing so, felt sovereign, in control, untouchable. What they have actually done is hand their strategic coordinates to the person they are avoiding. Their decisions are now entirely dictated by that person - just moving in reverse.</p>
-
-  <p>There is a companion phenomenon that makes the Sovereignty Paradox nearly impossible to detect from within: the <strong>Righteousness Loop.</strong> When anger feels morally justified - when the wound carries the vocabulary of principle - the brain stops auditing strategic consequences entirely.</p>
-</article>
-
-<!-- V -->
-<article class="section">
-  <div class="section-label">
-    <span class="section-num">V.</span>
-    <span class="section-line"></span>
-    <span class="section-tag">Real-Life Pattern</span>
-  </div>
-
-  <h2 class="section-heading">The Scenarios That Do <em>Not Announce Themselves</em></h2>
-
-  <p>Consider the scenarios. They are not exotic. They are the ordinary furniture of professional life - and that is precisely what makes them so consistently expensive.</p>
-
-  <div class="scenarios">
-    <div class="scenario">
-      <span class="scenario-num">01</span>
+  <header class="masthead">
+    <div class="brand-lockup">
+      <img class="masthead-logo" src="Icon.png" alt="Mind Anchor logo">
       <div>
-        <p>A woman is in quiet, controlled tension with a colleague. A seat opens in a high-value meeting, directly adjacent to the decision-maker she has spent three months trying to reach. The colleague is two chairs down. She chooses the far end of the table.</p>
-        <p class="scenario-coda">She does not get the connection she came for. The moment does not return.</p>
+        <p class="brand-name">Mind Anchor</p>
+        <p class="brand-line">Strategic Psychology · Systems Philosophy · Mental Infrastructure</p>
       </div>
     </div>
+  </header>
 
-    <div class="scenario">
-      <span class="scenario-num">02</span>
-      <div>
-        <p>A founder is in post-conflict tension with his co-founder. An investor event demands they present together. Unwilling to coordinate fully, he delivers a slightly misaligned pitch.</p>
-        <p class="scenario-coda">He tells himself he maintained his dignity. The cap table tells a quieter story.</p>
+  <section class="hero">
+    <p class="hero-kicker">Proximity OS · Core Article</p>
+
+    <h1 class="hero-title">The Architecture of <em>Emotional Decision</em> Contamination</h1>
+
+    <p class="hero-subtitle">
+      How proximity, ego, avoidance, and unresolved emotional charge silently rewrite the decisions people believe they are making freely.
+    </p>
+
+    <div class="hero-meta">
+      <span>Main Series Essay</span>
+      <span class="hero-meta-dot"></span>
+      <span>Mind Anchor</span>
+      <span class="hero-meta-dot"></span>
+      <span>By Jai Nakra</span>
+    </div>
+  </section>
+
+  <div class="gold-rule"><span class="gold-rule-icon">⬡</span></div>
+
+  <main class="article-body">
+
+    <article class="section">
+      <div class="section-label">
+        <span class="section-num">I.</span>
+        <span class="section-line"></span>
+        <span class="section-tag">Opening Signal</span>
       </div>
-    </div>
 
-    <div class="scenario">
-      <span class="scenario-num">03</span>
-      <div>
-        <p>An operator rejects the more capable vendor because the firm is run by someone he had a difficult experience with two years prior. He selects the inferior option.</p>
-        <p class="scenario-coda">The Proximity Tax, in this instance, was quantifiable.</p>
+      <h2 class="section-heading">The Room You Have <em>Already Been In</em></h2>
+
+      <p>There is a room you have already been in. You may not remember it by name, but you remember the sensation - the moment you walked through a door, scanned the space, and made a decision in under two seconds. Not based on where the best seat was. Not based on light or quiet or strategic proximity to the people who mattered.</p>
+
+      <p>Based entirely on where <em>they</em> were not.</p>
+
+      <p>You chose the worse position. You took the harder chair, the farther corner, the seat without the view - and told yourself it was fine. That you simply preferred it over here. That proximity was irrelevant, and this was just your choice.</p>
+
+      <p>But something in you already knew the truth: the decision was not made by your reasoning. It was made by your wound.</p>
+
+      <div class="pull-quote">
+        <p>Anger does not just change how we see other people. It changes how we treat ourselves - quietly, systematically, and in ways we rarely recognise until the cost has already compounded beyond recovery.</p>
       </div>
+
+      <p>That is the part most people miss entirely. Anger can make us irrational enough to harm our own position - not to harm theirs. We choose distance over wisdom, discomfort over ease, uncertainty over advantage - not because those choices are better, but because they are further away from the person we can no longer bear to face. The emotion does not just distort perception. It corrupts the architecture of decision itself. And the cost of that corruption is not emotional. It is strategic, financial, and compounding.</p>
+    </article>
+
+    <article class="section">
+      <div class="section-label">
+        <span class="section-num">II.</span>
+        <span class="section-line"></span>
+        <span class="section-tag">Core Problem</span>
+      </div>
+
+      <h2 class="section-heading">The Question That <em>Quietly Changes</em></h2>
+
+      <p>Most people understand anger as a relational problem. It changes how we see another person - we trust them less, want less of their company, assign darker motives to their presence. That much is obvious and accepted.</p>
+
+      <p>What is far less obvious is what anger does to the <em>self</em>.</p>
+
+      <p>When you are angry - or even quietly, politely cold toward someone - something shifts in the architecture of how you make decisions. Not noisily. Not dramatically. The shift is almost imperceptible, and that is precisely what makes it dangerous. The question you are asking yourself changes. It is no longer: <em>What is best for me in this situation?</em></p>
+
+      <p>The question becomes, almost without your permission: <em>What keeps me furthest from them?</em></p>
+
+      <p>These are not similar questions. They share the grammatical form of self-interest but operate on entirely different criteria - and they produce radically different outputs. One uses utility: long-term advantage, strategic positioning, opportunity cost. The other uses emotional relief: the immediate reduction of discomfort, the satisfaction of symbolic resistance, the body's desire for distance from the thing that wounded it.</p>
+
+      <div class="concept-box" data-label="Proximity OS Diagnosis">
+        <p><strong>Decision Corruption Under Emotional Identity Threat.</strong> The moment anger takes root, the primary decision metric shifts from utility to emotional relief. The individual stops optimising for advantage and begins optimising for distance. Every subsequent choice carries this invisible corruption - and does so while feeling entirely like a free, self-directed preference.</p>
+      </div>
+
+      <p>The catastrophe is the substitution itself - and it goes largely unnoticed because the mind is remarkably skilled at dressing reactive decisions in the language of rational ones. You do not think: <em>I am choosing discomfort out of wounded pride.</em> You think: <em>I just prefer it over here. This feels right.</em></p>
+
+      <p>But <em>feeling right</em> and <em>being right</em> are two entirely different currencies. Anger is very good at spending one while letting you believe you are spending the other.</p>
+
+      <p>The technical name for what you are paying is the <strong>Proximity Tax</strong> - the hidden cost levied every time emotional state overrides strategic judgment. It is paid in time, safety, comfort, capital, and opportunity. It is almost never itemised. And it compounds silently across the full length of a career.</p>
+    </article>
+
+    <article class="section">
+      <div class="section-label">
+        <span class="section-num">III.</span>
+        <span class="section-line"></span>
+        <span class="section-tag">Hidden Mechanism</span>
+      </div>
+
+      <h2 class="section-heading">The Ego-Defensive <em>Risk Switch</em></h2>
+
+      <p>To understand why this happens, we must go beneath psychology into neurology - not to be academic, but because the architecture matters. You cannot fix a system you refuse to understand.</p>
+
+      <p>The amygdala - the brain's ancient threat-detection engine - does not distinguish cleanly between physical threat and ego threat. When you feel disrespected, dismissed, or publicly humiliated, the amygdala fires with the same urgency it would if someone raised a hand against you. The nervous system does not grade threats on a scale of sophistication. It grades them on perceived danger to the self. And the ego, in neurological terms, is part of the self.</p>
+
+      <p>When ego-threat is detected, the brain does not wait for the prefrontal cortex - the seat of rational analysis, long-term planning, and strategic judgment - to weigh in. It reroutes. It bypasses the deliberative centre and initiates an avoidance response at neurological speed. The result is a decision that <em>feels</em> chosen but is, structurally, automated.</p>
+
+      <p>Upon activation of this trigger, four cognitive shifts execute in sequence - invisibly, without internal announcement:</p>
+
+      <div class="shift-grid">
+        <div class="shift-item">
+          <div class="shift-num">01</div>
+          <div class="shift-title">Emotional Priority Override</div>
+          <div class="shift-body">Emotion displaces logic as the primary decision filter. The analytical frame remains active, but it is now processing questions the ego has already answered.</div>
+        </div>
+
+        <div class="shift-item">
+          <div class="shift-num">02</div>
+          <div class="shift-title">Presence Avoidance</div>
+          <div class="shift-body">Avoiding proximity to the trigger becomes more important than evaluating outcomes. Distance is no longer the result of a decision - it is the objective of one.</div>
+        </div>
+
+        <div class="shift-item">
+          <div class="shift-num">03</div>
+          <div class="shift-title">Short-Term Psychological Reward</div>
+          <div class="shift-body">Temporary emotional relief - the pulse of satisfaction from having avoided the person - is processed by the nervous system as confirmation the choice was correct.</div>
+        </div>
+
+        <div class="shift-item">
+          <div class="shift-num">04</div>
+          <div class="shift-title">Self-Sabotage Rationalisation</div>
+          <div class="shift-body">The mind reframes irrational choices as dignity, principle, or self-respect - making the loop entirely invisible from the inside, and entirely resistant to correction.</div>
+        </div>
+      </div>
+
+      <p>This is the <strong>Ego-Defensive Risk Switch</strong>: upon emotional trigger activation, the cognitive objective function undergoes a subconscious rewrite. The algorithm shifts from <em>value maximisation</em> to <em>ego-threat proximity minimisation</em>. And because the resulting decisions feel like choices - feel like integrity, feel like self-knowledge - there is no internal alarm. The corruption presents as clarity.</p>
+    </article>
+
+    <article class="section">
+      <div class="section-label">
+        <span class="section-num">IV.</span>
+        <span class="section-line"></span>
+        <span class="section-tag">Primary Pattern</span>
+      </div>
+
+      <h2 class="section-heading">The Pyrrhic Bargain &amp; <em>The Sovereignty Paradox</em></h2>
+
+      <p>Give this pattern a proper name: <strong>Pyrrhic Avoidance.</strong></p>
+
+      <p>Pyrrhus of Epirus won a battle at such devastating cost in his own forces that the victory was, by any honest accounting, indistinguishable from defeat. Pyrrhic Avoidance follows the same brutal logic. You successfully create distance from the trigger. You win the avoidance. But the cost - in strategic positioning, foregone advantage, compounded opportunity loss - is greater than the distance was ever worth. You paid more to leave than it cost to stay.</p>
+
+      <div class="pull-quote">
+        <p>The uncorrupted mind asks: what is the wisest action available to me? The corrupted mind asks: what creates maximum distance between me and the source of my wound? These questions share the grammar of self-interest but share nothing else.</p>
+      </div>
+
+      <p>Beneath this lies a deeper and more disorienting truth - what might be called the <strong>Sovereignty Paradox</strong>.</p>
+
+      <p>The individual believes they are acting from power. They walked away. They refused proximity. They denied the other person their presence - and in doing so, felt sovereign, in control, untouchable. What they have actually done is hand their strategic coordinates to the person they are avoiding. Their decisions are now entirely dictated by that person - just moving in reverse. They have traded genuine freedom of movement for the illusion of control.</p>
+
+      <p>The person running away from the adversary and the person running toward a goal look identical in motion. But only one of them is navigating.</p>
+
+      <p>There is a companion phenomenon that makes the Sovereignty Paradox nearly impossible to detect from within: the <strong>Righteousness Loop.</strong> When anger feels morally justified - when the wound carries the vocabulary of principle - the brain stops auditing strategic consequences entirely. Decisions bypass normal risk assessment because they are wrapped in the language of values, culture, dignity, or self-respect. The individual feels not just emotionally satisfied but <em>virtuous.</em> And virtue, real or performed, is among the most effective anesthetics against strategic self-reflection.</p>
+
+      <p>They are not protecting their peace. They are protecting ego coherence. And the cost is invisible precisely because righteousness makes it feel like integrity.</p>
+    </article>
+
+    <article class="section">
+      <div class="section-label">
+        <span class="section-num">V.</span>
+        <span class="section-line"></span>
+        <span class="section-tag">Visible Patterns</span>
+      </div>
+
+      <h2 class="section-heading">The Scenarios That Do <em>Not Announce Themselves</em></h2>
+
+      <p>Consider the scenarios. They are not exotic. They are the ordinary furniture of professional life - and that is precisely what makes them so consistently expensive.</p>
+
+      <div class="scenarios">
+        <div class="scenario">
+          <span class="scenario-num">01</span>
+          <div class="scenario-body">
+            <p>A woman is in quiet, controlled tension with a colleague. Not a shouting match - the sophisticated kind of resentment that presents itself as composure. A seat opens in a high-value meeting, directly adjacent to the decision-maker she has spent three months trying to reach. The colleague is two chairs down. She chooses the far end of the table, positioning herself outside the room's centre of gravity. She tells herself she prefers the view.</p>
+            <p class="scenario-coda">She does not get the connection she came for. The moment does not return.</p>
+          </div>
+        </div>
+
+        <div class="scenario">
+          <span class="scenario-num">02</span>
+          <div class="scenario-body">
+            <p>A founder is in post-conflict tension with his co-founder. An investor event demands they present together. Unwilling to coordinate fully - to give the other person the satisfaction of being relied upon - he delivers a slightly misaligned pitch. Not a disaster. Just fractured enough that the room detects something in the subtext. The round closes smaller than it needed to.</p>
+            <p class="scenario-coda">He tells himself he maintained his dignity. The cap table tells a quieter story.</p>
+          </div>
+        </div>
+
+        <div class="scenario">
+          <span class="scenario-num">03</span>
+          <div class="scenario-body">
+            <p>An operator rejects the more capable vendor - better terms, stronger track record, lower cost - because the firm is run by someone he had a difficult experience with two years prior. He selects the inferior option, and budgets a 15% efficiency gap as a standard operational variance. He calls it due diligence. His board eventually calls it something else.</p>
+            <p class="scenario-coda">The Proximity Tax, in this instance, was quantifiable. Most of the time, it is not - which is precisely why it accumulates without audit.</p>
+          </div>
+        </div>
+      </div>
+
+      <p>These are not failures of intelligence. They are failures of self-awareness under emotional pressure. The people in each scenario were entirely capable of the better decision. But they were not, in those moments, making decisions. They were making <em>statements</em> - addressed to people who were not paying attention, received by no one, and paid for in full by themselves.</p>
+    </article>
+
+    <article class="section">
+      <div class="section-label">
+        <span class="section-num">VI.</span>
+        <span class="section-line"></span>
+        <span class="section-tag">Operating Principle</span>
+      </div>
+
+      <h2 class="section-heading">Presence Is Not Endorsement. <em>Neutrality Is Not Weakness.</em></h2>
+
+      <p>Here is what the emotionally ungoverned person never grasps: avoidance is not neutral. It is not the absence of a move. It is always a move - with costs, with signals, with downstream consequences that compound invisibly across time.</p>
+
+      <p>Every time emotional state governs strategic positioning, you train your nervous system to accept that governance as normal. You build infrastructure - not the kind that protects you, but the kind that slowly narrows the range of options you are willing to consider. The territory available to you quietly shrinks, one avoidance at a time, without a single dramatic moment to mark the contraction.</p>
+
+      <p>The strategically intelligent person understands something else entirely: <strong>proximity is not agreement.</strong> Physical nearness to someone you dislike is not endorsement of them. It is not surrender to them, approval of them, or forgiveness of them. It is simply the willingness to remain in the room while your rational mind stays at the wheel - to occupy the best position regardless of who else is in it.</p>
+
+      <div class="concept-box" data-label="Mind Anchor Principle">
+        <p><strong>Weaponised Neutrality.</strong> The most strategically dangerous thing you can do to an adversary is refuse to let their presence alter your coordinates. Not through performance of indifference - through genuine independence of movement. True market dominance requires absolute freedom of position. And absolute freedom of position requires a mind that refuses to pay the Proximity Tax.</p>
+        <p>An emotion can be real, present, and entirely legitimate - without being permitted to vote on strategic decisions. Feeling anger is information. Letting it govern your positioning is abdication.</p>
+      </div>
+
+      <p>The goal is not to dissolve anger. Anger is, in many cases, precisely calibrated information. The goal is something far more surgical: to refuse it the governance of your choices while continuing to acknowledge its presence. To hold the feeling in one hand and the decision in the other - and ensure the right hand is making the move.</p>
+
+      <p>That separation - between emotional experience and operational decision - is one of the most valuable mental distinctions a leader can build. And it is, fundamentally, a skill. Not a personality type. Not an innate quality of character. A trained capacity, developed through deliberate practice, that operates even under pressure - especially under pressure.</p>
+    </article>
+
+    <article class="section">
+      <div class="section-label">
+        <span class="section-num">VII.</span>
+        <span class="section-line"></span>
+        <span class="section-tag">Compounding Cost</span>
+      </div>
+
+      <h2 class="section-heading">The Proximity Tax <em>Compound</em></h2>
+
+      <p>What happens when the Ego-Defensive Risk Switch runs unchecked - not for a moment, but for months or years?</p>
+
+      <p>The decay follows a predictable architecture. It does not announce itself at any stage. Each phase presents as rational, principled, or simply habitual - until the cumulative contraction becomes undeniable.</p>
+
+      <table class="decay-table">
+        <thead>
+          <tr>
+            <th>Stage</th>
+            <th>Name</th>
+            <th>What Actually Happens</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Stage I</td>
+            <td>Boundary Framing</td>
+            <td>Avoidance choices are relabelled as "strategic pivots," "values alignment," or "culture fit decisions." The reframe is sincere - the individual genuinely believes it.</td>
+          </tr>
+          <tr>
+            <td>Stage II</td>
+            <td>Map Distortion</td>
+            <td>The operational universe begins to contract. Certain rooms, relationships, and categories of opportunity become unavailable - not formally excluded, simply never considered.</td>
+          </tr>
+          <tr>
+            <td>Stage III</td>
+            <td>Information Atrophy</td>
+            <td>Valid data from disliked sources is systematically dismissed. The system stops receiving accurate signals from entire sectors of its environment - and does not notice the silence.</td>
+          </tr>
+          <tr>
+            <td>Stage IV</td>
+            <td>Strategic Erosion</td>
+            <td>The organisation or individual can no longer adapt at the speed required. Innovation declines. Decision quality degrades. The map is now a record of exclusions rather than a navigation tool.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>The individual becomes a hostage - not to others, but to their own unprocessed emotional state. They believe they are choosing freely. But freedom of choice, when systematically conditioned by avoidance, is not freedom. It is the illusion of agency with the substance of captivity.</p>
+
+      <p>And the particular cruelty of this pattern is that the people being avoided often do not notice. They move forward. They take the seat. They close the deal. They progress. While the person who left the room is nursing a wound that the other party may have forgotten they inflicted - paying a daily Proximity Tax on a debt the creditor no longer remembers writing.</p>
+    </article>
+
+    <article class="section">
+      <div class="section-label">
+        <span class="section-num">VIII.</span>
+        <span class="section-line"></span>
+        <span class="section-tag">Emotional Cost</span>
+      </div>
+
+      <h2 class="section-heading">What the Wound Is <em>Actually Costing</em></h2>
+
+      <p>There is something worth sitting with here, and it requires a particular kind of honesty - not performed self-awareness, but the kind that genuinely pauses and audits.</p>
+
+      <p>The emotional costs of this pattern are not abstract. They are specific, measurable in quality of daily experience, and cumulative in their effect on cognitive capacity.</p>
+
+      <div class="cost-list">
+        <div class="cost-item">
+          <span class="cost-label">Hypervigilance</span>
+          <span class="cost-desc">Significant mental bandwidth is quietly consumed tracking the adversary's location, status, and influence - bandwidth that was never available for original thought, strategic design, or sustained attention.</span>
+        </div>
+
+        <div class="cost-item">
+          <span class="cost-label">Borrowed Discomfort</span>
+          <span class="cost-desc">Accepting immediate pain - the worse seat, the longer route, the inferior option - to deny the other person a satisfaction they are almost certainly not tracking. The discomfort is real. The audience is not.</span>
+        </div>
+
+        <div class="cost-item">
+          <span class="cost-label">Resentment Loops</span>
+          <span class="cost-desc">Self-inflicted harm fuels more anger, which justifies more avoidance, which produces more harm. The loop does not close. It deepens - until the irrational begins to feel structural.</span>
+        </div>
+
+        <div class="cost-item">
+          <span class="cost-label">Loss of Agency</span>
+          <span class="cost-desc">Choices are no longer driven by desire or logic but by reaction. The individual's operational map is defined not by where they want to go, but by what they are running away from. This is the quiet end of genuine self-direction.</span>
+        </div>
+      </div>
+
+      <p>The moments in which anger drives self-sabotage are not moments of weakness in the conventional sense. They are moments of pain that has been given no other form of expression. When we cannot confront someone directly - cannot say clearly, <em>this hurt me</em> - the pain looks for another outlet. And the outlet it reliably finds is the self.</p>
+
+      <p>Understanding this does not excuse the pattern. But it changes the quality of the inquiry available to you. Instead of asking <em>why am I so irrational</em> - a question that produces shame and no information - the more productive question becomes: <em>What in me is so unaddressed that it has started managing my decisions?</em></p>
+
+      <p>That question, asked with genuine curiosity, begins to dissolve the loop from the inside. Because the loop is not fundamentally a decision problem. It is an unmet need that has been routed - incorrectly, expensively - through the decision-making system.</p>
+    </article>
+
+    <article class="section">
+      <div class="section-label">
+        <span class="section-num">IX.</span>
+        <span class="section-line"></span>
+        <span class="section-tag">Founder Relevance</span>
+      </div>
+
+      <h2 class="section-heading">When the System <em>Inherits the Trigger</em></h2>
+
+      <p>For those who build - companies, teams, cultures, legacies - this is not an abstract problem in emotional philosophy. It is an operational risk with measurable consequences at the P&amp;L level.</p>
+
+      <p>When a founder operates under unresolved anger, insecurity, or betrayal, the organisation does not merely absorb the friction. It builds around it. Systems are designed to protect the founder's emotional architecture rather than to serve market reality. This is what might be called the <strong>Shadow Governance Architecture</strong> - an invisible layer of avoidance loops, identity-protection mechanisms, and artificial constraints built entirely around the unaddressed psychological triggers of key decision-makers.</p>
+
+      <p>The SGA silently rewrites procurement, hiring, partnerships, and capital allocation to ensure the leader never has to confront their emotional vulnerabilities. Formal strategy becomes obsolete. Execution continues. The organisation moves, but the map has already been distorted beyond reliable use.</p>
+
+      <p>The strategic and financial costs translate directly into three measurable categories:</p>
+
+      <table class="cost-table">
+        <thead>
+          <tr>
+            <th>Cost Category</th>
+            <th>Definition</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td>Arbitrage Decay</td>
+            <td>Choosing inferior vendors, investors, or asset classes due to interpersonal friction - paying a premium on every category of input because the optimal source is emotionally unavailable.</td>
+          </tr>
+          <tr>
+            <td>Talent Churn Tax</td>
+            <td>Liquidating high-capability human capital because their communication style, intellectual challenge, or perceived loyalty triggers executive insecurity. Competence is removed in the name of culture.</td>
+          </tr>
+          <tr>
+            <td>M&amp;A Suboptimisation</td>
+            <td>Rejecting lucrative liquidity events, partnerships, or consolidations due to historic board-level or founder-level animosity. The most consequential capital decisions in a company's life are redirected by personal grievance.</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p>For boards, CFOs, and institutional investors, these are not soft psychological observations. They are quantifiable risk categories. An emotionally defensive leader is not merely a difficult personality. They are a governance liability - one whose cost is most often discovered long after the point at which it could have been addressed.</p>
+
+      <p>The leaders who compound well across time are not those who feel no anger. They are those who have built sufficient internal infrastructure to ensure that anger is processed, acknowledged - and then firmly separated from the decision-making function. That separation is not emotional coldness. It is the architecture of genuine strategic maturity.</p>
+    </article>
+
+    <article class="section">
+      <div class="section-label">
+        <span class="section-num">X.</span>
+        <span class="section-line"></span>
+        <span class="section-tag">Final Truth</span>
+      </div>
+
+      <h2 class="section-heading">The Audience of <em>No One</em></h2>
+
+      <div class="truth-block">
+        <p>Anger does not primarily damage the person who triggered it. It damages the person who carries it.</p>
+        <p>Every reactive decision is a Proximity Tax paid to a wound. Every zone of avoidance is a room you have quietly locked yourself out of. Every moment the ego takes the wheel, the strategist in you is sitting in the back seat - watching the route get worse, watching the options narrow, watching the map fill with exclusions instead of destinations.</p>
+        <p>The person you are avoiding is often not suffering. They are often not watching. You are paying a significant, compounding price for a performance no one requested, on a stage no one is attending.</p>
+      </div>
+
+      <p>Sit with that image long enough - yourself making costly decisions for an audience of no one - and something in the pattern begins to lose its logic. The loop does not sustain itself under honest observation. The charge that keeps it running is the belief, somewhere beneath conscious reasoning, that the performance matters. That the avoidance is seen. That the distance communicates something important to someone who is still paying attention.</p>
+
+      <p>It does not. It is the wound managing the self - under the convincing guise of dignity, principle, and self-respect. And it is extracting a rent that grows with every quarter you allow it to continue.</p>
+
+      <div class="thesis-line">
+        When anger becomes your decision metric, your adversary becomes your strategist.
+      </div>
+
+      <p>The recovery is not emotional. It is architectural. It begins with the single most clarifying question available to a mind under emotional pressure - the question that anger works hardest to suppress:</p>
+
+      <p class="central-question"><em>What is actually best for me here - not as a statement to make, but as a life to build?</em></p>
+
+      <p>Not what keeps them away. Not what preserves the distance. Not what communicates the wound to a person who is not listening. What is wise. What is clean. What, if you were watching yourself from ten years ahead, you would be glad you had the clarity to choose - when everything in you was organised around choosing something else.</p>
+    </article>
+
+  </main>
+
+  <section class="series-cta">
+    <p class="cta-kicker">Continue the Proximity OS Series</p>
+
+    <h2>Study the 8 Manifestations</h2>
+
+    <p>
+      This article defines the core system. The micro-articles break it into visible behavioural patterns:
+      avoidance, ego-defence, distorted proximity, emotional overcorrection, strategic contraction, and the hidden costs of unprocessed internal states.
+    </p>
+
+    <div class="cta-actions">
+      <a href="../series/proximity-os.html" class="cta-primary">Enter the Series Page</a>
+      <a href="https://mindanchor-jai.github.io/Framework/" class="cta-secondary">Open Framework Library</a>
     </div>
+  </section>
+
+  <div class="closing-section">
+    <div class="ornament">- ⬡ -</div>
+
+    <p class="closing-line">
+      "The most dangerous decision you will ever make is the one you believe you are making for yourself - but are actually making against someone else."
+    </p>
+
+    <img class="closing-logo" src="Icon.png" alt="Mind Anchor logo">
+
+    <p class="closing-brand">Mind Anchor · Jai Nakra</p>
   </div>
-
-  <p>These are not failures of intelligence. They are failures of self-awareness under emotional pressure.</p>
-</article>
-
-<!-- VI -->
-<article class="section" id="weaponised-neutrality">
-  <div class="section-label">
-    <span class="section-num">VI.</span>
-    <span class="section-line"></span>
-    <span class="section-tag">Strategic Insight</span>
-  </div>
-
-  <h2 class="section-heading">Presence Is Not Endorsement. <em>Neutrality Is Not Weakness.</em></h2>
-
-  <p>Here is what the emotionally ungoverned person never grasps: avoidance is not neutral. It is not the absence of a move. It is always a move - with costs, with signals, with downstream consequences that compound invisibly across time.</p>
-
-  <div class="ip-panel" data-label="Mind Anchor Operating Principle">
-    <h3>Weaponised Neutrality</h3>
-    <p>The most strategically dangerous thing you can do to an adversary is refuse to let their presence alter your coordinates. True market dominance requires absolute freedom of position.</p>
-  </div>
-
-  <p>The strategically intelligent person understands something else entirely: <strong>proximity is not agreement.</strong> Physical nearness to someone you dislike is not endorsement of them. It is simply the willingness to remain in the room while your rational mind stays at the wheel.</p>
-
-  <p>The goal is not to dissolve anger. Anger is, in many cases, precisely calibrated information. The goal is something far more surgical: to refuse it the governance of your choices while continuing to acknowledge its presence.</p>
-</article>
-
-<!-- VII -->
-<article class="section">
-  <div class="section-label">
-    <span class="section-num">VII.</span>
-    <span class="section-line"></span>
-    <span class="section-tag">Behavioural Consequence</span>
-  </div>
-
-  <h2 class="section-heading">The Proximity Tax <em>Compound</em></h2>
-
-  <p>What happens when the Ego-Defensive Risk Switch runs unchecked - not for a moment, but for months or years?</p>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Stage</th>
-        <th>Name</th>
-        <th>What Actually Happens</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td>Stage I</td>
-        <td>Boundary Framing</td>
-        <td>Avoidance choices are relabelled as strategic pivots, values alignment, or culture fit decisions.</td>
-      </tr>
-      <tr>
-        <td>Stage II</td>
-        <td>Map Distortion</td>
-        <td>The operational universe begins to contract. Certain rooms and opportunities become unavailable.</td>
-      </tr>
-      <tr>
-        <td>Stage III</td>
-        <td>Information Atrophy</td>
-        <td>Valid data from disliked sources is systematically dismissed.</td>
-      </tr>
-      <tr>
-        <td>Stage IV</td>
-        <td>Strategic Erosion</td>
-        <td>The map becomes a record of exclusions rather than a navigation tool.</td>
-      </tr>
-    </tbody>
-  </table>
-</article>
-
-<!-- VIII -->
-<article class="section">
-  <div class="section-label">
-    <span class="section-num">VIII.</span>
-    <span class="section-line"></span>
-    <span class="section-tag">Emotional Reflection</span>
-  </div>
-
-  <h2 class="section-heading">What the Wound Is <em>Actually Costing</em></h2>
-
-  <p>There is something worth sitting with here, and it requires a particular kind of honesty - not performed self-awareness, but the kind that genuinely pauses and audits.</p>
-
-  <div class="cost-list">
-    <div class="cost-item">
-      <span class="cost-label">Hypervigilance</span>
-      <span class="cost-desc">Mental bandwidth is consumed tracking the adversary's location, status, and influence.</span>
-    </div>
-    <div class="cost-item">
-      <span class="cost-label">Borrowed Discomfort</span>
-      <span class="cost-desc">Accepting immediate pain to deny the other person a satisfaction they are almost certainly not tracking.</span>
-    </div>
-    <div class="cost-item">
-      <span class="cost-label">Resentment Loops</span>
-      <span class="cost-desc">Self-inflicted harm fuels more anger, which justifies more avoidance.</span>
-    </div>
-    <div class="cost-item">
-      <span class="cost-label">Loss of Agency</span>
-      <span class="cost-desc">Choices are no longer driven by desire or logic but by reaction.</span>
-    </div>
-  </div>
-
-  <p>The moments in which anger drives self-sabotage are not moments of weakness in the conventional sense. They are moments of pain that has been given no other form of expression.</p>
-</article>
-
-<!-- IX -->
-<article class="section" id="shadow-governance">
-  <div class="section-label">
-    <span class="section-num">IX.</span>
-    <span class="section-line"></span>
-    <span class="section-tag">Leadership &amp; Founder Relevance</span>
-  </div>
-
-  <h2 class="section-heading">When the System <em>Inherits the Trigger</em></h2>
-
-  <p>For those who build - companies, teams, cultures, legacies - this is not an abstract problem in emotional philosophy. It is an operational risk with measurable consequences at the P&amp;L level.</p>
-
-  <div class="ip-panel" data-label="Mind Anchor Governance Concept">
-    <h3>Shadow Governance Architecture</h3>
-    <p>An invisible layer of avoidance loops, identity-protection mechanisms, and artificial constraints built around the unaddressed psychological triggers of key decision-makers.</p>
-  </div>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Cost Category</th>
-        <th>Definition</th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <tr>
-        <td>Arbitrage Decay</td>
-        <td>Choosing inferior vendors, investors, or asset classes due to interpersonal friction.</td>
-      </tr>
-      <tr>
-        <td>Talent Churn Tax</td>
-        <td>Liquidating high-capability human capital because they trigger executive insecurity.</td>
-      </tr>
-      <tr>
-        <td>M&amp;A Suboptimisation</td>
-        <td>Rejecting lucrative partnerships or consolidations due to historic animosity.</td>
-      </tr>
-    </tbody>
-  </table>
-</article>
-
-<!-- X -->
-<article class="section">
-  <div class="section-label">
-    <span class="section-num">X.</span>
-    <span class="section-line"></span>
-    <span class="section-tag">Final Truth</span>
-  </div>
-
-  <h2 class="section-heading">The Audience of <em>No One</em></h2>
-
-  <div class="truth-block">
-    <p>Anger does not primarily damage the person who triggered it. It damages the person who carries it.</p>
-    <p>The person you are avoiding is often not suffering. They are often not watching.</p>
-    <p>You are paying a significant, compounding price for a performance no one requested, on a stage no one is attending.</p>
-  </div>
-
-  <div class="thesis-line">
-    When anger becomes your decision metric, your adversary becomes your strategist.
-  </div>
-
-  <p>The recovery is not emotional. It is architectural. It begins with the single most clarifying question available to a mind under emotional pressure:</p>
-
-  <p style="text-align:center; font-family:'Cormorant Garamond',serif; font-style:italic; font-size:1.55rem; color:var(--gold-light); margin:2.5rem 0;">
-    What is actually best for me here - not as a statement to make, but as a life to build?
-  </p>
-</article>
-
-<section class="ecosystem-cta" id="continue">
-  <h2>Continue the Proximity OS</h2>
-  <p>
-    This essay defines the framework core. The full ecosystem extends into manifestations,
-    practical toolkits, decision audits, and emotional governance systems.
-  </p>
-
-  <div class="cta-links">
-    <a href="index.html">Open Series Index →</a>
-    <a href="Framework.html">Open Framework →</a>
-    <a href="TK1-DecisionAudit.pdf">View Decision Toolkit →</a>
-  </div>
-</section>
-
-</main>
-
-<footer class="closing">
-  <p class="closing-line">
-    “The most dangerous decision you will ever make is the one you believe you are making for yourself — but are actually making against someone else.”
-  </p>
-
-  <img class="closing-logo" src="Icon.png" alt="Mind Anchor Logo" />
-
-  <p class="closing-brand">Mind Anchor · Jai Nakra</p>
-</footer>
 
 </div>
-
 </body>
 </html>
