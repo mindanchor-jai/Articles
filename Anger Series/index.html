@@ -6,15 +6,15 @@
   <title>The Proximity OS | Mind Anchor</title>
 
   <style>
+
     :root {
-      --navy: #050b2f;
-      --deep: #020515;
+      --navy: #030817;
+      --navy-2: #07112f;
       --gold: #d6aa42;
       --gold-soft: #f5d77b;
       --ivory: #f8f0dc;
-      --muted: #b9b09d;
-      --faint: rgba(248, 240, 220, 0.08);
-      --line: rgba(214, 170, 66, 0.35);
+      --muted: #a9a18f;
+      --line: rgba(214,170,66,0.22);
     }
 
     * {
@@ -25,160 +25,165 @@
 
     body {
       min-height: 100vh;
+      overflow-x: hidden;
+
       font-family: Georgia, "Times New Roman", serif;
-      background:
-        radial-gradient(circle at top, rgba(214,170,66,0.16), transparent 32%),
-        linear-gradient(180deg, var(--navy), var(--deep));
       color: var(--ivory);
-      padding: 58px 24px 80px;
+
+      background:
+        radial-gradient(circle at 20% 20%, rgba(214,170,66,0.06), transparent 24%),
+        radial-gradient(circle at 80% 30%, rgba(214,170,66,0.04), transparent 28%),
+        radial-gradient(circle at 60% 80%, rgba(245,215,123,0.03), transparent 24%),
+        linear-gradient(180deg, #07112f 0%, #030817 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+
+      background-image:
+        linear-gradient(rgba(255,255,255,0.015) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.015) 1px, transparent 1px);
+
+      background-size: 80px 80px;
+
+      mask-image: radial-gradient(circle at center, black 40%, transparent 90%);
+      pointer-events: none;
     }
 
     main {
-      max-width: 1050px;
-      margin: 0 auto;
+      width: 100%;
+      max-width: 1400px;
+      margin: auto;
+      padding: 70px 24px 120px;
+      position: relative;
     }
 
     header {
       text-align: center;
-      margin-bottom: 86px;
+      margin-bottom: 140px;
+      position: relative;
+      z-index: 2;
     }
 
-    header img {
-      width: 132px;
-      margin-bottom: 28px;
+    .logo {
+      width: 130px;
+      margin-bottom: 30px;
+
+      filter:
+        drop-shadow(0 0 24px rgba(214,170,66,0.25))
+        drop-shadow(0 0 60px rgba(214,170,66,0.10));
     }
 
     .eyebrow {
       color: var(--gold-soft);
       text-transform: uppercase;
-      letter-spacing: 0.24em;
-      font-size: 0.74rem;
-      margin-bottom: 16px;
-    }
-
-    h1 {
-      color: var(--gold-soft);
-      font-size: clamp(2.8rem, 7vw, 5.6rem);
-      font-weight: 500;
-      letter-spacing: 0.045em;
+      letter-spacing: 0.28em;
+      font-size: 0.72rem;
       margin-bottom: 20px;
     }
 
+    h1 {
+      font-size: clamp(3.5rem, 9vw, 7rem);
+      line-height: 0.95;
+      font-weight: 400;
+      color: var(--gold-soft);
+
+      letter-spacing: 0.04em;
+
+      margin-bottom: 28px;
+    }
+
     .intro {
-      max-width: 730px;
-      margin: 0 auto;
+      max-width: 760px;
+      margin: auto;
+
       color: var(--muted);
+
       font-size: 1.08rem;
-      line-height: 1.8;
+      line-height: 1.9;
     }
 
-    .system-map {
+    .map {
       position: relative;
-      margin-top: 20px;
-      padding: 20px 0;
+      min-height: 1500px;
     }
 
-    .system-map::before {
-      content: "";
+    .path {
       position: absolute;
-      left: 50%;
-      top: 0;
-      bottom: 0;
-      width: 1px;
-      background: linear-gradient(
-        180deg,
-        transparent,
-        var(--line),
-        rgba(214,170,66,0.08),
-        var(--line),
-        transparent
-      );
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .path svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .path path {
+      stroke: rgba(214,170,66,0.14);
+      stroke-width: 1.2;
+      fill: none;
     }
 
     .node {
-      position: relative;
-      display: grid;
-      grid-template-columns: 1fr 86px 1fr;
-      align-items: center;
-      min-height: 210px;
+      position: absolute;
+      width: 300px;
     }
 
-    .node-content {
-      position: relative;
-      padding: 26px 0;
-    }
+    .node::before {
+      content: "";
+      position: absolute;
+      width: 14px;
+      height: 14px;
 
-    .node:nth-child(odd) .node-content {
-      grid-column: 1;
-      text-align: right;
-      padding-right: 34px;
-    }
-
-    .node:nth-child(even) .node-content {
-      grid-column: 3;
-      text-align: left;
-      padding-left: 34px;
-    }
-
-    .orb {
-      grid-column: 2;
-      width: 58px;
-      height: 58px;
-      margin: 0 auto;
-      border: 1px solid rgba(245,215,123,0.55);
+      background: var(--gold-soft);
       border-radius: 999px;
-      background:
-        radial-gradient(circle, rgba(245,215,123,0.28), rgba(214,170,66,0.06) 55%, transparent);
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: var(--gold-soft);
-      font-size: 0.78rem;
-      letter-spacing: 0.12em;
+
+      top: -24px;
+      left: 0;
+
       box-shadow:
-        0 0 34px rgba(214,170,66,0.22),
-        inset 0 0 22px rgba(245,215,123,0.10);
-      z-index: 2;
+        0 0 16px rgba(245,215,123,0.7),
+        0 0 40px rgba(214,170,66,0.35);
     }
 
     .label {
       color: var(--gold);
       text-transform: uppercase;
-      letter-spacing: 0.2em;
-      font-size: 0.72rem;
+      letter-spacing: 0.22em;
+      font-size: 0.7rem;
       margin-bottom: 14px;
     }
 
     h2 {
-      font-size: clamp(1.55rem, 3vw, 2.35rem);
-      font-weight: 500;
-      line-height: 1.15;
+      font-size: 2rem;
+      line-height: 1.08;
+      font-weight: 400;
+      margin-bottom: 18px;
       color: var(--ivory);
-      margin-bottom: 15px;
     }
 
     .description {
       color: var(--muted);
-      font-size: 1rem;
-      line-height: 1.75;
-      max-width: 440px;
-    }
-
-    .node:nth-child(odd) .description {
-      margin-left: auto;
+      line-height: 1.8;
+      font-size: 0.98rem;
+      margin-bottom: 20px;
     }
 
     .open {
-      display: inline-block;
-      margin-top: 22px;
       color: var(--gold-soft);
       text-decoration: none;
+
       text-transform: uppercase;
-      letter-spacing: 0.16em;
-      font-size: 0.73rem;
-      border-bottom: 1px solid rgba(214,170,66,0.45);
+      letter-spacing: 0.18em;
+      font-size: 0.72rem;
+
+      border-bottom: 1px solid rgba(214,170,66,0.4);
       padding-bottom: 8px;
-      transition: all 0.3s ease;
+
+      transition: 0.3s ease;
     }
 
     .open:hover {
@@ -186,205 +191,140 @@
       border-color: var(--ivory);
     }
 
-    .node:hover .orb {
-      box-shadow:
-        0 0 48px rgba(245,215,123,0.38),
-        inset 0 0 26px rgba(245,215,123,0.16);
-    }
+    /* POSITIONING */
 
-    .node:hover h2 {
-      color: var(--gold-soft);
-    }
+    .n1 { top: 60px; left: 8%; }
+    .n2 { top: 260px; right: 8%; }
+    .n3 { top: 470px; left: 18%; }
+    .n4 { top: 690px; right: 18%; }
+    .n5 { top: 900px; left: 12%; }
+    .n6 { top: 1110px; right: 10%; }
 
     footer {
       text-align: center;
-      margin-top: 90px;
+      margin-top: 120px;
+
       color: rgba(248,240,220,0.42);
+
       text-transform: uppercase;
-      letter-spacing: 0.14em;
+      letter-spacing: 0.16em;
       font-size: 0.78rem;
     }
 
-    @media (max-width: 760px) {
-      body {
-        padding: 44px 20px 64px;
+    @media (max-width: 900px) {
+
+      .map {
+        min-height: auto;
       }
 
-      header {
-        margin-bottom: 58px;
-      }
-
-      header img {
-        width: 106px;
-      }
-
-      .system-map::before {
-        left: 28px;
+      .path {
+        display: none;
       }
 
       .node {
-        display: grid;
-        grid-template-columns: 58px 1fr;
-        min-height: auto;
-        margin-bottom: 44px;
+        position: relative;
+        width: 100%;
+
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+
+        margin-bottom: 90px;
       }
 
-      .orb {
-        grid-column: 1;
-        grid-row: 1;
-        width: 48px;
-        height: 48px;
-        font-size: 0.68rem;
-      }
-
-      .node:nth-child(odd) .node-content,
-      .node:nth-child(even) .node-content {
-        grid-column: 2;
-        text-align: left;
-        padding: 0 0 0 24px;
-      }
-
-      .node:nth-child(odd) .description {
-        margin-left: 0;
+      h2 {
+        font-size: 1.7rem;
       }
     }
+
   </style>
 </head>
 
 <body>
+
   <main>
 
     <header>
-      <img src="Icon.png" alt="Mind Anchor Icon" />
+
+      <img class="logo" src="Icon.png" alt="Mind Anchor Logo" />
 
       <p class="eyebrow">Mind Anchor Framework Series</p>
 
       <h1>The Proximity OS</h1>
 
       <p class="intro">
-        A psychological operating system tracing how anger, avoidance, ego,
-        and emotional proximity quietly distort judgment, leadership,
-        and strategic behavior.
+        A psychological operating system tracing how anger, avoidance,
+        ego, emotional proximity, and unconscious reactions silently distort
+        leadership, judgment, and strategic behavior.
       </p>
+
     </header>
 
-    <section class="system-map">
+    <section class="map">
 
-      <article class="node">
-        <div class="node-content">
-          <p class="label">Main Article</p>
-          <h2>Pyrrhic Avoidance</h2>
-          <p class="description">
-            The hidden architecture of how anger corrupts the decisions
-            you believe you are making for yourself.
-          </p>
-          <a class="open" href="MainArticle.html">Open Article</a>
-        </div>
-        <div class="orb">00</div>
+      <div class="path">
+        <svg viewBox="0 0 1400 1500" preserveAspectRatio="none">
+          <path d="M180 120 C500 220, 900 120, 1180 320
+                   S900 620, 350 720
+                   S500 1100, 1150 1180" />
+        </svg>
+      </div>
+
+      <article class="node n1">
+        <p class="label">Main Architecture</p>
+        <h2>Pyrrhic Avoidance</h2>
+        <p class="description">
+          The hidden architecture of how anger corrupts
+          the decisions you believe you are making for yourself.
+        </p>
+        <a class="open" href="MainArticle.html">Open Article →</a>
       </article>
 
-      <article class="node">
-        <div class="node-content">
-          <p class="label">Micro Article 01</p>
-          <h2>The Geometry of Avoidance</h2>
-          <p class="description">
-            You are not choosing a seat. You are fleeing a feeling.
-            The smallest movement can reveal the deepest avoidance.
-          </p>
-          <a class="open" href="Article1.html">Open Article</a>
-        </div>
-        <div class="orb">01</div>
+      <article class="node n2">
+        <p class="label">Manifestation 01</p>
+        <h2>The Geometry of Avoidance</h2>
+        <p class="description">
+          You are not choosing a seat.
+          You are fleeing a feeling.
+        </p>
+        <a class="open" href="Article1.html">Open Article →</a>
       </article>
 
-      <article class="node">
-        <div class="node-content">
-          <p class="label">Micro Article 02</p>
-          <h2>The Invoice for Distance</h2>
-          <p class="description">
-            Silence is not free. It becomes an invisible bill your future
-            self eventually pays with interest.
-          </p>
-          <a class="open" href="Article2.html">Open Article</a>
-        </div>
-        <div class="orb">02</div>
+      <article class="node n3">
+        <p class="label">Manifestation 02</p>
+        <h2>The Invoice for Distance</h2>
+        <p class="description">
+          Silence compounds interest internally long before reality sends the bill.
+        </p>
+        <a class="open" href="Article2.html">Open Article →</a>
       </article>
 
-      <article class="node">
-        <div class="node-content">
-          <p class="label">Micro Article 03</p>
-          <h2>The Ghost Architect</h2>
-          <p class="description">
-            If your movement is only reaction, the wound is still designing
-            your direction.
-          </p>
-          <a class="open" href="Article3.html">Open Article</a>
-        </div>
-        <div class="orb">03</div>
+      <article class="node n4">
+        <p class="label">Manifestation 03</p>
+        <h2>The Ghost Architect</h2>
+        <p class="description">
+          If every movement is reaction,
+          the wound is still designing your direction.
+        </p>
+        <a class="open" href="Article3.html">Open Article →</a>
       </article>
 
-      <article class="node">
-        <div class="node-content">
-          <p class="label">Micro Article 04</p>
-          <h2>The Virtue Camouflage</h2>
-          <p class="description">
-            Avoidance becomes dangerous when fear learns the language
-            of wisdom, healing, and integrity.
-          </p>
-          <a class="open" href="Article4.html">Open Article</a>
-        </div>
-        <div class="orb">04</div>
+      <article class="node n5">
+        <p class="label">Manifestation 04</p>
+        <h2>The Shadow OS</h2>
+        <p class="description">
+          Organizations unconsciously inherit the emotional architecture of leadership.
+        </p>
+        <a class="open" href="Article5.html">Open Article →</a>
       </article>
 
-      <article class="node">
-        <div class="node-content">
-          <p class="label">Micro Article 05</p>
-          <h2>The Shadow OS</h2>
-          <p class="description">
-            Organizations often mirror the unresolved emotional architecture
-            of their leaders.
-          </p>
-          <a class="open" href="Article5.html">Open Article</a>
-        </div>
-        <div class="orb">05</div>
-      </article>
-
-      <article class="node">
-        <div class="node-content">
-          <p class="label">Micro Article 06</p>
-          <h2>The Decoupled Mind</h2>
-          <p class="description">
-            Emotions are allowed to exist. They simply are not allowed
-            to drive the decision.
-          </p>
-          <a class="open" href="Article6.html">Open Article</a>
-        </div>
-        <div class="orb">06</div>
-      </article>
-
-      <article class="node">
-        <div class="node-content">
-          <p class="label">Micro Article 07</p>
-          <h2>The Unprovokable Leader</h2>
-          <p class="description">
-            The person who cannot be emotionally manipulated becomes
-            strategically difficult to control.
-          </p>
-          <a class="open" href="Article7.html">Open Article</a>
-        </div>
-        <div class="orb">07</div>
-      </article>
-
-      <article class="node">
-        <div class="node-content">
-          <p class="label">Micro Article 08</p>
-          <h2>Building the Immunity</h2>
-          <p class="description">
-            Mature systems should not depend on emotionally perfect people
-            to function correctly.
-          </p>
-          <a class="open" href="Article8.html">Open Article</a>
-        </div>
-        <div class="orb">08</div>
+      <article class="node n6">
+        <p class="label">Manifestation 05</p>
+        <h2>The Unprovokable Leader</h2>
+        <p class="description">
+          Emotional immunity creates strategic clarity under pressure.
+        </p>
+        <a class="open" href="Article7.html">Open Article →</a>
       </article>
 
     </section>
@@ -394,5 +334,6 @@
     </footer>
 
   </main>
+
 </body>
 </html>
