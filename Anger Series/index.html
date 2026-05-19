@@ -32,7 +32,8 @@
       background:
         linear-gradient(125deg, rgba(214,170,66,0.08), transparent 24%),
         linear-gradient(235deg, rgba(245,215,123,0.06), transparent 30%),
-        radial-gradient(circle at 50% 20%, rgba(214,170,66,0.055), transparent 28%),
+        radial-gradient(circle at 50% 18%, rgba(214,170,66,0.055), transparent 28%),
+        radial-gradient(circle at 15% 72%, rgba(245,215,123,0.035), transparent 24%),
         linear-gradient(180deg, #07112f 0%, #030817 100%);
     }
 
@@ -96,7 +97,7 @@
 
     .map {
       position: relative;
-      min-height: 2350px;
+      min-height: 2400px;
     }
 
     .path {
@@ -183,7 +184,7 @@
     .n6 { top: 1230px; right: 12%; }
     .n7 { top: 1510px; left: 20%; }
     .n8 { top: 1790px; right: 10%; }
-    .n9 { top: 1790px; right: 12%; }
+    .n9 { top: 2070px; left: 12%; }
 
     footer {
       text-align: center;
@@ -226,6 +227,10 @@
       h2 {
         font-size: 1.7rem;
       }
+
+      .logo {
+        width: 105px;
+      }
     }
   </style>
 </head>
@@ -251,13 +256,14 @@
     <section class="map">
 
       <div class="path">
-        <svg viewBox="0 0 1400 2050" preserveAspectRatio="none">
-          <path d="M180 120 
+        <svg viewBox="0 0 1400 2400" preserveAspectRatio="none">
+          <path d="M180 120
                    C520 220, 900 120, 1180 320
                    S900 610, 360 720
                    S460 1030, 1150 1200
                    S980 1530, 390 1630
-                   S660 1900, 1180 1880" />
+                   S660 1900, 1180 1880
+                   S900 2200, 280 2190" />
         </svg>
       </div>
 
