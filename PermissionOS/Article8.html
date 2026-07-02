@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Rented Mirror — Mind Anchor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;0,900;1,400;1,700&family=EB+Garamond:ital,wght@0,400;0,500;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --bg: #09080f;
+    --surface: #100e18;
+    --surface2: #181622;
+    --border: #262038;
+    --text: #e8e4f4;
+    --muted: #686088;
+    --accent: #7858c8;
+    --accent2: #a888e8;
+    --number: #181030;
+    --tag-bg: #100c20;
+  }
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+  html { scroll-behavior: smooth; }
+  body { background: var(--bg); color: var(--text); font-family: 'EB Garamond', serif; font-size: 18px; line-height: 1.85; min-height: 100vh; }
+
+  /* LOGO BAR */
+  .logo-bar { position: fixed; top: 0; left: 0; right: 0; z-index: 100; background: rgba(9,8,15,0.96); backdrop-filter: blur(14px); border-bottom: 1px solid var(--border); padding: 0 2rem; height: 64px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo-mark { width: 36px; height: 36px; border: 2px solid var(--accent); display: flex; align-items: center; justify-content: center; position: relative; }
+  .logo-mark::before { content: ''; width: 10px; height: 10px; background: var(--accent); display: block; }
+  .logo-mark::after { content: ''; position: absolute; bottom: -6px; left: 50%; transform: translateX(-50%); width: 2px; height: 6px; background: var(--accent); }
+  .logo-text { font-family: 'Space Mono', monospace; font-size: 13px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; }
+  .nav-series { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; }
+
+  /* INDEX NAV */
+  .index-nav { max-width: 920px; margin: 0 auto; padding: 80px 2rem 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .index-link { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.1em; color: var(--muted); text-decoration: none; padding: 5px 12px; border: 1px solid var(--border); text-transform: uppercase; transition: all 0.2s; }
+  .index-link:hover, .index-link.current { color: var(--accent); border-color: var(--accent); background: var(--tag-bg); }
+  .index-link.current { pointer-events: none; }
+
+  /* HERO */
+  .hero { min-height: 100vh; padding: 60px 2rem 80px; display: flex; flex-direction: column; justify-content: center; max-width: 920px; margin: 0 auto; position: relative; overflow: hidden; }
+  .hero-eyebrow { display: inline-flex; align-items: center; gap: 8px; background: var(--tag-bg); border: 1px solid var(--border); border-left: 3px solid var(--accent); padding: 6px 16px; font-family: 'Space Mono', monospace; font-size: 11px; letter-spacing: 0.12em; color: var(--accent); text-transform: uppercase; margin-bottom: 2.5rem; width: fit-content; opacity: 0; animation: fadeUp 0.8s 0.2s forwards; }
+  .hero-bg-number { font-family: 'Playfair Display', serif; font-size: clamp(140px, 25vw, 280px); font-weight: 900; color: var(--number); line-height: 0.8; position: absolute; right: -30px; top: 50%; transform: translateY(-50%); pointer-events: none; user-select: none; }
+  .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(44px, 7vw, 84px); font-weight: 700; line-height: 1.04; letter-spacing: -0.02em; color: var(--text); margin-bottom: 1.8rem; max-width: 680px; opacity: 0; animation: fadeUp 0.8s 0.35s forwards; }
+  .hero-title em { font-style: italic; color: var(--accent); }
+  .hero-thesis { font-family: 'Playfair Display', serif; font-size: clamp(17px, 2.2vw, 22px); font-style: italic; color: var(--accent2); max-width: 600px; line-height: 1.55; border-left: 2px solid var(--accent); padding-left: 1.5rem; margin-bottom: 3rem; opacity: 0; animation: fadeUp 0.8s 0.5s forwards; }
+  .hero-scroll { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.1em; display: flex; align-items: center; gap: 12px; opacity: 0; animation: fadeUp 0.8s 0.9s forwards; }
+  .hero-scroll::after { content: ''; width: 60px; height: 1px; background: var(--muted); }
+
+  /* CONTENT */
+  .content { max-width: 920px; margin: 0 auto; padding: 0 2rem 6rem; }
+  .section { margin-bottom: 5rem; opacity: 0; transform: translateY(28px); transition: opacity 0.65s ease, transform 0.65s ease; }
+  .section.visible { opacity: 1; transform: translateY(0); }
+  .label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 1rem; display: flex; align-items: center; gap: 12px; }
+  .label::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+  .section-title { font-family: 'Playfair Display', serif; font-size: clamp(24px, 3.5vw, 36px); font-weight: 700; color: var(--text); margin-bottom: 1.5rem; line-height: 1.2; }
+
+  /* HOOK */
+  .hook { background: var(--surface); border: 1px solid var(--border); padding: 3rem; position: relative; overflow: hidden; }
+  .hook::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 3px; background: linear-gradient(90deg, var(--accent), transparent); }
+  .hook p { font-family: 'EB Garamond', serif; font-size: clamp(18px, 2vw, 22px); line-height: 1.78; color: var(--text); }
+  .hook p + p { margin-top: 1.3em; }
+  .hook strong { color: var(--accent2); font-weight: 500; }
+
+  .body { font-family: 'EB Garamond', serif; font-size: clamp(17px, 1.8vw, 20px); line-height: 1.9; color: #9888c8; }
+  .body p + p { margin-top: 1.2em; }
+  .body em { color: var(--accent2); font-style: italic; }
+
+  /* VALIDATION SPECTRUM */
+  .validation-spectrum { background: var(--surface); border: 1px solid var(--border); padding: 2.5rem; margin: 2rem 0; }
+  .spectrum-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--muted); text-transform: uppercase; margin-bottom: 2rem; }
+  .spectrum-row { display: grid; grid-template-columns: 1.2fr auto 1fr; gap: 1rem; align-items: center; margin-bottom: 1.5px; background: var(--border); }
+  .spectrum-row:last-child { margin-bottom: 0; }
+  .spectrum-praise { background: var(--surface2); padding: 1rem 1.5rem; font-family: 'EB Garamond', serif; font-size: 16px; color: var(--accent2); font-style: italic; }
+  .spectrum-arrow { background: var(--bg); padding: 1rem 0.5rem; font-family: 'Space Mono', monospace; font-size: 12px; color: var(--muted); text-align: center; }
+  .spectrum-effect { background: var(--surface); padding: 1rem 1.5rem; font-family: 'EB Garamond', serif; font-size: 16px; color: #6858a8; }
+  .spectrum-crit { background: var(--surface2); padding: 1rem 1.5rem; font-family: 'EB Garamond', serif; font-size: 16px; color: #8858a8; font-style: italic; }
+  .spectrum-effect-neg { background: var(--surface); padding: 1rem 1.5rem; font-family: 'EB Garamond', serif; font-size: 16px; color: #6040a0; }
+  .spectrum-header { background: var(--bg); padding: 0.6rem 1.5rem; font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.12em; color: var(--muted); text-transform: uppercase; }
+
+  .pullquote { margin: 3rem 0; padding: 2.5rem 3rem; border-left: 4px solid var(--accent); background: var(--surface); }
+  .pullquote p { font-family: 'Playfair Display', serif; font-size: clamp(20px, 2.5vw, 27px); font-style: italic; line-height: 1.5; color: var(--text); }
+  .pullquote cite { display: block; margin-top: 1rem; font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); letter-spacing: 0.08em; font-style: normal; }
+
+  .signal-list { list-style: none; padding: 0; margin-top: 1rem; }
+  .signal-list li { font-family: 'EB Garamond', serif; font-size: 18px; color: #9888c8; padding: 0.7rem 0 0.7rem 1.5rem; border-bottom: 1px solid var(--border); position: relative; }
+  .signal-list li::before { content: '—'; position: absolute; left: 0; color: var(--accent); }
+
+  .truth { background: var(--accent); padding: 3rem; margin: 3rem 0; }
+  .truth-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: #200848; text-transform: uppercase; margin-bottom: 1rem; }
+  .truth p { font-family: 'Playfair Display', serif; font-size: clamp(20px, 2.5vw, 27px); font-style: italic; color: #04020c; line-height: 1.5; }
+
+  .cta { background: var(--surface2); border: 1px solid var(--border); border-top: 3px solid var(--accent); padding: 2.5rem; margin: 3rem 0; }
+  .cta-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.2em; color: var(--accent); text-transform: uppercase; margin-bottom: 1rem; }
+  .cta p { font-family: 'EB Garamond', serif; font-size: 19px; font-style: italic; color: var(--text); line-height: 1.7; }
+
+  .two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5px; background: var(--border); margin-top: 1.5rem; }
+  .col-card { background: var(--surface); padding: 2rem; }
+  .col-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.75rem; }
+  .col-card p { font-family: 'EB Garamond', serif; font-size: 17px; line-height: 1.7; color: #7868b0; }
+
+  .dist-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--border); margin-top: 1.5rem; }
+  .dist-card { background: var(--surface); padding: 1.5rem 2rem; }
+  .dist-platform { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--accent); text-transform: uppercase; margin-bottom: 0.5rem; }
+  .dist-card p { font-family: 'EB Garamond', serif; font-size: 16px; color: #686098; line-height: 1.6; }
+
+  /* SERIES COMPLETE PANEL */
+  .series-panel { background: var(--surface2); border: 1px solid var(--border); border-top: 3px solid var(--accent); padding: 3rem; margin-top: 3rem; }
+  .series-panel-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.22em; color: var(--accent); text-transform: uppercase; margin-bottom: 2rem; }
+  .series-links { display: flex; flex-direction: column; gap: 1.5px; background: var(--border); }
+  .series-link { background: var(--surface); display: flex; align-items: center; gap: 1.5rem; padding: 1rem 1.5rem; text-decoration: none; transition: background 0.2s; }
+  .series-link:hover { background: var(--surface2); }
+  .series-num { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--muted); width: 28px; flex-shrink: 0; }
+  .series-link:hover .series-num { color: var(--accent); }
+  .series-link-title { font-family: 'Playfair Display', serif; font-size: 18px; color: var(--text); line-height: 1.2; }
+  .series-link-sub { font-family: 'Space Mono', monospace; font-size: 10px; color: var(--muted); letter-spacing: 0.1em; text-transform: uppercase; margin-left: auto; flex-shrink: 0; }
+
+  /* SYSTEM MAP */
+  .system-map { background: var(--surface); border: 1px solid var(--border); padding: 2.5rem; margin: 2rem 0; }
+  .map-label { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.18em; color: var(--muted); text-transform: uppercase; margin-bottom: 2rem; }
+  .map-flow { display: flex; flex-direction: column; gap: 1.5px; background: var(--border); }
+  .map-row { display: flex; align-items: stretch; background: var(--border); gap: 1.5px; }
+  .map-num { background: var(--tag-bg); padding: 1rem 1.25rem; font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent); display: flex; align-items: center; flex-shrink: 0; width: 48px; justify-content: center; }
+  .map-title { background: var(--surface); padding: 1rem 1.5rem; font-family: 'Playfair Display', serif; font-size: 17px; color: var(--text); display: flex; align-items: center; flex: 1; font-style: italic; }
+  .map-layer { background: var(--surface2); padding: 1rem 1.25rem; font-family: 'Space Mono', monospace; font-size: 10px; color: var(--muted); display: flex; align-items: center; letter-spacing: 0.1em; text-transform: uppercase; width: 160px; flex-shrink: 0; }
+
+  /* NAV */
+  .article-nav { border-top: 1px solid var(--border); padding: 3rem 2rem; max-width: 920px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; gap: 2rem; }
+  .nav-link { text-decoration: none; display: flex; flex-direction: column; gap: 6px; max-width: 280px; }
+  .nav-dir { font-family: 'Space Mono', monospace; font-size: 10px; letter-spacing: 0.15em; color: var(--muted); text-transform: uppercase; }
+  .nav-title { font-family: 'Playfair Display', serif; font-size: 19px; color: var(--text); transition: color 0.2s; line-height: 1.2; }
+  .nav-link:hover .nav-title { color: var(--accent); }
+  .nav-link.prev .nav-dir::after { content: ' ← Prev'; }
+  .nav-link.restart { text-align: right; }
+  .nav-link.restart .nav-dir { display: block; text-align: right; }
+  .nav-link.restart .nav-dir::before { content: '↺ Begin Again'; }
+
+  .divider { border: none; border-top: 1px solid var(--border); margin: 4rem 0; }
+
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(18px); } to { opacity: 1; transform: translateY(0); } }
+  @media (max-width: 640px) {
+    .two-col, .dist-grid { grid-template-columns: 1fr; }
+    .hero-bg-number { font-size: 40vw; right: -15px; }
+    .spectrum-row { grid-template-columns: 1fr; }
+    .map-layer { display: none; }
+    .series-link-sub { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="logo-bar">
+  <a href="perm-01.html" class="logo">
+    <div class="logo-mark"></div>
+    <span class="logo-text">Mind Anchor</span>
+  </a>
+  <span class="nav-series">PermissionOS Series</span>
+</header>
+
+<nav class="index-nav">
+  <a href="perm-01.html" class="index-link">01</a>
+  <a href="perm-02.html" class="index-link">02</a>
+  <a href="perm-03.html" class="index-link">03</a>
+  <a href="perm-04.html" class="index-link">04</a>
+  <a href="perm-05.html" class="index-link">05</a>
+  <a href="perm-06.html" class="index-link">06</a>
+  <a href="perm-07.html" class="index-link">07</a>
+  <a href="perm-08.html" class="index-link current">08</a>
+</nav>
+
+<section class="hero">
+  <div class="hero-bg-number">08</div>
+  <div class="hero-eyebrow">Manifestation 08 · The Borrowed Worth</div>
+  <h1 class="hero-title">The Rented<br><em>Mirror</em></h1>
+  <p class="hero-thesis">You are renting your self-worth from a world that is not in the business of giving it away. Every lease renewal costs more than the last. And the landlord's terms keep changing.</p>
+  <div class="hero-scroll">Read the framework</div>
+</section>
+
+<main class="content">
+
+  <div class="section">
+    <div class="label">Hook</div>
+    <div class="hook">
+      <p>The praise arrived. And for a moment — a specific, measurable moment — you felt like enough.</p>
+      <p>Then it faded. And the insufficiency returned. And you began, almost without noticing, to orient your behavior toward the conditions that had produced the praise — because <strong>the praise was the only thing that had reliably made the feeling stop.</strong></p>
+      <p>This is not vanity. It is not neediness. It is the most sophisticated symptom in the entire PermissionOS — the one that sits beneath every other manifestation, quietly providing its fuel. <strong>You do not have self-worth. You have borrowed worth — a temporary lease on a feeling that must be renewed continuously, from external sources, at increasing cost.</strong></p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="label">The Root Source</div>
+    <h2 class="section-title">Why This Manifestation Is Last</h2>
+    <div class="body">
+      <p>The borrowed worth is not the final symptom. It is the original condition. Every manifestation that preceded this one — the arrival illusion, the celebration deficit, the moving goalpost, the rest guilt, the performance identity, the perfect shield, the conditional pause — exists because self-worth was made conditional. Borrowed. Dependent on external confirmation.</p>
+      <p><em>The arrival illusion exists because the destination was supposed to deliver the feeling of worth. The performance identity exists because the role was built to generate it. The perfectionism exists to avoid the judgment that might withhold it. Every manifestation in this series is a different strategy for obtaining the same thing: permission to feel sufficient.</em></p>
+      <p>That permission was never actually conditional. The system that made it feel conditional is the one this article names.</p>
+    </div>
+    <div class="pullquote">
+      <p>"You are renting your worth from a world that is not in the business of giving it away permanently. Every landlord changes their terms. Every source eventually withdraws."</p>
+      <cite>PermissionOS Framework · Manifestation 08</cite>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="label">The Validation Economy</div>
+    <h2 class="section-title">How Borrowed Worth Operates in Practice</h2>
+    <div class="body"><p>The mechanism is precise: self-esteem rises with praise and falls with criticism. The person is not unstable. They are <em>responsive</em> — their internal state is continuously calibrated by external signals, because no stable internal source exists to anchor it.</p></div>
+    <div class="validation-spectrum">
+      <div class="spectrum-label">External Input → Internal Effect</div>
+      <div class="spectrum-row">
+        <div class="spectrum-header">Input</div>
+        <div class="spectrum-arrow" style="background:var(--bg);"></div>
+        <div class="spectrum-header">Internal Effect</div>
+      </div>
+      <div class="spectrum-row">
+        <div class="spectrum-praise">Significant public praise</div>
+        <div class="spectrum-arrow">→</div>
+        <div class="spectrum-effect">Temporary sense of legitimacy. "I am good enough — for now."</div>
+      </div>
+      <div class="spectrum-row">
+        <div class="spectrum-praise">Recognition from a respected figure</div>
+        <div class="spectrum-arrow">→</div>
+        <div class="spectrum-effect">Elevated self-concept. Lasts until the next evaluation moment.</div>
+      </div>
+      <div class="spectrum-row">
+        <div class="spectrum-crit">Mild critical feedback</div>
+        <div class="spectrum-arrow">→</div>
+        <div class="spectrum-effect-neg">Disproportionate deflation. The criticism lands as a verdict, not a data point.</div>
+      </div>
+      <div class="spectrum-row">
+        <div class="spectrum-crit">Being overlooked or ignored</div>
+        <div class="spectrum-arrow">→</div>
+        <div class="spectrum-effect-neg">The absence of validation reads as active rejection. Invisibility = unworthiness.</div>
+      </div>
+    </div>
+    <div class="body" style="margin-top:1.5rem;">
+      <p><em>The person is not weak. They are operating on a system that was designed without an internal anchor — and external signals are filling the gap that anchor was supposed to occupy.</em></p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="label">Leadership Consequence</div>
+    <h2 class="section-title">When the Leader's Worth Is Borrowed</h2>
+    <div class="body"><p>A leader whose self-worth depends on external validation cannot tolerate honest feedback. Feedback is not processed as information — it is processed as a threat to the architecture that holds the self together. The team learns this quickly. They stop offering truth. They begin offering approval. The organization gradually becomes a machine for the generation of the leader's validation — at the cost of its own strategic clarity.</p></div>
+    <div class="two-col">
+      <div class="col-card">
+        <div class="col-label">What It Looks Like</div>
+        <p>Leaders who need to be the smartest in the room. Defensiveness to challenge. Decisions made to protect image rather than create value.</p>
+      </div>
+      <div class="col-card">
+        <div class="col-label">What It Costs</div>
+        <p>A team that cannot speak truth to power. A culture of managed perception rather than honest performance. Strategic blind spots that compound quietly.</p>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="label">The Question Beneath Everything</div>
+    <h2 class="section-title">What Proof Are You Still Trying to Earn?</h2>
+    <div class="body">
+      <p>At the base of borrowed worth, there is always a specific audience. A parent. A former mentor. A peer group. A cultural standard. A version of the self that formed in childhood and established, very early, what "enough" would require to look like.</p>
+      <p>The high-achieving adult is often still performing for that original audience — long after the audience has left the room, or changed their terms, or become incapable of ever granting the verdict that was originally sought. <em>The chase continues. The proof remains just out of reach. The performance escalates to compensate.</em></p>
+      <p>This is not a psychological weakness. It is the logical output of a system that was set to the wrong source. The worth was never external. It was always internal. The entire apparatus — the arrival illusion, the celebration deficit, the treadmill, the rest guilt, the performance identity, the perfectionism, the conditional pause — was constructed to pursue something that was present all along and could not be found outside because it was never lost outside.</p>
+    </div>
+    <div class="pullquote">
+      <p>"What proof are you still trying to earn from the world? And from whom, originally, did you learn that proof was required?"</p>
+      <cite>PermissionOS Framework · The Core Diagnostic Question</cite>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="label">Recognition Signals</div>
+    <h2 class="section-title">The Borrowed Worth Is the Source If...</h2>
+    <ul class="signal-list">
+      <li>Praise feels better than achievement — because it confirms the achievement counted</li>
+      <li>Critical feedback lands as a personal verdict, not a professional data point</li>
+      <li>Being overlooked feels like being erased</li>
+      <li>You can identify a specific audience whose approval still governs your behavior</li>
+      <li>The feeling of "enough" is always contingent on something external confirming it first</li>
+    </ul>
+  </div>
+
+  <div class="section">
+    <div class="truth">
+      <div class="truth-label">Direct Truth</div>
+      <p>"You are renting your worth from a world that is not in the business of giving it away. Every source will eventually change its terms, withdraw its approval, or become incapable of granting the verdict you need. The only architecture that holds is one you build internally — and it cannot be built while you are outsourcing the foundation."</p>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="label">Human Recognition Trigger</div>
+    <div class="pullquote">
+      <p>"I realized I had spent twenty years performing for someone who had been dead for five of them. The audience I was working for had left the room — and I had not updated the performance."</p>
+      <cite>The moment the original source of the borrowed worth becomes visible — and the distance between that source and the present becomes unmissable.</cite>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="cta">
+      <div class="cta-label">The Final Reflection</div>
+      <p>"Name the audience you are performing for. Not the professional one — the original one. The one that first established what 'enough' would need to look like. Now ask: is that audience still in the room? And if it is — is it the right one to be building your architecture around?"</p>
+    </div>
+  </div>
+
+  <hr class="divider">
+
+  <div class="section">
+    <div class="label">The Full System</div>
+    <h2 class="section-title">How the Eight Manifestations Connect</h2>
+    <div class="body"><p>Each manifestation is a different face of the same operating system — the belief that worth is conditional, external, and must be continuously earned. The system protects itself by ensuring the conditions for feeling sufficient are always slightly out of reach.</p></div>
+    <div class="system-map">
+      <div class="map-label">PermissionOS — The Complete Manifestation Map</div>
+      <div class="map-flow">
+        <div class="map-row">
+          <div class="map-num">01</div>
+          <div class="map-title">The Waiting Room — The Arrival Illusion</div>
+          <div class="map-layer">Entry Point</div>
+        </div>
+        <div class="map-row">
+          <div class="map-num">02</div>
+          <div class="map-title">The Muted Victory — The Celebration Deficit</div>
+          <div class="map-layer">Observation</div>
+        </div>
+        <div class="map-row">
+          <div class="map-num">03</div>
+          <div class="map-title">The Infinite Treadmill — The Moving Goalpost</div>
+          <div class="map-layer">Mechanism</div>
+        </div>
+        <div class="map-row">
+          <div class="map-num">04</div>
+          <div class="map-title">The Guilt of Stillness — Rest Guilt</div>
+          <div class="map-layer">The Cost</div>
+        </div>
+        <div class="map-row">
+          <div class="map-num">05</div>
+          <div class="map-title">The Borrowed Self — The Performance Identity</div>
+          <div class="map-layer">The Engine</div>
+        </div>
+        <div class="map-row">
+          <div class="map-num">06</div>
+          <div class="map-title">The Perfect Shield — Permission Through Perfection</div>
+          <div class="map-layer">The Enforcer</div>
+        </div>
+        <div class="map-row">
+          <div class="map-num">07</div>
+          <div class="map-title">The Conditional Pause — The Earned Rest Illusion</div>
+          <div class="map-layer">The Lock</div>
+        </div>
+        <div class="map-row">
+          <div class="map-num">08</div>
+          <div class="map-title">The Rented Mirror — The Borrowed Worth</div>
+          <div class="map-layer">The Source</div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="label">Distribution Potential</div>
+    <div class="dist-grid">
+      <div class="dist-card">
+        <div class="dist-platform">Carousel</div>
+        <p>The validation economy table as slides. Each input-effect pair on a card. Final slide: "The only architecture that holds is one you build internally. You cannot build it while outsourcing the foundation."</p>
+      </div>
+      <div class="dist-card">
+        <div class="dist-platform">Newsletter</div>
+        <p>"The borrowed mirror" — the closing piece of the series. Traces borrowed worth back to its original source, and offers the only question that matters: from whom did you first learn that proof was required?</p>
+      </div>
+      <div class="dist-card">
+        <div class="dist-platform">Reel</div>
+        <p>"You are not performing for the audience in the room. You are performing for the one that formed you." Single line. Long hold. The recognition is immediate for anyone who has done real self-examination.</p>
+      </div>
+      <div class="dist-card">
+        <div class="dist-platform">LinkedIn</div>
+        <p>"The most expensive belief a leader can hold is that their worth depends on others confirming it." — strategic post connecting the series to leadership fragility and organizational culture.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FULL SERIES NAVIGATION -->
+  <div class="section">
+    <div class="series-panel">
+      <div class="series-panel-label">PermissionOS — Complete Series</div>
+      <div class="series-links">
+        <a href="perm-01.html" class="series-link">
+          <span class="series-num">01</span>
+          <span class="series-link-title">The Waiting Room</span>
+          <span class="series-link-sub">Arrival Illusion</span>
+        </a>
+        <a href="perm-02.html" class="series-link">
+          <span class="series-num">02</span>
+          <span class="series-link-title">The Muted Victory</span>
+          <span class="series-link-sub">Celebration Deficit</span>
+        </a>
+        <a href="perm-03.html" class="series-link">
+          <span class="series-num">03</span>
+          <span class="series-link-title">The Infinite Treadmill</span>
+          <span class="series-link-sub">Moving Goalpost</span>
+        </a>
+        <a href="perm-04.html" class="series-link">
+          <span class="series-num">04</span>
+          <span class="series-link-title">The Guilt of Stillness</span>
+          <span class="series-link-sub">Rest Guilt</span>
+        </a>
+        <a href="perm-05.html" class="series-link">
+          <span class="series-num">05</span>
+          <span class="series-link-title">The Borrowed Self</span>
+          <span class="series-link-sub">Performance Identity</span>
+        </a>
+        <a href="perm-06.html" class="series-link">
+          <span class="series-num">06</span>
+          <span class="series-link-title">The Perfect Shield</span>
+          <span class="series-link-sub">Permission Through Perfection</span>
+        </a>
+        <a href="perm-07.html" class="series-link">
+          <span class="series-num">07</span>
+          <span class="series-link-title">The Conditional Pause</span>
+          <span class="series-link-sub">Earned Rest Illusion</span>
+        </a>
+        <a href="perm-08.html" class="series-link">
+          <span class="series-num">08</span>
+          <span class="series-link-title">The Rented Mirror</span>
+          <span class="series-link-sub">Borrowed Worth · The Source</span>
+        </a>
+      </div>
+    </div>
+  </div>
+
+</main>
+
+<nav class="article-nav">
+  <a href="perm-07.html" class="nav-link prev">
+    <span class="nav-dir"></span>
+    <span class="nav-title">The Conditional Pause</span>
+  </a>
+  <a href="perm-01.html" class="nav-link restart">
+    <span class="nav-dir"></span>
+    <span class="nav-title">The Waiting Room</span>
+  </a>
+</nav>
+
+<script>
+  const obs = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.08 });
+  document.querySelectorAll('.section').forEach(s => obs.observe(s));
+</script>
+</body>
+</html>
