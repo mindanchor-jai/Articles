@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>The Arrival Myth | Mind Anchor</title>
+
+  <style>
+    :root {
+      --navy: #030817;
+      --navy-2: #07112f;
+      --gold: #d6aa42;
+      --gold-soft: #f5d77b;
+      --ivory: #f8f0dc;
+      --muted: #a9a18f;
+      --line: rgba(214,170,66,0.22);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ivory);
+
+      background:
+        linear-gradient(125deg, rgba(214,170,66,0.08), transparent 24%),
+        linear-gradient(235deg, rgba(245,215,123,0.06), transparent 30%),
+        radial-gradient(circle at 50% 18%, rgba(214,170,66,0.055), transparent 28%),
+        radial-gradient(circle at 15% 72%, rgba(245,215,123,0.035), transparent 24%),
+        linear-gradient(180deg, #07112f 0%, #030817 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.014) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.014) 1px, transparent 1px);
+      background-size: 86px 86px;
+      mask-image: radial-gradient(circle at center, black 38%, transparent 92%);
+      pointer-events: none;
+    }
+
+    main {
+      max-width: 1400px;
+      margin: auto;
+      padding: 70px 24px 120px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 140px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo {
+      width: 130px;
+      margin-bottom: 30px;
+      filter:
+        drop-shadow(0 0 24px rgba(214,170,66,0.25))
+        drop-shadow(0 0 60px rgba(214,170,66,0.10));
+    }
+
+    .eyebrow {
+      color: var(--gold-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      font-size: 0.72rem;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(3.5rem, 9vw, 7rem);
+      line-height: 0.95;
+      font-weight: 400;
+      color: var(--gold-soft);
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
+    }
+
+    .intro {
+      max-width: 780px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.9;
+    }
+
+    .map {
+      position: relative;
+      min-height: 2400px;
+    }
+
+    .path {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .path svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .path path {
+      stroke: rgba(214,170,66,0.14);
+      stroke-width: 1.15;
+      fill: none;
+    }
+
+    .node {
+      position: absolute;
+      width: 310px;
+    }
+
+    .node::before {
+      content: "";
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background: var(--gold-soft);
+      border-radius: 50%;
+      top: -24px;
+      left: 0;
+      box-shadow:
+        0 0 16px rgba(245,215,123,0.75),
+        0 0 44px rgba(214,170,66,0.35);
+    }
+
+    .label {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.7rem;
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      line-height: 1.08;
+      font-weight: 400;
+      margin-bottom: 18px;
+      color: var(--ivory);
+    }
+
+    .description {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 0.98rem;
+      margin-bottom: 20px;
+    }
+
+    .open {
+      color: var(--gold-soft);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.72rem;
+      border-bottom: 1px solid rgba(214,170,66,0.4);
+      padding-bottom: 8px;
+      transition: 0.3s ease;
+    }
+
+    .open:hover {
+      color: var(--ivory);
+      border-color: var(--ivory);
+      letter-spacing: 0.22em;
+    }
+
+    .n1 { top: 60px; left: 8%; }
+    .n2 { top: 260px; right: 8%; }
+    .n3 { top: 500px; left: 18%; }
+    .n4 { top: 740px; right: 18%; }
+    .n5 { top: 980px; left: 10%; }
+    .n6 { top: 1230px; right: 12%; }
+    .n7 { top: 1510px; left: 20%; }
+    .n8 { top: 1790px; right: 10%; }
+    .n9 { top: 2070px; left: 12%; }
+
+    footer {
+      text-align: center;
+      margin-top: 120px;
+      color: rgba(248,240,220,0.42);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.78rem;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        margin-bottom: 90px;
+      }
+
+      .map {
+        min-height: auto;
+      }
+
+      .path {
+        display: none;
+      }
+
+      .node {
+        position: relative;
+        width: 100%;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        margin-bottom: 86px;
+        padding-left: 28px;
+        border-left: 1px solid rgba(214,170,66,0.22);
+      }
+
+      .node::before {
+        left: -7px;
+        top: 2px;
+      }
+
+      h2 {
+        font-size: 1.7rem;
+      }
+
+      .logo {
+        width: 105px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <header>
+      <img class="logo" src="Icon.png" alt="Mind Anchor Logo" />
+      <p class="eyebrow">Mind Anchor Framework Series</p>
+      <h1>The Arrival Myth</h1>
+      <p class="intro">
+        A psychological operating system tracing how anger, avoidance, ego,
+        emotional proximity, and unconscious reactions silently distort judgment,
+        leadership, relationships, and strategic behavior.
+      </p>
+    </header>
+
+    <section class="map">
+      <div class="path">
+        <svg viewBox="0 0 1400 2400" preserveAspectRatio="none">
+          <path d="M180 120
+                   C520 220, 900 120, 1180 320
+                   S900 610, 360 720
+                   S460 1030, 1150 1200
+                   S980 1530, 390 1630
+                   S660 1900, 1180 1880
+                   S900 2200, 280 2190" />
+        </svg>
+      </div>
+
+      <article class="node n1">
+        <p class="label">Main Architecture</p>
+        <h2>Pyrrhic Avoidance</h2>
+        <p class="description">
+          The hidden architecture of how anger corrupts the decisions you believe you are making for yourself.
+        </p>
+        <a class="open" href="MainArticle.html">Open Article →</a>
+      </article>
+
+      <article class="node n2">
+        <p class="label">Manifestation 01</p>
+        <h2>The Geometry of Avoidance</h2>
+        <p class="description">
+          You are not choosing a seat. You are fleeing a feeling.
+        </p>
+        <a class="open" href="Article1.html">Open Article →</a>
+      </article>
+
+      <article class="node n3">
+        <p class="label">Manifestation 02</p>
+        <h2>The Invoice for Distance</h2>
+        <p class="description">
+          Silence compounds interest internally long before reality sends the bill.
+        </p>
+        <a class="open" href="Article2.html">Open Article →</a>
+      </article>
+
+      <article class="node n4">
+        <p class="label">Manifestation 03</p>
+        <h2>The Ghost Architect</h2>
+        <p class="description">
+          If every movement is reaction, the wound is still designing your direction.
+        </p>
+        <a class="open" href="Article3.html">Open Article →</a>
+      </article>
+
+      <article class="node n5">
+        <p class="label">Manifestation 04</p>
+        <h2>The Virtue Camouflage</h2>
+        <p class="description">
+          Avoidance becomes dangerous when fear learns the language of wisdom, healing, and integrity.
+        </p>
+        <a class="open" href="Article4.html">Open Article →</a>
+      </article>
+
+      <article class="node n6">
+        <p class="label">Manifestation 05</p>
+        <h2>The Shadow OS</h2>
+        <p class="description">
+          Organizations often mirror the unresolved emotional architecture of their leaders.
+        </p>
+        <a class="open" href="Article5.html">Open Article →</a>
+      </article>
+
+      <article class="node n7">
+        <p class="label">Manifestation 06</p>
+        <h2>The Decoupled Mind</h2>
+        <p class="description">
+          Emotions are allowed to exist. They simply are not allowed to drive the decision.
+        </p>
+        <a class="open" href="Article6.html">Open Article →</a>
+      </article>
+
+      <article class="node n8">
+        <p class="label">Manifestation 07</p>
+        <h2>The Unprovokable Leader</h2>
+        <p class="description">
+          The person who cannot be emotionally manipulated becomes strategically difficult to control.
+        </p>
+        <a class="open" href="Article7.html">Open Article →</a>
+      </article>
+
+      <article class="node n9">
+        <p class="label">Manifestation 08</p>
+        <h2>Building the Immunity</h2>
+        <p class="description">
+          Mature systems should not depend on emotionally perfect people to function correctly.
+        </p>
+        <a class="open" href="Article8.html">Open Article →</a>
+      </article>
+    </section>
+
+    <footer>
+      Mind Anchor — Jai
+    </footer>
+  </main>
+</body>
+</html>
