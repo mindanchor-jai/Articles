@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Confidence Through Evidence | Mind Anchor</title>
+
+  <style>
+    :root {
+      --navy: #030817;
+      --navy-2: #07112f;
+      --gold: #d6aa42;
+      --gold-soft: #f5d77b;
+      --ivory: #f8f0dc;
+      --muted: #a9a18f;
+      --line: rgba(214,170,66,0.22);
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      min-height: 100vh;
+      overflow-x: hidden;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ivory);
+
+      background:
+        linear-gradient(125deg, rgba(214,170,66,0.08), transparent 24%),
+        linear-gradient(235deg, rgba(245,215,123,0.06), transparent 30%),
+        radial-gradient(circle at 50% 18%, rgba(214,170,66,0.055), transparent 28%),
+        radial-gradient(circle at 15% 72%, rgba(245,215,123,0.035), transparent 24%),
+        linear-gradient(180deg, #07112f 0%, #030817 100%);
+    }
+
+    body::before {
+      content: "";
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(rgba(255,255,255,0.014) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255,255,255,0.014) 1px, transparent 1px);
+      background-size: 86px 86px;
+      mask-image: radial-gradient(circle at center, black 38%, transparent 92%);
+      pointer-events: none;
+    }
+
+    main {
+      max-width: 1400px;
+      margin: auto;
+      padding: 70px 24px 120px;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 140px;
+      position: relative;
+      z-index: 2;
+    }
+
+    .logo {
+      width: 130px;
+      margin-bottom: 30px;
+      filter:
+        drop-shadow(0 0 24px rgba(214,170,66,0.25))
+        drop-shadow(0 0 60px rgba(214,170,66,0.10));
+    }
+
+    .eyebrow {
+      color: var(--gold-soft);
+      text-transform: uppercase;
+      letter-spacing: 0.28em;
+      font-size: 0.72rem;
+      margin-bottom: 20px;
+    }
+
+    h1 {
+      font-size: clamp(3.5rem, 9vw, 7rem);
+      line-height: 0.95;
+      font-weight: 400;
+      color: var(--gold-soft);
+      letter-spacing: 0.04em;
+      margin-bottom: 28px;
+    }
+
+    .intro {
+      max-width: 780px;
+      margin: auto;
+      color: var(--muted);
+      font-size: 1.08rem;
+      line-height: 1.9;
+    }
+
+    .map {
+      position: relative;
+      min-height: 2400px;
+    }
+
+    .path {
+      position: absolute;
+      inset: 0;
+      pointer-events: none;
+    }
+
+    .path svg {
+      width: 100%;
+      height: 100%;
+    }
+
+    .path path {
+      stroke: rgba(214,170,66,0.14);
+      stroke-width: 1.15;
+      fill: none;
+    }
+
+    .node {
+      position: absolute;
+      width: 310px;
+    }
+
+    .node::before {
+      content: "";
+      position: absolute;
+      width: 14px;
+      height: 14px;
+      background: var(--gold-soft);
+      border-radius: 50%;
+      top: -24px;
+      left: 0;
+      box-shadow:
+        0 0 16px rgba(245,215,123,0.75),
+        0 0 44px rgba(214,170,66,0.35);
+    }
+
+    .label {
+      color: var(--gold);
+      text-transform: uppercase;
+      letter-spacing: 0.22em;
+      font-size: 0.7rem;
+      margin-bottom: 14px;
+    }
+
+    h2 {
+      font-size: 2rem;
+      line-height: 1.08;
+      font-weight: 400;
+      margin-bottom: 18px;
+      color: var(--ivory);
+    }
+
+    .description {
+      color: var(--muted);
+      line-height: 1.8;
+      font-size: 0.98rem;
+      margin-bottom: 20px;
+    }
+
+    .open {
+      color: var(--gold-soft);
+      text-decoration: none;
+      text-transform: uppercase;
+      letter-spacing: 0.18em;
+      font-size: 0.72rem;
+      border-bottom: 1px solid rgba(214,170,66,0.4);
+      padding-bottom: 8px;
+      transition: 0.3s ease;
+    }
+
+    .open:hover {
+      color: var(--ivory);
+      border-color: var(--ivory);
+      letter-spacing: 0.22em;
+    }
+
+    .n1 { top: 60px; left: 8%; }
+    .n2 { top: 260px; right: 8%; }
+    .n3 { top: 500px; left: 18%; }
+    .n4 { top: 740px; right: 18%; }
+    .n5 { top: 980px; left: 10%; }
+    .n6 { top: 1230px; right: 12%; }
+    .n7 { top: 1510px; left: 20%; }
+    .n8 { top: 1790px; right: 10%; }
+    .n9 { top: 2070px; left: 12%; }
+
+    footer {
+      text-align: center;
+      margin-top: 120px;
+      color: rgba(248,240,220,0.42);
+      text-transform: uppercase;
+      letter-spacing: 0.16em;
+      font-size: 0.78rem;
+    }
+
+    @media (max-width: 900px) {
+      header {
+        margin-bottom: 90px;
+      }
+
+      .map {
+        min-height: auto;
+      }
+
+      .path {
+        display: none;
+      }
+
+      .node {
+        position: relative;
+        width: 100%;
+        left: auto !important;
+        right: auto !important;
+        top: auto !important;
+        margin-bottom: 86px;
+        padding-left: 28px;
+        border-left: 1px solid rgba(214,170,66,0.22);
+      }
+
+      .node::before {
+        left: -7px;
+        top: 2px;
+      }
+
+      h2 {
+        font-size: 1.7rem;
+      }
+
+      .logo {
+        width: 105px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <main>
+    <header>
+      <img class="logo" src="Icon.png" alt="Mind Anchor Logo" />
+      <p class="eyebrow">Mind Anchor Framework Series</p>
+      <h1>Confidence Through Evidence</h1>
+      <p class="intro">
+        A series exploring confidence not as certainty or a trait 
+        possessed beforehand, but as something gradually
+        built through action, reflection, learning, and evidence.
+      </p>
+    </header>
+
+    <section class="map">
+      <div class="path">
+        <svg viewBox="0 0 1400 2400" preserveAspectRatio="none">
+          <path d="M180 120
+                   C520 220, 900 120, 1180 320
+                   S900 610, 360 720
+                   S460 1030, 1150 1200
+                   S980 1530, 390 1630
+                   S660 1900, 1180 1880
+                   S900 2200, 280 2190" />
+        </svg>
+      </div>
+
+      <article class="node n1">
+        <p class="label">Main Architecture</p>
+        <h2>Confidence & Experience</h2>
+        <p class="description">
+          A firsthand account of confidence evolving from something imagined as necessary 
+          beforehand into something built through experience, reflection, and evidence.
+        </p>
+        <a class="open" href="06(00).html">Open Article →</a>
+      </article>
+
+      <article class="node n2">
+        <p class="label">Manifestation 01</p>
+        <h2>Underconfidence Restricts Action</h2>
+        <p class="description">
+          Why low confidence can become visible through restricted behaviour, revealing a 
+          gap between what someone can do and what they allow themselves to do.
+        </p>
+        <a class="open" href="06(01).html">Open Article →</a>
+      </article>
+
+      <article class="node n3">
+        <p class="label">Manifestation 01</p>
+        <h2>Capability Can Exist Before Confidence</h2>
+        <p class="description">
+          An exploration of the gap between capability and confidence, showing how ability
+          can exist even when self-trust has not caught up.
+        </p>
+        <a class="open" href="06(02).html">Open Article →</a>
+      </article>
+
+      <article class="node n4">
+        <p class="label">Manifestation 01</p>
+        <h2>The Readiness Illusion</h2>
+        <p class="description">
+          Why confidence does not always precede action, and how responsibility can create the evidence that confidence later follows.
+        </p>
+        <a class="open" href="06(03).html">Open Article →</a>
+      </article>
+
+      <article class="node n5">
+        <p class="label">Manifestation 02</p>
+        <h2>The Conversion of Lived Data</h2>
+        <p class="description">
+          Why experience alone does not build confidence, and how reflection converts 
+          lived events into evidence about what a person can handle.
+        </p>
+        <a class="open" href="06(04).html">Open Article →</a>
+      </article>
+
+      <article class="node n6">
+        <p class="label">Manifestation 02</p>
+        <h2>Action Can Become the Source of Confidence</h2>
+        <p class="description">
+          How action becomes evidence, showing that some of the confidence a person waits for is built by beginning.
+        </p>
+        <a class="open" href="06(05).html">Open Article →</a>
+      </article>
+
+      <article class="node n7">
+        <p class="label">Manifestation 02</p>
+        <h2>Uncertainty as Question, Not Warning</h2>
+        <p class="description">
+          How uncertainty changes meaning when it stops demanding retreat and becomes information about what remains unknown.
+        </p>
+        <a class="open" href="06(06).html">Open Article →</a>
+      </article>
+
+      <article class="node n8">
+        <p class="label">Manifestation 03</p>
+        <h2>Confidence Is Evidence, Not Certainty</h2>
+        <p class="description">
+          How experience can replace the need for certainty with evidence that 
+          a person can handle, learn from, and recover from what happens.
+        </p>
+        <a class="open" href="06(07).html">Open Article →</a>
+      </article>
+
+      <article class="node n9">
+        <p class="label">Manifestation 03</p>
+        <h2>Development Accumulates Without Becoming a Different Person</h2>
+        <p class="description">
+          How the past can become construction material for confidence, allowing 
+          development to accumulate without requiring the earlier self to disappear.
+        </p>
+        <a class="open" href="06(08).html">Open Article →</a>
+      </article>
+    </section>
+
+    <footer>
+      Mind Anchor — Jai
+    </footer>
+    
+  </main>
+</body>
+</html>
