@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Same Seat, Different Height: Why Fairness Is Not Always Identical Treatment — Mind Anchor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#F0F3F6; --grid:#D7E0E8; --ink:#15243B; --ink-soft:#4E5E72; --ink-faint:#8696A8;
+    --line:#C3CFDA; --paper:#FAFBFC; --card:#FFFFFF;
+    --brass:#A9762B; --brass-deep:#7D5A22; --brass-wash:#F2E3C8;
+    --flag:#8B2E2E; --flag-wash:#F3DEDC;
+  }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:
+      linear-gradient(var(--grid) 1px, transparent 1px) 0 0/100% 34px,
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0/34px 100%,
+      var(--blue);
+    color:var(--ink);
+    font-family:'Newsreader', serif; font-size:18px; line-height:1.72;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+  ::selection{ background:var(--brass-wash); color:var(--ink); }
+  h1,h2{ font-family:'Archivo', sans-serif; letter-spacing:-0.01em; }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+
+  /* ---------------- masthead ---------------- */
+  .masthead{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0.9rem 1.5rem; gap:1rem;
+    background:rgba(250,251,252,0.94); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{ display:flex; align-items:center; gap:0.65rem; text-decoration:none; }
+  .brand img{ width:32px; height:32px; border-radius:50%; object-fit:cover; box-shadow:0 0 0 1px var(--line); }
+  .brand span{ font-family:'Archivo', sans-serif; font-weight:600; font-size:0.98rem; color:var(--ink); }
+  .mast-right{ text-align:right; }
+  .mast-right .series{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.04em; color:var(--ink-faint); }
+  .mast-right .pos{ display:block; font-family:'Archivo', sans-serif; font-weight:600; font-size:0.86rem; color:var(--brass-deep); }
+
+  /* ---------------- lens tracker ---------------- */
+  .lens{
+    max-width:760px; margin:1.1rem auto 0; padding:0 1.5rem;
+    display:flex; gap:0.6rem; flex-wrap:wrap;
+  }
+  .lens-pill{
+    flex:1; min-width:150px;
+    border:1px solid var(--line); background:var(--card);
+    padding:0.55rem 0.9rem; border-radius:3px;
+  }
+  .lens-pill .lbl{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.68rem; letter-spacing:0.05em; color:var(--ink-faint); text-transform:uppercase; }
+  .lens-pill .wd{ font-family:'Archivo', sans-serif; font-weight:600; font-size:0.92rem; color:var(--ink-faint); }
+  .lens-pill.active{ border-color:var(--brass); background:var(--brass-wash); }
+  .lens-pill.active .lbl{ color:var(--brass-deep); }
+  .lens-pill.active .wd{ color:var(--ink); }
+
+  /* ---------------- hero ---------------- */
+  .hero{ max-width:760px; margin:0 auto; padding:2.3rem 1.5rem 1.4rem; }
+  .eyebrow{
+    display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--brass-deep);
+    border-bottom:1px solid var(--brass); padding-bottom:3px; margin-bottom:1.3rem;
+  }
+  .hero h1{
+    font-size:clamp(2rem, 5vw, 3.1rem); line-height:1.12; margin-bottom:1.2rem; color:var(--ink);
+  }
+  .hero .core{ font-size:clamp(1.02rem,1.9vw,1.2rem); color:var(--ink-soft); max-width:58ch; line-height:1.62; }
+  .hero .q{
+    margin-top:1.6rem; padding:1rem 1.2rem; background:var(--card); border:1px solid var(--line); border-left:3px solid var(--brass);
+  }
+  .hero .q span{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.4rem; }
+  .hero .q p{ font-family:'Archivo', sans-serif; font-weight:600; font-size:1.08rem; color:var(--ink); line-height:1.4; }
+
+  /* ---------------- figure ---------------- */
+  .figwrap{ max-width:760px; margin:0 auto; padding:0 1.5rem 0.4rem; }
+  .fig{ background:var(--card); border:1px solid var(--line); padding:1.3rem 1.3rem 1rem; }
+  .fig svg{ width:100%; height:auto; display:block; }
+  .fig p{ margin-top:0.7rem; font-family:'IBM Plex Mono', monospace; font-size:0.82rem; color:var(--ink-soft); }
+
+  /* ---------------- body ---------------- */
+  main{ max-width:760px; margin:0 auto; padding:2.2rem 1.5rem 1rem; }
+  .blk{ margin-bottom:2.7rem; }
+  .blk h2{ font-size:clamp(1.3rem,2.6vw,1.6rem); margin-bottom:1rem; color:var(--ink); }
+  .blk p{ margin-bottom:1rem; max-width:65ch; }
+  .blk p:last-child{ margin-bottom:0; }
+  .blk strong{ color:var(--brass-deep); font-weight:600; }
+
+  .trig{
+    list-style:none; margin-top:0.6rem;
+  }
+  .trig li{
+    position:relative; padding:0.8rem 1rem 0.8rem 1.6rem; margin-bottom:0.6rem;
+    background:var(--card); border:1px solid var(--line); font-size:1rem; max-width:62ch;
+  }
+  .trig li::before{ content:'›'; position:absolute; left:0.6rem; top:0.75rem; color:var(--brass); font-weight:700; }
+
+  .split{ display:grid; grid-template-columns:1fr; gap:0.9rem; margin-top:1.1rem; }
+  @media (min-width:660px){ .split{ grid-template-columns:1fr 1fr; } }
+  .split > div{ padding:1.05rem 1.2rem; background:var(--card); border:1px solid var(--line); border-top:3px solid var(--ink-faint); }
+  .split > div.r{ border-top-color:var(--brass); }
+  .split span.k{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.03em; margin-bottom:0.4rem; }
+  .split > div.r span.k{ color:var(--brass-deep); }
+  .split p{ margin:0; font-size:0.98rem; }
+
+  .boundary{
+    border:1px dashed var(--flag); background:var(--flag-wash);
+    padding:1.1rem 1.3rem;
+  }
+  .boundary .k{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.74rem; color:var(--flag); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.5rem; }
+  .boundary p, .boundary li{ font-size:0.96rem; color:var(--ink); }
+  .boundary ul{ margin:0.3rem 0 0 1.1rem; }
+  .boundary li{ margin-bottom:0.4rem; }
+
+  .sits{ display:grid; gap:0.75rem; margin-top:0.3rem; }
+  .sits div{ padding:0.9rem 1.1rem; background:var(--card); border:1px solid var(--line); }
+  .sits span.k{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--brass-deep); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.2rem; }
+  .sits p{ margin:0; font-size:0.97rem; }
+
+  /* ---------------- closing ---------------- */
+  .closing{ background:var(--ink); color:var(--blue); padding:3.4rem 1.5rem 3.6rem; margin-top:1rem; }
+  .closing-inner{ max-width:760px; margin:0 auto; }
+  .closing span.k{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--brass-wash); margin-bottom:0.8rem; text-transform:uppercase; letter-spacing:0.04em; }
+  .closing .u{ font-family:'Archivo', sans-serif; font-weight:600; font-size:clamp(1.3rem,3vw,1.85rem); line-height:1.38; max-width:32ch; }
+  .closing .r{ margin-top:2rem; padding-top:1.5rem; border-top:1px solid rgba(240,243,246,0.25); max-width:58ch; }
+  .closing .r p{ color:#C9D3DE; font-size:1.03rem; line-height:1.6; font-style:italic; }
+
+  .footnav{ max-width:760px; margin:0 auto; padding:2.2rem 1.5rem 0.8rem; display:flex; gap:1rem; flex-wrap:wrap; }
+  .footnav a, .footnav span.gap{
+    flex:1; min-width:230px; padding:0.95rem 1.2rem; background:var(--card); border:1px solid var(--line); text-decoration:none;
+  }
+  .footnav span.gap{ visibility:hidden; }
+  .footnav a:hover{ border-color:var(--brass); }
+  .footnav small{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.03em; }
+  .footnav b{ font-family:'Archivo', sans-serif; font-weight:600; font-size:1rem; color:var(--ink); }
+  .footnav a.next{ text-align:right; }
+
+  .dots{ display:flex; gap:0.45rem; justify-content:center; padding:1.3rem 0 0.4rem; }
+  .dots a{ width:8px; height:8px; border-radius:50%; background:var(--line); border:none; }
+  .dots a.current{ background:var(--brass); }
+  .foot{ max-width:760px; margin:0 auto; padding:1rem 1.5rem 3rem; font-size:0.84rem; color:var(--ink-faint); }
+
+  @media (max-width:640px){
+    body{ font-size:17px; }
+    .mast-right .series{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <a class="brand" href="OccupantArticle1.html"><img src="Icon.png" alt="Mind Anchor"><span>Mind Anchor</span></a>
+  <div class="mast-right"><span class="series">The Occupant–Relationship Distinction</span><span class="pos">Article 6 of 7</span></div>
+</header>
+
+<div class="lens">
+  <div class="lens-pill "><span class="lbl">Occupants</span><span class="wd">Who holds it</span></div>
+  <div class="lens-pill "><span class="lbl">Relationship</span><span class="wd">How it operates</span></div>
+  <div class="lens-pill active"><span class="lbl">Conditions</span><span class="wd">What sustains it</span></div>
+</div>
+
+<section class="hero">
+  <span class="eyebrow">Occupant–Relationship Distinction · 6 of 7</span>
+  <h1>Same Seat, Different Height: Why Fairness Is Not Always Identical Treatment</h1>
+  <p class="core">Identical treatment can leave real differences exactly where they were. Fitting the response to the actual barrier is what levels the table — and there is still a line between levelling it and tilting it the other way.</p>
+  <div class="q"><span>Central question</span><p>When does fairness require different treatment rather than identical treatment — and where does levelling end and tilting begin?</p></div>
+</section>
+
+<div class="figwrap">
+  <div class="fig">
+    <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" role="img"><line x1="40" y1="190" x2="660" y2="190" stroke="#15243B" stroke-width="2"/><line x1="40" y1="70" x2="660" y2="70" stroke="#A9762B" stroke-width="1.5" stroke-dasharray="5 5"/><text x="650" y="58" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="400" fill="#7D5A22">the table line</text><rect x="130" y="130" width="60" height="60" fill="none" stroke="#15243B" stroke-width="2"/><text x="160" y="210" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="400" fill="#8696A8">tall adult</text><rect x="340" y="150" width="60" height="40" fill="none" stroke="#15243B" stroke-width="2"/><text x="370" y="210" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="400" fill="#8696A8">child, same chair</text><rect x="550" y="110" width="60" height="80" fill="none" stroke="#15243B" stroke-width="2"/><text x="580" y="210" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="400" fill="#8696A8">wheelchair, same chair</text><rect x="340" y="110" width="60" height="38" fill="none" stroke="#7D5A22" stroke-width="2" stroke-dasharray="4 3"/><text x="370" y="102" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="11" font-weight="600" fill="#7D5A22">raised to the line</text><text x="370" y="240" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="600" fill="#15243B">levelling access vs. tilting the table</text></svg>
+    <p>Fig. 6 — three identical chairs, three different views of the table.</p>
+  </div>
+</div>
+
+<main>
+  <div class="blk">
+    <h2>Where you may recognize this</h2>
+    <p>The gap between equal and identical shows up anywhere people start from different positions:</p>
+    <ul class="trig">
+      <li>Everyone at a table is given the exact same chair — a tall adult, a child, a wheelchair user — and only one of them can actually see over the table.</li><li>A doctor prescribes the same pill to every patient regardless of what is actually wrong with them.</li><li>A policy that treats everyone “the same” quietly leaves the same gap in place that existed before it.</li>
+    </ul>
+  </div>
+
+  <div class="blk">
+    <h2>Levelling the table, and tilting it</h2>
+    <p>A host gives every guest at a long table exactly the same chair. It sounds perfectly fair — until you notice who is sitting there: a tall adult, a child, a person in a wheelchair. The seats are equal. The <strong>height</strong> at which each person meets the table is not.</p><p>What matters in the end is whether each person can reach the food, join the conversation, and be seen — even if that means the chairs are not all the same. <strong>Equal seats are one thing. Equal height at the table, once everyone is sitting, is another.</strong></p><p>But the same picture shows where the limit sits. If one guest's chair is raised so high they now look down on everyone else, the table is not level — it has only been tilted the other way. Fitting a chair to a real difference is equality. Lifting one guest above the table is dominance in a different seat.</p>
+    <div class="split">
+      <div><span class="k">Levelling</span><p>The adjustment is sized to an actual, specific barrier. Once seated, everyone meets the table at roughly the same height.</p></div>
+      <div class="r"><span class="k">Tilting</span><p>The adjustment overshoots the barrier. One guest now looks down on the rest — the table has a new slope, not none.</p></div>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h2>What becomes visible</h2>
+    <p>That identical treatment and fair treatment are not the same claim, and that the correction is only as sound as its fit to the real difference it is addressing.</p>
+  </div>
+
+  <div class="blk"><div class="boundary"><span class="k">A boundary carried from the source</span><p>This picture does not say how high any particular chair should be in a real situation. That depends on what is actually being addressed, why the adjustment is needed, how it is designed, and what it causes. The table shows the idea — it does not replace examining each case on its own.</p></div></div>
+
+  <div class="blk">
+    <h2>Where this fits</h2>
+    <div class="sits">
+      <div><span class="k">In the manifestation</span><p>This supplies the constructive counterpart to the failure modes named so far: what a correction looks like when it actually fits.</p></div>
+      <div><span class="k">In the model</span><p>It connects the <strong>Conditions</strong> and <strong>Relationship</strong> lenses by showing how an adjustment can shape whether people end up participating as equals, or simply swap who is above whom.</p></div>
+      <div><span class="k">Before &amp; after</span><p>Before: Article 5 separated group history from individual responsibility. After: with the constructive principle in view, the final article integrates all six distinctions into a single standard.</p></div>
+    </div>
+  </div>
+</main>
+
+<section class="closing">
+  <div class="closing-inner">
+    <span class="k">Reader understanding</span>
+    <p class="u">Identical treatment is not always fair when people start from different positions. Levelling access is one thing; raising one party above everyone else is a different arrangement wearing the language of fairness.</p>
+    <div class="r"><p>Think of a rule applied identically to everyone. Did it actually level anything, or did it just apply the same height of chair to very different people?</p></div>
+  </div>
+</section>
+
+<nav class="footnav">
+  <a href="OccupantArticle5.html"><small>Previous article</small><b>Historical Injustice Does Not Remove the Need for Individual Fairness</b></a>
+  <a class="next" href="OccupantArticle7.html"><small>Next article</small><b>Equality Must Change the Relationship, Not Reverse It</b></a>
+</nav>
+<div class="dots">
+  <a href="OccupantArticle1.html" class=""></a><a href="OccupantArticle2.html" class=""></a><a href="OccupantArticle3.html" class=""></a><a href="OccupantArticle4.html" class=""></a><a href="OccupantArticle5.html" class=""></a><a href="OccupantArticle6.html" class="current"></a><a href="OccupantArticle7.html" class=""></a>
+</div>
+<p class="foot">Mind Anchor. A conceptual distinction — not a claim about any specific movement, policy, or individual's intent.</p>
+
+</body>
+</html>

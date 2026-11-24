@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Equality Is Not the Same as Reversing Power — Mind Anchor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#F0F3F6; --grid:#D7E0E8; --ink:#15243B; --ink-soft:#4E5E72; --ink-faint:#8696A8;
+    --line:#C3CFDA; --paper:#FAFBFC; --card:#FFFFFF;
+    --brass:#A9762B; --brass-deep:#7D5A22; --brass-wash:#F2E3C8;
+    --flag:#8B2E2E; --flag-wash:#F3DEDC;
+  }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:
+      linear-gradient(var(--grid) 1px, transparent 1px) 0 0/100% 34px,
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0/34px 100%,
+      var(--blue);
+    color:var(--ink);
+    font-family:'Newsreader', serif; font-size:18px; line-height:1.72;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+  ::selection{ background:var(--brass-wash); color:var(--ink); }
+  h1,h2{ font-family:'Archivo', sans-serif; letter-spacing:-0.01em; }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+
+  /* ---------------- masthead ---------------- */
+  .masthead{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0.9rem 1.5rem; gap:1rem;
+    background:rgba(250,251,252,0.94); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{ display:flex; align-items:center; gap:0.65rem; text-decoration:none; }
+  .brand img{ width:32px; height:32px; border-radius:50%; object-fit:cover; box-shadow:0 0 0 1px var(--line); }
+  .brand span{ font-family:'Archivo', sans-serif; font-weight:600; font-size:0.98rem; color:var(--ink); }
+  .mast-right{ text-align:right; }
+  .mast-right .series{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.04em; color:var(--ink-faint); }
+  .mast-right .pos{ display:block; font-family:'Archivo', sans-serif; font-weight:600; font-size:0.86rem; color:var(--brass-deep); }
+
+  /* ---------------- lens tracker ---------------- */
+  .lens{
+    max-width:760px; margin:1.1rem auto 0; padding:0 1.5rem;
+    display:flex; gap:0.6rem; flex-wrap:wrap;
+  }
+  .lens-pill{
+    flex:1; min-width:150px;
+    border:1px solid var(--line); background:var(--card);
+    padding:0.55rem 0.9rem; border-radius:3px;
+  }
+  .lens-pill .lbl{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.68rem; letter-spacing:0.05em; color:var(--ink-faint); text-transform:uppercase; }
+  .lens-pill .wd{ font-family:'Archivo', sans-serif; font-weight:600; font-size:0.92rem; color:var(--ink-faint); }
+  .lens-pill.active{ border-color:var(--brass); background:var(--brass-wash); }
+  .lens-pill.active .lbl{ color:var(--brass-deep); }
+  .lens-pill.active .wd{ color:var(--ink); }
+
+  /* ---------------- hero ---------------- */
+  .hero{ max-width:760px; margin:0 auto; padding:2.3rem 1.5rem 1.4rem; }
+  .eyebrow{
+    display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--brass-deep);
+    border-bottom:1px solid var(--brass); padding-bottom:3px; margin-bottom:1.3rem;
+  }
+  .hero h1{
+    font-size:clamp(2rem, 5vw, 3.1rem); line-height:1.12; margin-bottom:1.2rem; color:var(--ink);
+  }
+  .hero .core{ font-size:clamp(1.02rem,1.9vw,1.2rem); color:var(--ink-soft); max-width:58ch; line-height:1.62; }
+  .hero .q{
+    margin-top:1.6rem; padding:1rem 1.2rem; background:var(--card); border:1px solid var(--line); border-left:3px solid var(--brass);
+  }
+  .hero .q span{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.4rem; }
+  .hero .q p{ font-family:'Archivo', sans-serif; font-weight:600; font-size:1.08rem; color:var(--ink); line-height:1.4; }
+
+  /* ---------------- figure ---------------- */
+  .figwrap{ max-width:760px; margin:0 auto; padding:0 1.5rem 0.4rem; }
+  .fig{ background:var(--card); border:1px solid var(--line); padding:1.3rem 1.3rem 1rem; }
+  .fig svg{ width:100%; height:auto; display:block; }
+  .fig p{ margin-top:0.7rem; font-family:'IBM Plex Mono', monospace; font-size:0.82rem; color:var(--ink-soft); }
+
+  /* ---------------- body ---------------- */
+  main{ max-width:760px; margin:0 auto; padding:2.2rem 1.5rem 1rem; }
+  .blk{ margin-bottom:2.7rem; }
+  .blk h2{ font-size:clamp(1.3rem,2.6vw,1.6rem); margin-bottom:1rem; color:var(--ink); }
+  .blk p{ margin-bottom:1rem; max-width:65ch; }
+  .blk p:last-child{ margin-bottom:0; }
+  .blk strong{ color:var(--brass-deep); font-weight:600; }
+
+  .trig{
+    list-style:none; margin-top:0.6rem;
+  }
+  .trig li{
+    position:relative; padding:0.8rem 1rem 0.8rem 1.6rem; margin-bottom:0.6rem;
+    background:var(--card); border:1px solid var(--line); font-size:1rem; max-width:62ch;
+  }
+  .trig li::before{ content:'›'; position:absolute; left:0.6rem; top:0.75rem; color:var(--brass); font-weight:700; }
+
+  .split{ display:grid; grid-template-columns:1fr; gap:0.9rem; margin-top:1.1rem; }
+  @media (min-width:660px){ .split{ grid-template-columns:1fr 1fr; } }
+  .split > div{ padding:1.05rem 1.2rem; background:var(--card); border:1px solid var(--line); border-top:3px solid var(--ink-faint); }
+  .split > div.r{ border-top-color:var(--brass); }
+  .split span.k{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.03em; margin-bottom:0.4rem; }
+  .split > div.r span.k{ color:var(--brass-deep); }
+  .split p{ margin:0; font-size:0.98rem; }
+
+  .boundary{
+    border:1px dashed var(--flag); background:var(--flag-wash);
+    padding:1.1rem 1.3rem;
+  }
+  .boundary .k{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.74rem; color:var(--flag); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.5rem; }
+  .boundary p, .boundary li{ font-size:0.96rem; color:var(--ink); }
+  .boundary ul{ margin:0.3rem 0 0 1.1rem; }
+  .boundary li{ margin-bottom:0.4rem; }
+
+  .sits{ display:grid; gap:0.75rem; margin-top:0.3rem; }
+  .sits div{ padding:0.9rem 1.1rem; background:var(--card); border:1px solid var(--line); }
+  .sits span.k{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--brass-deep); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.2rem; }
+  .sits p{ margin:0; font-size:0.97rem; }
+
+  /* ---------------- closing ---------------- */
+  .closing{ background:var(--ink); color:var(--blue); padding:3.4rem 1.5rem 3.6rem; margin-top:1rem; }
+  .closing-inner{ max-width:760px; margin:0 auto; }
+  .closing span.k{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--brass-wash); margin-bottom:0.8rem; text-transform:uppercase; letter-spacing:0.04em; }
+  .closing .u{ font-family:'Archivo', sans-serif; font-weight:600; font-size:clamp(1.3rem,3vw,1.85rem); line-height:1.38; max-width:32ch; }
+  .closing .r{ margin-top:2rem; padding-top:1.5rem; border-top:1px solid rgba(240,243,246,0.25); max-width:58ch; }
+  .closing .r p{ color:#C9D3DE; font-size:1.03rem; line-height:1.6; font-style:italic; }
+
+  .footnav{ max-width:760px; margin:0 auto; padding:2.2rem 1.5rem 0.8rem; display:flex; gap:1rem; flex-wrap:wrap; }
+  .footnav a, .footnav span.gap{
+    flex:1; min-width:230px; padding:0.95rem 1.2rem; background:var(--card); border:1px solid var(--line); text-decoration:none;
+  }
+  .footnav span.gap{ visibility:hidden; }
+  .footnav a:hover{ border-color:var(--brass); }
+  .footnav small{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.03em; }
+  .footnav b{ font-family:'Archivo', sans-serif; font-weight:600; font-size:1rem; color:var(--ink); }
+  .footnav a.next{ text-align:right; }
+
+  .dots{ display:flex; gap:0.45rem; justify-content:center; padding:1.3rem 0 0.4rem; }
+  .dots a{ width:8px; height:8px; border-radius:50%; background:var(--line); border:none; }
+  .dots a.current{ background:var(--brass); }
+  .foot{ max-width:760px; margin:0 auto; padding:1rem 1.5rem 3rem; font-size:0.84rem; color:var(--ink-faint); }
+
+  @media (max-width:640px){
+    body{ font-size:17px; }
+    .mast-right .series{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <a class="brand" href="OccupantArticle1.html"><img src="Icon.png" alt="Mind Anchor"><span>Mind Anchor</span></a>
+  <div class="mast-right"><span class="series">The Occupant–Relationship Distinction</span><span class="pos">Article 1 of 7</span></div>
+</header>
+
+<div class="lens">
+  <div class="lens-pill active"><span class="lbl">Occupants</span><span class="wd">Who holds it</span></div>
+  <div class="lens-pill "><span class="lbl">Relationship</span><span class="wd">How it operates</span></div>
+  <div class="lens-pill active"><span class="lbl">Conditions</span><span class="wd">What sustains it</span></div>
+</div>
+
+<section class="hero">
+  <span class="eyebrow">Occupant–Relationship Distinction · 1 of 7</span>
+  <h1>Equality Is Not the Same as Reversing Power</h1>
+  <p class="core">Letting an excluded group finally occupy a position another group once held is not, by itself, equality. It may only be a change of who benefits from an arrangement that is still unequal.</p>
+  <div class="q"><span>Central question</span><p>Are we creating equal participation, or just changing who benefits from an unequal arrangement?</p></div>
+</section>
+
+<div class="figwrap">
+  <div class="fig">
+    <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="60" y="40" width="580" height="170" fill="none" stroke="#C3CFDA" stroke-width="1.5" stroke-dasharray="4 4"/><line x1="300" y1="40" x2="300" y2="210" stroke="#15243B" stroke-width="2"/><text x="170" y="30" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" fill="#7D5A22">OPTION — REPLACE THE OCCUPANTS</text><circle cx="130" cy="118.4" r="8.4" fill="none" stroke="#15243B" stroke-width="2"/><path d="M116.8 170 C 116.8 140.0, 143.2 140.0, 143.2 170" fill="none" stroke="#15243B" stroke-width="2"/><circle cx="170" cy="116.52" r="9.520000000000001" fill="none" stroke="#15243B" stroke-width="2"/><path d="M155.04 175 C 155.04 141.0, 184.96 141.0, 184.96 175" fill="none" stroke="#15243B" stroke-width="2"/><rect x="100" y="178" width="110" height="5" fill="#A9762B"/><text x="155" y="200" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="400" fill="#8696A8">same door, new favourites</text><text x="430" y="30" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" fill="#7D5A22">OPTION — OPEN THE ENTRANCE</text><rect x="370" y="60" width="150" height="110" fill="none" stroke="#15243B" stroke-width="2"/><line x1="445" y1="60" x2="445" y2="170" stroke="#15243B" stroke-width="2" stroke-dasharray="2 4"/><circle cx="410" cy="120.7" r="7.700000000000001" fill="none" stroke="#15243B" stroke-width="2"/><path d="M397.9 168 C 397.9 140.5, 422.1 140.5, 422.1 168" fill="none" stroke="#15243B" stroke-width="2"/><circle cx="480" cy="120.7" r="7.700000000000001" fill="none" stroke="#15243B" stroke-width="2"/><path d="M467.9 168 C 467.9 140.5, 492.1 140.5, 492.1 168" fill="none" stroke="#15243B" stroke-width="2"/><text x="445" y="190" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="400" fill="#8696A8">one rule, open to all</text><line x1="60" y1="225" x2="300" y2="225" stroke="#8696A8" stroke-width="1"/><text x="180" y="240" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" font-weight="600" fill="#15243B">unequal rule, new beneficiary</text><line x1="370" y1="225" x2="630" y2="225" stroke="#8696A8" stroke-width="1"/><text x="495" y="240" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" font-weight="600" fill="#7D5A22">the rule itself changes</text></svg>
+    <p>Fig. 1 — the buffet's three choices: leave it, swap who is inside, or open the entrance.</p>
+  </div>
+</div>
+
+<main>
+  <div class="blk">
+    <h2>Where you may recognize this</h2>
+    <p>A promise of open access, applied unevenly, shows up in small and large places alike:</p>
+    <ul class="trig">
+      <li>A sign reads “open to all,” but one group is waved through and another is stopped and asked to prove it belongs.</li><li>A proposed fix removes the people currently inside and lets the excluded group take their place — rather than changing the rule of entry.</li><li>Someone treats “power has moved” and “the problem is solved” as the same sentence.</li>
+    </ul>
+  </div>
+
+  <div class="blk">
+    <h2>Two different objectives wearing the same word</h2>
+    <p>A five-star hotel advertises a free buffet for all. The well-dressed enter without question; a poorly dressed man is stopped at the door. Given the authority to fix this, there are three options: remove the guests already inside and let him take their place, open the entrance equally to everyone, or leave it as it is.</p><p>The second option is the one that actually keeps the hotel's promise. It does not ask the hotel to remove anyone, and it does not ask the excluded man to become superior to everyone else. <strong>It asks the hotel to honour the rule it already announced.</strong></p><p>Redistributing power may be a necessary part of correcting an injustice. But the movement of power by itself does not tell you whether equality has been achieved — only whether the cast of characters has changed.</p>
+    <div class="split">
+      <div><span class="k">Changing who benefits</span><p>The excluded man is let in by removing someone else. The rule that decided who belongs has not been touched.</p></div>
+      <div class="r"><span class="k">Changing the conditions</span><p>The entrance opens to everyone under one rule. Nobody is removed to make room.</p></div>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h2>What becomes visible</h2>
+    <p>The difference between <strong>redistribution</strong> and <strong>correction</strong> — and the fact that the first can masquerade as the second if nobody checks what actually changed at the door.</p>
+  </div>
+
+  
+
+  <div class="blk">
+    <h2>Where this fits</h2>
+    <div class="sits">
+      <div><span class="k">In the manifestation</span><p>This opens the manifestation by separating the word “equality” from the fact of power moving. Every later article depends on this separation holding.</p></div>
+      <div><span class="k">In the model</span><p>It introduces the <strong>Occupants</strong> and <strong>Conditions</strong> lenses by contrasting a change in who enters with a change in the rule of entry — the first move in the Occupant–Relationship Distinction.</p></div>
+      <div><span class="k">Before &amp; after</span><p>Before: none — this opens the sequence. After: once equality is separated from redistribution, the next question is whether the relationship governing power has actually changed, which is what a changed occupant can hide.</p></div>
+    </div>
+  </div>
+</main>
+
+<section class="closing">
+  <div class="closing-inner">
+    <span class="k">Reader understanding</span>
+    <p class="u">Equal participation is not achieved simply by changing who occupies the position of advantage. The conditions governing participation have to be examined on their own.</p>
+    <div class="r"><p>Think of an arrangement you've seen corrected recently. Was the rule changed, or just the name of who benefits from it?</p></div>
+  </div>
+</section>
+
+<nav class="footnav">
+  <span class="gap"></span>
+  <a class="next" href="OccupantArticle2.html"><small>Next article</small><b>Changing Who Holds Power Does Not Eliminate the Hierarchy</b></a>
+</nav>
+<div class="dots">
+  <a href="OccupantArticle1.html" class="current"></a><a href="OccupantArticle2.html" class=""></a><a href="OccupantArticle3.html" class=""></a><a href="OccupantArticle4.html" class=""></a><a href="OccupantArticle5.html" class=""></a><a href="OccupantArticle6.html" class=""></a><a href="OccupantArticle7.html" class=""></a>
+</div>
+<p class="foot">Mind Anchor. A conceptual distinction — not a claim about any specific movement, policy, or individual's intent.</p>
+
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>An Inequality Cannot Be Understood From One Number Alone — Mind Anchor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#F0F3F6; --grid:#D7E0E8; --ink:#15243B; --ink-soft:#4E5E72; --ink-faint:#8696A8;
+    --line:#C3CFDA; --paper:#FAFBFC; --card:#FFFFFF;
+    --brass:#A9762B; --brass-deep:#7D5A22; --brass-wash:#F2E3C8;
+    --flag:#8B2E2E; --flag-wash:#F3DEDC;
+  }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:
+      linear-gradient(var(--grid) 1px, transparent 1px) 0 0/100% 34px,
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0/34px 100%,
+      var(--blue);
+    color:var(--ink);
+    font-family:'Newsreader', serif; font-size:18px; line-height:1.72;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+  ::selection{ background:var(--brass-wash); color:var(--ink); }
+  h1,h2{ font-family:'Archivo', sans-serif; letter-spacing:-0.01em; }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+
+  /* ---------------- masthead ---------------- */
+  .masthead{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0.9rem 1.5rem; gap:1rem;
+    background:rgba(250,251,252,0.94); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{ display:flex; align-items:center; gap:0.65rem; text-decoration:none; }
+  .brand img{ width:32px; height:32px; border-radius:50%; object-fit:cover; box-shadow:0 0 0 1px var(--line); }
+  .brand span{ font-family:'Archivo', sans-serif; font-weight:600; font-size:0.98rem; color:var(--ink); }
+  .mast-right{ text-align:right; }
+  .mast-right .series{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.04em; color:var(--ink-faint); }
+  .mast-right .pos{ display:block; font-family:'Archivo', sans-serif; font-weight:600; font-size:0.86rem; color:var(--brass-deep); }
+
+  /* ---------------- lens tracker ---------------- */
+  .lens{
+    max-width:760px; margin:1.1rem auto 0; padding:0 1.5rem;
+    display:flex; gap:0.6rem; flex-wrap:wrap;
+  }
+  .lens-pill{
+    flex:1; min-width:150px;
+    border:1px solid var(--line); background:var(--card);
+    padding:0.55rem 0.9rem; border-radius:3px;
+  }
+  .lens-pill .lbl{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.68rem; letter-spacing:0.05em; color:var(--ink-faint); text-transform:uppercase; }
+  .lens-pill .wd{ font-family:'Archivo', sans-serif; font-weight:600; font-size:0.92rem; color:var(--ink-faint); }
+  .lens-pill.active{ border-color:var(--brass); background:var(--brass-wash); }
+  .lens-pill.active .lbl{ color:var(--brass-deep); }
+  .lens-pill.active .wd{ color:var(--ink); }
+
+  /* ---------------- hero ---------------- */
+  .hero{ max-width:760px; margin:0 auto; padding:2.3rem 1.5rem 1.4rem; }
+  .eyebrow{
+    display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--brass-deep);
+    border-bottom:1px solid var(--brass); padding-bottom:3px; margin-bottom:1.3rem;
+  }
+  .hero h1{
+    font-size:clamp(2rem, 5vw, 3.1rem); line-height:1.12; margin-bottom:1.2rem; color:var(--ink);
+  }
+  .hero .core{ font-size:clamp(1.02rem,1.9vw,1.2rem); color:var(--ink-soft); max-width:58ch; line-height:1.62; }
+  .hero .q{
+    margin-top:1.6rem; padding:1rem 1.2rem; background:var(--card); border:1px solid var(--line); border-left:3px solid var(--brass);
+  }
+  .hero .q span{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.4rem; }
+  .hero .q p{ font-family:'Archivo', sans-serif; font-weight:600; font-size:1.08rem; color:var(--ink); line-height:1.4; }
+
+  /* ---------------- figure ---------------- */
+  .figwrap{ max-width:760px; margin:0 auto; padding:0 1.5rem 0.4rem; }
+  .fig{ background:var(--card); border:1px solid var(--line); padding:1.3rem 1.3rem 1rem; }
+  .fig svg{ width:100%; height:auto; display:block; }
+  .fig p{ margin-top:0.7rem; font-family:'IBM Plex Mono', monospace; font-size:0.82rem; color:var(--ink-soft); }
+
+  /* ---------------- body ---------------- */
+  main{ max-width:760px; margin:0 auto; padding:2.2rem 1.5rem 1rem; }
+  .blk{ margin-bottom:2.7rem; }
+  .blk h2{ font-size:clamp(1.3rem,2.6vw,1.6rem); margin-bottom:1rem; color:var(--ink); }
+  .blk p{ margin-bottom:1rem; max-width:65ch; }
+  .blk p:last-child{ margin-bottom:0; }
+  .blk strong{ color:var(--brass-deep); font-weight:600; }
+
+  .trig{
+    list-style:none; margin-top:0.6rem;
+  }
+  .trig li{
+    position:relative; padding:0.8rem 1rem 0.8rem 1.6rem; margin-bottom:0.6rem;
+    background:var(--card); border:1px solid var(--line); font-size:1rem; max-width:62ch;
+  }
+  .trig li::before{ content:'›'; position:absolute; left:0.6rem; top:0.75rem; color:var(--brass); font-weight:700; }
+
+  .split{ display:grid; grid-template-columns:1fr; gap:0.9rem; margin-top:1.1rem; }
+  @media (min-width:660px){ .split{ grid-template-columns:1fr 1fr; } }
+  .split > div{ padding:1.05rem 1.2rem; background:var(--card); border:1px solid var(--line); border-top:3px solid var(--ink-faint); }
+  .split > div.r{ border-top-color:var(--brass); }
+  .split span.k{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.03em; margin-bottom:0.4rem; }
+  .split > div.r span.k{ color:var(--brass-deep); }
+  .split p{ margin:0; font-size:0.98rem; }
+
+  .boundary{
+    border:1px dashed var(--flag); background:var(--flag-wash);
+    padding:1.1rem 1.3rem;
+  }
+  .boundary .k{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.74rem; color:var(--flag); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.5rem; }
+  .boundary p, .boundary li{ font-size:0.96rem; color:var(--ink); }
+  .boundary ul{ margin:0.3rem 0 0 1.1rem; }
+  .boundary li{ margin-bottom:0.4rem; }
+
+  .sits{ display:grid; gap:0.75rem; margin-top:0.3rem; }
+  .sits div{ padding:0.9rem 1.1rem; background:var(--card); border:1px solid var(--line); }
+  .sits span.k{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--brass-deep); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.2rem; }
+  .sits p{ margin:0; font-size:0.97rem; }
+
+  /* ---------------- closing ---------------- */
+  .closing{ background:var(--ink); color:var(--blue); padding:3.4rem 1.5rem 3.6rem; margin-top:1rem; }
+  .closing-inner{ max-width:760px; margin:0 auto; }
+  .closing span.k{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--brass-wash); margin-bottom:0.8rem; text-transform:uppercase; letter-spacing:0.04em; }
+  .closing .u{ font-family:'Archivo', sans-serif; font-weight:600; font-size:clamp(1.3rem,3vw,1.85rem); line-height:1.38; max-width:32ch; }
+  .closing .r{ margin-top:2rem; padding-top:1.5rem; border-top:1px solid rgba(240,243,246,0.25); max-width:58ch; }
+  .closing .r p{ color:#C9D3DE; font-size:1.03rem; line-height:1.6; font-style:italic; }
+
+  .footnav{ max-width:760px; margin:0 auto; padding:2.2rem 1.5rem 0.8rem; display:flex; gap:1rem; flex-wrap:wrap; }
+  .footnav a, .footnav span.gap{
+    flex:1; min-width:230px; padding:0.95rem 1.2rem; background:var(--card); border:1px solid var(--line); text-decoration:none;
+  }
+  .footnav span.gap{ visibility:hidden; }
+  .footnav a:hover{ border-color:var(--brass); }
+  .footnav small{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.03em; }
+  .footnav b{ font-family:'Archivo', sans-serif; font-weight:600; font-size:1rem; color:var(--ink); }
+  .footnav a.next{ text-align:right; }
+
+  .dots{ display:flex; gap:0.45rem; justify-content:center; padding:1.3rem 0 0.4rem; }
+  .dots a{ width:8px; height:8px; border-radius:50%; background:var(--line); border:none; }
+  .dots a.current{ background:var(--brass); }
+  .foot{ max-width:760px; margin:0 auto; padding:1rem 1.5rem 3rem; font-size:0.84rem; color:var(--ink-faint); }
+
+  @media (max-width:640px){
+    body{ font-size:17px; }
+    .mast-right .series{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <a class="brand" href="OccupantArticle1.html"><img src="Icon.png" alt="Mind Anchor"><span>Mind Anchor</span></a>
+  <div class="mast-right"><span class="series">The Occupant–Relationship Distinction</span><span class="pos">Article 4 of 7</span></div>
+</header>
+
+<div class="lens">
+  <div class="lens-pill "><span class="lbl">Occupants</span><span class="wd">Who holds it</span></div>
+  <div class="lens-pill "><span class="lbl">Relationship</span><span class="wd">How it operates</span></div>
+  <div class="lens-pill active"><span class="lbl">Conditions</span><span class="wd">What sustains it</span></div>
+</div>
+
+<section class="hero">
+  <span class="eyebrow">Occupant–Relationship Distinction · 4 of 7</span>
+  <h1>An Inequality Cannot Be Understood From One Number Alone</h1>
+  <p class="core">An observable gap tells you that something is different. It does not, by itself, tell you why — and a correction aimed at the wrong cause can create a new unfairness instead of fixing the old one.</p>
+  <div class="q"><span>Central question</span><p>Are we examining the actual cause of an inequality, or drawing a conclusion from only one part of the picture?</p></div>
+</section>
+
+<div class="figwrap">
+  <div class="fig">
+    <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="90" y="60" width="140" height="22" fill="#A9762B"/><text x="90" y="50" text-anchor="start" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="400" fill="#8696A8">prize money</text><rect x="90" y="100" width="560" height="22" fill="none" stroke="#C3CFDA" stroke-width="1.5"/><rect x="90" y="100" width="33" height="22" fill="#7D5A22" opacity="0.5"/><text x="90" y="140" text-anchor="start" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="400" fill="#8696A8">revenue — men's 2022 (~6%)</text><rect x="90" y="170" width="140" height="22" fill="#A9762B"/><text x="90" y="160" text-anchor="start" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="400" fill="#8696A8">prize money</text><rect x="90" y="210" width="560" height="22" fill="none" stroke="#C3CFDA" stroke-width="1.5"/><rect x="90" y="210" width="104" height="22" fill="#7D5A22" opacity="0.5"/><text x="90" y="250" text-anchor="start" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="400" fill="#8696A8">revenue — women's 2023 (~19%)</text><text x="500" y="30" text-anchor="end" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="600" fill="#15243B">same bar, different question</text></svg>
+    <p>Fig. 4 — the same prize money, set against two different totals, tells two different stories.</p>
+  </div>
+</div>
+
+<main>
+  <div class="blk">
+    <h2>Where you may recognize this</h2>
+    <p>This shows up whenever one figure is made to carry an entire verdict:</p>
+    <ul class="trig">
+      <li>Two payments are compared side by side, and the gap is treated as proof of discrimination before anyone asks what produced it.</li><li>A single statistic ends the conversation instead of opening it.</li><li>Someone who sees only one side of a number feels certain that whatever doesn't go their way must be wrong.</li>
+    </ul>
+  </div>
+
+  <div class="blk">
+    <h2>What one number leaves out</h2>
+    <p>At the 2022 men's World Cup, FIFA set aside $440 million in prize money; at the 2023 Women's World Cup, $110 million — about a quarter. Put side by side, the conclusion feels immediate.</p><p>Now ask what each tournament brought in. Men's 2022 revenue across its four-year cycle was about $7.5 billion; the 2023 Women's tournament generated more than $570 million. Measured as a share of revenue, the men's prize money was about <strong>6%</strong> of what was earned; the women's was about <strong>19%</strong> — a larger share paid out of less.</p><p>Neither number is false. They answer different questions. <strong>The point is not who was right</strong> — it is that each view, taken alone, was incomplete, and a correction built on an incomplete view can land on the wrong cause.</p>
+    <div class="split">
+      <div><span class="k">One number</span><p>$440M vs. $110M in prize money. Conclusion: women were paid far less.</p></div>
+      <div class="r"><span class="k">Set against revenue</span><p>~6% vs. ~19% of what was earned. Conclusion: a different, more complicated story.</p></div>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h2>What becomes visible</h2>
+    <p>The gap between <strong>observing</strong> an unequal outcome and <strong>understanding</strong> the conditions that produced it. A correction aimed at the wrong cause does not remove an injustice — it can create a new one, somewhere a true picture would not have pointed.</p>
+  </div>
+
+  <div class="blk"><div class="boundary"><span class="k">A boundary carried from the source</span><p>These percentages are rough — the men's figure spans a four-year cycle, not one tournament, and the two tournaments' revenues were historically sold together and hard to separate. This does not settle whether women's football receives fair investment or promotion, which can itself shape what it earns. It shows how a single number can mislead; it does not show that pay gaps are fair, and many real ones are discrimination that deserve to be examined case by case.</p></div></div>
+
+  <div class="blk">
+    <h2>Where this fits</h2>
+    <div class="sits">
+      <div><span class="k">In the manifestation</span><p>This is the diagnostic safeguard of the manifestation: it protects every other article from being applied to the wrong cause.</p></div>
+      <div><span class="k">In the model</span><p>It supports the <strong>Conditions</strong> lens and the model's governing diagnostic question directly, by testing whether a gap reflects the relationship of dominance or a different set of facts entirely.</p></div>
+      <div><span class="k">Before &amp; after</span><p>Before: Article 3 separated correction from retaliation in principle. After: once the whole picture is in view, the next question is how history and individual responsibility relate to one another.</p></div>
+    </div>
+  </div>
+</main>
+
+<section class="closing">
+  <div class="closing-inner">
+    <span class="k">Reader understanding</span>
+    <p class="u">A difference is something to investigate, not a complete explanation of itself. Seeing the whole picture is what lets a correction land where the problem actually is.</p>
+    <div class="r"><p>Think of a gap you've seen reduced to a single number. What question would the full picture have let you ask instead?</p></div>
+  </div>
+</section>
+
+<nav class="footnav">
+  <a href="OccupantArticle3.html"><small>Previous article</small><b>Correcting Injustice Is Not the Same as Retaliation</b></a>
+  <a class="next" href="OccupantArticle5.html"><small>Next article</small><b>Historical Injustice Does Not Remove the Need for Individual Fairness</b></a>
+</nav>
+<div class="dots">
+  <a href="OccupantArticle1.html" class=""></a><a href="OccupantArticle2.html" class=""></a><a href="OccupantArticle3.html" class=""></a><a href="OccupantArticle4.html" class="current"></a><a href="OccupantArticle5.html" class=""></a><a href="OccupantArticle6.html" class=""></a><a href="OccupantArticle7.html" class=""></a>
+</div>
+<p class="foot">Mind Anchor. A conceptual distinction — not a claim about any specific movement, policy, or individual's intent.</p>
+
+</body>
+</html>

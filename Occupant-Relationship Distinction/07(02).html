@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Changing Who Holds Power Does Not Eliminate the Hierarchy — Mind Anchor</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Newsreader:ital,opsz,wght@0,6..72,400;0,6..72,500;0,6..72,600;1,6..72,400;1,6..72,500&family=Archivo:wght@500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --blue:#F0F3F6; --grid:#D7E0E8; --ink:#15243B; --ink-soft:#4E5E72; --ink-faint:#8696A8;
+    --line:#C3CFDA; --paper:#FAFBFC; --card:#FFFFFF;
+    --brass:#A9762B; --brass-deep:#7D5A22; --brass-wash:#F2E3C8;
+    --flag:#8B2E2E; --flag-wash:#F3DEDC;
+  }
+  *,*::before,*::after{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+  body{
+    background:
+      linear-gradient(var(--grid) 1px, transparent 1px) 0 0/100% 34px,
+      linear-gradient(90deg, var(--grid) 1px, transparent 1px) 0 0/34px 100%,
+      var(--blue);
+    color:var(--ink);
+    font-family:'Newsreader', serif; font-size:18px; line-height:1.72;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{ color:inherit; }
+  ::selection{ background:var(--brass-wash); color:var(--ink); }
+  h1,h2{ font-family:'Archivo', sans-serif; letter-spacing:-0.01em; }
+  .mono{ font-family:'IBM Plex Mono', monospace; }
+
+  /* ---------------- masthead ---------------- */
+  .masthead{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding:0.9rem 1.5rem; gap:1rem;
+    background:rgba(250,251,252,0.94); backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .brand{ display:flex; align-items:center; gap:0.65rem; text-decoration:none; }
+  .brand img{ width:32px; height:32px; border-radius:50%; object-fit:cover; box-shadow:0 0 0 1px var(--line); }
+  .brand span{ font-family:'Archivo', sans-serif; font-weight:600; font-size:0.98rem; color:var(--ink); }
+  .mast-right{ text-align:right; }
+  .mast-right .series{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; letter-spacing:0.04em; color:var(--ink-faint); }
+  .mast-right .pos{ display:block; font-family:'Archivo', sans-serif; font-weight:600; font-size:0.86rem; color:var(--brass-deep); }
+
+  /* ---------------- lens tracker ---------------- */
+  .lens{
+    max-width:760px; margin:1.1rem auto 0; padding:0 1.5rem;
+    display:flex; gap:0.6rem; flex-wrap:wrap;
+  }
+  .lens-pill{
+    flex:1; min-width:150px;
+    border:1px solid var(--line); background:var(--card);
+    padding:0.55rem 0.9rem; border-radius:3px;
+  }
+  .lens-pill .lbl{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.68rem; letter-spacing:0.05em; color:var(--ink-faint); text-transform:uppercase; }
+  .lens-pill .wd{ font-family:'Archivo', sans-serif; font-weight:600; font-size:0.92rem; color:var(--ink-faint); }
+  .lens-pill.active{ border-color:var(--brass); background:var(--brass-wash); }
+  .lens-pill.active .lbl{ color:var(--brass-deep); }
+  .lens-pill.active .wd{ color:var(--ink); }
+
+  /* ---------------- hero ---------------- */
+  .hero{ max-width:760px; margin:0 auto; padding:2.3rem 1.5rem 1.4rem; }
+  .eyebrow{
+    display:inline-block; font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--brass-deep);
+    border-bottom:1px solid var(--brass); padding-bottom:3px; margin-bottom:1.3rem;
+  }
+  .hero h1{
+    font-size:clamp(2rem, 5vw, 3.1rem); line-height:1.12; margin-bottom:1.2rem; color:var(--ink);
+  }
+  .hero .core{ font-size:clamp(1.02rem,1.9vw,1.2rem); color:var(--ink-soft); max-width:58ch; line-height:1.62; }
+  .hero .q{
+    margin-top:1.6rem; padding:1rem 1.2rem; background:var(--card); border:1px solid var(--line); border-left:3px solid var(--brass);
+  }
+  .hero .q span{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.4rem; }
+  .hero .q p{ font-family:'Archivo', sans-serif; font-weight:600; font-size:1.08rem; color:var(--ink); line-height:1.4; }
+
+  /* ---------------- figure ---------------- */
+  .figwrap{ max-width:760px; margin:0 auto; padding:0 1.5rem 0.4rem; }
+  .fig{ background:var(--card); border:1px solid var(--line); padding:1.3rem 1.3rem 1rem; }
+  .fig svg{ width:100%; height:auto; display:block; }
+  .fig p{ margin-top:0.7rem; font-family:'IBM Plex Mono', monospace; font-size:0.82rem; color:var(--ink-soft); }
+
+  /* ---------------- body ---------------- */
+  main{ max-width:760px; margin:0 auto; padding:2.2rem 1.5rem 1rem; }
+  .blk{ margin-bottom:2.7rem; }
+  .blk h2{ font-size:clamp(1.3rem,2.6vw,1.6rem); margin-bottom:1rem; color:var(--ink); }
+  .blk p{ margin-bottom:1rem; max-width:65ch; }
+  .blk p:last-child{ margin-bottom:0; }
+  .blk strong{ color:var(--brass-deep); font-weight:600; }
+
+  .trig{
+    list-style:none; margin-top:0.6rem;
+  }
+  .trig li{
+    position:relative; padding:0.8rem 1rem 0.8rem 1.6rem; margin-bottom:0.6rem;
+    background:var(--card); border:1px solid var(--line); font-size:1rem; max-width:62ch;
+  }
+  .trig li::before{ content:'›'; position:absolute; left:0.6rem; top:0.75rem; color:var(--brass); font-weight:700; }
+
+  .split{ display:grid; grid-template-columns:1fr; gap:0.9rem; margin-top:1.1rem; }
+  @media (min-width:660px){ .split{ grid-template-columns:1fr 1fr; } }
+  .split > div{ padding:1.05rem 1.2rem; background:var(--card); border:1px solid var(--line); border-top:3px solid var(--ink-faint); }
+  .split > div.r{ border-top-color:var(--brass); }
+  .split span.k{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.03em; margin-bottom:0.4rem; }
+  .split > div.r span.k{ color:var(--brass-deep); }
+  .split p{ margin:0; font-size:0.98rem; }
+
+  .boundary{
+    border:1px dashed var(--flag); background:var(--flag-wash);
+    padding:1.1rem 1.3rem;
+  }
+  .boundary .k{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.74rem; color:var(--flag); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.5rem; }
+  .boundary p, .boundary li{ font-size:0.96rem; color:var(--ink); }
+  .boundary ul{ margin:0.3rem 0 0 1.1rem; }
+  .boundary li{ margin-bottom:0.4rem; }
+
+  .sits{ display:grid; gap:0.75rem; margin-top:0.3rem; }
+  .sits div{ padding:0.9rem 1.1rem; background:var(--card); border:1px solid var(--line); }
+  .sits span.k{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--brass-deep); text-transform:uppercase; letter-spacing:0.04em; margin-bottom:0.2rem; }
+  .sits p{ margin:0; font-size:0.97rem; }
+
+  /* ---------------- closing ---------------- */
+  .closing{ background:var(--ink); color:var(--blue); padding:3.4rem 1.5rem 3.6rem; margin-top:1rem; }
+  .closing-inner{ max-width:760px; margin:0 auto; }
+  .closing span.k{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.78rem; color:var(--brass-wash); margin-bottom:0.8rem; text-transform:uppercase; letter-spacing:0.04em; }
+  .closing .u{ font-family:'Archivo', sans-serif; font-weight:600; font-size:clamp(1.3rem,3vw,1.85rem); line-height:1.38; max-width:32ch; }
+  .closing .r{ margin-top:2rem; padding-top:1.5rem; border-top:1px solid rgba(240,243,246,0.25); max-width:58ch; }
+  .closing .r p{ color:#C9D3DE; font-size:1.03rem; line-height:1.6; font-style:italic; }
+
+  .footnav{ max-width:760px; margin:0 auto; padding:2.2rem 1.5rem 0.8rem; display:flex; gap:1rem; flex-wrap:wrap; }
+  .footnav a, .footnav span.gap{
+    flex:1; min-width:230px; padding:0.95rem 1.2rem; background:var(--card); border:1px solid var(--line); text-decoration:none;
+  }
+  .footnav span.gap{ visibility:hidden; }
+  .footnav a:hover{ border-color:var(--brass); }
+  .footnav small{ display:block; font-family:'IBM Plex Mono', monospace; font-size:0.72rem; color:var(--ink-faint); text-transform:uppercase; letter-spacing:0.03em; }
+  .footnav b{ font-family:'Archivo', sans-serif; font-weight:600; font-size:1rem; color:var(--ink); }
+  .footnav a.next{ text-align:right; }
+
+  .dots{ display:flex; gap:0.45rem; justify-content:center; padding:1.3rem 0 0.4rem; }
+  .dots a{ width:8px; height:8px; border-radius:50%; background:var(--line); border:none; }
+  .dots a.current{ background:var(--brass); }
+  .foot{ max-width:760px; margin:0 auto; padding:1rem 1.5rem 3rem; font-size:0.84rem; color:var(--ink-faint); }
+
+  @media (max-width:640px){
+    body{ font-size:17px; }
+    .mast-right .series{ display:none; }
+  }
+</style>
+</head>
+<body>
+
+<header class="masthead">
+  <a class="brand" href="OccupantArticle1.html"><img src="Icon.png" alt="Mind Anchor"><span>Mind Anchor</span></a>
+  <div class="mast-right"><span class="series">The Occupant–Relationship Distinction</span><span class="pos">Article 2 of 7</span></div>
+</header>
+
+<div class="lens">
+  <div class="lens-pill active"><span class="lbl">Occupants</span><span class="wd">Who holds it</span></div>
+  <div class="lens-pill active"><span class="lbl">Relationship</span><span class="wd">How it operates</span></div>
+  <div class="lens-pill "><span class="lbl">Conditions</span><span class="wd">What sustains it</span></div>
+</div>
+
+<section class="hero">
+  <span class="eyebrow">Occupant–Relationship Distinction · 2 of 7</span>
+  <h1>Changing Who Holds Power Does Not Eliminate the Hierarchy</h1>
+  <p class="core">A hierarchy is defined by the relationship between its positions, not only by who occupies them. Replace the gatekeeper and the gate can still work exactly as it did.</p>
+  <div class="q"><span>Central question</span><p>If the people holding power change, does the relationship through which that power is exercised necessarily change with them?</p></div>
+</section>
+
+<div class="figwrap">
+  <div class="fig">
+    <svg viewBox="0 0 700 260" xmlns="http://www.w3.org/2000/svg" role="img"><rect x="300" y="30" width="16" height="190" fill="#15243B"/><rect x="260" y="60" width="96" height="14" fill="#15243B"/><circle cx="308" cy="120" r="20" fill="none" stroke="#A9762B" stroke-width="3"/><rect x="298" y="138" width="20" height="26" fill="#A9762B"/><text x="308" y="20" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="13" font-weight="600" fill="#8696A8">the gate</text><circle cx="140" cy="139.8" r="9.8" fill="none" stroke="#15243B" stroke-width="2"/><path d="M124.6 200 C 124.6 165.0, 155.4 165.0, 155.4 200" fill="none" stroke="#15243B" stroke-width="2"/><text x="140" y="222" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="400" fill="#8696A8">occupant A</text><circle cx="480" cy="139.8" r="9.8" fill="none" stroke="#7D5A22" stroke-width="2"/><path d="M464.6 200 C 464.6 165.0, 495.4 165.0, 495.4 200" fill="none" stroke="#7D5A22" stroke-width="2"/><text x="480" y="222" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="12" font-weight="600" fill="#7D5A22">occupant B</text><path d="M160 160 C 220 120, 260 110, 300 100" fill="none" stroke="#8696A8" stroke-width="1.5" stroke-dasharray="3 4"/><path d="M460 160 C 400 120, 360 110, 318 100" fill="none" stroke="#7D5A22" stroke-width="1.5" stroke-dasharray="3 4"/><text x="308" y="245" text-anchor="middle" font-family="IBM Plex Mono, monospace" font-size="14" font-weight="600" fill="#15243B">the lock has not moved — only whose hand is on it</text></svg>
+    <p>Fig. 2 — the gate survives the gatekeeper. Only the hand on the lock is different.</p>
+  </div>
+</div>
+
+<main>
+  <div class="blk">
+    <h2>Where you may recognize this</h2>
+    <p>This is easiest to notice from the outside, in a single reversal:</p>
+    <ul class="trig">
+      <li>A building has one entrance and one gatekeeper, who has long let one group through while restricting another.</li><li>The excluded group finally gains control of the entrance — and begins imposing the same kind of restriction on the group that once restricted them.</li><li>People say “at least it's not them in charge anymore,” as if that settled the question of fairness.</li>
+    </ul>
+  </div>
+
+  <div class="blk">
+    <h2>The structure, not the name on the door</h2>
+    <p>Picture a building with a single entrance and a gatekeeper who, for years, let one group in freely while placing extra restrictions on another. The excluded group eventually takes control of the entrance. What happens next depends entirely on the <strong>principle</strong> the new gatekeeper governs by — not on which group now holds the keys.</p><p>If the new gatekeeper opens access fairly, the relationship has changed. If the new gatekeeper imposes the old restriction on the old favoured group, the identities have swapped but <strong>the relationship remains recognisable:</strong> there is still a gatekeeper, still a group whose entry depends on another group's approval.</p>
+    <div class="split">
+      <div><span class="k">What has changed</span><p>The person standing at the gate. Who currently benefits from the arrangement.</p></div>
+      <div class="r"><span class="k">What may not have changed</span><p>The existence of a gate at all. The fact that one group's access still depends on another group's permission.</p></div>
+    </div>
+  </div>
+
+  <div class="blk">
+    <h2>What becomes visible</h2>
+    <p>That a new occupant is not, on its own, evidence that an arrangement has become fair. This does not mean every change of power is a hierarchy reversal — only that occupant change and relationship change are two different questions, and answering the first does not answer the second.</p>
+  </div>
+
+  
+
+  <div class="blk">
+    <h2>Where this fits</h2>
+    <div class="sits">
+      <div><span class="k">In the manifestation</span><p>This is the structural heart of the manifestation — the clearest direct statement of how dominance can survive a change of occupants.</p></div>
+      <div><span class="k">In the model</span><p>It is the fullest expression of the Occupant–Relationship Distinction: the <strong>Occupants</strong> and <strong>Relationship</strong> lenses applied together to a single mechanism.</p></div>
+      <div><span class="k">Before &amp; after</span><p>Before: Article 1 separated equality from redistribution in principle. After: once a hierarchy can survive its own reversal, the next question is whether a given corrective response is actually correcting it, or just reversing its direction.</p></div>
+    </div>
+  </div>
+</main>
+
+<section class="closing">
+  <div class="closing-inner">
+    <span class="k">Reader understanding</span>
+    <p class="u">Changing who exercises authority does not necessarily eliminate the authority's shape. The relationship itself — who answers to whom, on what terms — is what has to change.</p>
+    <div class="r"><p>Where have you seen the same arrangement survive a change of leadership, just facing a different direction?</p></div>
+  </div>
+</section>
+
+<nav class="footnav">
+  <a href="OccupantArticle1.html"><small>Previous article</small><b>Equality Is Not the Same as Reversing Power</b></a>
+  <a class="next" href="OccupantArticle3.html"><small>Next article</small><b>Correcting Injustice Is Not the Same as Retaliation</b></a>
+</nav>
+<div class="dots">
+  <a href="OccupantArticle1.html" class=""></a><a href="OccupantArticle2.html" class="current"></a><a href="OccupantArticle3.html" class=""></a><a href="OccupantArticle4.html" class=""></a><a href="OccupantArticle5.html" class=""></a><a href="OccupantArticle6.html" class=""></a><a href="OccupantArticle7.html" class=""></a>
+</div>
+<p class="foot">Mind Anchor. A conceptual distinction — not a claim about any specific movement, policy, or individual's intent.</p>
+
+</body>
+</html>
